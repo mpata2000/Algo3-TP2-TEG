@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.dev
+    volumes:
+      - ../:/app
+    stdin_open: true
+    tty: true
+
+
