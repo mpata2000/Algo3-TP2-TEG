@@ -13,7 +13,7 @@ jobs:
       - name: Check running containers
         run: docker-compose -f docker/docker-compose.yaml ps -a
       - name: Run test suite
-        run: docker-compose -f docker/docker-compose.yaml exec -T app mvn test
+        run: docker-compose -f docker/docker-compose.yaml exec -T app scripts/build.sh
 
   package:
     runs-on: ubuntu-20.04
@@ -22,5 +22,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Build docker services
+        run: docker-compose -f docker/docker-compose.yaml build
+      - name: Check running containers
+        run: docker-compose -f docker/docker-compose.yaml ps -a
       - name: Package
-        run: scripts/package
+        run: docker-compose -f docker/docker-compose.yaml exec -T app scripts/package.sh
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: target/tp2-1.0-SNAPSHOT.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
