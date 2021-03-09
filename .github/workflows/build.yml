@@ -1,0 +1,26 @@
+name: build
+on: [ push, pull_request ]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Build docker services
+        run: docker-compose build
+      - name: Start services
+        run: docker-compose up -d
+      - name: Check running containers
+        run: docker-compose ps -a
+      - name: Run test suite
+        run: docker-compose exec -T app mvn test
+
+  package:
+    runs-on: ubuntu-20.04
+    needs: build
+    if: contains(github.ref, 'refs/tags/')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Package
+        run: scripts/package
