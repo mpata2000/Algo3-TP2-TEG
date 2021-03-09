@@ -1,5 +1,0 @@
-FROM maven:3.6.3-jdk-11
-COPY . /tmp/app
-RUN cd /tmp/app && mvn install
-WORKDIR /app
-CMD ["/bin/bash"]
