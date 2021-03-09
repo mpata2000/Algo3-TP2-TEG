@@ -13,7 +13,7 @@ jobs:
       - name: Check running containers
         run: docker-compose -f docker/docker-compose.yaml ps -a
       - name: Run test suite
-        run: docker-compose -f docker/docker-compose.yaml exec -T app scripts/build.sh
+        run: docker-compose -f docker/docker-compose.yaml exec -T app bash scripts/build.sh
 
   package:
     runs-on: ubuntu-20.04
@@ -27,7 +27,7 @@ jobs:
       - name: Check running containers
         run: docker-compose -f docker/docker-compose.yaml ps -a
       - name: Package
-        run: docker-compose -f docker/docker-compose.yaml exec -T app scripts/package.sh
+        run: docker-compose -f docker/docker-compose.yaml exec -T app bash scripts/package.sh
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
