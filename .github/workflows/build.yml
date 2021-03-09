@@ -6,14 +6,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Build docker services
-        run: docker-compose -f docker/docker-compose.yaml build
       - name: Start services
-        run: docker-compose -f docker/docker-compose.yaml up -d
-      - name: Check running containers
-        run: docker-compose -f docker/docker-compose.yaml ps -a
+        run: scripts/start_services.sh
       - name: Run test suite
         run: docker-compose -f docker/docker-compose.yaml exec -T app bash scripts/build.sh
+      - name: Upload coverage report
+        run: bash <(curl -s https://codecov.io/bash)
 
   package:
     runs-on: ubuntu-20.04
@@ -22,10 +20,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Build docker services
-        run: docker-compose -f docker/docker-compose.yaml build
-      - name: Check running containers
-        run: docker-compose -f docker/docker-compose.yaml ps -a
+      - name: Start services
+        run: scripts/start_services.sh
       - name: Package
         run: docker-compose -f docker/docker-compose.yaml exec -T app bash scripts/package.sh
       - name: Release
