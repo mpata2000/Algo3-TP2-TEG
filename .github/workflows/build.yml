@@ -1,0 +1,32 @@
+name: build
+on: [ push, pull_request ]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Start services
+        run: scripts/start_services.sh
+      - name: Run test suite
+        run: docker-compose -f docker/docker-compose.yaml exec -T app bash scripts/build.sh
+      - name: Upload coverage report
+        run: bash <(curl -s https://codecov.io/bash)
+
+  package:
+    runs-on: ubuntu-20.04
+    needs: build
+    if: contains(github.ref, 'refs/tags/')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Start services
+        run: scripts/start_services.sh
+      - name: Package
+        run: docker-compose -f docker/docker-compose.yaml exec -T app bash scripts/package.sh
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: target/tp2-*.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

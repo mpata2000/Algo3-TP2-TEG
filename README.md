@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/fiuba/algo3_proyecto_base_tp2.svg?branch=master)](https://travis-ci.org/fiuba/algo3_proyecto_base_tp2) [![codecov](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2/branch/master/graph/badge.svg)](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2)
-
+![tp2](https://github.com/fiuba/algo3_proyecto_base_tp2/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2/branch/master/graph/badge.svg)](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2)
 
 
 # TP2 Algoritmos 3: {nombre}
@@ -15,32 +14,20 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 Corrector: **{Corrector}**
 
-### Pre-requisitos
+## Aplicación
 
-Listado de software/herramientas necesarias para el proyecto
-
-```
-java 11
-maven 3.6.0
-...
-```
-
-## Ejecutando las pruebas
+La versión más reciente de la aplicación puede encontrarse en la pestaña [releases](https://github.com/fiuba/algo3_proyecto_base_tp2/releases/latest) y ejecutarse en Linux, Windows o Mac de esta forma:
 
 ```bash
-    mvn test
+$ java -jar <archivo.jar>
 ```
 
-Este comando crea el reporte de cobertura para CI y el reporte HTML que pueden abrir de la siguiente manera:
+## Desarrollo
 
-```bash
-    <browser> ./target/site/jacoco/index.html
-```
-
-## Ejecutando la aplicación
-
-Explicación de como ejecutar la aplicación
+Aquellos que deseen colaborar con el proyecto pueden consultar la [guía de desarrollo](./docs/Desarrollo.md).
 
 ## Licencia
 
-Este repositorio está bajo la Licencia MIT
+Este repositorio se encuentra bajo la Licencia MIT.
+
+
