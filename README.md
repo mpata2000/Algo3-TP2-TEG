@@ -1,4 +1,4 @@
-![tp2](https://github.com/fiuba/algo3_proyecto_base_tp2/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2/branch/master/graph/badge.svg)](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2)
+![tp2](https://github.com/mpata2000/Algo3-TP2-TEG/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/mpata2000/Algo3-TP2-TEG/branch/master/graph/badge.svg)](https://codecov.io/gh/mpata2000/Algo3-TP2-TEG)
 
 # TP2 Algoritmos 3: {nombre} 
 
@@ -15,7 +15,7 @@ Corrector: **{Corrector}**
 
 ## Aplicación
 
-La versión más reciente de la aplicación puede encontrarse en la pestaña [releases](https://github.com/fiuba/algo3_proyecto_base_tp2/releases/latest) y ejecutarse en Linux, Windows o Mac de esta forma:
+La versión más reciente de la aplicación puede encontrarse en la pestaña [releases](https://github.com/mpata2000/Algo3-TP2-TEG/releases/latest) y ejecutarse en Linux, Windows o Mac de esta forma:
 
 ```bash
 $ java -jar <archivo.jar>

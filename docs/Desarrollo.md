@@ -11,7 +11,7 @@ Existen distintas maneras de configurar el ambiente de desarrollo:
 
 ## Empaquetado
 
-Cuando se genera un **tag** que comienza con `v` (ejemplo `v0.0.1`) automáticamente se produce un [release](https://github.com/fiuba/algo3_proyecto_base_tp2/releases) con la aplicación empaquetada. Para el nombre de la versión se recomienda utilizar [versionado semántico](https://semver.org/lang/es/), por ejemplo:
+Cuando se genera un **tag** que comienza con `v` (ejemplo `v0.0.1`) automáticamente se produce un [release](https://github.com/mpata2000/Algo3-TP2-TEG/releases) con la aplicación empaquetada. Para el nombre de la versión se recomienda utilizar [versionado semántico](https://semver.org/lang/es/), por ejemplo:
 
 ```bash
 $ git tag v0.0.1   # Genera el tag sobre el commit actual
@@ -30,4 +30,4 @@ $ java -jar <archivo.jar>
 
 ## Seguridad
 
-Al pushear el código al repositorio este es analizado con [CodeQL](https://codeql.github.com/docs/). Si se encuentra algún error o vulnerabilidad se mostrará en la pestaña Security -> [Code scanning alerts](https://github.com/fiuba/algo3_proyecto_base_tp2/security/code-scanning). Luego de que dicho error sea arreglado la alerta se resuelve de forma automática, para más información consultar la [documentación de github](https://docs.github.com/en/code-security/secure-coding/automatically-scanning-your-code-for-vulnerabilities-and-errors).
+Al pushear el código al repositorio este es analizado con [CodeQL](https://codeql.github.com/docs/). Si se encuentra algún error o vulnerabilidad se mostrará en la pestaña Security -> [Code scanning alerts](https://github.com/mpata2000/Algo3-TP2-TEG/security/code-scanning). Luego de que dicho error sea arreglado la alerta se resuelve de forma automática, para más información consultar la [documentación de github](https://docs.github.com/en/code-security/secure-coding/automatically-scanning-your-code-for-vulnerabilities-and-errors).
