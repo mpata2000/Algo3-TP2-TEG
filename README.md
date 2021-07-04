@@ -1,6 +1,6 @@
 ![tp2](https://github.com/mpata2000/Algo3-TP2-TEG/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/mpata2000/Algo3-TP2-TEG/branch/master/graph/badge.svg)](https://codecov.io/gh/mpata2000/Algo3-TP2-TEG)
 
-# TP2 Algoritmos 3: TEG 
+# TP2 Algoritmos 3: A.L.T.E.G.O 
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
