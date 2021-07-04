@@ -4,14 +4,14 @@
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo 5
 
 * **Integrante 1** - [Martin Pata Fraile de Manerola](https://github.com/mpata2000)
 * **Integrante 2** - [Andrés Tomás Kübler](https://github.com/Andreskub)
 * **Integrante 3** - [Sofía Marchesini](https://github.com/sofimarchesini)
 * **Integrante 4** - [Santiago Vaccarelli](https://github.com/SantiagoVaccarelli)
 
-Corrector: **{Corrector}**
+Corrector: Thiago - Santi
 
 ## Aplicación
 
