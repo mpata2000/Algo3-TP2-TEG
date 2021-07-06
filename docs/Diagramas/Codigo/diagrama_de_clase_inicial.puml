@@ -1,0 +1,59 @@
+@startuml ModeloInicial
+
+Class ALTEGO{
+
+}
+
+Class Tablero{
+    -buscarPais(pais)
+    +atacarConA(paisMio,pasiEnemigo)
+    +agregarFichas(tipo: Ejercito, pais, num)
+}
+
+Class Continente{
+    +esDelJugador(tipo: Ejercito)
+}
+
+Class Jugador{
+    -tipoEjercito: Ejercito
+    +atacarConA(paisMio,paisEnemigo)
+    +turnoAgregar()
+    +turnoAtacar()
+}
+
+Class Pais{
+    -adyacentes: Dictionary
+    -esAdyacente(pais)
+    +atacarA(Pais,tipoEjercito: Ejercito)
+    +atacarCon(Ejercito)
+    +esDelJugador(tipoEjercito: Ejercito): boolean
+    +agregarFichas(tipo: Ejercito, num)
+}
+
+Abstract Class Ejercito{
+    -cantidadFichas: Int
+    +esDelJugador(tipoEjercito: Ejercito): boolean
+    +tirarDadosAtacar():
+    +tirarDadosDefender():
+    +actualizarFicha(ejercitoAtacante: Ejercito): Ejercito
+    +fichasPerdidas(num: Int)
+    +agregarFichas(num: Int)
+}
+
+
+ALTEGO --> Tablero
+ALTEGO --> "2..6"Jugador
+Jugador  -left-> Tablero
+Tablero "1"-->"50" Pais
+Tablero "1"-->"6" Continente
+Continente --right-->"n..m" Pais
+Pais "1"-->"1" Ejercito
+Ejercito <|-- EjercitoRojo
+Ejercito <|-- EjercitoMagenta
+Ejercito <|-- EjercitoAzul
+Ejercito <|-- EjercitoVerde
+Ejercito <|-- EjercitoAmarillo
+Ejercito <|-- Ejercitonegro
+Ejercito <|-- SinTipo
+
+@enduml
