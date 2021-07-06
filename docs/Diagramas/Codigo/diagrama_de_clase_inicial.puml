@@ -1,4 +1,4 @@
-@startuml ModeloInicial
+@startuml ModeloInicial-V0.3
 
 Class ALTEGO{
 
@@ -11,7 +11,8 @@ Class Tablero{
 }
 
 Class Continente{
-    +esDelJugador(tipo: Ejercito)
+    +ocupadoPorJugador(colorJugador)
+    +cantidadDePaisesOcupadosPor(colorJugador)
 }
 
 Class Jugador{
@@ -30,9 +31,10 @@ Class Pais{
     +agregarFichas(tipo: Ejercito, num)
 }
 
-Abstract Class Ejercito{
+Class Ejercito{
     -cantidadFichas: Int
-    +esDelJugador(tipoEjercito: Ejercito): boolean
+    -tipo: String
+    +esDelJugador(colorJugador): boolean
     +tirarDadosAtacar():
     +tirarDadosDefender():
     +actualizarFicha(ejercitoAtacante: Ejercito): Ejercito
@@ -40,20 +42,26 @@ Abstract Class Ejercito{
     +agregarFichas(num: Int)
 }
 
+Class SinEjercito{
+
+}
+
+Class Batalla{
+
+}
+
+Class TarjetaPais{}
+
+Class TrajetaObjetivo{}
 
 ALTEGO --> Tablero
 ALTEGO --> "2..6"Jugador
 Jugador  -left-> Tablero
 Tablero "1"-->"50" Pais
 Tablero "1"-->"6" Continente
+Tablero ..> Batalla
+Batalla .left.> Pais
 Continente --right-->"n..m" Pais
 Pais "1"-->"1" Ejercito
-Ejercito <|-- EjercitoRojo
-Ejercito <|-- EjercitoMagenta
-Ejercito <|-- EjercitoAzul
-Ejercito <|-- EjercitoVerde
-Ejercito <|-- EjercitoAmarillo
-Ejercito <|-- Ejercitonegro
-Ejercito <|-- SinTipo
 
 @enduml
