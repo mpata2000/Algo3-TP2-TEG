@@ -1,0 +1,67 @@
+@startuml DiagramaDeSecuenciaUnPaisAtacaAOtro
+
+Participant Jugador
+Participant Tablero
+Participant Pais
+Participant PaisEnemigo
+Participant Ejercito as "Ejercito"
+Participant FichaEnemigo as "EjercitoEnemigo"
+
+activate Tablero
+Jugador->Tablero: atacarConA(tipo: Ejercito, paisMio, paisEnemigo)
+Tablero -> Tablero: buscarPais(PaisMio)
+activate Tablero
+Tablero --> Tablero: Pais
+deactivate Tablero
+Tablero -> Pais: atacarA(paisEnemigo,Ejercito)
+deactivate Tablero
+activate Pais
+Pais -> Ejercito: esDelJugador(Ejercito)
+activate Ejercito
+Ejercito --> Pais: boolean
+deactivate Ejercito
+Pais -> Pais: buscarPaisAdyacente(Pais)
+activate Pais
+Pais --> Pais: PaisEnemigo:Pais
+deactivate Pais
+Pais -> PaisEnemigo: esDelJugador(Ejercito)
+activate PaisEnemigo
+PaisEnemigo -> Ejercito: esDelJugador(Ejercito)
+activate Ejercito
+Ejercito --> PaisEnemigo: boolean
+deactivate Ejercito
+PaisEnemigo --> Pais: boolean
+deactivate PaisEnemigo
+Pais -> PaisEnemigo: atacarCon(Ejercito)
+activate  PaisEnemigo
+PaisEnemigo -> Ejercito: tirarDadosAtacar()
+activate Ejercito
+Ejercito --> PaisEnemigo: vectorOrdenados
+deactivate Ejercito
+PaisEnemigo -> FichaEnemigo: tirarDadosDefender()
+activate FichaEnemigo
+FichaEnemigo --> PaisEnemigo: vectordenados
+deactivate FichaEnemigo
+PaisEnemigo -> Ejercito: ejercitosPerdidos(num)
+activate Ejercito
+Ejercito -> Ejercito: actualizarFicha(Ejercito)
+activate Ejercito
+Ejercito --> Ejercito: self
+deactivate Ejercito
+Ejercito --> PaisEnemigo: self
+deactivate Ejercito
+PaisEnemigo -> FichaEnemigo: ejercitosPerdidos(num)
+activate FichaEnemigo
+FichaEnemigo -> FichaEnemigo: actualizarFicha(Ejercito)
+alt tiene cero fichas
+    FichaEnemigo -> Ejercito: pasarEjercito()
+    Ejercito --> FichaEnemigo: Ejercito
+    FichaEnemigo --> PaisEnemigo: Ejercito
+else tiene fichas
+    FichaEnemigo --> PaisEnemigo: self
+end
+
+
+deactivate  PaisEnemigo
+
+@enduml
