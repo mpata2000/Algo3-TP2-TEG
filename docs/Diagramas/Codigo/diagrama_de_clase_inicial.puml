@@ -50,9 +50,11 @@ Class Batalla{
 
 }
 
-Class TarjetaPais{}
+Class TarjetaPais{
+    - sinmbolo
+}
 
-Class TrajetaObjetivo{}
+Class TarjetaObjetivo{}
 
 ALTEGO --> Tablero
 ALTEGO --> "2..6"Jugador
@@ -63,5 +65,8 @@ Tablero ..> Batalla
 Batalla .left.> Pais
 Continente --right-->"n..m" Pais
 Pais "1"-->"1" Ejercito
+Jugador --> TarjetaObjetivo
+TarjetaObjetivo ..> Tablero
+TarjetaPais --> Pais
 
 @enduml

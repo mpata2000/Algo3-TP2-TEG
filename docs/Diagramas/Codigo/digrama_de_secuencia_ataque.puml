@@ -37,14 +37,16 @@ PaisEnemigo --> Batalla: false: Boolean
 deactivate PaisEnemigo
 Batalla --> Batalla: true:Boolean
 deactivate Batalla
-Batalla -> Pais: tirarDadosAtacar()
-Pais -> Ejercito: tirarDadosAtacar()
-Ejercito --> Pais:
-Pais --> Batalla
-Batalla -> PaisEnemigo: tirarDadosDefender()
-PaisEnemigo -> EjercitoEnemigo: tirarDadosDefender()
-EjercitoEnemigo --> PaisEnemigo
-PaisEnemigo --> Batalla
+Batalla -> Pais: dadosAtacar()
+Pais -> Ejercito: dadosAtacar()
+Ejercito --> Pais: dadosAtacante:Dados
+Pais --> Batalla: dadosAtacante:Dados
+Batalla -> PaisEnemigo: dadosDefender()
+PaisEnemigo -> EjercitoEnemigo: dadosDefender()
+EjercitoEnemigo --> PaisEnemigo: dadosDefensor:Dados
+PaisEnemigo --> Batalla: dadosDefensor:Dados
+Batalla -> Dados: compararDados(dadosAtacante: Dados)
+Dados --> Batalla: tupla
 Batalla -> Pais: pederFichas(colorJugador, num)
 Batalla -> PaisEnemigo: perderFichas(colorJugador, num)
 
