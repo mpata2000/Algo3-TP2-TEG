@@ -58,17 +58,22 @@ Pais -> Ejercito: perderFichas(num)
 Ejercito --> Pais: Integer
 deactivate Pais
 Batalla -> PaisEnemigo: perderFichas(num, paisAtacante)
+activate PaisEnemigo
 PaisEnemigo -> EjercitoEnemigo: perderFichas(num)
+activate EjercitoEnemigo
 
 alt defensor queda con 0 fichas
     EjercitoEnemigo --> PaisEnemigo: 0: Integer
-    PaisEnemigo -> PaisEnemigo: actualizar()
+    deactivate EjercitoEnemigo
+    PaisEnemigo -> PaisEnemigo: actualizarDueño(paisAtacante)
+    activate PaisEnemigo
     PaisEnemigo -> Pais: getJugador()
     activate Pais
     Pais --> PaisEnemigo:  jugador
     deactivate Pais
     PaisEnemigo -> Pais: pasarFichasA(paisEnemigo)
     activate Pais
+    deactivate PaisEnemigo
     Pais -> Pais: esAdyacente(paisEnemigo)
     activate Pais
     Pais --> Pais: Boolean
@@ -88,6 +93,7 @@ alt defensor queda con 0 fichas
     PaisEnemigo --> PaisEnemigo: true: Boolean
     deactivate PaisEnemigo
     PaisEnemigo -> EjercitoEnemigo: sumarFichas(num)
+    deactivate PaisEnemigo
     PaisEnemigo --> Batalla: Gano
 else  defensor sigue con fichas
     activate EjercitoEnemigo
