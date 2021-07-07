@@ -6,52 +6,54 @@ Class ALTEGO{
 
 Class Tablero{
     -buscarPais(pais)
-    +atacarConA(paisMio,pasiEnemigo)
-    +agregarFichas(tipo: Ejercito, pais, num)
+    +atacarConA(jugador: Jugador, paisMio: String, pasiEnemigo: String)
+    +agregarFichas(jugador: Jugador, pais: String, num: Integer)
 }
 
 Class Continente{
-    +ocupadoPorJugador(colorJugador)
-    +cantidadDePaisesOcupadosPor(colorJugador)
+    +ocupadoPorJugador(jugador: Jugador)
+    +cantidadDePaisesOcupadosPor(jugador: Jugador)
 }
 
 Class Jugador{
     -tipoEjercito: Ejercito
-    +atacarConA(paisMio,paisEnemigo)
+    +atacarConA(paisMio: String,paisEnemigo: String)
     +turnoAgregar()
     +turnoAtacar()
 }
 
 Class Pais{
+    -jugador: Jugador
     -adyacentes: Dictionary
-    -esAdyacente(pais)
-    +atacarA(Pais,tipoEjercito: Ejercito)
-    +atacarCon(Ejercito)
-    +esDelJugador(tipoEjercito: Ejercito): boolean
-    +agregarFichas(tipo: Ejercito, num)
+    -actualizarJugador(paisAtacante: Pais)
+    +esAdyacente(pais: Pais)
+    +getJugador(): Jugador
+    +tirarDadosAtacar():
+    +tirarDadosDefender():
+    +esDelJugador(jugador: Jugador): boolean
+    +agregarFichas(jugador: Jugador, num: Integer)
+    +perderFichas(num: Integer)
+    +perderFichas(num: Integer, paisAtacante: Pais):
+    +pasarFichas(pais)
+    +ponerFichasDe(num: Integer,jugador)
 }
 
 Class Ejercito{
     -cantidadFichas: Int
-    -tipo: String
-    +esDelJugador(colorJugador): boolean
     +tirarDadosAtacar():
     +tirarDadosDefender():
-    +actualizarFicha(ejercitoAtacante: Ejercito): Ejercito
-    +fichasPerdidas(num: Int)
     +agregarFichas(num: Int)
+    +perderFichas(num: Integer): Integer
+    +pasarFichasFichasADe(pais: Pais, jugador: Jugador)
 }
 
-Class SinEjercito{
-
-}
 
 Class Batalla{
-
+    +atacarConA(jugador: Jugador, paisMio: Pais, paisEnemigo: Pais):
 }
 
 Class TarjetaPais{
-    - sinmbolo
+    - simbolo
 }
 
 Class TarjetaObjetivo{}
