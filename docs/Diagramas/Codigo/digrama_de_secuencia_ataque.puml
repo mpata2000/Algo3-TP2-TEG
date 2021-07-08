@@ -51,11 +51,23 @@ activate EjercitoEnemigo
 EjercitoEnemigo --> PaisEnemigo: dadosDefensor:OrderedArray
 deactivate EjercitoEnemigo
 PaisEnemigo --> Batalla: dadosDefensor:OrderedArray
+note left
+while(i < dadosAtacante.size() && i < dadosAtacante.size()){
+    if(dadosAtacante > dadosDefensor){
+        fichasPerdidasDefensor++;
+    }else{
+        fichasPerdidasAtacante++;
+    }
+    i++;
+}
+end note
 deactivate PaisEnemigo
 Batalla -> Pais: pederFichas(num)
 activate Pais
 Pais -> Ejercito: perderFichas(num)
+activate Ejercito
 Ejercito --> Pais: Integer
+deactivate Ejercito
 deactivate Pais
 Batalla -> PaisEnemigo: perderFichas(num, paisAtacante)
 activate PaisEnemigo
