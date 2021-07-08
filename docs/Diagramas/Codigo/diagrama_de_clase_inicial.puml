@@ -1,4 +1,4 @@
-@startuml ModeloInicial
+@startuml ModeloInicial-V0.3
 
 Class ALTEGO{
 
@@ -6,54 +6,69 @@ Class ALTEGO{
 
 Class Tablero{
     -buscarPais(pais)
-    +atacarConA(paisMio,pasiEnemigo)
-    +agregarFichas(tipo: Ejercito, pais, num)
+    +atacarConA(jugador: Jugador, paisMio: String, pasiEnemigo: String)
+    +agregarFichas(jugador: Jugador, pais: String, num: Integer)
 }
 
 Class Continente{
-    +esDelJugador(tipo: Ejercito)
+    +ocupadoPorJugador(jugador: Jugador)
+    +cantidadDePaisesOcupadosPor(jugador: Jugador)
 }
 
 Class Jugador{
     -tipoEjercito: Ejercito
-    +atacarConA(paisMio,paisEnemigo)
+    +atacarConA(paisMio: String,paisEnemigo: String)
     +turnoAgregar()
     +turnoAtacar()
 }
 
 Class Pais{
+    -jugador: Jugador
     -adyacentes: Dictionary
-    -esAdyacente(pais)
-    +atacarA(Pais,tipoEjercito: Ejercito)
-    +atacarCon(Ejercito)
-    +esDelJugador(tipoEjercito: Ejercito): boolean
-    +agregarFichas(tipo: Ejercito, num)
-}
-
-Abstract Class Ejercito{
-    -cantidadFichas: Int
-    +esDelJugador(tipoEjercito: Ejercito): boolean
+    -actualizarJugador(paisAtacante: Pais)
+    +esAdyacente(pais: Pais)
+    +getJugador(): Jugador
     +tirarDadosAtacar():
     +tirarDadosDefender():
-    +actualizarFicha(ejercitoAtacante: Ejercito): Ejercito
-    +fichasPerdidas(num: Int)
-    +agregarFichas(num: Int)
+    +esDelJugador(jugador: Jugador): boolean
+    +agregarFichas(jugador: Jugador, num: Integer)
+    +perderFichas(num: Integer)
+    +perderFichas(num: Integer, paisAtacante: Pais):
+    +pasarFichas(pais)
+    +ponerFichasDe(num: Integer,jugador)
 }
 
+Class Ejercito{
+    -cantidadFichas: Int
+    +tirarDadosAtacar():
+    +tirarDadosDefender():
+    +agregarFichas(num: Int)
+    +perderFichas(num: Integer): Integer
+    +pasarFichasFichasADe(pais: Pais, jugador: Jugador)
+}
+
+
+Class Batalla{
+    +atacarConA(jugador: Jugador, paisMio: Pais, paisEnemigo: Pais):
+}
+
+Class TarjetaPais{
+    - simbolo
+}
+
+Class TarjetaObjetivo{}
 
 ALTEGO --> Tablero
 ALTEGO --> "2..6"Jugador
 Jugador  -left-> Tablero
 Tablero "1"-->"50" Pais
 Tablero "1"-->"6" Continente
+Tablero ..> Batalla
+Batalla .left.> Pais
 Continente --right-->"n..m" Pais
 Pais "1"-->"1" Ejercito
-Ejercito <|-- EjercitoRojo
-Ejercito <|-- EjercitoMagenta
-Ejercito <|-- EjercitoAzul
-Ejercito <|-- EjercitoVerde
-Ejercito <|-- EjercitoAmarillo
-Ejercito <|-- Ejercitonegro
-Ejercito <|-- SinTipo
+Jugador --> TarjetaObjetivo
+TarjetaObjetivo ..> Tablero
+TarjetaPais --> Pais
 
 @enduml

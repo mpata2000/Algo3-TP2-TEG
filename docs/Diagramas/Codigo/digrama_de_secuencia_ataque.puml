@@ -1,67 +1,120 @@
-@startuml DiagramaDeSecuenciaUnPaisAtacaAOtro
+@startuml DiagramaDeSecuenciaUnPaisAtacaAOtro-V0.2
 
 Participant Jugador
 Participant Tablero
-Participant Pais
-Participant PaisEnemigo
-Participant Ejercito as "Ejercito"
-Participant FichaEnemigo as "EjercitoEnemigo"
+Participant Batalla
+Participant Pais as "paisMio: Pais"
+Participant Ejercito as "ejercito: Ejercito"
+Participant PaisEnemigo as "paisEnemigo: Pais"
+Participant EjercitoEnemigo as "ejercitoEnemigo: Ejercito"
 
 activate Tablero
-Jugador->Tablero: atacarConA(tipo: Ejercito, paisMio, paisEnemigo)
+Jugador->Tablero: atacarConA(jugador, paisMio, paisEnemigo)
 Tablero -> Tablero: buscarPais(PaisMio)
 activate Tablero
-Tablero --> Tablero: Pais
+Tablero --> Tablero: paisMio
 deactivate Tablero
-Tablero -> Pais: atacarA(paisEnemigo,Ejercito)
+Tablero -> Tablero: buscarPais(paisEnemigo)
+activate Tablero
+Tablero --> Tablero: paisEnemigo
 deactivate Tablero
+Tablero -> Batalla: atacarConA(jugador, paisMio, paisEnemigo)
+activate Batalla
+Batalla -> Batalla: esAtaqueValido(jugador, paisMio, paisEnemigo)
+activate Batalla
+Batalla -> Pais: esDeJugador(jugador)
 activate Pais
-Pais -> Ejercito: esDelJugador(Ejercito)
-activate Ejercito
-Ejercito --> Pais: boolean
-deactivate Ejercito
-Pais -> Pais: buscarPaisAdyacente(Pais)
-activate Pais
-Pais --> Pais: PaisEnemigo:Pais
+Pais --> Batalla: true: Boolean
 deactivate Pais
-Pais -> PaisEnemigo: esDelJugador(Ejercito)
+Batalla -> Pais: esAdyacente(paisEnemigo)
+activate Pais
+Pais --> Batalla: true: Boolean
+deactivate Pais
+Batalla -> PaisEnemigo: esDeJugador(jugador)
 activate PaisEnemigo
-PaisEnemigo -> Ejercito: esDelJugador(Ejercito)
-activate Ejercito
-Ejercito --> PaisEnemigo: boolean
-deactivate Ejercito
-PaisEnemigo --> Pais: boolean
+PaisEnemigo --> Batalla: false: Boolean
 deactivate PaisEnemigo
-Pais -> PaisEnemigo: atacarCon(Ejercito)
-activate  PaisEnemigo
-PaisEnemigo -> Ejercito: tirarDadosAtacar()
+Batalla --> Batalla: true:Boolean
+deactivate Batalla
+Batalla -> Pais: dadosAtacar()
+activate Pais
+Pais -> Ejercito: dadosAtacar()
 activate Ejercito
-Ejercito --> PaisEnemigo: vectorOrdenados
+Ejercito --> Pais: dadosAtacante:OrderedArray
 deactivate Ejercito
-PaisEnemigo -> FichaEnemigo: tirarDadosDefender()
-activate FichaEnemigo
-FichaEnemigo --> PaisEnemigo: vectordenados
-deactivate FichaEnemigo
-PaisEnemigo -> Ejercito: ejercitosPerdidos(num)
+Pais --> Batalla: dadosAtacante:OrderedArray
+deactivate Pais
+Batalla -> PaisEnemigo: dadosDefender()
+activate PaisEnemigo
+PaisEnemigo -> EjercitoEnemigo: dadosDefender()
+activate EjercitoEnemigo
+EjercitoEnemigo --> PaisEnemigo: dadosDefensor:OrderedArray
+deactivate EjercitoEnemigo
+PaisEnemigo --> Batalla: dadosDefensor:OrderedArray
+note left
+while(i < dadosAtacante.size() && i < dadosAtacante.size()){
+    if(dadosAtacante > dadosDefensor){
+        fichasPerdidasDefensor++;
+    }else{
+        fichasPerdidasAtacante++;
+    }
+    i++;
+}
+end note
+deactivate PaisEnemigo
+Batalla -> Pais: pederFichas(num)
+activate Pais
+Pais -> Ejercito: perderFichas(num)
 activate Ejercito
-Ejercito -> Ejercito: actualizarFicha(Ejercito)
-activate Ejercito
-Ejercito --> Ejercito: self
+Ejercito --> Pais: Integer
 deactivate Ejercito
-Ejercito --> PaisEnemigo: self
-deactivate Ejercito
-PaisEnemigo -> FichaEnemigo: ejercitosPerdidos(num)
-activate FichaEnemigo
-FichaEnemigo -> FichaEnemigo: actualizarFicha(Ejercito)
-alt tiene cero fichas
-    FichaEnemigo -> Ejercito: pasarEjercito()
-    Ejercito --> FichaEnemigo: Ejercito
-    FichaEnemigo --> PaisEnemigo: Ejercito
-else tiene fichas
-    FichaEnemigo --> PaisEnemigo: self
+deactivate Pais
+Batalla -> PaisEnemigo: perderFichas(num, paisAtacante)
+activate PaisEnemigo
+PaisEnemigo -> EjercitoEnemigo: perderFichas(num)
+activate EjercitoEnemigo
+
+alt defensor queda con 0 fichas
+    EjercitoEnemigo --> PaisEnemigo: 0: Integer
+    deactivate EjercitoEnemigo
+    PaisEnemigo -> PaisEnemigo: actualizarDueño(paisAtacante)
+    activate PaisEnemigo
+    PaisEnemigo -> Pais: getJugador()
+    activate Pais
+    Pais --> PaisEnemigo:  jugador
+    deactivate Pais
+    PaisEnemigo -> Pais: pasarFichasA(paisEnemigo)
+    activate Pais
+    deactivate PaisEnemigo
+    Pais -> Pais: esAdyacente(paisEnemigo)
+    activate Pais
+    Pais --> Pais: Boolean
+    deactivate Pais
+    Pais -> Ejercito: pasarFichasADe(paisEnemigo,Jugador)
+    deactivate Pais
+    activate Ejercito
+    note right Ejercito
+        Aca se le puede preguntar a jugador cuantas
+        fichas pasar. Duda de como limitarlo
+    end note
+    Ejercito -> PaisEnemigo: ponerFichasDe(num,jugador)
+    deactivate Ejercito
+    activate PaisEnemigo
+    PaisEnemigo -> PaisEnemigo: esDeJugador(jugador)
+    activate PaisEnemigo
+    PaisEnemigo --> PaisEnemigo: true: Boolean
+    deactivate PaisEnemigo
+    PaisEnemigo -> EjercitoEnemigo: sumarFichas(num)
+    deactivate PaisEnemigo
+    PaisEnemigo --> Batalla: Gano
+else  defensor sigue con fichas
+    activate EjercitoEnemigo
+    EjercitoEnemigo --> PaisEnemigo: Integer
+    deactivate EjercitoEnemigo
+    PaisEnemigo --> Batalla: noGano
+    deactivate PaisEnemigo
 end
-
-
-deactivate  PaisEnemigo
+Batalla --> Tablero: resultadoBatalla
+Tablero --> Jugador: resultadoBatalla
 
 @enduml
