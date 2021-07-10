@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import edu.fiuba.algo3.modelo.Pais;
 
 public class PaisTest{
-    /**
+    /*
     @Test
     public void paisSeCreaConNombreCorrecto() {
         Pais paisMio = new Pais("Chile");
@@ -45,9 +45,9 @@ public class PaisTest{
         carta.setearPais(jugador);
         carta.devolverPais()
 
-    }**/
+    }*/
      @Test
-     public void colocacionDeEjercitoEnPais(){
+     public void colocacionDeEjercitoEnPaisTest(){
          Pais paisMio = new Pais("Chile");
          Jugador jugador = new Jugador("julio");
          paisMio.agregarTropas(5,jugador);
@@ -55,13 +55,15 @@ public class PaisTest{
      }
 
     @Test
-    public void devolverTropasPais(){
+    public void devolverTropasPaisTest(){
         Pais paisMio = new Pais("Chile");
-        Jugador jugador = new Jugador("julian");
-        Jugador jugadorDos = new Jugador("sofi");
-        paisMio.agregarTropas(5,jugador);
+        Jugador jugadorUno = new Jugador("Julian");
+        Jugador jugadorDos = new Jugador("Sofia");
+
+        paisMio.agregarTropas(5,jugadorUno);
         paisMio.agregarTropas(5,jugadorDos);
-        assertEquals(paisMio.getJugador(),jugador);
+
+        assertEquals(paisMio.getJugador(),jugadorUno);
     }
 
     /**Colocación de ejércitos en los países.
