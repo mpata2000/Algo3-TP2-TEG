@@ -9,10 +9,10 @@ import edu.fiuba.algo3.modelo.Pais;
 // TODO: Colocación de ejércitos en los países.
 // TODO: Ataque entre países con el país defensor como ganador.
 // TODO: Ataque entre países con el país atacante como ganador y ocupación de este.
-class PaisTest{
+public class PaisTest{
 
      @Test
-     void colocacionDeEjercitoEnPaisTest(){
+     public void colocacionDeEjercitoEnPaisTest(){
          Pais paisMio = new Pais("Chile");
          Jugador jugador = new Jugador("julio");
          paisMio.agregarTropas(5,jugador);
@@ -20,7 +20,7 @@ class PaisTest{
      }
 
     @Test
-    void devolverTropasPaisTest(){
+    public void devolverTropasPaisTest(){
         Pais paisMio = new Pais("Chile");
         Jugador jugadorUno = new Jugador("Julian");
         Jugador jugadorDos = new Jugador("Sofia");

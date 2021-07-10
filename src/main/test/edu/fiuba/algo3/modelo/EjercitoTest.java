@@ -6,16 +6,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
-class EjercitoTest {
+public class EjercitoTest {
 
     @Test
-    void ejercitoNoTieneFichas(){
+    public void ejercitoNoTieneFichas(){
         Ejercito ejercito = new Ejercito();
         assertEquals(ejercito.getCantFichas(),0);
 
     }
     @Test
-    void colocacionDeEjercitosTest(){
+    public void colocacionDeEjercitosTest(){
         Ejercito ejercito = new Ejercito();
         ejercito.agregarTropas(2);
         assertEquals(ejercito.getCantFichas(),2);
