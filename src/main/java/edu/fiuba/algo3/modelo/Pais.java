@@ -10,31 +10,25 @@ public class Pais {
     public Pais(String nombrePais){
         this.ejercito = new Ejercito();
         this.nombre = nombrePais;
-    }
-    public  String nombre(){
-        return this.nombre;
+        this.jugador = null;
     }
 
-    public void agregarTropas(int cantidadTropas, Jugador jugador){
-        if (this.esDeJugador(jugador)) {
-            this.jugador = jugador;
-            this.ejercito.agregarTropas(cantidadTropas);
-        }
-    }
-
+    public String getNombre() {return this.nombre;}
     public Jugador getJugador(){
         return this.jugador;
+    }
+
+    public void agregarTropas(int cantidadTropas, Jugador unJugador){
+        if(this.jugador == null) { this.jugador = unJugador; }
+
+        if (this.esDeJugador(unJugador)) {
+            this.ejercito.agregarTropas(cantidadTropas);
+        } else {
+            throw new JugadorNoPoseePaisException();
+        }
     }
 
    public boolean esDeJugador(Jugador jugador) {
        return jugador.esElMismoJugador(this.jugador);
    }
-
-    public Ejercito getEjercito(){
-        return this.ejercito;
-    }
-
-    public Boolean esDelJugador(Ejercito ejercito){
-        return this.ejercito.esDelJugador(ejercito);
-    }
 }

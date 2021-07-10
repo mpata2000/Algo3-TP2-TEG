@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class EjercitoTest {
 
     @Test
-    public void ejercitoNoTieneFichas(){
+    public void ejercitoNoTieneFichasTest(){
         Ejercito ejercito = new Ejercito();
         assertEquals(ejercito.getCantFichas(),0);
 
