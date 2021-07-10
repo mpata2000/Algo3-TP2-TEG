@@ -20,5 +20,4 @@ public class EjercitoTest {
         ejercito.agregarTropas(2);
         assertEquals(ejercito.getCantFichas(),2);
     }
-
 }
