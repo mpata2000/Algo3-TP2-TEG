@@ -3,12 +3,12 @@ package edu.fiuba.algo3.modelo;
 import java.util.Dictionary;
 import java.util.*;
 
-public class Mapa {
+public class Tablero {
     private Ataque ataque;
     private Dictionary<Pais,String> paises;
     private Pais chile = new Pais("Chile");
     private Pais argentina = new Pais("Alemania");
-    Mapa(){
+    Tablero(){
         paises.put(chile,"Chile");
         paises.put(argentina,"Alemania");
     }
