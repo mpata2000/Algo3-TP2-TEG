@@ -27,11 +27,7 @@ public class Jugador {
         return this.ejercito;
     }
  **/
-    public  boolean esElMismoJugador(Jugador jugador){
-        return ( this == jugador || jugador == null);
-    }
-
-    public boolean isEmpty() {
-        return (this.nombre == null);
+    public boolean esElMismoJugador(Jugador jugador){
+        return this == jugador;
     }
 }

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Ataque {
+public class Batalla {
 
 /**
     public void crearAtaque(Pais paisMio, Pais paisEnemigo) {

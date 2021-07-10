@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import edu.fiuba.algo3.modelo.Pais;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 // TODO: Colocación de ejércitos en los países.
@@ -20,14 +20,28 @@ public class PaisTest{
      }
 
     @Test
-    public void devolverTropasPaisTest(){
+    public void whenExceptionThrown_thenAssertionSucceeds() {
+        Exception exception = assertThrows(NumberFormatException.class, () -> {
+            Integer.parseInt("1a");
+        });
+
+        String expectedMessage = "For input string";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void agregarTropasAUnPaisQueNoEsDelJugadorLanzaExcepcionTest(){
         Pais paisMio = new Pais("Chile");
         Jugador jugadorUno = new Jugador("Julian");
         Jugador jugadorDos = new Jugador("Sofia");
 
         paisMio.agregarTropas(5,jugadorUno);
-        paisMio.agregarTropas(5,jugadorDos);
 
-        assertEquals(paisMio.getJugador(),jugadorUno);
+        assertThrows(JugadorNoPoseePaisException.class, () -> {
+            paisMio.agregarTropas(5,jugadorDos);
+        });
     }
+
 }
