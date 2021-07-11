@@ -34,6 +34,10 @@ public class Pais {
         return true;
     }
 
+    public void perderFichas(int cantidadFichas){
+        this.ejercito.perderFichas(cantidadFichas);
+    }
+
     public void actualizarDuenio(Pais unPais){
         this.jugador = unPais.getJugador();
 
