@@ -6,19 +6,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TableroTest {
 
     @Test
-    public void agregarTropasAUnPaisVacioEntoncesElPaisEsDelJugadorTest(){
+    public void agregarFichasAUnPaisVacioEntoncesElPaisEsDelJugadorTest(){
         Tablero tablero = new Tablero();
         Pais pais = new Pais("Argentina");
         tablero.agregarPais(pais);
 
         Jugador jugador = new Jugador("Julian");
-        tablero.agregarTropas(5,jugador, "Argentina");
+        tablero.agregarFichas(5,jugador, "Argentina");
 
         assertTrue(pais.esDeJugador(jugador));
     }
 
     @Test
-    public void agregarTropasAUnPaisQueNoEsDelJugadorLanzaExcepcionTest(){
+    public void agregarFichasAUnPaisQueNoEsDelJugadorLanzaExcepcionTest(){
         Tablero tablero = new Tablero();
         Pais pais = new Pais("Argentina");
 
@@ -27,10 +27,10 @@ public class TableroTest {
         Jugador jugadorUno = new Jugador("Julian");
         Jugador jugadorDos = new Jugador("Martin");
 
-        tablero.agregarTropas(5,jugadorUno, "Argentina");
+        tablero.agregarFichas(5,jugadorUno, "Argentina");
 
         assertThrows(JugadorNoPoseePaisException.class, () -> {
-            pais.agregarTropas(5,jugadorDos);
+            pais.agregarFichas(5,jugadorDos);
         });
     }
 }

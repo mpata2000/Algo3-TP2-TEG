@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,9 +19,9 @@ public class Tablero {
         paises.put(unPais.getNombre(), unPais);
     }
 
-    public void agregarTropas(int cantidadTropas, Jugador unJugador, String unNombrePais){
+    public void agregarFichas(int cantidadTropas, Jugador unJugador, String unNombrePais){
         Pais pais = this.buscarPais(unNombrePais);
-        pais.agregarTropas(cantidadTropas, unJugador);
+        pais.agregarFichas(cantidadTropas, unJugador);
     }
 
     /*
