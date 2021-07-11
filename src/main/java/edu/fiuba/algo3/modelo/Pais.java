@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.Optional;
-
 public class Pais {
     private String nombre;
     private Ejercito ejercito;
@@ -18,14 +16,35 @@ public class Pais {
         return this.jugador;
     }
 
-    public void agregarTropas(int cantidadTropas, Jugador unJugador){
+    public void agregarFichas(int cantidadFichas, Jugador unJugador){
         if(this.jugador == null) { this.jugador = unJugador; }
 
         if (this.esDeJugador(unJugador)) {
-            this.ejercito.agregarTropas(cantidadTropas);
+            this.ejercito.agregarFichas(cantidadFichas);
         } else {
             throw new JugadorNoPoseePaisException();
         }
+    }
+
+    public boolean perderFichas(int cantidadFichas, Pais paisAtacante){
+        if(this.ejercito.perderFichas(cantidadFichas) > 0){
+            return false;
+        }
+        this.actualizarDuenio(paisAtacante);
+        return true;
+    }
+
+    public void actualizarDuenio(Pais unPais){
+        this.jugador = unPais.getJugador();
+
+        unPais.pasarFichasA(this,1);
+    }
+
+    public void pasarFichasA(Pais unPais, int cantidadFichas){
+
+        //TestearAdyacente
+
+        this.ejercito.pasarFichasADe(unPais,this.jugador,cantidadFichas);
     }
 
    public boolean esDeJugador(Jugador jugador) {

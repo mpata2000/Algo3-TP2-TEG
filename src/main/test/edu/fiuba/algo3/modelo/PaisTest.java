@@ -1,13 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
-import edu.fiuba.algo3.modelo.Pais;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 // TODO: Colocación de ejércitos en los países.
-// TODO: Ataque entre países con el país defensor como ganador.
 // TODO: Ataque entre países con el país atacante como ganador y ocupación de este.
 public class PaisTest{
 
@@ -15,7 +13,7 @@ public class PaisTest{
      public void colocacionDeEjercitoEnPaisTest(){
          Pais paisMio = new Pais("Chile");
          Jugador jugador = new Jugador("julio");
-         paisMio.agregarTropas(5,jugador);
+         paisMio.agregarFichas(5,jugador);
          assertEquals(paisMio.getJugador(),jugador);
      }
 
@@ -37,11 +35,72 @@ public class PaisTest{
         Jugador jugadorUno = new Jugador("Julian");
         Jugador jugadorDos = new Jugador("Sofia");
 
-        paisMio.agregarTropas(5,jugadorUno);
+        paisMio.agregarFichas(5,jugadorUno);
 
         assertThrows(JugadorNoPoseePaisException.class, () -> {
-            paisMio.agregarTropas(5,jugadorDos);
+            paisMio.agregarFichas(5,jugadorDos);
         });
+    }
+
+    // TODO: Ataque entre países con el país defensor como ganador.
+    @Test
+    public void paisatacanteNoConquistaPaisDefensor(){
+        Pais paisAtacante = new Pais("Chile");
+        Pais paisDefensor = new Pais("Algo");
+
+        Jugador jugadorUno = new Jugador("Julian");
+        Jugador jugadorDos = new Jugador("Sofia");
+
+        paisAtacante.agregarFichas(5,jugadorUno);
+        paisDefensor.agregarFichas(3,jugadorDos);
+
+        assertFalse(paisDefensor.perderFichas(2,paisAtacante));
+
+    }
+
+    @Test
+    public void paisAtacanteConquistaPaisYNoCambiaDeDuenio(){
+        Pais paisAtacante = new Pais("Chile");
+        Pais paisDefensor = new Pais("Algo");
+
+        Jugador jugadorUno = new Jugador("Julian");
+        Jugador jugadorDos = new Jugador("Sofia");
+
+        paisAtacante.agregarFichas(5,jugadorUno);
+        paisDefensor.agregarFichas(3,jugadorDos);
+        paisDefensor.perderFichas(2,paisAtacante);
+        assertTrue(paisDefensor.esDeJugador(jugadorDos));
+
+    }
+
+    @Test
+    public void paisAtacanteConquistaPais(){
+        Pais paisAtacante = new Pais("Chile");
+        Pais paisDefensor = new Pais("Algo");
+
+        Jugador jugadorUno = new Jugador("Julian");
+        Jugador jugadorDos = new Jugador("Sofia");
+
+        paisAtacante.agregarFichas(5,jugadorUno);
+        paisDefensor.agregarFichas(3,jugadorDos);
+
+        assertTrue(paisDefensor.perderFichas(3,paisAtacante));
+
+    }
+
+    @Test
+    public void paisAtacanteConquistaPaisYCambiaDeDuenio(){
+        Pais paisAtacante = new Pais("Chile");
+        Pais paisDefensor = new Pais("Algo");
+
+        Jugador jugadorUno = new Jugador("Julian");
+        Jugador jugadorDos = new Jugador("Sofia");
+
+        paisAtacante.agregarFichas(5,jugadorUno);
+        paisDefensor.agregarFichas(3,jugadorDos);
+        paisDefensor.perderFichas(3,paisAtacante);
+        assertTrue(paisDefensor.esDeJugador(jugadorUno));
+
     }
 
 }
