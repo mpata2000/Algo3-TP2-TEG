@@ -95,22 +95,4 @@ public class BatallaTest {
         assertTrue(paisDefensor.esDeJugador(jugadorUno));
     }
 
-    @Test
-    public void paisAtacante(){
-        paisAtacante = Mockito.mock(Pais.class);
-        Dados dados = Mockito.mock(Dados.class);
-        int[] conjunto = {0,2};
-
-        when(dados.comparaDados(any(Dados.class))).thenReturn(conjunto);
-        when(paisAtacante.tirarDados(3)).thenReturn(dados);
-        when(paisAtacante.getJugador()).thenReturn(jugadorUno);
-        paisDefensor.agregarFichas(3, jugadorDos);
-        Batalla batalla = new Batalla(paisAtacante,paisDefensor);
-
-        assertTrue(batalla.batallar(3));
-
-        paisDefensor.agregarFichas(1,jugadorUno);
-        assertTrue(paisDefensor.esDeJugador(jugadorUno));
-    }
-
 }
