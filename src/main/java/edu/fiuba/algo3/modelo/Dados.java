@@ -34,13 +34,13 @@ public class Dados {
     * */
     public int[] comparaDados(Dados unosDados){
         int cantidadDeDadosAComparar = Math.min(this.cantidadDados(),unosDados.cantidadDados());
-        int[] fichasPerdidas = {0,0};
+        int[] fichasPerdidas = {0,0}; // Pos
 
         for (int i = 0; i < cantidadDeDadosAComparar; i++) {
             if(this.obtenerDado(i) > unosDados.obtenerDado(i)){
-                fichasPerdidas[0]++;
-            }else{
                 fichasPerdidas[1]++;
+            }else{
+                fichasPerdidas[0]++;
             }
         }
 
