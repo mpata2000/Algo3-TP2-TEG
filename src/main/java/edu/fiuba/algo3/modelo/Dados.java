@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -7,7 +9,7 @@ import java.util.Random;
 public class Dados {
     private ArrayList<Integer> conjuntoDados = new ArrayList<>();
 
-    Dados(int cantidadDados) throws NoSePuedenCrearCeroDados{
+    Dados(int cantidadDados) throws NoSePuedenCrearCeroDados {
         if(cantidadDados<1){ throw new NoSePuedenCrearCeroDados();}
 
         Random rand = new Random();

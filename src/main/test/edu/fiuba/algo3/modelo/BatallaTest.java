@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.excepciones.EjercitoConUnaFichaNoPuedeAtacar;
+import edu.fiuba.algo3.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDados;
+import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -8,9 +11,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class BatallaTest {
 
@@ -82,24 +82,6 @@ public class BatallaTest {
         paisAtacante = Mockito.mock(Pais.class);
         Dados dados = Mockito.mock(Dados.class);
         int[] conjunto = {0,3};
-
-        when(dados.comparaDados(any(Dados.class))).thenReturn(conjunto);
-        when(paisAtacante.tirarDados(3)).thenReturn(dados);
-        when(paisAtacante.getJugador()).thenReturn(jugadorUno);
-        paisDefensor.agregarFichas(3, jugadorDos);
-        Batalla batalla = new Batalla(paisAtacante,paisDefensor);
-
-        assertTrue(batalla.batallar(3));
-
-        paisDefensor.agregarFichas(1,jugadorUno);
-        assertTrue(paisDefensor.esDeJugador(jugadorUno));
-    }
-
-    @Test
-    public void paisAtacante(){
-        paisAtacante = Mockito.mock(Pais.class);
-        Dados dados = Mockito.mock(Dados.class);
-        int[] conjunto = {0,2};
 
         when(dados.comparaDados(any(Dados.class))).thenReturn(conjunto);
         when(paisAtacante.tirarDados(3)).thenReturn(dados);
