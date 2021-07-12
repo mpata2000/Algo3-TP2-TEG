@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Tablero {
-    private Batalla batalla;
-    private Map<String, Pais> paises = new HashMap<String, Pais>();
+    private Map<String, Pais> paises = new HashMap<>();
 
     private Pais chile = new Pais("Chile");
     private Pais argentina = new Pais("Argentina");

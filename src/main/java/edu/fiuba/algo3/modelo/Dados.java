@@ -1,36 +1,32 @@
 package edu.fiuba.algo3.modelo;
 
-import javafx.util.Pair;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 public class Dados {
-    private ArrayList<Integer> dados = new ArrayList<Integer>();
+    private ArrayList<Integer> conjuntoDados = new ArrayList<>();
 
     Dados(int cantidadDados) throws NoSePuedenCrearCeroDados{
-        if(cantidadDados<1){
-            throw new NoSePuedenCrearCeroDados();
+        if(cantidadDados<1){ throw new NoSePuedenCrearCeroDados();}
 
-        }
-        Random random = new Random();
+        Random rand = new Random();
 
         for (int i = 0; i < cantidadDados; i++) {
-            dados.add(random.nextInt(6)+1);
+            conjuntoDados.add(rand.nextInt(6) + 1); // Esto deberia dar un numero random entre 1 y 6
         }
 
-        Collections.sort(dados, Collections.reverseOrder());
+        Collections.sort(conjuntoDados, Collections.reverseOrder());
     }
 
     //Devuelve la cantidad de dados que hay
     public int cantidadDados(){
-        return dados.size();
+        return conjuntoDados.size();
     }
 
     //Devuelve el numero del dado en el indice pedido
     public int obtenerDado(int indiceDelDado){
-        return dados.get(indiceDelDado);
+        return conjuntoDados.get(indiceDelDado);
     }
 
     /* Se comparan los dos conjuntos de dados ordenados de mayor a menor
