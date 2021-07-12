@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.io.*;
 
 public class Jugador {
-    public Ejercito ejercito;
-    public Tablero tablero;
-    public String nombre;
+    private Ejercito ejercito;
+    private Tablero tablero;
+    private String nombre;
 
     public Jugador(String nombre){
         this.nombre = nombre;

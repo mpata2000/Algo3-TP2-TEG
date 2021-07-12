@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-// TODO: Colocación de ejércitos en los países.
-// TODO: Ataque entre países con el país atacante como ganador y ocupación de este.
+
 public class PaisTest{
 
      @Test
@@ -14,20 +13,10 @@ public class PaisTest{
          Pais paisMio = new Pais("Chile");
          Jugador jugador = new Jugador("julio");
          paisMio.agregarFichas(5,jugador);
+
          assertEquals(paisMio.getJugador(),jugador);
      }
 
-    @Test
-    public void whenExceptionThrown_thenAssertionSucceeds() {
-        Exception exception = assertThrows(NumberFormatException.class, () -> {
-            Integer.parseInt("1a");
-        });
-
-        String expectedMessage = "For input string";
-        String actualMessage = exception.getMessage();
-
-        assertTrue(actualMessage.contains(expectedMessage));
-    }
 
     @Test
     public void agregarTropasAUnPaisQueNoEsDelJugadorLanzaExcepcionTest(){
@@ -42,7 +31,7 @@ public class PaisTest{
         });
     }
 
-    // TODO: Ataque entre países con el país defensor como ganador.
+
     @Test
     public void paisatacanteNoConquistaPaisDefensor(){
         Pais paisAtacante = new Pais("Chile");
@@ -68,7 +57,9 @@ public class PaisTest{
 
         paisAtacante.agregarFichas(5,jugadorUno);
         paisDefensor.agregarFichas(3,jugadorDos);
+
         paisDefensor.perderFichas(2,paisAtacante);
+
         assertTrue(paisDefensor.esDeJugador(jugadorDos));
 
     }
@@ -100,6 +91,55 @@ public class PaisTest{
         paisDefensor.agregarFichas(3,jugadorDos);
         paisDefensor.perderFichas(3,paisAtacante);
         assertTrue(paisDefensor.esDeJugador(jugadorUno));
+
+    }
+
+    @Test
+    public void paisConCincoFichasPuedeTirarUnDado(){
+        Pais paisMio = new Pais("Chile");
+        Jugador jugador = new Jugador("julio");
+        paisMio.agregarFichas(5,jugador);
+
+        Dados dados = paisMio.tirarDados(1);
+
+        assertEquals(1,dados.cantidadDados());
+
+    }
+
+    @Test
+    public void paisConUnaFichaTirarUnDado(){
+        Pais paisMio = new Pais("Chile");
+        Jugador jugador = new Jugador("julio");
+        paisMio.agregarFichas(1,jugador);
+
+        Dados dados = paisMio.tirarDados();
+
+        assertEquals(1,dados.cantidadDados());
+
+    }
+
+
+    @Test
+    public void paisConOnceFichasPuedeTirarComoMaximoTresDados(){
+        Pais paisMio = new Pais("Chile");
+        Jugador jugador = new Jugador("julio");
+        paisMio.agregarFichas(11,jugador);
+
+        Dados dados = paisMio.tirarDados();
+
+        assertEquals(3,dados.cantidadDados());
+
+    }
+
+    @Test
+    public void paisConOnceFichasPuedeTirarComoMaximoTresDadosAunqueSePidanDadosDeMas(){
+        Pais paisMio = new Pais("Chile");
+        Jugador jugador = new Jugador("julio");
+        paisMio.agregarFichas(11,jugador);
+
+        Dados dados = paisMio.tirarDados(6);
+
+        assertEquals(3,dados.cantidadDados());
 
     }
 

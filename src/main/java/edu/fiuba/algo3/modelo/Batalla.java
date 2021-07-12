@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.ArrayList;
 
 public class Batalla {
 
@@ -12,19 +11,13 @@ public class Batalla {
         this.paisDefensor = paisDefensor;
     }
 
-    public boolean batallar(ArrayList<Integer> dadosAtacante, ArrayList<Integer> dadosDefensor){
-        int fichasPerdidasAtacante = 0;
-        int fichasPerdidasDefensor = 0;
+    public boolean batallar(int cantidadDeDadosAtacante){
+        Dados dadosAtacante = this.paisAtacante.tirarDados(cantidadDeDadosAtacante);
+        Dados dadosDefensor = this.paisDefensor.tirarDados();
 
-        for (int i = 0; i < dadosAtacante.size() | i<dadosDefensor.size(); i++){
-            if (dadosAtacante.get(i) > dadosDefensor.get(i)) {
-                fichasPerdidasDefensor++;
-            }
-            else{
-                fichasPerdidasAtacante++;
-            }
-        }
-        this.paisAtacante.perderFichas(fichasPerdidasAtacante);
-        return (this.paisDefensor.perderFichas(fichasPerdidasDefensor, this.paisAtacante));
+        int[] fichasPerdidas = dadosAtacante.comparaDados(dadosDefensor);
+
+        this.paisAtacante.perderFichas(fichasPerdidas[0]);
+        return (this.paisDefensor.perderFichas(fichasPerdidas[1], this.paisAtacante));
     }
 }

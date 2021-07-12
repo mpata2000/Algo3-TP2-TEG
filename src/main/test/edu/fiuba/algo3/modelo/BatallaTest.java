@@ -12,7 +12,8 @@ public class BatallaTest {
 
 
     @Test
-    public void paisAtacanteNoGanaBatalla() {
+    public void paisAtacanteNoConquistaPais() {
+
 
         Pais chile = new Pais("Chile");
         Pais argentina = new Pais("Argentina");
@@ -20,20 +21,15 @@ public class BatallaTest {
         Jugador jugadorUno = new Jugador("Julian");
         Jugador jugadorDos = new Jugador("Sofia");
 
-        chile.agregarFichas(3, jugadorUno);
-        argentina.agregarFichas(2, jugadorDos);
+        chile.agregarFichas(5, jugadorUno);
+        argentina.agregarFichas(5, jugadorDos);
 
         Batalla batalla = new Batalla(chile, argentina);
 
-        ArrayList<Integer> dadosAtacante = new ArrayList<Integer>();
-        ArrayList<Integer> dadosDefensor = new ArrayList<Integer>();
 
-        dadosAtacante.add(6);
-        dadosAtacante.add(3);
-
-        dadosDefensor.add(5);
-        dadosDefensor.add(4);
-
-        assertFalse(batalla.batallar(dadosAtacante, dadosDefensor));
+        assertFalse(batalla.batallar(2));
     }
+
+
+    //TODO: mockito de pais
 }

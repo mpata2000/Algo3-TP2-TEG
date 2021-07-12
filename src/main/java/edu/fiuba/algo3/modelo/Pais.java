@@ -16,7 +16,7 @@ public class Pais {
         return this.jugador;
     }
 
-    public void agregarFichas(int cantidadFichas, Jugador unJugador){
+    public void agregarFichas(int cantidadFichas, Jugador unJugador) throws JugadorNoPoseePaisException{
         if(this.jugador == null) { this.jugador = unJugador; }
 
         if (this.esDeJugador(unJugador)) {
@@ -26,6 +26,30 @@ public class Pais {
         }
     }
 
+    /*
+    * Le resta cantidadFichas a las fichas del ejercito
+    * Devuelve la cantidad de fichas restantes.
+    * */
+    public int perderFichas(int cantidadFichas){
+        return this.ejercito.perderFichas(cantidadFichas);
+    }
+
+    /*
+    * Cambia el dueño del pais actual con el de unPais
+    * y le pide que le pase una ficha
+    */
+    private void actualizarDuenio(Pais unPais){
+        this.jugador = unPais.getJugador();
+
+        unPais.pasarFichasA(this,1);
+    }
+
+    /*
+    * Resta fichas al ejercito del pais, si el ejercito queda con 0 fichas
+    * el pais se actualiza de dueño con el de pais atacante,se le pasa una ficha
+    * y devuelve true
+    * En caso contrario(no se conquistoel pais), devuelve false
+    */
     public boolean perderFichas(int cantidadFichas, Pais paisAtacante){
         if(this.ejercito.perderFichas(cantidadFichas) > 0){
             return false;
@@ -34,15 +58,6 @@ public class Pais {
         return true;
     }
 
-    public void perderFichas(int cantidadFichas){
-        this.ejercito.perderFichas(cantidadFichas);
-    }
-
-    public void actualizarDuenio(Pais unPais){
-        this.jugador = unPais.getJugador();
-
-        unPais.pasarFichasA(this,1);
-    }
 
     public void pasarFichasA(Pais unPais, int cantidadFichas){
 
@@ -51,7 +66,25 @@ public class Pais {
         this.ejercito.pasarFichasADe(unPais,this.jugador,cantidadFichas);
     }
 
-   public boolean esDeJugador(Jugador jugador) {
-       return jugador.esElMismoJugador(this.jugador);
-   }
+    public boolean esDeJugador(Jugador jugador) {
+        return jugador.esElMismoJugador(this.jugador);
+    }
+
+    /*
+    * Tira la misma cantidad de dados que fichas en el pais, hasta 3
+    * Devuelve el conjunto de Dados
+    */
+    public Dados tirarDados(){
+        return this.ejercito.tirarDados();
+    }
+
+    /*
+    * Tira la uno dado menos que fichas en el pais, hasta 3
+    * Devuelve el conjunto de Dados
+    */
+    public Dados tirarDados(int cantidadDeDados){
+        return this.ejercito.tirarDados(cantidadDeDados);
+    }
+
+
 }
