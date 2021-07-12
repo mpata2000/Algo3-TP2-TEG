@@ -9,7 +9,7 @@ import java.util.Random;
 public class Dados {
     private ArrayList<Integer> dados = new ArrayList<Integer>();
 
-    Dados(int cantidadDados){
+    Dados(int cantidadDados) throws NoSePuedenCrearCeroDados{
         if(cantidadDados<1){
             throw new NoSePuedenCrearCeroDados();
 
