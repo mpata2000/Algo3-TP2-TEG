@@ -34,7 +34,6 @@ public class Ejercito {
         if(this.cantidadFichas < 2){
             throw new EjercitoConUnaFichaNoPuedeAtacar();
         }
-
         //TODO: Preguntar si tirar excepcion o limitarlo de una y que no pase una
         int cantidadDeDados = Math.min(unaCantidadDeDados,3);
 
