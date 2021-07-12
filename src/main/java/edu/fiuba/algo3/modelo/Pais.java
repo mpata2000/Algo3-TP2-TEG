@@ -16,7 +16,7 @@ public class Pais {
         return this.jugador;
     }
 
-    public void agregarFichas(int cantidadFichas, Jugador unJugador){
+    public void agregarFichas(int cantidadFichas, Jugador unJugador) throws JugadorNoPoseePaisException{
         if(this.jugador == null) { this.jugador = unJugador; }
 
         if (this.esDeJugador(unJugador)) {
@@ -54,4 +54,13 @@ public class Pais {
    public boolean esDeJugador(Jugador jugador) {
        return jugador.esElMismoJugador(this.jugador);
    }
+
+   public Dados tirarDados(){
+        return this.ejercito.tirarDados();
+   }
+
+    public Dados tirarDados(int cantidadDeDados){
+        return this.ejercito.tirarDados(cantidadDeDados);
+    }
+
 }
