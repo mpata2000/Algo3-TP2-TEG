@@ -101,5 +101,6 @@ public class EjercitoTest {
         assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDados.class, () -> {
             Dados dados = ejercito.tirarDados(2);
         });
+
     }
 }

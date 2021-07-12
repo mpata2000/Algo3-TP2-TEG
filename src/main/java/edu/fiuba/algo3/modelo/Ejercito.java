@@ -30,10 +30,11 @@ public class Ejercito {
         return new Dados(Math.min(this.cantidadFichas,3));
     }
 
-    public Dados tirarDados(int unaCantidadDeDados) throws EjercitoConUnaFichaNoPuedeAtacar,EjercitoNoPuedeTirarEsaCantidadDeDados{
+    public Dados tirarDados(int unaCantidadDeDados) throws EjercitoConUnaFichaNoPuedeAtacar,EjercitoNoPuedeTirarEsaCantidadDeDados,NoSePuedenCrearCeroDados{
         if(this.cantidadFichas < 2){
             throw new EjercitoConUnaFichaNoPuedeAtacar();
         }
+
         //TODO: Preguntar si tirar excepcion o limitarlo de una y que no pase una
         int cantidadDeDados = Math.min(unaCantidadDeDados,3);
 
