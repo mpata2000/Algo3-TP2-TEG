@@ -1,4 +1,4 @@
-@startuml DiagramaDeSecuenciaUnPaisAtacaAOtro-V0.2
+@startuml DiagramaDeSecuenciaUnPaisAtacaAOtro-V0.5
 
 Participant Jugador
 Participant Tablero
@@ -7,6 +7,7 @@ Participant Pais as "paisMio: Pais"
 Participant Ejercito as "ejercito: Ejercito"
 Participant PaisEnemigo as "paisEnemigo: Pais"
 Participant EjercitoEnemigo as "ejercitoEnemigo: Ejercito"
+Participant DadosAtacante as "dadosAtacante: Dados"
 
 activate Tablero
 Jugador->Tablero: atacarConA(jugador, paisMio, paisEnemigo)
@@ -14,18 +15,20 @@ Tablero -> Tablero: buscarPais(PaisMio)
 activate Tablero
 Tablero --> Tablero: paisMio
 deactivate Tablero
+Tablero -> Pais: esDeJugador(jugador)
+activate Pais
+Pais --> Tablero: true: Boolean
+deactivate Pais
 Tablero -> Tablero: buscarPais(paisEnemigo)
 activate Tablero
 Tablero --> Tablero: paisEnemigo
 deactivate Tablero
-Tablero -> Batalla: atacarConA(jugador, paisMio, paisEnemigo)
+create Batalla
+Tablero -> Batalla: Batalla(paisMio: Pais, paisEnemigo: Pais)
+Tablero -> Batalla: batallar(cantidadDeDados: Integer)
+note left: Aca le podemos pasar jugador y hacer la comprobacion
+Batalla -> Batalla: esAtaqueValido(paisMio, paisEnemigo)
 activate Batalla
-Batalla -> Batalla: esAtaqueValido(jugador, paisMio, paisEnemigo)
-activate Batalla
-Batalla -> Pais: esDeJugador(jugador)
-activate Pais
-Pais --> Batalla: true: Boolean
-deactivate Pais
 Batalla -> Pais: esAdyacente(paisEnemigo)
 activate Pais
 Pais --> Batalla: true: Boolean
@@ -36,32 +39,26 @@ PaisEnemigo --> Batalla: false: Boolean
 deactivate PaisEnemigo
 Batalla --> Batalla: true:Boolean
 deactivate Batalla
-Batalla -> Pais: dadosAtacar()
+Batalla -> Pais: tirarDados(cantidadDeDados: Integer)
 activate Pais
-Pais -> Ejercito: dadosAtacar()
+Pais -> Ejercito: tirarDados(cantidadDeDados: Integer)
 activate Ejercito
-Ejercito --> Pais: dadosAtacante:OrderedArray
+create DadosAtacante
+Ejercito -> DadosAtacante: Dados(cantidadDeDados: Integer)
+Ejercito --> Pais: dadosAtacante: Dados
 deactivate Ejercito
-Pais --> Batalla: dadosAtacante:OrderedArray
+Pais --> Batalla: dadosAtacante: Dados
 deactivate Pais
-Batalla -> PaisEnemigo: dadosDefender()
+Batalla -> PaisEnemigo: tirarDados()
 activate PaisEnemigo
-PaisEnemigo -> EjercitoEnemigo: dadosDefender()
+PaisEnemigo -> EjercitoEnemigo: tirarDados()
 activate EjercitoEnemigo
-EjercitoEnemigo --> PaisEnemigo: dadosDefensor:OrderedArray
+EjercitoEnemigo --> PaisEnemigo: dadosDefensor:Dados
 deactivate EjercitoEnemigo
-PaisEnemigo --> Batalla: dadosDefensor:OrderedArray
-note left
-while(i < dadosAtacante.size() && i < dadosAtacante.size()){
-    if(dadosAtacante > dadosDefensor){
-        fichasPerdidasDefensor++;
-    }else{
-        fichasPerdidasAtacante++;
-    }
-    i++;
-}
-end note
+PaisEnemigo --> Batalla: dadosDefensor:Dados
 deactivate PaisEnemigo
+Batalla -> DadosAtacante: comparadorDeDados(dadosDefensor: Dados)
+DadosAtacante --> Batalla: fichasPerdidas: Array
 Batalla -> Pais: pederFichas(num)
 activate Pais
 Pais -> Ejercito: perderFichas(num)
@@ -93,18 +90,14 @@ alt defensor queda con 0 fichas
     Pais -> Ejercito: pasarFichasADe(paisEnemigo,Jugador)
     deactivate Pais
     activate Ejercito
-    note right Ejercito
-        Aca se le puede preguntar a jugador cuantas
-        fichas pasar. Duda de como limitarlo
-    end note
-    Ejercito -> PaisEnemigo: ponerFichasDe(num,jugador)
+    Ejercito -> PaisEnemigo: agregarFichas(num,jugador)
     deactivate Ejercito
     activate PaisEnemigo
     PaisEnemigo -> PaisEnemigo: esDeJugador(jugador)
     activate PaisEnemigo
     PaisEnemigo --> PaisEnemigo: true: Boolean
     deactivate PaisEnemigo
-    PaisEnemigo -> EjercitoEnemigo: sumarFichas(num)
+    PaisEnemigo -> EjercitoEnemigo: agregarFichas(num: Integer)
     deactivate PaisEnemigo
     PaisEnemigo --> Batalla: Gano
 else  defensor sigue con fichas
@@ -114,7 +107,7 @@ else  defensor sigue con fichas
     PaisEnemigo --> Batalla: noGano
     deactivate PaisEnemigo
 end
-Batalla --> Tablero: resultadoBatalla
-Tablero --> Jugador: resultadoBatalla
+Batalla --> Tablero: resultadoBatalla: Boolean
+Tablero --> Jugador: resultadoBatalla: Boolean
 
 @enduml

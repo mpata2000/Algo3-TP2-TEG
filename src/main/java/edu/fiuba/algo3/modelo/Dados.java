@@ -34,7 +34,7 @@ public class Dados {
     /* Se comparan los dos conjuntos de dados ordenados de mayor a menor
     * Si el numero del dado, de los dados recividos es menor,
     * */
-    public int[] comparaDados(Dados unosDados){
+    public int[] comparadorDeDados(Dados unosDados){
         int cantidadDeDadosAComparar = Math.min(this.cantidadDados(),unosDados.cantidadDados());
         int[] fichasPerdidas = {0,0}; // Pos
 
