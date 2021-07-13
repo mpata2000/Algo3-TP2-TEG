@@ -38,7 +38,7 @@ public class DadosTest {
         when(dados2.obtenerDado(2)).thenReturn(6);
         when(dados2.cantidadDados()).thenReturn(3);
 
-        int[] fichasPerdidads = dados1.comparaDados(dados2);
+        int[] fichasPerdidads = dados1.comparadorDeDados(dados2);
 
 
         assertEquals(3,fichasPerdidads[0]);
@@ -55,7 +55,7 @@ public class DadosTest {
         when(dados2.obtenerDado(2)).thenReturn(0);
         when(dados2.cantidadDados()).thenReturn(3);
 
-        int[] fichasPerdidads = dados1.comparaDados(dados2);
+        int[] fichasPerdidads = dados1.comparadorDeDados(dados2);
 
 
         assertEquals(0,fichasPerdidads[0]);
@@ -70,7 +70,7 @@ public class DadosTest {
         when(dados2.obtenerDado(0)).thenReturn(0);
         when(dados2.cantidadDados()).thenReturn(1);
 
-        int[] fichasPerdidads = dados1.comparaDados(dados2);
+        int[] fichasPerdidads = dados1.comparadorDeDados(dados2);
 
 
         assertEquals(0,fichasPerdidads[0]);

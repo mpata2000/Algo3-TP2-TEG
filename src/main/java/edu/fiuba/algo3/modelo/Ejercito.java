@@ -24,7 +24,6 @@ public class Ejercito {
     }
 
     public void pasarFichasADe(Pais unPais,Jugador unJugador,int cantidadFichas){
-        //Testear Si se pasan fichas de mas
         if(this.cantidadFichas <= cantidadFichas) {throw new PaisSinSuficientesFichasParaPasar(); }
 
         this.cantidadFichas -= cantidadFichas;
@@ -40,7 +39,6 @@ public class Ejercito {
             throw new EjercitoConUnaFichaNoPuedeAtacar();
         }
 
-        //TODO: Preguntar si tirar excepcion o limitarlo de una y que no pase una
         int cantidadDeDados = Math.min(unaCantidadDeDados,3);
 
         if(cantidadDeDados >= (this.cantidadFichas)){

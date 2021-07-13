@@ -18,7 +18,7 @@ public class Batalla {
         Dados dadosAtacante = this.paisAtacante.tirarDados(cantidadDeDadosAtacante);
         Dados dadosDefensor = this.paisDefensor.tirarDados();
 
-        int[] fichasPerdidas = dadosAtacante.comparaDados(dadosDefensor);
+        int[] fichasPerdidas = dadosAtacante.comparadorDeDados(dadosDefensor);
 
         this.paisAtacante.perderFichas(fichasPerdidas[0]);
         return (this.paisDefensor.perderFichas(fichasPerdidas[1], this.paisAtacante));
