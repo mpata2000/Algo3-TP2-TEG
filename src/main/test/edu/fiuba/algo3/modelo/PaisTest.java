@@ -156,4 +156,45 @@ public class PaisTest{
 
     }
 
+    @Test
+    public void paisConTresFichasNoPuedePasarTresFichas(){
+        Pais paisUno = new Pais("Chile");
+        Pais paisDos = new Pais("Algo");
+
+        Jugador jugadorUno = new Jugador("Julian");
+
+        paisUno.agregarFichas(3,jugadorUno);
+        paisDos.agregarFichas(3,jugadorUno);
+
+        assertThrows(PaisSinSuficientesFichasParaPasar.class, ()->paisUno.pasarFichasA(paisDos, 3));
+    }
+
+    @Test
+    public void paisNoPuedePasarFichasAUnPaisDeOtro(){
+        Pais paisUno = new Pais("Chile");
+        Pais paisDos = new Pais("Algo");
+
+        Jugador jugadorUno = new Jugador("Julian");
+        Jugador jugadorDos = new Jugador("Juan");
+
+        paisUno.agregarFichas(3,jugadorUno);
+        paisDos.agregarFichas(3,jugadorDos);
+
+        assertThrows(JugadorNoPoseePaisException.class, ()->paisUno.pasarFichasA(paisDos, 2));
+    }
+
+    @Test
+    public void paisConTresFichasPuedePasarDos(){
+        Pais paisUno = new Pais("Chile");
+        Pais paisDos = new Pais("Algo");
+
+        Jugador jugadorUno = new Jugador("Julian");
+
+        paisUno.agregarFichas(3,jugadorUno);
+        paisDos.agregarFichas(3,jugadorUno);
+
+        paisUno.pasarFichasA(paisDos, 2);
+        //Todo: revisar el assert
+        assertEquals(4,paisDos.perderFichas(1));
+     }
 }

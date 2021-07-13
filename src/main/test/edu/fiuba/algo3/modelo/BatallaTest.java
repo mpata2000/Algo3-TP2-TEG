@@ -89,4 +89,14 @@ public class BatallaTest {
         assertTrue(paisDefensor.esDeJugador(jugadorUno));
     }
 
+    @Test
+    public void JugadorNoPuedeAtacarseASiMismo() {
+
+        paisAtacante.agregarFichas(4, jugadorUno);
+        paisDefensor.agregarFichas(5, jugadorUno);
+
+        Batalla batalla = new Batalla(paisAtacante, paisDefensor);
+        assertThrows(AtaqueNoValido.class, () -> batalla.batallar(1));
+    }
+
 }
