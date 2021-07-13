@@ -27,14 +27,12 @@ public class PaisTest{
 
         paisMio.agregarFichas(5,jugadorUno);
 
-        assertThrows(JugadorNoPoseePaisException.class, () -> {
-            paisMio.agregarFichas(5,jugadorDos);
-        });
+        assertThrows(JugadorNoPoseePaisException.class, () -> paisMio.agregarFichas(5,jugadorDos));
     }
 
 
     @Test
-    public void paisatacanteNoConquistaPaisDefensor(){
+    public void paisAtacanteNoConquistaPaisDefensor(){
         Pais paisAtacante = new Pais("Chile");
         Pais paisDefensor = new Pais("Algo");
 
@@ -47,6 +45,20 @@ public class PaisTest{
         assertFalse(paisDefensor.perderFichas(2,paisAtacante));
 
     }
+
+    @Test
+    public void paisConCIncoFichasPierdeTresQuedaConDos(){
+        Pais pais = new Pais("Chile");
+
+        Jugador jugadorUno = new Jugador("Julian");
+
+        pais.agregarFichas(5,jugadorUno);
+
+
+        assertEquals(3,pais.perderFichas(2));
+    }
+
+
 
     @Test
     public void paisAtacanteConquistaPaisYNoCambiaDeDuenio(){

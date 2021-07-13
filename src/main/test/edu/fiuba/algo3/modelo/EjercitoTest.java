@@ -66,9 +66,7 @@ public class EjercitoTest {
     public void ejercitoAtacanteConUnaFichaTiraExcepcion(){
         Ejercito ejercito = new Ejercito();
         ejercito.agregarFichas(1);
-        assertThrows(EjercitoConUnaFichaNoPuedeAtacar.class, () -> {
-            Dados dados = ejercito.tirarDados(1);
-        });
+        assertThrows(EjercitoConUnaFichaNoPuedeAtacar.class, () -> ejercito.tirarDados(1));
     }
 
     @Test
@@ -100,9 +98,7 @@ public class EjercitoTest {
         Ejercito ejercito = new Ejercito();
         ejercito.agregarFichas(2);
 
-        assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDados.class, () -> {
-            Dados dados = ejercito.tirarDados(2);
-        });
+        assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDados.class, () -> ejercito.tirarDados(2));
 
     }
 }
