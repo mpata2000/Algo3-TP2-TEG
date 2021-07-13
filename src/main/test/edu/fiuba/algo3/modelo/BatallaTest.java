@@ -34,9 +34,7 @@ public class BatallaTest {
         paisDefensor.agregarFichas(5, jugadorDos);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
-        assertThrows(NoSePuedenCrearCeroDados.class, () -> {
-            batalla.batallar(0);
-        });
+        assertThrows(NoSePuedenCrearCeroDados.class, () -> batalla.batallar(0));
     }
 
     @Test
@@ -46,9 +44,7 @@ public class BatallaTest {
         paisDefensor.agregarFichas(5, jugadorDos);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
-        assertThrows(EjercitoConUnaFichaNoPuedeAtacar.class, () -> {
-            batalla.batallar(1);
-        });
+        assertThrows(EjercitoConUnaFichaNoPuedeAtacar.class, () -> batalla.batallar(1));
     }
 
     @Test
@@ -58,9 +54,7 @@ public class BatallaTest {
         paisDefensor.agregarFichas(5, jugadorDos);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
-        assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDados.class, () -> {
-            batalla.batallar(3);
-        });
+        assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDados.class, () -> batalla.batallar(3));
     }
 
     @Test

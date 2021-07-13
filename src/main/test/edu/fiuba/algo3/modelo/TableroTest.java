@@ -30,9 +30,7 @@ public class TableroTest {
 
         tablero.agregarFichas(5,jugadorUno, "Argentina");
 
-        assertThrows(JugadorNoPoseePaisException.class, () -> {
-            pais.agregarFichas(5,jugadorDos);
-        });
+        assertThrows(JugadorNoPoseePaisException.class, () -> tablero.agregarFichas(5,jugadorDos, "Argentina"));
     }
 
 

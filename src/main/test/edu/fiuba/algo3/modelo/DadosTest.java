@@ -25,9 +25,7 @@ public class DadosTest {
     @Test
     public void crearDadosConCeroDadosTiraExcepcionNoSePuedenCrearCeroDados(){
 
-        assertThrows(NoSePuedenCrearCeroDados.class, () -> {
-            Dados dados = new Dados(0);
-        });
+        assertThrows(NoSePuedenCrearCeroDados.class, () -> new Dados(0));
     }
 
     @Test
