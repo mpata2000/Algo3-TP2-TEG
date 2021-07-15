@@ -1,0 +1,18 @@
+@startuml DiagramaDeSecuenciaPaisDefensorNoPierdeTodasLasFichas-v0.1
+
+
+Participant Batalla
+Participant PaisEnemigo as "paisDefensor: Pais"
+Participant EjercitoEnemigo as "ejercitoDefesor: Ejercito"
+
+Batalla -> PaisEnemigo: perderFichas(cantidaFichas: Ingteger, paisAtacante)
+activate PaisEnemigo
+PaisEnemigo -> EjercitoEnemigo: perderFichas(cantidaFichas: Integer)
+activate EjercitoEnemigo
+EjercitoEnemigo --> PaisEnemigo: 2: Integer
+deactivate EjercitoEnemigo
+PaisEnemigo --> Batalla: false: Boolean
+deactivate PaisEnemigo
+
+
+@enduml

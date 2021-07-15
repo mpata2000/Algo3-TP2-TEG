@@ -1,0 +1,43 @@
+@startuml DiagramaDeSecuenciaPaisDefensorPierdeTodasLasFichas-v0.1
+
+Participant Batalla
+Participant PaisEnemigo as "paisDefensor: Pais"
+Participant EjercitoEnemigo as "ejercitoDefesor: Ejercito"
+Participant Pais as "paisAtacante: Pais"
+Participant Ejercito as "ejercito: EjercitoAtacante"
+
+Batalla -> PaisEnemigo: perderFichas(cantidaFichas: Ingteger, paisAtacante)
+activate PaisEnemigo
+PaisEnemigo -> EjercitoEnemigo: perderFichas(cantidaFichas: Integer)
+activate EjercitoEnemigo
+EjercitoEnemigo --> PaisEnemigo: 0: Integer
+deactivate EjercitoEnemigo
+PaisEnemigo -> PaisEnemigo: actualizarDueño(paisAtacante)
+activate PaisEnemigo
+PaisEnemigo -> Pais: getJugador()
+activate Pais
+Pais --> PaisEnemigo:  jugador
+deactivate Pais
+PaisEnemigo -> Pais: pasarFichasA(paisDefensor: Pais)
+deactivate PaisEnemigo
+activate Pais
+Pais -> Pais: esAdyacente(paisDefensor: Pais)
+activate Pais
+Pais --> Pais: Boolean
+deactivate Pais
+Pais -> Ejercito: pasarFichasADe(paisEnemigo: Pais,Jugador)
+deactivate Pais
+activate Ejercito
+Ejercito -> PaisEnemigo: agregarFichas(cantidaFichas: Integer,jugador: Jugador)
+deactivate Ejercito
+activate PaisEnemigo
+PaisEnemigo -> PaisEnemigo: esDeJugador(jugador: Jugador)
+activate PaisEnemigo
+PaisEnemigo --> PaisEnemigo: true: Boolean
+deactivate PaisEnemigo
+PaisEnemigo -> EjercitoEnemigo: agregarFichas(cantidaFichas: Integer)
+deactivate PaisEnemigo
+PaisEnemigo --> Batalla: true: Boolean
+
+
+@enduml

@@ -1,0 +1,64 @@
+@startuml DiagramaDeSecuenciaUnPaisAtacaAOtro-V0.6
+
+Participant Jugador
+Participant Tablero
+Participant Batalla
+Participant Pais as "paisMio: Pais"
+Participant PaisEnemigo as "paisEnemigo: Pais"
+Participant DadosAtacante as "dadosAtacante: Dados"
+
+activate Tablero
+Jugador->Tablero: atacarConA(jugador, paisMio, paisEnemigo)
+Tablero -> Tablero: buscarPais(PaisMio)
+activate Tablero
+Tablero --> Tablero: paisMio
+deactivate Tablero
+Tablero -> Pais: esDeJugador(jugador)
+activate Pais
+Pais --> Tablero: true: Boolean
+deactivate Pais
+Tablero -> Tablero: buscarPais(paisEnemigo)
+activate Tablero
+Tablero --> Tablero: paisEnemigo
+deactivate Tablero
+create Batalla
+Tablero -> Batalla: Batalla(paisMio: Pais, paisEnemigo: Pais)
+activate Batalla
+Tablero -> Batalla: batallar(cantidadDeDados: Integer)
+note left: Aca le podemos pasar jugador y hacer la comprobacion
+Batalla -> Batalla: esAtaqueValido(paisMio, paisEnemigo)
+activate Batalla
+Batalla -> Pais: esAdyacente(paisEnemigo)
+activate Pais
+Pais --> Batalla: true: Boolean
+deactivate Pais
+Batalla -> PaisEnemigo: esDeJugador(jugador)
+activate PaisEnemigo
+PaisEnemigo --> Batalla: false: Boolean
+deactivate PaisEnemigo
+Batalla --> Batalla: true:Boolean
+deactivate Batalla
+Batalla -> Pais: tirarDados(cantidadDeDados: Integer)
+activate Pais
+Pais --> Batalla: dadosAtacante: Dados
+deactivate Pais
+Batalla -> PaisEnemigo: tirarDados()
+activate PaisEnemigo
+PaisEnemigo --> Batalla: dadosDefensor:Dados
+deactivate PaisEnemigo
+Batalla -> DadosAtacante: comparadorDeDados(dadosDefensor: Dados)
+activate DadosAtacante
+DadosAtacante --> Batalla: fichasPerdidas: Array
+deactivate DadosAtacante
+Batalla -> Pais: pederFichas(num)
+activate Pais
+deactivate Pais
+Batalla -> PaisEnemigo: perderFichas(num, paisAtacante)
+activate PaisEnemigo
+PaisEnemigo --> Batalla: resultadoBatalla: Boolean
+deactivate PaisEnemigo
+Batalla --> Tablero: resultadoBatalla: Boolean
+deactivate Batalla
+Tablero --> Jugador: resultadoBatalla: Boolean
+
+@enduml
