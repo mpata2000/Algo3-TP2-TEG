@@ -3,8 +3,8 @@
 Participant Jugador
 Participant Tablero
 Participant Batalla
-Participant Pais as "paisMio: Pais"
-Participant PaisEnemigo as "paisEnemigo: Pais"
+Participant Pais as "paisAtacante: Pais"
+Participant PaisEnemigo as "paisDefensor: Pais"
 Participant DadosAtacante as "dadosAtacante: Dados"
 
 activate Tablero
@@ -40,6 +40,8 @@ Batalla --> Batalla: true:Boolean
 deactivate Batalla
 Batalla -> Pais: tirarDados(cantidadDeDados: Integer)
 activate Pais
+create DadosAtacante
+Pais-> DadosAtacante
 Pais --> Batalla: dadosAtacante: Dados
 deactivate Pais
 Batalla -> PaisEnemigo: tirarDados()
