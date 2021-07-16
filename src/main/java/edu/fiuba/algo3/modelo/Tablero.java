@@ -6,12 +6,7 @@ import java.util.Map;
 public class Tablero {
     private Map<String, Pais> paises = new HashMap<>();
 
-    private Pais chile = new Pais("Chile");
-    private Pais argentina = new Pais("Argentina");
-
     Tablero(){
-        paises.put("Chile",chile);
-        paises.put("Argentina",argentina);
     }
 
     public void agregarPais(Pais unPais) {
