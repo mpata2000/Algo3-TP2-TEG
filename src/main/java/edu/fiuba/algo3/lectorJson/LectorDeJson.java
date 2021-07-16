@@ -4,34 +4,35 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import edu.fiuba.algo3.modelo.Pais;
 
+import java.io.IOException;
+import java.io.Reader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class LectorDeJson {
-    /*
-    public class LectorDeJson {
-        try {
-            Reader myReader = Files.newBufferedReader(Paths.get("paises/Teg-Fronteras.json"));
-            Gson gson = new Gson();
-            Map<?,?> userMap = gson.fromJson(myReader, Map.class);
-            System.out.println(userMap.get("Pais"));
+    public static void lector() {
+        //Aca simulamos con un Json
+        String json = "{'nombre': 'Francia','continente': 'Europa'}";
+        Map<?,?> userMap = new Gson().fromJson(json, Map.class);
+        System.out.println(userMap.get("nombre"));
+        //Reader jsonLeido = null;
+        /*try {
+            Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Fronteras.json"));
+            //Type datasetListType = new TypeToken<Collection<Pais>>() {}.getType();
+            Map<?,?> userMap = new Gson().fromJson(jsonLeido, Map.class);
+            //List<Pais> datasets = new Gson().fromJson(jsonLeido, datasetListType);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-}
-*/
-    public static void lector(String[] args) {
-        String json = "[{'Pais': 'Francia'},{'Pais': 'Gran Bretaña'}]";
+        }*/
 
-        // create the type for the collection. In this case define that the collection is of type Dataset
-        Type paisListType = new TypeToken<ArrayList<Pais>>(){}.getType();
-        List<Pais> datasets = new Gson().fromJson(json, paisListType);
-        for (Pais dataset : datasets) {
+
+        /*for (Pais dataset : datasets) {
             System.out.println(dataset.getNombre());
-            //System.out.println(dataset.getAlbum_id());
-        }
+        }*/
     }
 }
 
