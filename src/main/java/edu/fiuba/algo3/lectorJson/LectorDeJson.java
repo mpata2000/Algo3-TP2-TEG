@@ -15,7 +15,7 @@ public class LectorDeJson {
         try {
             //Lectura del archivo Json
             Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Fronteras.json"));
-            Type datasetListType = new TypeToken<ArrayList<Object>>() {}.getType();
+            Type datasetListType = new TypeToken<List<Object>>() {}.getType();
             List<Object> listaObjetosPais = new Gson().fromJson(jsonLeido, datasetListType);
 
             //Imprimir Lista de Object
