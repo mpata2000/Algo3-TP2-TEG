@@ -1,0 +1,7 @@
+@startuml DiagramaDeSecuenciaAJugadorLeCartaPais-v0.1
+
+-> Jugador: recibirCarta(unaCarta: CartaPais)
+Jugador -> CartaPais: darPaisJugador(unJugador: Jugador)
+CartaPais -> Pais: agregarFichas(1,unJugador: Jugador)
+
+@enduml
