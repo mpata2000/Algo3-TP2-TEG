@@ -17,16 +17,20 @@ public class Tablero {
         Pais pais = this.buscarPais(unNombrePais);
         pais.agregarFichas(cantidadTropas, unJugador);
     }
-
-    /*
-    public void atacar(Pais nombrePaisMio , Pais nombrePaisEnemigo) {
+    public boolean atacar(String nombrePaisMio , String nombrePaisEnemigo,int cantidad) {
         Pais paisMio = this.buscarPais(nombrePaisMio);
-        Pais paisEnemigo = this.buscarPais(nombrePaisEnemgio);
-        ataque.crearAtaque(paisMio, paisEnemigo);
-    }*/
+        Pais paisEnemigo = this.buscarPais(nombrePaisEnemigo);
+        Batalla batalla = new Batalla(paisMio, paisEnemigo);
+        return batalla.batallar(cantidad);
+
+    }
 
     public Pais buscarPais(String unNombrePais) {
         return this.paises.get(unNombrePais);
+    }
+
+    public boolean esDelJugador(String nombrePais,Jugador jugador){
+        return (this.buscarPais(nombrePais).esDeJugador(jugador));
     }
 
 }
