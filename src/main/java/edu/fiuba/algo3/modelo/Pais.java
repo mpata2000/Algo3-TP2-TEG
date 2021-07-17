@@ -3,17 +3,17 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
 
 public class Pais {
-    private String Pais;
+    private String nombre;
     private Ejercito ejercito;
     private Jugador jugador;
 
     public Pais(String nombrePais){
         this.ejercito = new Ejercito();
-        this.Pais = nombrePais;
+        this.nombre = nombrePais;
         this.jugador = null;
     }
 
-    public String getNombre() {return this.Pais;}
+    public String getNombre() {return this.nombre;}
     public Jugador getJugador(){
         return this.jugador;
     }
