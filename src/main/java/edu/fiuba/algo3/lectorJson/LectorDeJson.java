@@ -57,6 +57,33 @@ public class LectorDeJson {
             e.printStackTrace();
         }
     }
+
+    public static void lectorTablero() {
+        try {
+            //Lectura del archivo Json
+            Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Tablero.json"));
+            Type datasetListType = new TypeToken<Collection<ObjetoTablero>>() {}.getType();
+            List<ObjetoTablero> listaObjetosPais = new Gson().fromJson(jsonLeido, datasetListType);
+
+
+
+            for(ObjetoTablero continente: listaObjetosPais){
+                System.out.println(continente.getContinente());
+                System.out.println(continente.getFichas());
+
+                System.out.print("[");
+                for(ObjetoFronteras pais: continente.getPaises()) {
+                    System.out.print(pais.getPais()+",");
+                }
+                System.out.println("]");
+            }
+
+            //DEVOLVER listaObjetosPais
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
