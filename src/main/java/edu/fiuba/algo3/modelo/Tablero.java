@@ -17,12 +17,14 @@ public class Tablero {
         Pais pais = this.buscarPais(unNombrePais);
         pais.agregarFichas(cantidadTropas, unJugador);
     }
-    public boolean atacar(String nombrePaisMio , String nombrePaisEnemigo,int cantidad) {
+    public boolean atacar(String nombrePaisMio , String nombrePaisEnemigo,int cantidad, Turnos turnos) {
         Pais paisMio = this.buscarPais(nombrePaisMio);
         Pais paisEnemigo = this.buscarPais(nombrePaisEnemigo);
-        Batalla batalla = new Batalla(paisMio, paisEnemigo);
-        return batalla.batallar(cantidad);
-
+        if(turnos.esTurnoDe(paisMio)) {
+            Batalla batalla = new Batalla(paisMio, paisEnemigo);
+            return batalla.batallar(cantidad);
+        }
+        return false;
     }
 
     public Pais buscarPais(String unNombrePais) {

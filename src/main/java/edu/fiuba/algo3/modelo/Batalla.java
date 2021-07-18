@@ -25,7 +25,7 @@ public class Batalla {
     }
 
     private boolean validarAtaque() {
-        return (!this.paisDefensor.esDeJugador(this.paisAtacante.getJugador()) "&& turno.esDeJugador(jugadoruno)");
+        return (!this.paisDefensor.esDeJugador(this.paisAtacante.getJugador()));
         //Todo: validar si son adyacentes
     }
 }
