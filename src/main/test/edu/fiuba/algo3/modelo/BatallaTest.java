@@ -69,10 +69,6 @@ public class BatallaTest {
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
         assertFalse(batalla.batallar(2));
     }
-    //Ataque entre países con el país defensor como ganador.
-    //Ataque entre países con el país atacante como ganador y ocupación de este.
-
-    //TODO: mockito de pais
 
     @Test
     public void paisAtacanteConquistaPaisDefensor(){

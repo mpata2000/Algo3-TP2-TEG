@@ -26,6 +26,7 @@ public class LectorDeJson {
                 Pais unPais = new Pais(pais.getPais(), pais.getPaisesLimitrofes());
                 //TODO: Si se pasa tablero/Diccionario de continentes se puede agregar pais
                 listaPaises.add(unPais);
+
                 System.out.println(pais.getPais());
             }
 
@@ -70,10 +71,11 @@ public class LectorDeJson {
             for(ObjetoTablero continente: listaObjetosPais){
                 System.out.println(continente.getContinente());
                 System.out.println(continente.getFichas());
+                System.out.println(continente.getPaises());
 
                 System.out.print("[");
                 for(ObjetoFronteras pais: continente.getPaises()) {
-                    System.out.print(pais.getPais()+",");
+                    System.out.print(pais.getPais());
                 }
                 System.out.println("]");
             }
