@@ -16,18 +16,18 @@ public class LectorDeJson {
     public static void lectorPaises() {
         try {
             //Lectura del archivo Json
-            Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Fronteras.json"));
-            Type datasetListType = new TypeToken<Collection<ObjetoFronteras>>() {}.getType();
-            List<ObjetoFronteras> listaObjetosPais = new Gson().fromJson(jsonLeido, datasetListType);
+            Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/prueba.json"));
+            //Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Fronteras.json"));
+            Type datasetListType = new TypeToken<Collection<Pais>>() {}.getType();
+            List<Pais> listaObjetosPais = new Gson().fromJson(jsonLeido, datasetListType);
 
 
-            LinkedList<Pais> listaPaises = new LinkedList<Pais>();
-            for(ObjetoFronteras pais: listaObjetosPais){
-                Pais unPais = new Pais(pais.getPais(), pais.getPaisesLimitrofes());
+            //LinkedList<Pais> listaPaises = new LinkedList<Pais>();
+            for(Pais pais: listaObjetosPais){
+                //Pais unPais = new Pais(pais.getPais(), pais.getPaisesLimitrofes());
                 //TODO: Si se pasa tablero/Diccionario de continentes se puede agregar pais
-                listaPaises.add(unPais);
+                //listaPaises.add(unPais);
 
-                System.out.println(pais.getPais());
             }
 
             //DEVOLVER listaObjetosPais

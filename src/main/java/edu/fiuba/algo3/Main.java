@@ -7,8 +7,8 @@ public class Main {
         App.main(args);
 
         //Descomentar para ejecutar acciones de lectura
-        //LectorDeJson.lectorPaises();
-        LectorDeJson.lectorTablero();
+        LectorDeJson.lectorPaises();
+        //LectorDeJson.lectorTablero();
         //LectorDeJson.lectorCartasPais();
     }
 }
