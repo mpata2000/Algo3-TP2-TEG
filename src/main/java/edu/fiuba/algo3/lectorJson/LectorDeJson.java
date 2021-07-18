@@ -73,8 +73,6 @@ public class LectorDeJson {
             Type datasetListType = new TypeToken<Collection<ObjetoTablero>>() {}.getType();
             List<ObjetoTablero> listaObjetosPais = new Gson().fromJson(jsonLeido, datasetListType);
 
-
-
             for(ObjetoTablero continente: listaObjetosPais){
                 System.out.println(continente.getContinente());
                 System.out.println(continente.getFichas());

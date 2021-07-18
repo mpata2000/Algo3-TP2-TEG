@@ -18,7 +18,7 @@ public class Tablero {
         Pais pais = this.buscarPais(unNombrePais);
         pais.agregarFichas(cantidadTropas, unJugador);
     }
-    public boolean atacar(String nombrePaisMio , String nombrePaisEnemigo,int cantidad, Turnos turnos) {
+    public boolean atacar(String nombrePaisMio , String nombrePaisEnemigo, int cantidad, Turnos turnos) {
         Pais paisMio = this.buscarPais(nombrePaisMio);
         Pais paisEnemigo = this.buscarPais(nombrePaisEnemigo);
         if(turnos.esTurnoDe(paisMio)) {
