@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 
+import edu.fiuba.algo3.excepciones.AtaqueNoValido;
 import edu.fiuba.algo3.excepciones.PaisNoEsLimitrofe;
 
 public class Batalla {

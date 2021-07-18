@@ -1,17 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.excepciones.EjercitoConUnaFichaNoPuedeAtacar;
-import edu.fiuba.algo3.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDados;
-import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
-import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
+import edu.fiuba.algo3.excepciones.*;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 public class TableroTest {
 

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.excepciones.AtaqueNoValido;
 import edu.fiuba.algo3.excepciones.EjercitoConUnaFichaNoPuedeAtacar;
 import edu.fiuba.algo3.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDados;
 import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
@@ -8,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
