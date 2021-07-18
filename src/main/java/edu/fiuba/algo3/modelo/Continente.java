@@ -22,7 +22,7 @@ public class Continente {
         return fichas;
     }
 
-    public String getNombreContinente() {
+    public String getNombre() {
         return nombreContinente;
     }
 }

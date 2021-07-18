@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.excepciones.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,9 +13,10 @@ public class TableroTest {
 
     @Test
     public void agregarFichasAUnPaisVacioEntoncesElPaisEsDelJugadorTest(){
-        Tablero tablero = new Tablero();
         Pais pais = new Pais("Argentina", Arrays.asList("Chile","Brazil"));
-        tablero.agregarPais(pais);
+        ArrayList<Pais> paises = new ArrayList<>();
+        paises.add(pais);
+        Tablero tablero = new Tablero(new ArrayList<>(),paises);
 
         Jugador jugador = new Jugador("Julian");
         tablero.agregarFichas(5,jugador, "Argentina");
@@ -24,9 +26,10 @@ public class TableroTest {
 
     @Test
     public void agregarFichasAUnPaisQueNoEsDelJugadorLanzaExcepcionTest(){
-        Tablero tablero = new Tablero();
         Pais pais = new Pais("Argentina", Arrays.asList("Chile","Brazil"));
-
+        ArrayList<Pais> paises = new ArrayList<>();
+        paises.add(pais);
+        Tablero tablero = new Tablero(new ArrayList<>(),paises);
 
         tablero.agregarPais(pais);
 
@@ -40,11 +43,12 @@ public class TableroTest {
 
     @Test
     public void ataque(){
-        Tablero tablero = new Tablero();
         Pais pais1 = new Pais("Argentina", Arrays.asList("Chile","Brazil"));
         Pais pais2 = new Pais("Chile",Arrays.asList("Argentina","Peru"));
-        tablero.agregarPais(pais1);
-        tablero.agregarPais(pais2);
+        ArrayList<Pais> paises = new ArrayList<>();
+        paises.add(pais1);
+        paises.add(pais2);
+        Tablero tablero = new Tablero(new ArrayList<>(),paises);
 
         Jugador jugadorUno = new Jugador("Julian");
         Jugador jugadorDos = new Jugador("Martin");
