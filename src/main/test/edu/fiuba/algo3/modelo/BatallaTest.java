@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -21,8 +24,8 @@ public class BatallaTest {
 
     @BeforeEach
     void setUp() {
-        paisAtacante = new Pais("Chile");
-        paisDefensor = new Pais("Argentina");
+        paisAtacante = new Pais("Chile",Arrays.asList("Argentina","Peru"));
+        paisDefensor = new Pais("Argentina", Arrays.asList("Chile","Brazil"));
         jugadorUno = new Jugador("Julian");
         jugadorDos = new Jugador("Sofia");
     }

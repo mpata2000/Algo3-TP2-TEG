@@ -12,7 +12,6 @@ public class ObjetoFronteras {
     public String getContinente(){return this.Continente;}
 
     public List<String> getPaisesLimitrofes(){
-        List<String> parts = Arrays.asList(this.PaisesLimitrofes.split(","));
-        return parts;
+        return Arrays.asList(this.PaisesLimitrofes.split(","));
     }
 }

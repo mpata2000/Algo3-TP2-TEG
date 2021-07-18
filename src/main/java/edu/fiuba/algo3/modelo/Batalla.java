@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 
+import edu.fiuba.algo3.excepciones.PaisNoEsLimitrofe;
+
 public class Batalla {
 
     private Pais paisAtacante;
@@ -25,7 +27,10 @@ public class Batalla {
     }
 
     private boolean validarAtaque() {
+        if(this.paisAtacante.esAdyacente(this.paisDefensor)){
+            throw new PaisNoEsLimitrofe();
+        }
         return (!this.paisDefensor.esDeJugador(this.paisAtacante.getJugador()));
-        //Todo: validar si son adyacentes
+
     }
 }
