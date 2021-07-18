@@ -53,6 +53,7 @@ public class TableroTest {
 
         assertThrows(JugadorNoPoseePaisException.class, () -> tablero.agregarFichas(5,jugadorDos, "Argentina"));
     }
+    /*
     @Test
     public void paisAtacanteNoPuedeTirarCeroDados() {
         Tablero tablero = new Tablero();
@@ -141,7 +142,7 @@ public class TableroTest {
         assertTrue(tablero.atacar("Argentina", "Chile", 3));
     }
     }
-*/
+
     @Test
     public void JugadorNoPuedeAtacarseASiMismo() {
         Tablero tablero = new Tablero();
@@ -157,5 +158,5 @@ public class TableroTest {
 
         assertThrows(AtaqueNoValido.class, () -> tablero.atacar("Argentina","Chile",1));
 
-    }
+    }*/
 }
