@@ -7,6 +7,10 @@ public class CartaPais {
     CartaPais(String nombrePais){
         this.nombrePais = nombrePais;
     }
+
+    public void asignarPaisA(Jugador unJugador){
+        this.pais.asignarJugadro(unJugador);
+    }
 /**
     public void setearPais(Jugador jugador){
         Mapa mapa = new Mapa();

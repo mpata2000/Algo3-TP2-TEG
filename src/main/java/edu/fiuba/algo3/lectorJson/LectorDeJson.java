@@ -2,6 +2,7 @@ package edu.fiuba.algo3.lectorJson;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import edu.fiuba.algo3.modelo.Continente;
 import edu.fiuba.algo3.modelo.Pais;
 import edu.fiuba.algo3.modelo.Tablero;
 
@@ -12,36 +13,13 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class LectorDeJson {
     Tablero tablero;
 
     LectorDeJson(){
         this.tablero = new Tablero();
-    }
-
-    public static void lectorPaises() {
-        try {
-            //Lectura del archivo Json
-            Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/prueba.json"));
-            //Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Fronteras.json"));
-            Type datasetListType = new TypeToken<Collection<Pais>>() {}.getType();
-            List<Pais> listaObjetosPais = new Gson().fromJson(jsonLeido, datasetListType);
-
-
-            //LinkedList<Pais> listaPaises = new LinkedList<Pais>();
-            for(Pais pais: listaObjetosPais){
-                //Pais unPais = new Pais(pais.getPais(), pais.getPaisesLimitrofes());
-                //TODO: Si se pasa tablero/Diccionario de continentes se puede agregar pais
-                //listaPaises.add(unPais);
-
-            }
-
-            //DEVOLVER listaObjetosPais
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void lectorCartasPais(){
@@ -70,19 +48,13 @@ public class LectorDeJson {
         try {
             //Lectura del archivo Json
             Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Tablero.json"));
-            Type datasetListType = new TypeToken<Collection<ObjetoTablero>>() {}.getType();
-            List<ObjetoTablero> listaObjetosPais = new Gson().fromJson(jsonLeido, datasetListType);
+            Type datasetListType = new TypeToken<Collection<Continente>>() {}.getType();
+            List<Continente> continentes = new Gson().fromJson(jsonLeido, datasetListType);
 
-            for(ObjetoTablero continente: listaObjetosPais){
-                System.out.println(continente.getContinente());
+            for(Continente continente: continentes){
+                System.out.println(continente.getNombreContinente());
                 System.out.println(continente.getFichas());
                 System.out.println(continente.getPaises());
-
-                System.out.print("[");
-                for(ObjetoFronteras pais: continente.getPaises()) {
-                    System.out.print(pais.getPais());
-                }
-                System.out.println("]");
             }
 
             //DEVOLVER tablero
