@@ -27,7 +27,10 @@ public class Pais {
         //Puede dar errores si los limitrofes o nombres tienen mal los cases
         return this.paisesLimitrofes.contains(unPais.getNombre());
     }
-
+    public void asignarJugadro(Jugador unJugador){
+        this.ejercito = new Ejercito();
+        this.jugador = unJugador;
+    }
     public void agregarFichas(int cantidadFichas, Jugador unJugador) throws JugadorNoPoseePaisException {
         if(this.jugador == null) { this.jugador = unJugador; }
 
