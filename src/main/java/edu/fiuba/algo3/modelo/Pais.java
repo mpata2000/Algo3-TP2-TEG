@@ -6,19 +6,19 @@ import edu.fiuba.algo3.excepciones.PaisNoEsLimitrofe;
 import java.util.List;
 
 public class Pais {
-    private String nombre;
+    private String nombrePais;
     private Ejercito ejercito;
     private Jugador jugador;
     private List<String> paisesLimitrofes;
 
     public Pais(String nombrePais, List<String>paisesLimitrofes){
         this.ejercito = new Ejercito();
-        this.nombre = nombrePais;
+        this.nombrePais = nombrePais;
         this.paisesLimitrofes = paisesLimitrofes;
         this.jugador = null;
     }
 
-    public String getNombre() {return this.nombre;}
+    public String getNombre() {return this.nombrePais;}
     public Jugador getJugador(){
         return this.jugador;
     }
