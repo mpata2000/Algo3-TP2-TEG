@@ -26,6 +26,7 @@ public class LectorDeJson {
                 Pais unPais = new Pais(pais.getPais(), pais.getPaisesLimitrofes());
                 //TODO: Si se pasa tablero/Diccionario de continentes se puede agregar pais
                 listaPaises.add(unPais);
+
                 System.out.println(pais.getPais());
             }
 
@@ -52,6 +53,34 @@ public class LectorDeJson {
             */
 
             //DEVOLVER listaObjetosCartas
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void lectorTablero() {
+        try {
+            //Lectura del archivo Json
+            Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Tablero.json"));
+            Type datasetListType = new TypeToken<Collection<ObjetoTablero>>() {}.getType();
+            List<ObjetoTablero> listaObjetosPais = new Gson().fromJson(jsonLeido, datasetListType);
+
+
+
+            for(ObjetoTablero continente: listaObjetosPais){
+                System.out.println(continente.getContinente());
+                System.out.println(continente.getFichas());
+                System.out.println(continente.getPaises());
+
+                System.out.print("[");
+                for(ObjetoFronteras pais: continente.getPaises()) {
+                    System.out.print(pais.getPais());
+                }
+                System.out.println("]");
+            }
+
+            //DEVOLVER listaObjetosPais
 
         } catch (IOException e) {
             e.printStackTrace();
