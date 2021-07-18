@@ -27,7 +27,7 @@ public class Batalla {
     }
 
     private boolean validarAtaque() {
-        if(this.paisAtacante.esAdyacente(this.paisDefensor)){
+        if(!this.paisAtacante.esAdyacente(this.paisDefensor)){
             throw new PaisNoEsLimitrofe();
         }
         return (!this.paisDefensor.esDeJugador(this.paisAtacante.getJugador()));

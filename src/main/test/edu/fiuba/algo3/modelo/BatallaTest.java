@@ -83,6 +83,7 @@ public class BatallaTest {
         when(dados.comparadorDeDados(any(Dados.class))).thenReturn(conjunto);
         when(paisAtacante.tirarDados(3)).thenReturn(dados);
         when(paisAtacante.getJugador()).thenReturn(jugadorUno);
+        when(paisAtacante.esAdyacente(paisDefensor)).thenReturn(true);
         paisDefensor.agregarFichas(3, jugadorDos);
         Batalla batalla = new Batalla(paisAtacante,paisDefensor);
 
