@@ -3,4 +3,5 @@ module edu.fiuba.algo3 {
     requires com.google.gson;
     exports edu.fiuba.algo3;
     opens edu.fiuba.algo3.modelo;
+    opens edu.fiuba.algo3.excepciones;
 }

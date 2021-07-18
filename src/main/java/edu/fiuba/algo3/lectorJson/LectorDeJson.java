@@ -2,12 +2,14 @@ package edu.fiuba.algo3.lectorJson;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import edu.fiuba.algo3.modelo.Pais;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 public class LectorDeJson {
@@ -18,14 +20,14 @@ public class LectorDeJson {
             Type datasetListType = new TypeToken<Collection<ObjetoFronteras>>() {}.getType();
             List<ObjetoFronteras> listaObjetosPais = new Gson().fromJson(jsonLeido, datasetListType);
 
-            /*
-            //Imprimir Lista de Object
-            for (int i = 0; i < listaObjetosPais.size(); i++) {
-                System.out.println((listaObjetosPais.get(i)).getPais());
-                System.out.println((listaObjetosPais.get(i)).getContinente());
-                System.out.println((listaObjetosPais.get(i)).getPaisesLimitrofes());
+
+            LinkedList<Pais> listaPaises = new LinkedList<Pais>();
+            for(ObjetoFronteras pais: listaObjetosPais){
+                Pais unPais = new Pais(pais.getPais(), pais.getPaisesLimitrofes());
+                //TODO: Si se pasa tablero/Diccionario de continentes se puede agregar pais
+                listaPaises.add(unPais);
+                System.out.println(pais.getPais());
             }
-            */
 
             //DEVOLVER listaObjetosPais
 
