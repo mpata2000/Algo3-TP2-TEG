@@ -27,6 +27,12 @@ public class Jugador {
         return this.ejercito;
     }
  **/
+    public void agregarFichaInicial(String nombrePais){
+        this.tablero.agregarFichas(1,this,nombrePais);
+    }
+    public void agregarCartaPais(CartaPais carta){
+
+    }
     public boolean esElMismoJugador(Jugador jugador){
         return this == jugador;
     }

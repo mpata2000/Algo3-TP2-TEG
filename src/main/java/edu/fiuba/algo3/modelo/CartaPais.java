@@ -4,8 +4,8 @@ public class CartaPais {
     private String nombrePais;
     private Pais pais;
 
-    CartaPais(String nombrePais){
-        this.nombrePais = nombrePais;
+    CartaPais(Pais pais){
+        this.nombrePais = pais.getNombre();
     }
 /**
     public void setearPais(Jugador jugador){
