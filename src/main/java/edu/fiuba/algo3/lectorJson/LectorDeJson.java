@@ -3,6 +3,7 @@ package edu.fiuba.algo3.lectorJson;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import edu.fiuba.algo3.modelo.Pais;
+import edu.fiuba.algo3.modelo.Tablero;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -13,6 +14,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class LectorDeJson {
+    Tablero tablero;
+
+    LectorDeJson(){
+        this.tablero = new Tablero();
+    }
+
     public static void lectorPaises() {
         try {
             //Lectura del archivo Json
@@ -59,7 +66,7 @@ public class LectorDeJson {
         }
     }
 
-    public static void lectorTablero() {
+    public static Tablero lectorTablero() {
         try {
             //Lectura del archivo Json
             Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Tablero.json"));
@@ -80,11 +87,12 @@ public class LectorDeJson {
                 System.out.println("]");
             }
 
-            //DEVOLVER listaObjetosPais
+            //DEVOLVER tablero
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
 

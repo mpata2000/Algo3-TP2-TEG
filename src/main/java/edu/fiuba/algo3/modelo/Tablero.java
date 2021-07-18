@@ -4,9 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Tablero {
+    private Map<String, Continente> continentes = new HashMap<>();
     private Map<String, Pais> paises = new HashMap<>();
 
-    Tablero(){
+    public Tablero(){
     }
 
     public void agregarPais(Pais unPais) {
