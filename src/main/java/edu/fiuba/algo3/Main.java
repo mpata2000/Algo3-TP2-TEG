@@ -7,6 +7,6 @@ public class Main {
     public static void main(String[] args){
         App.main(args);
 
-        Teg nuevoTeg = new Teg(4);
+        Teg nuevoTeg = new Teg();
     }
 }

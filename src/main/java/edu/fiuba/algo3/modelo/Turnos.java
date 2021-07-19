@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Turnos {
     private int turno = 0;
-    private ArrayList<Jugador> rondaJugadores;
+    private ArrayList<Jugador> rondaJugadores = new ArrayList<Jugador>();
     private String tipoDeRonda = "Colocacion";
 
     Turnos(Map<String, Jugador> jugadores) {
@@ -35,7 +35,7 @@ public class Turnos {
         for(Pais pais : paises){
             CartaPais carta = new CartaPais(pais);
             rondaJugadores.get(indice).agregarCartaPais(carta);
-            rondaJugadores.get(indice).agregarFichaInicial(pais.getNombre());
+            rondaJugadores.get(indice).agregarFichaInicial(pais.getNombre(),this);
             if (indice >= rondaJugadores.size()) indice=0;
             else indice++;
         }

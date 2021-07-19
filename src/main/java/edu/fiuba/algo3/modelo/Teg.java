@@ -14,27 +14,33 @@ public class Teg {
     private String[] colores = {"Amarillo", "verde", "azul", "rojo", "Rosa", "Negro"};
     private ArrayList<Pais> paises;
 
-    public Teg(int cantidadJugadores) throws ArchivoNoEncontrado {
+    public Teg() throws ArchivoNoEncontrado {
         this.tablero = LectorDeJson.lectorTablero();
+    }
 
+    public void comenzarJuego(int cantidadJugadores) {
         for (int i = 0; i < 6 && i < cantidadJugadores; i++) {
             this.jugadores.put(this.colores[i], new Jugador(this.colores[i]));
         }
         for (String color : this.colores) {
             this.jugadores.put(color, new Jugador(color));
         }
-    }
 
-    public void comenzarJuego() {
         this.turnos = new Turnos(this.jugadores);
         this.turnos.repartirPaises(this.paises);
     }
 
-    public void rondaColocarEjercitos(String nombrePais,int cant){
-        this.tablero.agregarFichas(nombrePais,5);
-        this.tablero.agregarFichas(nombrePais,3);
-
+    public void rondaInicialColocarEjercitos(String color, String nombrePais,int cant){
+        Jugador jugador = this.buscarJugador(color);
+        this.tablero.agregarFichas(cant,jugador,nombrePais,this.turnos);
+        jugador.actualizarFichasActuales(cant);
     }
+
+    public void rondaColocarEjercitos(String color,String nombrePais,int cant){
+        Jugador jugador = this.buscarJugador(color);
+        this.tablero.agregarFichas(cant,jugador,nombrePais,this.turnos);
+    }
+
     public boolean atacar(String paisAtacante, String paisDefensor, int cantidad){
         return tablero.atacar(paisAtacante, paisDefensor, cantidad, this.turnos);//Else exception
     }
