@@ -9,7 +9,7 @@ public class Main {
         LectorDeJson lector = new LectorDeJson();
         //Descomentar para ejecutar acciones de lectura
         //LectorDeJson.lectorPaises();
-        lector.lectorTablero("recurso/Teg-Tablero.json");
+        lector.lectorTablero("resources/Teg-Tablero.json");
         //LectorDeJson.lectorCartasPais("recursos/Teg-Cartas.json");
         //Teg nuevoTeg = new Teg(4);
     }
