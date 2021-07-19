@@ -21,11 +21,10 @@ public class LectorDeJson {
 
     public void lectorCartasPais(String pathArchivo){
         try {
-            //Lectura del archivo Json
             Reader jsonLeido = Files.newBufferedReader(Paths.get(pathArchivo));
             Type datasetListType = new TypeToken<Collection<ObjetoCartas>>() {}.getType();
             List<ObjetoCartas> listaObjetosCartas = new Gson().fromJson(jsonLeido, datasetListType);
-
+            //Todo:
 
 
             //DEVOLVER listaObjetosCartas
@@ -38,7 +37,6 @@ public class LectorDeJson {
     public Tablero lectorTablero(String pathArchivo) {
         this.tablero = null;
         try {
-            //Lectura del archivo Json
             Reader jsonLeido = Files.newBufferedReader(Paths.get(pathArchivo));
             Type datasetListType = new TypeToken<Collection<Continente>>() {}.getType();
             List<Continente> continentes = new Gson().fromJson(jsonLeido, datasetListType);
