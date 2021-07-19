@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CartaPaisTest {
     ArrayList<Pais> paises = new ArrayList<>();
@@ -39,6 +40,13 @@ public class CartaPaisTest {
         assertEquals(tablero.getPais("Borneo"),carta.getPais());
     }
 
-
+    @Test
+    public void cartaPaisAignaElPaisAlJugadorCorrectamente(){
+        CartaPais carta = new CartaPais("Borneo","Barco");
+        carta.setPais(tablero);
+        Jugador jugador = new Jugador("Algo");
+        carta.asignarPaisA(jugador);
+        assertTrue(paises.get(0).esDeJugador(jugador));
+    }
 
 }
