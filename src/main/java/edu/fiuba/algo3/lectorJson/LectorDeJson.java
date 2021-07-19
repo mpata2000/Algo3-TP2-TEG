@@ -13,16 +13,16 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class LectorDeJson {
-    //private Tablero tablero;
+    private Tablero tablero;
 
-    LectorDeJson(){
+    public LectorDeJson(){
 
     }
 
-    public static void lectorCartasPais(){
+    public void lectorCartasPais(String pathArchivo){
         try {
             //Lectura del archivo Json
-            Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Cartas.json"));
+            Reader jsonLeido = Files.newBufferedReader(Paths.get(pathArchivo));
             Type datasetListType = new TypeToken<Collection<ObjetoCartas>>() {}.getType();
             List<ObjetoCartas> listaObjetosCartas = new Gson().fromJson(jsonLeido, datasetListType);
 
@@ -35,11 +35,11 @@ public class LectorDeJson {
         }
     }
 
-    public static Tablero lectorTablero() {
-        Tablero tablero = null;
+    public Tablero lectorTablero(String pathArchivo) {
+        this.tablero = null;
         try {
             //Lectura del archivo Json
-            Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Tablero.json"));
+            Reader jsonLeido = Files.newBufferedReader(Paths.get(pathArchivo));
             Type datasetListType = new TypeToken<Collection<Continente>>() {}.getType();
             List<Continente> continentes = new Gson().fromJson(jsonLeido, datasetListType);
 

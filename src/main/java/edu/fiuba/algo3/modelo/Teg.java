@@ -12,7 +12,8 @@ public class Teg {
     private Map<String, Jugador> jugadores = new HashMap<>();
 
     public Teg(int cantidadJugadores) throws ArchivoNoEncontrado {
-        this.tablero = LectorDeJson.lectorTablero();
+        LectorDeJson lector = new LectorDeJson();
+        this.tablero = lector.lectorTablero("recurso/Teg-Tablero.json");
     }
 
     /*private Teg(int numerosJugadores){
