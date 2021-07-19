@@ -99,4 +99,17 @@ public class BatallaTest {
         assertThrows(AtaqueNoValido.class, () -> batalla.batallar(1));
     }
 
+    @Test
+    public void PaisesQueNoSonAdyacentesNoPuedenBatallar() {
+
+        paisAtacante.agregarFichas(4, jugadorUno);
+        //Las adyacencias del defensor no importan
+        paisDefensor = new Pais("Borneo", Arrays.asList("Australia","Sumatra"));
+        paisDefensor.agregarFichas(5, jugadorDos);
+
+        Batalla batalla = new Batalla(paisAtacante, paisDefensor);
+
+        assertThrows(AtaqueNoValido.class, () -> batalla.batallar(1));
+    }
+
 }
