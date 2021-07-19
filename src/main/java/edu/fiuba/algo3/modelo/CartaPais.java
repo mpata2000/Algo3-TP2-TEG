@@ -14,4 +14,15 @@ public class CartaPais {
         this.pais.asignarJugadro(unJugador);
     }
 
+    public void setPais(Tablero tablero) {
+        this.pais = tablero.getPais(this.nombrePais);
+    }
+
+    public Pais getPais() {
+        return this.pais;
+    }
+
+    public String getNombrePais() {
+        return this.nombrePais;
+    }
 }

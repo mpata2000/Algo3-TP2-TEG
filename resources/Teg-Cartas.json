@@ -1,202 +1,202 @@
 [
  {
-   "Pais": "Francia",
-   "Simbolo": "Globo"
+   "nombrePais": "Francia",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Gran Bretaña",
-   "Simbolo": "Barco"
+   "nombrePais": "Gran Bretaña",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Tartaria",
-   "Simbolo": "Cañon"
+   "nombrePais": "Tartaria",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Mongolia",
-   "Simbolo": "Barco"
+   "nombrePais": "Mongolia",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Zaire",
-   "Simbolo": "Barco"
+   "nombrePais": "Zaire",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Polonia",
-   "Simbolo": "Cañon"
+   "nombrePais": "Polonia",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Oregon",
-   "Simbolo": "Cañon"
+   "nombrePais": "Oregon",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Etiopia",
-   "Simbolo": "Globo"
+   "nombrePais": "Etiopia",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Chile",
-   "Simbolo": "Globo"
+   "nombrePais": "Chile",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Australia",
-   "Simbolo": "Cañon"
+   "nombrePais": "Australia",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Kamtchatka",
-   "Simbolo": "Globo"
+   "nombrePais": "Kamtchatka",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Egipto",
-   "Simbolo": "Globo"
+   "nombrePais": "Egipto",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Turquia",
-   "Simbolo": "Barco"
+   "nombrePais": "Turquia",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Nueva York",
-   "Simbolo": "Barco"
+   "nombrePais": "Nueva York",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Terranova",
-   "Simbolo": "Cañon"
+   "nombrePais": "Terranova",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Iran",
-   "Simbolo": "Globo"
+   "nombrePais": "Iran",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Madagascar",
-   "Simbolo": "Barco"
+   "nombrePais": "Madagascar",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Argentina",
-   "Simbolo": "Comodin"
+   "nombrePais": "Argentina",
+   "simbolo": "Comodin"
  },
  {
-   "Pais": "Israel",
-   "Simbolo": "Barco"
+   "nombrePais": "Israel",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Rusia",
-   "Simbolo": "Globo"
+   "nombrePais": "Rusia",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Borneo",
-   "Simbolo": "Barco"
+   "nombrePais": "Borneo",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "California",
-   "Simbolo": "Cañon"
+   "nombrePais": "California",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Taymir",
-   "Simbolo": "Comodin"
+   "nombrePais": "Taymir",
+   "simbolo": "Comodin"
  },
  {
-   "Pais": "Aral",
-   "Simbolo": "Cañon"
+   "nombrePais": "Aral",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Siberia",
-   "Simbolo": "Barco"
+   "nombrePais": "Siberia",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Canada",
-   "Simbolo": "Cañon"
+   "nombrePais": "Canada",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Sahara",
-   "Simbolo": "Cañon"
+   "nombrePais": "Sahara",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Yukon",
-   "Simbolo": "Globo"
+   "nombrePais": "Yukon",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Uruguay",
-   "Simbolo": "Globo"
+   "nombrePais": "Uruguay",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Groenlandia",
-   "Simbolo": "Globo"
+   "nombrePais": "Groenlandia",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Japon",
-   "Simbolo": "Cañon"
+   "nombrePais": "Japon",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Sumatra",
-   "Simbolo": "Globo"
+   "nombrePais": "Sumatra",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Alaska",
-   "Simbolo": "Barco"
+   "nombrePais": "Alaska",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Brasil",
-   "Simbolo": "Barco"
+   "nombrePais": "Brasil",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Gobi",
-   "Simbolo": "Globo"
+   "nombrePais": "Gobi",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Italia",
-   "Simbolo": "Globo"
+   "nombrePais": "Italia",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "España",
-   "Simbolo": "Globo"
+   "nombrePais": "España",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Colombia",
-   "Simbolo": "Globo"
+   "nombrePais": "Colombia",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Suecia",
-   "Simbolo": "Barco"
+   "nombrePais": "Suecia",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Sudafrica",
-   "Simbolo": "Cañon"
+   "nombrePais": "Sudafrica",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Arabia",
-   "Simbolo": "Cañon"
+   "nombrePais": "Arabia",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "India",
-   "Simbolo": "Globo"
+   "nombrePais": "India",
+   "simbolo": "Globo"
  },
  {
-   "Pais": "Java",
-   "Simbolo": "Cañon"
+   "nombrePais": "Java",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Mexico",
-   "Simbolo": "Cañon"
+   "nombrePais": "Mexico",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Peru",
-   "Simbolo": "Barco"
+   "nombrePais": "Peru",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Alemania",
-   "Simbolo": "Barco"
+   "nombrePais": "Alemania",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "China",
-   "Simbolo": "Barco"
+   "nombrePais": "China",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Labrador",
-   "Simbolo": "Cañon"
+   "nombrePais": "Labrador",
+   "simbolo": "Cañon"
  },
  {
-   "Pais": "Islandia",
-   "Simbolo": "Barco"
+   "nombrePais": "Islandia",
+   "simbolo": "Barco"
  },
  {
-   "Pais": "Malasia",
-   "Simbolo": "Cañon"
+   "nombrePais": "Malasia",
+   "simbolo": "Cañon"
  }
 ]

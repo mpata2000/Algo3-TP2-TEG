@@ -52,4 +52,7 @@ public class Tablero {
         return (this.buscarPais(nombrePais).esDeJugador(jugador));
     }
 
+    public Pais getPais(String nombrePais) {
+        return this.paises.get(nombrePais);
+    }
 }
