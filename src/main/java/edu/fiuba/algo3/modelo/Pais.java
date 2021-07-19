@@ -36,6 +36,7 @@ public class Pais {
 
     public void agregarFichas(int cantidadFichas, Jugador unJugador) throws JugadorNoPoseePaisException {
         if(this.jugador == null) { this.jugador = unJugador; }
+        if( jugador.devolverFichas()== 0){return;}
 
         if (this.esDeJugador(unJugador)) {
             this.ejercito.agregarFichas(cantidadFichas);
