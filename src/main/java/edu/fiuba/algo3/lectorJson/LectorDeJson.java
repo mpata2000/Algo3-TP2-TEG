@@ -2,6 +2,7 @@ package edu.fiuba.algo3.lectorJson;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import edu.fiuba.algo3.modelo.CartaPais;
 import edu.fiuba.algo3.modelo.Continente;
 import edu.fiuba.algo3.modelo.Pais;
 import edu.fiuba.algo3.modelo.Tablero;
@@ -19,40 +20,42 @@ public class LectorDeJson {
 
     }
 
-    public void lectorCartasPais(String pathArchivo){
+    private Reader setReader(String pathArchivo){
+        Reader jsonLeido = null;
         try {
-            //Lectura del archivo Json
-            Reader jsonLeido = Files.newBufferedReader(Paths.get(pathArchivo));
-            Type datasetListType = new TypeToken<Collection<ObjetoCartas>>() {}.getType();
-            List<ObjetoCartas> listaObjetosCartas = new Gson().fromJson(jsonLeido, datasetListType);
-
-
-
-            //DEVOLVER listaObjetosCartas
-
+            jsonLeido = Files.newBufferedReader(Paths.get(pathArchivo));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return jsonLeido;
+    }
+
+    public List<CartaPais> lectorCartasPais(String pathArchivo){
+        Reader jsonLeido = this.setReader(pathArchivo);
+
+        Type datasetListType = new TypeToken<Collection<CartaPais>>() {}.getType();
+        List<CartaPais> cartasPais = new Gson().fromJson(jsonLeido, datasetListType);
+
+        //Todo: Chequear si esta bien
+        for(CartaPais carta: cartasPais){
+            carta.setPais(tablero);
+        }
+        return cartasPais;
     }
 
     public Tablero lectorTablero(String pathArchivo) {
         this.tablero = null;
-        try {
-            //Lectura del archivo Json
-            Reader jsonLeido = Files.newBufferedReader(Paths.get(pathArchivo));
-            Type datasetListType = new TypeToken<Collection<Continente>>() {}.getType();
-            List<Continente> continentes = new Gson().fromJson(jsonLeido, datasetListType);
+        Reader jsonLeido = this.setReader(pathArchivo);
+        Type datasetListType = new TypeToken<Collection<Continente>>() {}.getType();
+        List<Continente> continentes = new Gson().fromJson(jsonLeido, datasetListType);
 
-            ArrayList<Pais> paises = new ArrayList<>();
-            for(Continente continente: continentes){
-                paises.addAll(continente.getPaises());
-            }
-
-            tablero = new Tablero(continentes,paises);
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        ArrayList<Pais> paises = new ArrayList<>();
+        for(Continente continente: continentes){
+            paises.addAll(continente.getPaises());
         }
+        tablero = new Tablero(continentes,paises);
+
+
         return tablero;
     }
 }

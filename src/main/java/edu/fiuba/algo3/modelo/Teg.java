@@ -13,7 +13,7 @@ public class Teg {
 
     public Teg(int cantidadJugadores) throws ArchivoNoEncontrado {
         LectorDeJson lector = new LectorDeJson();
-        this.tablero = lector.lectorTablero("recurso/Teg-Tablero.json");
+        this.tablero = lector.lectorTablero("resources/Teg-Tablero.json");
     }
 
     /*private Teg(int numerosJugadores){

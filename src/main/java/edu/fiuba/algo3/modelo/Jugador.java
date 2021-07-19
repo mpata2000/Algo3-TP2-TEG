@@ -11,23 +11,9 @@ public class Jugador {
     public Jugador(String nombre){
         this.nombre = nombre;
     }
-/**
-    public void atacarConA(Pais nombrePaisMio,Pais nombrePaisEnemgio){
-        mapa.atacar(nombrePaisMio,nombrePaisEnemgio);
-    }
 
-    public void setearEjercito(Ejercito ejercito) {
-        this.ejercito = ejercito;
-    }
-
-    public void agregarTropas(int cant){
-    }
-
-    public Ejercito ejercito(){
-        return this.ejercito;
-    }
- **/
     public boolean esElMismoJugador(Jugador jugador){
         return this == jugador;
     }
+
 }

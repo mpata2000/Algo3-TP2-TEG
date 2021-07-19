@@ -8,9 +8,9 @@ public class Main {
         App.main(args);
         LectorDeJson lector = new LectorDeJson();
         //Descomentar para ejecutar acciones de lectura
-        //LectorDeJson.lectorPaises();
-        lector.lectorTablero("recurso/Teg-Tablero.json");
-        //LectorDeJson.lectorCartasPais("recursos/Teg-Cartas.json");
+
+        lector.lectorTablero("resources/Teg-Tablero.json");
+        lector.lectorCartasPais("resources/Teg-Cartas.json");
         //Teg nuevoTeg = new Teg(4);
     }
 }
