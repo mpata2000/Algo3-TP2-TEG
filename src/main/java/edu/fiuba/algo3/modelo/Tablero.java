@@ -18,6 +18,14 @@ public class Tablero {
         }
     }
 
+    public Map<String, Continente> getContinentes() {
+        return continentes;
+    }
+
+    public Map<String, Pais> getPaises() {
+        return paises;
+    }
+
     public void agregarPais(Pais unPais) {
         paises.put(unPais.getNombre(), unPais);
     }

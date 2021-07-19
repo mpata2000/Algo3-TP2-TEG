@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.Tablero;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -19,25 +20,31 @@ public class LectorDeJson {
 
     }
 
-    public void lectorCartasPais(String pathArchivo){
+    private Reader setReader(String pathArchivo){
+        Reader jsonLeido = null;
         try {
-            Reader jsonLeido = Files.newBufferedReader(Paths.get(pathArchivo));
-            Type datasetListType = new TypeToken<Collection<ObjetoCartas>>() {}.getType();
-            List<ObjetoCartas> listaObjetosCartas = new Gson().fromJson(jsonLeido, datasetListType);
-            //Todo:
+            jsonLeido = Files.newBufferedReader(Paths.get(pathArchivo));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jsonLeido;
+    }
+
+    public void lectorCartasPais(String pathArchivo){
+        Reader jsonLeido = this.setReader(pathArchivo);
+
+        Type datasetListType = new TypeToken<Collection<ObjetoCartas>>() {}.getType();
+        List<ObjetoCartas> listaObjetosCartas = new Gson().fromJson(jsonLeido, datasetListType);
+        //Todo:
 
 
             //DEVOLVER listaObjetosCartas
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public Tablero lectorTablero(String pathArchivo) {
         this.tablero = null;
-        try {
-            Reader jsonLeido = Files.newBufferedReader(Paths.get(pathArchivo));
+        Reader jsonLeido = this.setReader(pathArchivo);
             Type datasetListType = new TypeToken<Collection<Continente>>() {}.getType();
             List<Continente> continentes = new Gson().fromJson(jsonLeido, datasetListType);
 
@@ -48,9 +55,6 @@ public class LectorDeJson {
 
             tablero = new Tablero(continentes,paises);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return tablero;
     }
 }
