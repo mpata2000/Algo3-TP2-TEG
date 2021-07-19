@@ -7,10 +7,7 @@ import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-
-import java.util.Arrays;
-
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -24,8 +21,8 @@ public class BatallaTest {
 
     @BeforeEach
     void setUp() {
-        paisAtacante = new Pais("Chile",Arrays.asList("Argentina","Peru"));
-        paisDefensor = new Pais("Argentina", Arrays.asList("Chile","Brazil"));
+        paisAtacante = new Pais("Chile", List.of("Argentina","Peru"));
+        paisDefensor = new Pais("Argentina", List.of("Chile","Brazil"));
         jugadorUno = new Jugador("Julian");
         jugadorDos = new Jugador("Sofia");
     }
@@ -104,7 +101,7 @@ public class BatallaTest {
 
         paisAtacante.agregarFichas(4, jugadorUno);
         //Las adyacencias del defensor no importan
-        paisDefensor = new Pais("Borneo", Arrays.asList("Australia","Sumatra"));
+        paisDefensor = new Pais("Borneo", List.of("Australia","Sumatra"));
         paisDefensor.agregarFichas(5, jugadorDos);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
