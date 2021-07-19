@@ -76,4 +76,16 @@ public class DadosTest {
         assertEquals(0,fichasPerdidads[0]);
         assertEquals(1,fichasPerdidads[1]);
     }
+
+    @Test
+    public void DadosEstanOrdenadosDemayorAMenor(){
+
+        Dados dados = new Dados(3);
+        int max = 0;
+        for(int i = 0; i < dados.cantidadDados();i++){
+            max = Math.max(max, dados.obtenerDado(i));
+        }
+
+        assertEquals(max,dados.obtenerDado(0));
+    }
 }
