@@ -29,13 +29,12 @@ public class Turnos {
         if (this.tipoDeRonda == "Ataque") this.tipoDeRonda = "Colocacion";
     }
 
-    public void repartirPaises(ArrayList<Pais> paises){
+    public void repartirPaises(ArrayList<CartaPais> cartas){
         int indice = 0;
 
-        for(Pais pais : paises){
-            CartaPais carta = new CartaPais(pais);
-            rondaJugadores.get(indice).agregarCartaPais(carta);
-            rondaJugadores.get(indice).agregarFichaInicial(pais.getNombre(),this);
+        for(CartaPais cartaPais : cartas){
+            rondaJugadores.get(indice).agregarCartaPais(cartaPais);
+            rondaJugadores.get(indice).agregarFichaInicial((cartaPais.getPais()).getNombre(),this);
             if (indice >= rondaJugadores.size()) indice=0;
             else indice++;
         }

@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.excepciones.ArchivoNoEncontrado;
 import edu.fiuba.algo3.lectorJson.LectorDeJson;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ public class Teg {
     private Tablero tablero;
     private Map<String, Jugador> jugadores = new HashMap<>();
     private String[] colores = {"Amarillo", "verde", "azul", "rojo", "Rosa", "Negro"};
-    private ArrayList<Pais> paises;
+    private ArrayList<CartaPais> cartas;
 
     public Teg() throws ArchivoNoEncontrado {
         LectorDeJson lector = new LectorDeJson();
@@ -27,7 +28,7 @@ public class Teg {
         }
 
         this.turnos = new Turnos(this.jugadores);
-        this.turnos.repartirPaises(this.paises);
+        this.turnos.repartirPaises(this.cartas);
     }
 
     public void rondaInicialColocarEjercitos(String color, String nombrePais,int cant){

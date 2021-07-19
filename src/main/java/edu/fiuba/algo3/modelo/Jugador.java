@@ -25,7 +25,7 @@ public class Jugador {
         this.tablero.agregarFichas(1,this,nombrePais,turnos);
     }
     public void agregarCartaPais(CartaPais carta){
-
+        carta.asignarPaisA(this);
     }
     public boolean esElMismoJugador(Jugador jugador){
         return this == jugador;

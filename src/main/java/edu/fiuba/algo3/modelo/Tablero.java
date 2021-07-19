@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,10 +30,10 @@ public class Tablero {
         paises.put(unPais.getNombre(), unPais);
     }
 
-    public void agregarFichas(int cantidadTropas, Jugador unJugador, String unNombrePais){
+    public void agregarFichas(int cantidadTropas, Jugador unJugador, String unNombrePais,Turnos turnos){
         Pais pais = this.buscarPais(unNombrePais);
         if(turnos.esTurnoDe(pais)) {
-            pais.agregarFichas(cantidadTropas,unjugador);
+            pais.agregarFichas(cantidadTropas,unJugador);
         }
     }
     public boolean atacar(String nombrePaisMio , String nombrePaisEnemigo, int cantidadDeDadosAtacante, Turnos turnos) {

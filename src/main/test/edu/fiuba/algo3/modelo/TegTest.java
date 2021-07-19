@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TegTest {
 /*
@@ -10,7 +10,7 @@ public class TegTest {
         teg.comenzarJuego(2);
         teg.rondaInicialColocarEjercitos("Amarillo","Chile",5);
         teg.rondaInicialColocarEjercitos("Amarillo","Chile",3);
-        teg.rondaInicialColocarEjercitos("Amarillo","Chile",3);
+        assertThrows(NoEsTuTurno.class, () -> teg.rondaInicialColocarEjercitos("Amarillo","Chile",3));
 
     }*/
 }

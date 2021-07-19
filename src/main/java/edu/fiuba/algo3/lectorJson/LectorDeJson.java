@@ -55,7 +55,6 @@ public class LectorDeJson {
         }
         tablero = new Tablero(continentes,paises);
 
-
         return tablero;
     }
 }
