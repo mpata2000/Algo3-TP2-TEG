@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.excepciones;
 
 public class AtaqueNoValido extends RuntimeException{
 

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.excepciones.AtaqueNoValido;
 import edu.fiuba.algo3.excepciones.EjercitoConUnaFichaNoPuedeAtacar;
 import edu.fiuba.algo3.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDados;
 import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
@@ -7,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -21,8 +24,8 @@ public class BatallaTest {
 
     @BeforeEach
     void setUp() {
-        paisAtacante = new Pais("Chile");
-        paisDefensor = new Pais("Argentina");
+        paisAtacante = new Pais("Chile",Arrays.asList("Argentina","Peru"));
+        paisDefensor = new Pais("Argentina", Arrays.asList("Chile","Brazil"));
         jugadorUno = new Jugador("Julian");
         jugadorDos = new Jugador("Sofia");
     }
@@ -66,10 +69,6 @@ public class BatallaTest {
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
         assertFalse(batalla.batallar(2));
     }
-    //Ataque entre países con el país defensor como ganador.
-    //Ataque entre países con el país atacante como ganador y ocupación de este.
-
-    //TODO: mockito de pais
 
     @Test
     public void paisAtacanteConquistaPaisDefensor(){
@@ -80,6 +79,7 @@ public class BatallaTest {
         when(dados.comparadorDeDados(any(Dados.class))).thenReturn(conjunto);
         when(paisAtacante.tirarDados(3)).thenReturn(dados);
         when(paisAtacante.getJugador()).thenReturn(jugadorUno);
+        when(paisAtacante.esAdyacente(paisDefensor)).thenReturn(true);
         paisDefensor.agregarFichas(3, jugadorDos);
         Batalla batalla = new Batalla(paisAtacante,paisDefensor);
 

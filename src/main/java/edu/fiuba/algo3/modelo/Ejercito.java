@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.excepciones.EjercitoConUnaFichaNoPuedeAtacar;
 import edu.fiuba.algo3.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDados;
 import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
+import edu.fiuba.algo3.excepciones.PaisSinSuficientesFichasParaPasar;
 
 public class Ejercito {
     private int cantidadFichas;
