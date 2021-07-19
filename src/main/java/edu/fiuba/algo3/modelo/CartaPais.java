@@ -25,4 +25,8 @@ public class CartaPais {
     public String getNombrePais() {
         return this.nombrePais;
     }
+
+    public String getSimbolo() {
+        return this.simbolo;
+    }
 }
