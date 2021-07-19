@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.excepciones.ArchivoNoEncontrado;
 import edu.fiuba.algo3.lectorJson.LectorDeJson;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +14,8 @@ public class Teg {
     private ArrayList<Pais> paises;
 
     public Teg() throws ArchivoNoEncontrado {
-        this.tablero = LectorDeJson.lectorTablero();
+        LectorDeJson lector = new LectorDeJson();
+        this.tablero = lector.lectorTablero("resources/Teg-Tablero.json");
     }
 
     public void comenzarJuego(int cantidadJugadores) {

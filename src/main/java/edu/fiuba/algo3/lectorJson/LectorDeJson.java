@@ -2,6 +2,8 @@ package edu.fiuba.algo3.lectorJson;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import edu.fiuba.algo3.modelo.CartaPais;
+import edu.fiuba.algo3.modelo.Continente;
 import edu.fiuba.algo3.modelo.Pais;
 import edu.fiuba.algo3.modelo.Tablero;
 
@@ -9,90 +11,52 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class LectorDeJson {
-    Tablero tablero;
+    private Tablero tablero;
 
-    LectorDeJson(){
-        this.tablero = new Tablero();
+    public LectorDeJson(){
+
     }
 
-    public static void lectorPaises() {
+    private Reader setReader(String pathArchivo){
+        Reader jsonLeido = null;
         try {
-            //Lectura del archivo Json
-            Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Fronteras.json"));
-            Type datasetListType = new TypeToken<Collection<ObjetoFronteras>>() {}.getType();
-            List<ObjetoFronteras> listaObjetosPais = new Gson().fromJson(jsonLeido, datasetListType);
-
-
-            LinkedList<Pais> listaPaises = new LinkedList<Pais>();
-            for(ObjetoFronteras pais: listaObjetosPais){
-                Pais unPais = new Pais(pais.getPais(), pais.getPaisesLimitrofes());
-                //TODO: Si se pasa tablero/Diccionario de continentes se puede agregar pais
-                listaPaises.add(unPais);
-
-                System.out.println(pais.getPais());
-            }
-
-            //DEVOLVER listaObjetosPais
-
+            jsonLeido = Files.newBufferedReader(Paths.get(pathArchivo));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return jsonLeido;
     }
 
-    public static void lectorCartasPais(){
-        try {
-            //Lectura del archivo Json
-            Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Cartas.json"));
-            Type datasetListType = new TypeToken<Collection<ObjetoCartas>>() {}.getType();
-            List<ObjetoCartas> listaObjetosCartas = new Gson().fromJson(jsonLeido, datasetListType);
+    public List<CartaPais> lectorCartasPais(String pathArchivo){
+        Reader jsonLeido = this.setReader(pathArchivo);
 
-            /*
-            //Imprimir Lista de Object
-            for (int i = 0; i < listaObjetosCartas.size(); i++) {
-                System.out.println((listaObjetosCartas.get(i)).getPais());
-                System.out.println((listaObjetosCartas.get(i)).getSimbolo());
-            }
-            */
+        Type datasetListType = new TypeToken<Collection<CartaPais>>() {}.getType();
+        List<CartaPais> cartasPais = new Gson().fromJson(jsonLeido, datasetListType);
 
-            //DEVOLVER listaObjetosCartas
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        //Todo: Chequear si esta bien
+        for(CartaPais carta: cartasPais){
+            carta.setPais(tablero);
         }
+        return cartasPais;
     }
 
-    public static Tablero lectorTablero() {
-        try {
-            //Lectura del archivo Json
-            Reader jsonLeido = Files.newBufferedReader(Paths.get("paises/Teg-Tablero.json"));
-            Type datasetListType = new TypeToken<Collection<ObjetoTablero>>() {}.getType();
-            List<ObjetoTablero> listaObjetosPais = new Gson().fromJson(jsonLeido, datasetListType);
+    public Tablero lectorTablero(String pathArchivo) {
+        this.tablero = null;
+        Reader jsonLeido = this.setReader(pathArchivo);
+        Type datasetListType = new TypeToken<Collection<Continente>>() {}.getType();
+        List<Continente> continentes = new Gson().fromJson(jsonLeido, datasetListType);
 
-
-
-            for(ObjetoTablero continente: listaObjetosPais){
-                System.out.println(continente.getContinente());
-                System.out.println(continente.getFichas());
-                System.out.println(continente.getPaises());
-
-                System.out.print("[");
-                for(ObjetoFronteras pais: continente.getPaises()) {
-                    System.out.print(pais.getPais());
-                }
-                System.out.println("]");
-            }
-
-            //DEVOLVER tablero
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        ArrayList<Pais> paises = new ArrayList<>();
+        for(Continente continente: continentes){
+            paises.addAll(continente.getPaises());
         }
-        return null;
+        tablero = new Tablero(continentes,paises);
+
+
+        return tablero;
     }
 }
 

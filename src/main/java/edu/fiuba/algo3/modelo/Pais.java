@@ -6,19 +6,20 @@ import edu.fiuba.algo3.excepciones.PaisNoEsLimitrofe;
 import java.util.List;
 
 public class Pais {
-    private String nombre;
+    private final String nombrePais;
     private Ejercito ejercito;
     private Jugador jugador;
-    private List<String> paisesLimitrofes;
+    private final List<String> paisesLimitrofes;
 
     public Pais(String nombrePais, List<String>paisesLimitrofes){
         this.ejercito = new Ejercito();
-        this.nombre = nombrePais;
+        this.nombrePais = nombrePais;
         this.paisesLimitrofes = paisesLimitrofes;
         this.jugador = null;
     }
 
-    public String getNombre() {return this.nombre;}
+    public String getNombre() {return this.nombrePais;}
+
     public Jugador getJugador(){
         return this.jugador;
     }
@@ -26,6 +27,11 @@ public class Pais {
     public boolean esAdyacente(Pais unPais){
         //Puede dar errores si los limitrofes o nombres tienen mal los cases
         return this.paisesLimitrofes.contains(unPais.getNombre());
+    }
+
+    public void asignarJugadro(Jugador unJugador){
+        this.ejercito = new Ejercito();
+        this.jugador = unJugador;
     }
 
     public void agregarFichas(int cantidadFichas, Jugador unJugador) throws JugadorNoPoseePaisException {

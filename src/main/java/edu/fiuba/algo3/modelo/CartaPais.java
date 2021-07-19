@@ -1,22 +1,32 @@
 package edu.fiuba.algo3.modelo;
 
 public class CartaPais {
-    private String nombrePais;
+    private final String nombrePais;
+    private final String simbolo;
     private Pais pais;
 
-    CartaPais(Pais pais){
-        this.nombrePais = pais.getNombre();
-    }
-/**
-    public void setearPais(Jugador jugador){
-        Mapa mapa = new Mapa();
-        Pais pais = mapa.buscarPais(this.nombrePais);
-        pais.setearEjercito(jugador.ejercito());
-        this.pais = pais;
+    CartaPais(String nombrePais,String simbolo){
+        this.nombrePais = nombrePais;
+        this.simbolo = simbolo;
     }
 
-    public Pais devolverPais(){
+    public void asignarPaisA(Jugador unJugador){
+        this.pais.asignarJugadro(unJugador);
+    }
+
+    public void setPais(Tablero tablero) {
+        this.pais = tablero.getPais(this.nombrePais);
+    }
+
+    public Pais getPais() {
         return this.pais;
     }
- **/
+
+    public String getNombrePais() {
+        return this.nombrePais;
+    }
+
+    public String getSimbolo() {
+        return this.simbolo;
+    }
 }

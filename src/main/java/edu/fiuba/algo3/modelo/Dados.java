@@ -3,11 +3,11 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
+import static java.util.Comparator.reverseOrder;
 
 public class Dados {
-    private ArrayList<Integer> conjuntoDados = new ArrayList<>();
+    private final ArrayList<Integer> conjuntoDados = new ArrayList<>();
 
     Dados(int cantidadDados) throws NoSePuedenCrearCeroDados {
         if(cantidadDados<1){ throw new NoSePuedenCrearCeroDados();}
@@ -18,7 +18,7 @@ public class Dados {
             conjuntoDados.add(rand.nextInt(6) + 1); // Esto deberia dar un numero random entre 1 y 6
         }
 
-        Collections.sort(conjuntoDados, Collections.reverseOrder());
+        conjuntoDados.sort(reverseOrder());
     }
 
     //Devuelve la cantidad de dados que hay

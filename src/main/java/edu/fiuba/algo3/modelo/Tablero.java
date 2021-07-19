@@ -3,32 +3,47 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Tablero {
     private Map<String, Continente> continentes = new HashMap<>();
     private Map<String, Pais> paises = new HashMap<>();
 
-    public Tablero(){
+    public Tablero(List<Continente> continentes, List<Pais> paises){
+        for(Continente continente: continentes){
+            this.continentes.put(continente.getNombre(),continente);
+        }
 
+        for(Pais pais: paises){
+            this.paises.put(pais.getNombre(),pais);
+        }
+    }
+
+    public Map<String, Continente> getContinentes() {
+        return continentes;
+    }
+
+    public Map<String, Pais> getPaises() {
+        return paises;
     }
 
     public void agregarPais(Pais unPais) {
         paises.put(unPais.getNombre(), unPais);
     }
 
-    public void agregarFichas(int cantidadTropas, Jugador unjugador,String unNombrePais,Turnos turnos){
+    public void agregarFichas(int cantidadTropas, Jugador unJugador, String unNombrePais){
         Pais pais = this.buscarPais(unNombrePais);
         if(turnos.esTurnoDe(pais)) {
             pais.agregarFichas(cantidadTropas,unjugador);
         }
     }
-    public boolean atacar(String nombrePaisMio , String nombrePaisEnemigo,int cantidad, Turnos turnos) {
+    public boolean atacar(String nombrePaisMio , String nombrePaisEnemigo, int cantidadDeDadosAtacante, Turnos turnos) {
         Pais paisMio = this.buscarPais(nombrePaisMio);
         Pais paisEnemigo = this.buscarPais(nombrePaisEnemigo);
         if(turnos.esTurnoDe(paisMio)) {
             Batalla batalla = new Batalla(paisMio, paisEnemigo);
-            return batalla.batallar(cantidad);
+            return batalla.batallar(cantidadDeDadosAtacante);
         }
         return false;
     }
@@ -41,4 +56,7 @@ public class Tablero {
         return (this.buscarPais(nombrePais).esDeJugador(jugador));
     }
 
+    public Pais getPais(String nombrePais) {
+        return this.paises.get(nombrePais);
+    }
 }

@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,9 +39,10 @@ public class TableroTest {
 
     @Test
     public void agregarFichasAUnPaisVacioEntoncesElPaisEsDelJugadorTest(){
-        Tablero tablero = new Tablero();
-        tablero.agregarPais(paisAtacante);
-        when(turnos.esTurnoDe(paisAtacante)).thenReturn(true);
+        Pais pais = new Pais("Argentina", List.of("Chile","Brazil"));
+        ArrayList<Pais> paises = new ArrayList<>();
+        paises.add(pais);
+        Tablero tablero = new Tablero(new ArrayList<>(),paises);
 
         Jugador jugador = new Jugador("Julian");
         tablero.agregarFichas(5,jugador, "Chile",turnos);
@@ -49,7 +52,15 @@ public class TableroTest {
 
     @Test
     public void agregarFichasAUnPaisQueNoEsDelJugadorLanzaExcepcionTest(){
-        Tablero tablero = new Tablero();
+        Pais pais = new Pais("Argentina", List.of("Chile","Brazil"));
+        ArrayList<Pais> paises = new ArrayList<>();
+        paises.add(pais);
+        Tablero tablero = new Tablero(new ArrayList<>(),paises);
+
+        tablero.agregarPais(pais);
+
+        Jugador jugadorUno = new Jugador("Julian");
+        Jugador jugadorDos = new Jugador("Martin");
 
         tablero.agregarPais(paisAtacante);
         when(turnos.esTurnoDe(paisDefensor)).thenReturn(true);
@@ -60,19 +71,25 @@ public class TableroTest {
 
     @Test
     public void ataque(){
-        Tablero tablero = new Tablero();
-        tablero.agregarPais(paisAtacante);
-        tablero.agregarPais(paisDefensor);
-        when(turnos.esTurnoDe(paisDefensor)).thenReturn(true);
-        when(turnos.esTurnoDe(paisAtacante)).thenReturn(true);
+        Pais pais1 = new Pais("Argentina", List.of("Chile","Brazil"));
+        Pais pais2 = new Pais("Chile",List.of("Argentina","Peru"));
+        ArrayList<Pais> paises = new ArrayList<>();
+        paises.add(pais1);
+        paises.add(pais2);
+        Tablero tablero = new Tablero(new ArrayList<>(),paises);
 
         tablero.agregarFichas(5,jugadorUno, "Argentina",turnos);
 
         assertThrows(JugadorNoPoseePaisException.class, () -> tablero.agregarFichas(5,jugadorDos, "Argentina",turnos));
     }
+    /*
     @Test
     public void paisAtacanteNoPuedeTirarCeroDados() {
         Tablero tablero = new Tablero();
+        Jugador jugadorUno = new Jugador("Julian");
+        Jugador jugadorDos = new Jugador("Martin");
+        Pais pais1 = new Pais("Argentina", List.of("Chile","Brazil"));
+        Pais pais2 = new Pais("Chile",List.of("Argentina","Peru"));
 
         tablero.agregarPais(paisAtacante);
         tablero.agregarPais(paisDefensor);
@@ -87,6 +104,10 @@ public class TableroTest {
     @Test
     public void paisAtacanteConUnaFichaNoPuedeAtacar() {
         Tablero tablero = new Tablero();
+        Jugador jugadorUno = new Jugador("Julian");
+        Jugador jugadorDos = new Jugador("Martin");
+        Pais pais1 = new Pais("Argentina", List.of("Chile","Brazil"));
+        Pais pais2 = new Pais("Chile",List.of("Argentina","Peru"));
 
         tablero.agregarPais(paisAtacante);
         tablero.agregarPais(paisDefensor);
@@ -101,6 +122,10 @@ public class TableroTest {
     @Test
     public void paisAtacanteNoPuedeTirarDadosDeMas() {
         Tablero tablero = new Tablero();
+        Jugador jugadorUno = new Jugador("Julian");
+        Jugador jugadorDos = new Jugador("Martin");
+        Pais pais1 = new Pais("Argentina", List.of("Chile","Brazil"));
+        Pais pais2 = new Pais("Chile",List.of("Argentina","Peru"));
 
         tablero.agregarPais(paisAtacante);
         tablero.agregarPais(paisDefensor);
@@ -115,6 +140,10 @@ public class TableroTest {
     @Test
     public void paisAtacanteNoConquistaPais() {
         Tablero tablero = new Tablero();
+        Jugador jugadorUno = new Jugador("Julian");
+        Jugador jugadorDos = new Jugador("Martin");
+        Pais pais1 = new Pais("Argentina", List.of("Chile","Brazil"));
+        Pais pais2 = new Pais("Chile",List.of("Argentina","Peru"));
 
         tablero.agregarPais(paisAtacante);
         tablero.agregarPais(paisDefensor);
@@ -133,8 +162,8 @@ public class TableroTest {
         Tablero tablero = new Tablero();
         Jugador jugadorUno = new Jugador("Julian");
         Jugador jugadorDos = new Jugador("Martin");
-        Pais pais1 = new Pais("Argentina", Arrays.asList("Chile","Brazil"));
-        Pais pais2 = new Pais("Chile",Arrays.asList("Argentina","Peru"));
+        Pais pais1 = new Pais("Argentina", List.of("Chile","Brazil"));
+        Pais pais2 = new Pais("Chile",List.of("Argentina","Peru"));
         Pais pais1 = Mockito.mock(Pais.class);
         tablero.agregarPais(pais1);
         tablero.agregarPais(pais2);
@@ -154,6 +183,9 @@ public class TableroTest {
     @Test
     public void JugadorNoPuedeAtacarseASiMismo() {
         Tablero tablero = new Tablero();
+        Jugador jugadorUno = new Jugador("Julian");
+        Pais pais1 = new Pais("Argentina", List.of("Chile","Brazil"));
+        Pais pais2 = new Pais("Chile",List.of("Argentina","Peru"));
 
         tablero.agregarPais(paisAtacante);
         tablero.agregarPais(paisDefensor);

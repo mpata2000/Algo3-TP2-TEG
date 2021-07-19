@@ -20,22 +20,7 @@ public class Jugador {
     public int devolverFichas(){
         return this.fichasIniciales;
     }
-/**
-    public void atacarConA(Pais nombrePaisMio,Pais nombrePaisEnemgio){
-        mapa.atacar(nombrePaisMio,nombrePaisEnemgio);
-    }
 
-    public void setearEjercito(Ejercito ejercito) {
-        this.ejercito = ejercito;
-    }
-
-    public void agregarTropas(int cant){
-    }
-
-    public Ejercito ejercito(){
-        return this.ejercito;
-    }
- **/
     public void agregarFichaInicial(String nombrePais, Turnos turnos){
         this.tablero.agregarFichas(1,this,nombrePais,turnos);
     }
@@ -45,5 +30,5 @@ public class Jugador {
     public boolean esElMismoJugador(Jugador jugador){
         return this == jugador;
     }
-}
 
+}

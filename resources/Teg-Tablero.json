@@ -1,0 +1,238 @@
+[
+  {
+    "nombreContinente": "Asia",
+    "fichas": 7,
+    "paises":[
+      {
+        "nombrePais": "Tartaria",
+        "paisesLimitrofes": ["Aral","Taymir","Siberia"]
+      },
+      {
+        "nombrePais": "Mongolia",
+        "paisesLimitrofes": ["Aral","Siberia","Iran","Gobi","China"]
+      },
+      {
+        "nombrePais": "Turquia",
+        "paisesLimitrofes": ["Egipto","Polonia","Rusia","Iran","Israel","Arabia"]
+      },
+      {
+        "nombrePais": "Kamtchatka",
+        "paisesLimitrofes": ["Siberia","China","Japon","Alaska"]
+      },
+      {
+        "nombrePais": "Iran",
+        "paisesLimitrofes": ["Aral","Mongolia","Gobi","China","India","Turquia","Rusia"]
+      },
+      {
+        "nombrePais": "Israel",
+        "paisesLimitrofes": ["Turquia","Arabia","Egipto"]
+      },
+      {
+        "nombrePais": "Taymir",
+        "paisesLimitrofes": ["Tartaria","Siberia"]
+      },
+      {
+        "nombrePais": "Aral",
+        "paisesLimitrofes": ["Rusia","Iran","Mongolia","Siberia","Tartaria"]
+      },
+      {
+        "nombrePais": "Siberia",
+        "paisesLimitrofes": ["Aral","Tartaria","Taymir","Kamtchatka","China","Mongolia"]
+      },
+      {
+        "nombrePais": "Japon",
+        "paisesLimitrofes": ["Kamtchatka","China"]
+      },
+      {
+        "nombrePais": "Arabia",
+        "paisesLimitrofes": ["Turquia","Israel"]
+      },
+      {
+        "nombrePais": "India",
+        "paisesLimitrofes": ["China","Malasia","Iran","Sumatra"]
+      },
+      {
+        "nombrePais": "Gobi",
+        "paisesLimitrofes": ["Mongolia","China","Iran"]
+      },
+      {
+        "nombrePais": "China",
+        "paisesLimitrofes": ["Kamtchatka","Siberia","Mongolia","Gobi","Iran","India","Malasia","Japon"]
+      },
+      {
+        "nombrePais": "Malasia",
+        "paisesLimitrofes": ["China","India","Borneo"]
+      }
+    ]
+  },
+  {
+    "nombreContinente": "Europa",
+    "fichas": 5,
+    "paises":[
+      {
+        "nombrePais": "Francia",
+        "paisesLimitrofes": ["Alemania","España","Italia"]
+      },
+      {
+        "nombrePais": "Gran Bretaña",
+        "paisesLimitrofes": ["Islandia","Alemania","España"]
+      },
+      {
+        "nombrePais": "Polonia",
+        "paisesLimitrofes": ["Alemania","Rusia","Turquia","Egipto"]
+      },
+      {
+        "nombrePais": "Rusia",
+        "paisesLimitrofes": ["Suecia","Aral","Iran","Turquia","Polonia"]
+      },
+      {
+        "nombrePais": "Italia",
+        "paisesLimitrofes": ["Alemania","Francia"]
+      },
+      {
+        "nombrePais": "España",
+        "paisesLimitrofes": ["Sahara","Francia","Gran Bretaña"]
+      },
+      {
+        "nombrePais": "Suecia",
+        "paisesLimitrofes": ["Rusia","Islandia"]
+      },
+      {
+        "nombrePais": "Alemania",
+        "paisesLimitrofes": ["Polonia","Italia","Gran Bretaña","Francia"]
+      },
+      {
+        "nombrePais": "Islandia",
+        "paisesLimitrofes": ["Groenlandia","Suecia","Gran Bretaña"]
+      }
+    ]
+  },
+  {
+    "nombreContinente": "America del Norte",
+    "fichas": 5,
+    "paises":[
+      {
+        "nombrePais": "Oregon",
+        "paisesLimitrofes": ["Alaska","Yukon","Canada","Nueva York","California"]
+      },
+      {
+        "nombrePais": "Nueva York",
+        "paisesLimitrofes": ["Groenlandia","Canada","Oregon","California","Terranova"]
+      },
+      {
+        "nombrePais": "Terranova",
+        "paisesLimitrofes": ["Labrador","Canada","Nueva York"]
+      },
+      {
+        "nombrePais": "California",
+        "paisesLimitrofes": ["Oregon","Nueva York","Mexico"]
+      },
+      {
+        "nombrePais": "Canada",
+        "paisesLimitrofes": ["Yukon","Oregon","Nueva York","Terranova"]
+      },
+      {
+        "nombrePais": "Yukon",
+        "paisesLimitrofes": ["Alaska","Canada","Oregon"]
+      },
+      {
+        "nombrePais": "Groenlandia",
+        "paisesLimitrofes": ["Labrador","Nueva York","Islandia"]
+      },
+      {
+        "nombrePais": "Alaska",
+        "paisesLimitrofes": ["Yukon","Oregon","Kamtchatka"]
+      },
+      {
+        "nombrePais": "Mexico",
+        "paisesLimitrofes": ["Colombia","California"]
+      },
+      {
+        "nombrePais": "Labrador",
+        "paisesLimitrofes": ["Groenlandia","Terranova"]
+      }
+    ]
+  },
+  {
+    "nombreContinente": "America del Sur",
+    "fichas": 3,
+    "paises":[
+      {
+        "nombrePais": "Chile",
+        "paisesLimitrofes": ["Argentina","Peru","Australia"]
+      },
+      {
+        "nombrePais": "Argentina",
+        "paisesLimitrofes": ["Chile","Peru","Brasil","Uruguay"]
+      },
+      {
+        "nombrePais": "Uruguay",
+        "paisesLimitrofes": ["Argentina","Brasil"]
+      },
+      {
+        "nombrePais": "Brasil",
+        "paisesLimitrofes": ["Colombia","Peru","Argentina","Uruguay","Sahara"]
+      },
+      {
+        "nombrePais": "Colombia",
+        "paisesLimitrofes": ["Mexico","Peru","Brasil"]
+      },
+      {
+        "nombrePais": "Peru",
+        "paisesLimitrofes": ["Colombia","Brasil","Chile","Argentina"]
+      }
+    ]
+  },
+  {
+    "nombreContinente": "Africa",
+    "fichas": 3,
+    "paises":[
+      {
+        "nombrePais": "Zaire",
+        "paisesLimitrofes": ["Madagascar","Sudafrica","Etiopia","Sahara"]
+      },
+      {
+        "nombrePais": "Etiopia",
+        "paisesLimitrofes": ["Sahara","Egipto","Zaire","Sudafrica"]
+      },
+      {
+        "nombrePais": "Madagascar",
+        "paisesLimitrofes": ["Egipto","Zaire"]
+      },
+      {
+        "nombrePais": "Sahara",
+        "paisesLimitrofes": ["Brasil","España","Egipto","Etiopia","Zaire"]
+      },
+      {
+        "nombrePais": "Sudafrica",
+        "paisesLimitrofes": ["Zaire","Etiopia"]
+      },
+      {
+        "nombrePais": "Egipto",
+        "paisesLimitrofes": ["Polonia","Turquia","Israel","Madagascar","Etiopia","Sahara"]
+      }
+    ]
+  },
+  {
+    "nombreContinente": "Oceania",
+    "fichas": 2,
+    "paises":[
+      {
+        "nombrePais": "Borneo",
+        "paisesLimitrofes": ["Australia","Malasia"]
+      },
+      {
+        "nombrePais": "Sumatra",
+        "paisesLimitrofes": ["Australia","India"]
+      },
+      {
+        "nombrePais": "Australia",
+        "paisesLimitrofes": ["Chile","Sumatra","Java","Borneo"]
+      },
+      {
+        "nombrePais": "Java",
+        "paisesLimitrofes": ["Australia"]
+      }
+    ]
+  }
+]
