@@ -20,6 +20,17 @@ public class PaisTest{
          assertEquals(paisMio.getJugador(),jugador);
      }
 
+    @Test
+    public void paisNoSePuedeAsignarDosVeces(){
+        Pais paisMio = new Pais("Chile", List.of("Argentina","Peru"));
+        Jugador jugador = new Jugador("julio");
+        Jugador jugadorDos = new Jugador("Sofia");
+        paisMio.asignarJugador(jugador);
+        paisMio.asignarJugador(jugadorDos);
+
+        assertEquals(paisMio.getJugador(),jugador);
+    }
+
 
     @Test
     public void agregarTropasAUnPaisQueNoEsDelJugadorLanzaExcepcionTest(){
