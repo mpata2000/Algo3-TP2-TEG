@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.lectorJson.LectorDeJson;
+import edu.fiuba.algo3.lector.LectorDeJson;
 import org.junit.jupiter.api.Test;
-import java.io.IOException;
-import java.nio.file.NoSuchFileException;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.lectorJson;
+package edu.fiuba.algo3.lector;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
@@ -15,10 +15,6 @@ import java.util.*;
 
 public class LectorDeJson {
     private Tablero tablero;
-
-    public LectorDeJson(){
-
-    }
 
     private Reader setReader(String pathArchivo){
         Reader jsonLeido = null;

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.excepciones.ArchivoNoEncontrado;
-import edu.fiuba.algo3.lectorJson.LectorDeJson;
+import edu.fiuba.algo3.lector.LectorDeJson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
