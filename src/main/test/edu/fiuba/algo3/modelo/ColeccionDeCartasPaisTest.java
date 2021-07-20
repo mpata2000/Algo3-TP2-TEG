@@ -63,4 +63,18 @@ public class ColeccionDeCartasPaisTest {
         }
     }
 
+    @Test
+    public void SeLeAsignaLaCartaSiempreAlPrimerJugador(){
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais();
+        cartasPais.agregarCartaPais(cartas.get(0));
+        Jugador jugadorUno = new Jugador("Julian");
+        Jugador jugadorDos = new Jugador("carlos");
+
+        cartasPais.asignarPaises(List.of(jugadorUno,jugadorDos));
+        assertTrue(paises.get(0).esDeJugador(jugadorUno));
+
+        cartasPais.asignarPaises(List.of(jugadorDos,jugadorUno));
+        assertTrue(paises.get(0).esDeJugador(jugadorDos));
+    }
+
 }
