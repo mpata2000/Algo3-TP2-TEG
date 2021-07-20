@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.lectorJson;
+package edu.fiuba.algo3.lector;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
@@ -16,10 +16,6 @@ import java.util.*;
 public class LectorDeJson {
     private Tablero tablero;
 
-    public LectorDeJson(){
-
-    }
-
     private Reader setReader(String pathArchivo){
         Reader jsonLeido = null;
         try {
@@ -36,7 +32,6 @@ public class LectorDeJson {
         Type datasetListType = new TypeToken<Collection<CartaPais>>() {}.getType();
         List<CartaPais> cartasPais = new Gson().fromJson(jsonLeido, datasetListType);
 
-        //Todo: Chequear si esta bien
         for(CartaPais carta: cartasPais){
             carta.setPais(tablero);
         }

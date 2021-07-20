@@ -29,9 +29,10 @@ public class BatallaTest {
 
     @Test
     public void paisAtacanteNoPuedeTirarCeroDados() {
-
-        paisAtacante.agregarFichas(3, jugadorUno);
-        paisDefensor.agregarFichas(5, jugadorDos);
+        paisAtacante.asignarJugador(jugadorUno);
+        paisDefensor.asignarJugador(jugadorDos);
+        paisAtacante.agregarFichas(2, jugadorUno);
+        paisDefensor.agregarFichas(4, jugadorDos);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
         assertThrows(NoSePuedenCrearCeroDados.class, () -> batalla.batallar(0));
@@ -39,9 +40,10 @@ public class BatallaTest {
 
     @Test
     public void paisAtacanteConUnaFichaNoPuedeAtacar() {
+        paisAtacante.asignarJugador(jugadorUno);
+        paisDefensor.asignarJugador(jugadorDos);
 
-        paisAtacante.agregarFichas(1, jugadorUno);
-        paisDefensor.agregarFichas(5, jugadorDos);
+        paisDefensor.agregarFichas(4, jugadorDos);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
         assertThrows(EjercitoConUnaFichaNoPuedeAtacar.class, () -> batalla.batallar(1));
@@ -49,9 +51,10 @@ public class BatallaTest {
 
     @Test
     public void paisAtacanteNoPuedeTirarDadosDeMas() {
-
-        paisAtacante.agregarFichas(2, jugadorUno);
-        paisDefensor.agregarFichas(5, jugadorDos);
+        paisAtacante.asignarJugador(jugadorUno);
+        paisDefensor.asignarJugador(jugadorDos);
+        paisAtacante.agregarFichas(1, jugadorUno);
+        paisDefensor.agregarFichas(4, jugadorDos);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
         assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDados.class, () -> batalla.batallar(3));
@@ -59,7 +62,8 @@ public class BatallaTest {
 
     @Test
     public void paisAtacanteNoConquistaPais() {
-
+        paisAtacante.asignarJugador(jugadorUno);
+        paisDefensor.asignarJugador(jugadorDos);
         paisAtacante.agregarFichas(5, jugadorUno);
         paisDefensor.agregarFichas(5, jugadorDos);
 
@@ -69,6 +73,7 @@ public class BatallaTest {
 
     @Test
     public void paisAtacanteConquistaPaisDefensor(){
+        paisDefensor.asignarJugador(jugadorDos);
         paisAtacante = Mockito.mock(Pais.class);
         Dados dados = Mockito.mock(Dados.class);
         int[] conjunto = {0,3};
@@ -77,7 +82,7 @@ public class BatallaTest {
         when(paisAtacante.tirarDados(3)).thenReturn(dados);
         when(paisAtacante.getJugador()).thenReturn(jugadorUno);
         when(paisAtacante.esAdyacente(paisDefensor)).thenReturn(true);
-        paisDefensor.agregarFichas(3, jugadorDos);
+        paisDefensor.agregarFichas(2, jugadorDos);
         Batalla batalla = new Batalla(paisAtacante,paisDefensor);
 
         assertTrue(batalla.batallar(3));
@@ -88,9 +93,10 @@ public class BatallaTest {
 
     @Test
     public void JugadorNoPuedeAtacarseASiMismo() {
-
-        paisAtacante.agregarFichas(4, jugadorUno);
-        paisDefensor.agregarFichas(5, jugadorUno);
+        paisAtacante.asignarJugador(jugadorUno);
+        paisDefensor.asignarJugador(jugadorUno);
+        paisAtacante.agregarFichas(3, jugadorUno);
+        paisDefensor.agregarFichas(4, jugadorUno);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
         assertThrows(AtaqueNoValido.class, () -> batalla.batallar(1));
@@ -98,10 +104,11 @@ public class BatallaTest {
 
     @Test
     public void PaisesQueNoSonAdyacentesNoPuedenBatallar() {
-
+        paisAtacante.asignarJugador(jugadorUno);
         paisAtacante.agregarFichas(4, jugadorUno);
         //Las adyacencias del defensor no importan
         paisDefensor = new Pais("Borneo", List.of("Australia","Sumatra"));
+        paisDefensor.asignarJugador(jugadorDos);
         paisDefensor.agregarFichas(5, jugadorDos);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);

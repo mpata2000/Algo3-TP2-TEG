@@ -9,7 +9,7 @@ public class Ejercito {
     private int cantidadFichas;
 
     public Ejercito(){
-        this.cantidadFichas = 0;
+        this.cantidadFichas = 1;
     }
     public void agregarFichas(int cant){ this.cantidadFichas = cant + this.cantidadFichas;}
     public int getCantFichas(){
