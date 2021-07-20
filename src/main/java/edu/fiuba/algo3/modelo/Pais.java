@@ -12,10 +12,8 @@ public class Pais {
     private final List<String> paisesLimitrofes;
 
     public Pais(String nombrePais, List<String>paisesLimitrofes){
-        this.ejercito = new Ejercito();
         this.nombrePais = nombrePais;
         this.paisesLimitrofes = paisesLimitrofes;
-        this.jugador = null;
     }
 
     public String getNombre() {return this.nombrePais;}
@@ -25,20 +23,19 @@ public class Pais {
     }
 
     public boolean esAdyacente(Pais unPais){
-        //Puede dar errores si los limitrofes o nombres tienen mal los cases
         return this.paisesLimitrofes.contains(unPais.getNombre());
     }
 
-    public void asignarJugadro(Jugador unJugador){
-        this.ejercito = new Ejercito();
+    public void asignarJugador(Jugador unJugador){
+        if(this.jugador != null){return;}
         this.jugador = unJugador;
+        this.ejercito = new Ejercito();
     }
 
     public void agregarFichas(int cantidadFichas, Jugador unJugador) throws JugadorNoPoseePaisException {
-        if(this.jugador == null) { this.jugador = unJugador; }
-        if( jugador.devolverFichas()== 0){return;}
 
         if (this.esDeJugador(unJugador)) {
+            //if( (jugador.devolverFichas()-cantidadFichas) < 1){return;}
             this.ejercito.agregarFichas(cantidadFichas);
         } else {
             throw new JugadorNoPoseePaisException();

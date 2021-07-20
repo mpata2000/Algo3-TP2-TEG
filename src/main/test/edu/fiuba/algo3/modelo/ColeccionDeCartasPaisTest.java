@@ -72,9 +72,6 @@ public class ColeccionDeCartasPaisTest {
 
         cartasPais.asignarPaises(List.of(jugadorUno,jugadorDos));
         assertTrue(paises.get(0).esDeJugador(jugadorUno));
-
-        cartasPais.asignarPaises(List.of(jugadorDos,jugadorUno));
-        assertTrue(paises.get(0).esDeJugador(jugadorDos));
     }
 
 }
