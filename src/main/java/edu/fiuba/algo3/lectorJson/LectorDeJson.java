@@ -36,7 +36,6 @@ public class LectorDeJson {
         Type datasetListType = new TypeToken<Collection<CartaPais>>() {}.getType();
         List<CartaPais> cartasPais = new Gson().fromJson(jsonLeido, datasetListType);
 
-        //Todo: Chequear si esta bien
         for(CartaPais carta: cartasPais){
             carta.setPais(tablero);
         }

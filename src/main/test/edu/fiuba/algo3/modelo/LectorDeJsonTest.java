@@ -10,14 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LectorDeJsonTest {
-    /*@Test
-    public void NoSePuedeLeerArchivoDeTableroInexistente(){
-        LectorDeJson lector = new LectorDeJson();
-
-        assertThrows( NoSuchFileException.class,()->lector.lectorTablero("a"));
-    }
-    */
-
     @Test
     public void TableroSeCreaConCincuentaPaises(){
         LectorDeJson lector = new LectorDeJson();
@@ -39,7 +31,6 @@ public class LectorDeJsonTest {
         List<CartaPais> cartasPais = lector.lectorCartasPais("resources/Teg-Cartas.json");
         assertEquals(50,cartasPais.size());
     }
-
 
     @Test
     public void LasCartasPaisesTienenLaReferenciaCorrectaAPais(){
