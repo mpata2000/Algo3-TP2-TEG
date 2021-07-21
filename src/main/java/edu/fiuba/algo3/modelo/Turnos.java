@@ -25,14 +25,14 @@ public class Turnos {
     }*/
 
     public boolean atacar(String paisAtacante, String paisDefensor, int cantidad){
-        if(this.tipoDeRonda.esRondaAtaque()) {
+        if(this.tipoDeRonda.esAtaqueReagrupacion()) {
             return this.teg.atacar(paisAtacante, paisDefensor, cantidad);
         }
         return false;
     }
 
     public void reagrupar(String paisUno,String paisdos,int cant){
-        if(this.tipoDeRonda.esRondaAtaque()) {
+        if(this.tipoDeRonda.esAtaqueReagrupacion()) {
             this.teg.reagrupar(paisUno,paisdos,cant);
             this.avanzarRonda();
         }
@@ -60,9 +60,10 @@ public class Turnos {
 
     public void cambiarRonda(){
         ListIterator<Jugador> iter = this.rondaJugadores.listIterator();
-        if (this.tipoDeRonda.esColocacionInicial()) this.tipoDeRonda = new RondaAtaque() ;
+        this.tipoDeRonda = this.tipoDeRonda.cambiarDeRonda();
+        /*if (this.tipoDeRonda.esColocacionInicial()) this.tipoDeRonda = new RondaAtaque() ;
         if (this.tipoDeRonda.esRondaAtaque()) this.tipoDeRonda = new RondaColocacion();
-        if(this.tipoDeRonda.esColocacion()) this.tipoDeRonda = new RondaAtaque();
+        if(this.tipoDeRonda.esColocacion()) this.tipoDeRonda = new RondaAtaque();*/
     }
 
     public ArrayList <Jugador> getJugadores(){

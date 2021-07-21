@@ -1,11 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
-public class RondaColocacionInicial implements TipoRonda {
+public class RondaAtaqueReagrupacion implements TipoRonda {
 
     @Override
-    public RondaAtaqueReagrupacion cambiarDeRonda(){
-        return new RondaAtaqueReagrupacion();
-
+    public RondaColocacion cambiarDeRonda(){
+        return new RondaColocacion();
     }
     @Override
     public Boolean esColocacion(){
@@ -13,10 +12,11 @@ public class RondaColocacionInicial implements TipoRonda {
     };
     @Override
     public Boolean esColocacionInicial(){
-        return true;
+        return false;
     };
     @Override
     public Boolean esAtaqueReagrupacion(){
-        return false;
+        return true;
     };
+
 }
