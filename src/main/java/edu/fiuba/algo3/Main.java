@@ -1,7 +1,6 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.lectorJson.LectorDeJson;
-import edu.fiuba.algo3.modelo.Teg;
+import edu.fiuba.algo3.lector.LectorDeJson;
 
 public class Main {
     public static void main(String[] args){

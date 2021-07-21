@@ -11,7 +11,7 @@ public class CartaPais {
     }
 
     public void asignarPaisA(Jugador unJugador){
-        this.pais.asignarJugadro(unJugador);
+        this.pais.asignarJugador(unJugador);
     }
 
     public void setPais(Tablero tablero) {

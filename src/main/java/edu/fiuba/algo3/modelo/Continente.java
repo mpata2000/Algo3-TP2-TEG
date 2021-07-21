@@ -24,4 +24,12 @@ public class Continente {
     public String getNombre() {
         return nombreContinente;
     }
+
+    public boolean esDeJugador(Jugador unJugador){
+        return this.paises.stream().allMatch( pais -> pais.esDeJugador(unJugador));
+    }
+
+    public int cantidadDePaisesDe(Jugador unJugador){
+        return (int)this.paises.stream().filter(pais -> pais.esDeJugador(unJugador)).count();
+    }
 }
