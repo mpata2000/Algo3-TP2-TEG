@@ -1,0 +1,33 @@
+@startuml ColeccionDeCartas-v0.1
+
+Class Jugador{
+}
+
+Class Teg{}
+
+Interface ColeccionDeCartasPaisJugador{
+    +agregarCarta(unaCarta: CartaPais)
+    +canjearCartas(): Integer
+}
+
+Interface ColeccionDeCartasPaisTeg{
+    +asignarPaises(jugadores:List<Jugador>)
+    +darCartaA(unJugador: Jugador)
+}
+
+Class ColeccionDeCartasPais{
+    +agregarCarta(unaCarta: CartaPais)
+    +darCartaA(unJugador: Jugador)
+    +asignarPaises(jugadores:List<Jugador>)
+    +canjearCartas(): Integer
+}
+
+Class CartaPais{}
+
+ColeccionDeCartasPais "1"-up->"0..*" CartaPais
+ColeccionDeCartasPaisJugador .up.|> ColeccionDeCartasPais
+ColeccionDeCartasPaisTeg .up.|> ColeccionDeCartasPais
+ColeccionDeCartasPaisTeg <-- Teg
+ColeccionDeCartasPaisJugador <-- Jugador
+
+@enduml

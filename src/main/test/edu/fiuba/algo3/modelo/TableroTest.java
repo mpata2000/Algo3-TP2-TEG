@@ -7,7 +7,6 @@ import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +26,7 @@ public class TableroTest {
 
     @BeforeEach
     void setUp() {
-        paisAtacante =new Pais("Chile", List.of("Argentina","Brazil"));
+        paisAtacante = new Pais("Chile", List.of("Argentina","Brazil"));
         paisDefensor =  new Pais("Argentina", List.of("Chile","Brazil"));
         jugadorUno = new Jugador("Julian");
         jugadorDos = new Jugador("Sofia");
@@ -40,6 +39,7 @@ public class TableroTest {
     @Test
     public void agregarFichasAUnPaisVacioEntoncesElPaisEsDelJugadorTest(){
         paises.add(paisAtacante);
+        paisAtacante.asignarJugador(jugadorUno);
         Tablero tablero = new Tablero(new ArrayList<>(),paises);
         when(turnos.esTurnoDe(paisAtacante)).thenReturn(true);
         tablero.agregarFichas(5,jugadorUno, "Chile",turnos);
@@ -50,18 +50,23 @@ public class TableroTest {
     @Test
     public void agregarFichasAUnPaisQueNoEsDelJugadorLanzaExcepcionTest(){
         paises.add(paisAtacante);
+        paisAtacante.asignarJugador(jugadorUno);
+
         Tablero tablero = new Tablero(new ArrayList<>(),paises);
 
         when(turnos.esTurnoDe(paisDefensor)).thenReturn(true);
         when(turnos.esTurnoDe(paisAtacante)).thenReturn(true);
-        tablero.agregarFichas(5,jugadorUno, "Chile",turnos);
         assertThrows(JugadorNoPoseePaisException.class, () -> tablero.agregarFichas(5,jugadorDos, "Chile",turnos));
     }
 
+    //Todo: refacor de esta prueba
     @Test
     public void ataque(){
         paises.add(paisAtacante);
         paises.add(paisDefensor);
+        paisAtacante.asignarJugador(jugadorUno);
+        paisDefensor.asignarJugador(jugadorUno);
+
         Tablero tablero = new Tablero(new ArrayList<>(),paises);
         when(turnos.esTurnoDe(paisDefensor)).thenReturn(true);
         when(turnos.esTurnoDe(paisAtacante)).thenReturn(true);
@@ -72,6 +77,8 @@ public class TableroTest {
 
     @Test
     public void paisAtacanteNoPuedeTirarCeroDados() {
+        paisDefensor.asignarJugador(jugadorUno);
+        paisAtacante.asignarJugador(jugadorDos);
         paises.add(paisAtacante);
         paises.add(paisDefensor);
         Tablero tablero = new Tablero(new ArrayList<>(),paises);
@@ -91,7 +98,8 @@ public class TableroTest {
 
         when(turnos.esTurnoDe(paisDefensor)).thenReturn(true);
         when(turnos.esTurnoDe(paisAtacante)).thenReturn(true);
-        tablero.agregarFichas(1, jugadorUno,"Argentina",turnos);
+        paisDefensor.asignarJugador(jugadorUno);
+        paisAtacante.asignarJugador(jugadorDos);
         tablero.agregarFichas(5, jugadorDos,"Chile",turnos);
 
         assertThrows(EjercitoConUnaFichaNoPuedeAtacar.class, () -> tablero.atacar("Argentina","Chile",1,turnos));
@@ -99,20 +107,24 @@ public class TableroTest {
 
     @Test
     public void paisAtacanteNoPuedeTirarDadosDeMas() {
+        paisDefensor.asignarJugador(jugadorUno);
+        paisAtacante.asignarJugador(jugadorDos);
         paises.add(paisAtacante);
         paises.add(paisDefensor);
         Tablero tablero = new Tablero(new ArrayList<>(),paises);
 
         when(turnos.esTurnoDe(paisDefensor)).thenReturn(true);
         when(turnos.esTurnoDe(paisAtacante)).thenReturn(true);
-        tablero.agregarFichas(2, jugadorUno,"Argentina",turnos);
-        tablero.agregarFichas(5, jugadorDos,"Chile",turnos);
+        tablero.agregarFichas(1, jugadorUno,"Argentina",turnos);
+        tablero.agregarFichas(4, jugadorDos,"Chile",turnos);
 
         assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDados.class, () -> tablero.atacar("Argentina","Chile",3,turnos));
     }
 
     @Test
     public void paisAtacanteNoConquistaPais() {
+        paisDefensor.asignarJugador(jugadorUno);
+        paisAtacante.asignarJugador(jugadorDos);
         paises.add(paisAtacante);
         paises.add(paisDefensor);
         Tablero tablero = new Tablero(new ArrayList<>(),paises);
@@ -164,7 +176,8 @@ public class TableroTest {
         tablero.agregarPais(paisDefensor);
         when(turnos.esTurnoDe(paisDefensor)).thenReturn(true);
         when(turnos.esTurnoDe(paisAtacante)).thenReturn(true);
-
+        paisAtacante.asignarJugador(jugadorUno);
+        paisDefensor.asignarJugador(jugadorUno);
         tablero.agregarFichas(4, jugadorUno,"Argentina",turnos);
         tablero.agregarFichas(5, jugadorUno,"Chile",turnos);
 

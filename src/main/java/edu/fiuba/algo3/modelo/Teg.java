@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.excepciones.ArchivoNoEncontrado;
-import edu.fiuba.algo3.lectorJson.LectorDeJson;
+import edu.fiuba.algo3.lector.LectorDeJson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +13,7 @@ public class Teg {
     private String[] colores = {"Amarillo", "verde", "azul", "rojo", "Rosa", "Negro"};
     private ArrayList<CartaPais> cartas;
 
-    public Teg() throws ArchivoNoEncontrado {
+    public Teg(){
         LectorDeJson lector = new LectorDeJson();
         this.tablero = lector.lectorTablero("resources/Teg-Tablero.json");
     }
