@@ -2,10 +2,11 @@ package edu.fiuba.algo3.modelo;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ListIterator;
 
 public class Turnos {
-    private ArrayList<String> jugadores = new ArrayList<>();
+    private List<String> jugadores = new ArrayList<>();
     private TipoRonda tipoDeRonda;
     private final Teg teg;
     private ListIterator<String> iteradorJugadores;
@@ -14,6 +15,14 @@ public class Turnos {
     Turnos() {
         this.tipoDeRonda = new RondaColocacionInicial() ;
         this.teg = new Teg();
+    }
+
+    Turnos(Teg teg, List<String> jugadores){
+        this.tipoDeRonda = new RondaColocacionInicial() ;
+        this.teg = teg;
+        this.jugadores = jugadores;
+        this.iteradorJugadores = this.jugadores.listIterator();
+        this.jugadorActual = this.iteradorJugadores.next();
     }
 
     public void agregarJugador(String color){

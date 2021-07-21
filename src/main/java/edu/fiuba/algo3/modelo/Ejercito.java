@@ -26,8 +26,8 @@ public class Ejercito {
 
     public void pasarFichasADe(Pais unPais,Jugador unJugador,int cantidadFichas){
         if(this.cantidadFichas <= cantidadFichas) {throw new PaisSinSuficientesFichasParaPasar(); }
-
         this.cantidadFichas -= cantidadFichas;
+        unJugador.agregarFichas(cantidadFichas);
         unPais.agregarFichas(cantidadFichas,unJugador);
     }
 
