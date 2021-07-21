@@ -31,14 +31,16 @@ public class Tablero {
     }
 
     public void agregarFichas(int cantidadTropas, Jugador unJugador, String unNombrePais){
-        Pais pais = this.buscarPais(unNombrePais);
-        pais.agregarFichas(cantidadTropas,unJugador);
-
+        this.buscarPais(unNombrePais).agregarFichas(cantidadTropas,unJugador);
     }
-    public boolean atacar(String nombrePaisMio , String nombrePaisEnemigo, int cantidadDeDadosAtacante) {
-        Pais paisMio = this.buscarPais(nombrePaisMio);
+    
+    public boolean atacar(Jugador jugador,String nombrePaisMio , String nombrePaisEnemigo, int cantidadDeDadosAtacante) {
+        Pais paisAtacante = this.buscarPais(nombrePaisMio);
+        if(!paisAtacante.esDeJugador(jugador)){
+            return false;
+        }
         Pais paisEnemigo = this.buscarPais(nombrePaisEnemigo);
-        Batalla batalla = new Batalla(paisMio, paisEnemigo);
+        Batalla batalla = new Batalla(paisAtacante, paisEnemigo);
         return batalla.batallar(cantidadDeDadosAtacante);
     }
 
@@ -48,5 +50,16 @@ public class Tablero {
 
     public Pais getPais(String nombrePais) {
         return this.paises.get(nombrePais);
+    }
+
+    public void calcularFichasDe(Jugador jugador) {
+        int contador = 0;
+        for(Pais pais: this.paises.values()){
+            if(pais.esDeJugador(jugador)){
+                contador++;
+            }
+        }
+        contador = contador/2;
+         jugador.agregarFichas(contador);
     }
 }
