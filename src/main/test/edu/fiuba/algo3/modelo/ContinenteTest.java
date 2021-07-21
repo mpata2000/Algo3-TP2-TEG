@@ -3,7 +3,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ContinenteTest {
     ArrayList<Pais> paises= new ArrayList<>();
@@ -37,5 +38,42 @@ public class ContinenteTest {
     public void contineteSeCreaConLosPaisesCorrectos(){
 
         assertEquals(paises,continente.getPaises());
+    }
+
+    @Test
+    public void contineteEsDeUnJugadorSiTieneTodosLosPaises(){
+        for(Pais pais : paises) {
+            pais.asignarJugador(jugadorUno);
+        }
+        assertEquals(4, continente.cantidadDePaisesDe(jugadorUno));
+        assertTrue(continente.esDeJugador(jugadorUno));
+    }
+
+    @Test
+    public void contineteNoEsDeUnJugadorNoTieneNingunPaisDelContienete(){
+        assertFalse(continente.esDeJugador(jugadorUno));
+    }
+
+    @Test
+    public void contineteNoEsDeUnJugadorSiTieneDosPaisesDelContienete(){
+
+        paises.get(0).asignarJugador(jugadorUno);
+        paises.get(1).asignarJugador(jugadorUno);
+
+        assertEquals(2, continente.cantidadDePaisesDe(jugadorUno));
+        assertFalse(continente.esDeJugador(jugadorUno));
+    }
+
+    @Test
+    public void unJugadorTieneDosPaisesYOtroTambien(){
+        paises.get(0).asignarJugador(jugadorUno);
+        paises.get(1).asignarJugador(jugadorUno);
+        paises.get(2).asignarJugador(jugadorDos);
+        paises.get(3).asignarJugador(jugadorDos);
+
+        assertEquals(2, continente.cantidadDePaisesDe(jugadorUno));
+        assertEquals(2, continente.cantidadDePaisesDe(jugadorDos));
+        assertFalse(continente.esDeJugador(jugadorUno));
+        assertFalse(continente.esDeJugador(jugadorDos));
     }
 }

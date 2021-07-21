@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Tablero {
-    private Map<String, Continente> continentes = new HashMap<>();
-    private Map<String, Pais> paises = new HashMap<>();
+    private final Map<String, Continente> continentes = new HashMap<>();
+    private final Map<String, Pais> paises = new HashMap<>();
 
     public Tablero(List<Continente> continentes, List<Pais> paises){
         for(Continente continente: continentes){
@@ -48,10 +48,6 @@ public class Tablero {
 
     public Pais buscarPais(String unNombrePais) {
         return this.paises.get(unNombrePais);
-    }
-
-    public boolean esDelJugador(String nombrePais,Jugador jugador){
-        return (this.buscarPais(nombrePais).esDeJugador(jugador));
     }
 
     public Pais getPais(String nombrePais) {

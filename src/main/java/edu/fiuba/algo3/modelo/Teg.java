@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.lector.LectorDeJson;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,13 +9,15 @@ public class Teg {
     private Tablero tablero;
     private Map<String, Jugador> jugadores = new HashMap<>();
     private String[] colores = {"Amarillo", "verde", "azul", "rojo", "Rosa", "Negro"};
-    private ArrayList<CartaPais> cartas;
+    private ColeccionDeCartasPais cartas;
 
     public Teg(){
         LectorDeJson lector = new LectorDeJson();
         this.tablero = lector.lectorTablero("resources/Teg-Tablero.json");
+        this.cartas = new ColeccionDeCartasPais(lector.lectorCartasPais("resources/Teg-Cartas.json"));
     }
 
+    //Todo: refactor de comenzar juego
     public void comenzarJuego(int cantidadJugadores) {
         for (int i = 0; i < 6 && i < cantidadJugadores; i++) {
             this.jugadores.put(this.colores[i], new Jugador(this.colores[i]));
@@ -27,7 +27,7 @@ public class Teg {
         }
 
         this.turnos = new Turnos(this.jugadores);
-        this.turnos.repartirPaises(this.cartas);
+        //this.cartas.asignarPaises(this.jugadores);
     }
 
     public void rondaInicialColocarEjercitos(String color, String nombrePais,int cant){
