@@ -8,14 +8,45 @@ import java.util.Map;
 public class Turnos {
     private int turno = 0;
     private ArrayList<Jugador> rondaJugadores = new ArrayList<Jugador>();
-    private String tipoDeRonda = "Colocacion";
+    private TipoRonda tipoDeRonda = new RondaColocacionInicial() ;
+    private Teg teg;
 
-    Turnos(Map<String, Jugador> jugadores) {
+    Turnos(Map<String, Jugador> jugadores,Teg teg) {
         jugadores.forEach((color, jugador) -> rondaJugadores.add(jugador));
+        this.teg = teg;
     }
 
-    public boolean esTurnoDe(Pais unPais){
+    /*public boolean esTurnoDe(Pais unPais){
         return (unPais.esDeJugador(this.rondaJugadores.get(this.turno)));
+    }*/
+
+    public boolean atacar(String paisAtacante, String paisDefensor, int cantidad){
+        if(this.tipoDeRonda.esRondaAtaque()) {
+            return this.teg.atacar(paisAtacante, paisDefensor, cantidad);
+        }
+        return false;
+    }
+
+    public void reagrupar(String paisUno,String paisdos,int cant){
+        if(this.tipoDeRonda.esRondaAtaque()) {
+            this.teg.reagrupar(paisUno,paisdos,cant);
+            this.avanzarRonda();
+        }
+    }
+
+    public void colocarEjercitosEnRondaInicial(String nombrePais, int cantidad){
+        if(this.tipoDeRonda.esColocacionInicial()) {
+            Jugador jugador = this.devolverDeQuienEsTurno();
+            this.teg.rondaInicialColocarEjercitos(jugador,nombrePais,cantidad);
+            if(jugador.devolverFichas()== 0) {this.avanzarRonda();}
+        }
+    }
+
+    public void colocarEjercitos(String nombrePais, int cantidad){
+        if(this.tipoDeRonda.esColocacion()){
+            Jugador jugador = this.devolverDeQuienEsTurno();
+            teg.rondaColocarEjercitos(jugador,nombrePais,cantidad);
+        }
     }
 
     public void avanzarRonda(){
@@ -25,19 +56,21 @@ public class Turnos {
 
     public void cambiarRonda(){
         this.turno = 0;
-        if (this.tipoDeRonda == "Colocacion") this.tipoDeRonda = "Ataque";
-        if (this.tipoDeRonda == "Ataque") this.tipoDeRonda = "Colocacion";
+        if (this.tipoDeRonda.esColocacionInicial()) this.tipoDeRonda = new RondaAtaque() ;
+        if (this.tipoDeRonda.esRondaAtaque()) this.tipoDeRonda = new RondaColocacion();
+        if(this.tipoDeRonda.esColocacion()) this.tipoDeRonda = new RondaAtaque();
     }
 
-    public void repartirPaises(ArrayList<CartaPais> cartas){
-        int indice = 0;
+    public ArrayList <Jugador> getJugadores(){
+        return this.rondaJugadores;
+    }
 
-        for(CartaPais cartaPais : cartas){
-            rondaJugadores.get(indice).agregarCartaPais(cartaPais);
-            rondaJugadores.get(indice).agregarFichaInicial((cartaPais.getPais()).getNombre(),this);
-            if (indice >= rondaJugadores.size()) indice=0;
-            else indice++;
-        }
+    public TipoRonda devolverRondaActual(){
+        return this.tipoDeRonda;
+    }
+
+    public Jugador devolverDeQuienEsTurno(){
+        return this.rondaJugadores.get(this.turno);
     }
 
 }

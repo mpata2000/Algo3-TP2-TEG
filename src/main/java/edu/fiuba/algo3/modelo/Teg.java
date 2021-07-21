@@ -5,6 +5,7 @@ import edu.fiuba.algo3.lectorJson.LectorDeJson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Teg {
@@ -12,11 +13,12 @@ public class Teg {
     private Tablero tablero;
     private Map<String, Jugador> jugadores = new HashMap<>();
     private String[] colores = {"Amarillo", "verde", "azul", "rojo", "Rosa", "Negro"};
-    private ArrayList<CartaPais> cartas;
+    private List<CartaPais> cartas;
 
     public Teg() throws ArchivoNoEncontrado {
         LectorDeJson lector = new LectorDeJson();
         this.tablero = lector.lectorTablero("resources/Teg-Tablero.json");
+        this.cartas = lector.lectorCartasPais("resources/Teg-Cartas.json");
     }
 
     public void comenzarJuego(int cantidadJugadores) {
@@ -27,26 +29,45 @@ public class Teg {
             this.jugadores.put(color, new Jugador(color));
         }
 
-        this.turnos = new Turnos(this.jugadores);
-        this.turnos.repartirPaises(this.cartas);
+        this.turnos = new Turnos(this.jugadores,this);
+        this.repartirPaises();
     }
 
-    public void rondaInicialColocarEjercitos(String color, String nombrePais,int cant){
-        Jugador jugador = this.buscarJugador(color);
-        this.tablero.agregarFichas(cant,jugador,nombrePais,this.turnos);
-        jugador.actualizarFichasActuales(cant);
+
+    public void rondaInicialColocarEjercitos( Jugador jugador,String nombrePais,int cant){
+        this.tablero.agregarFichas(cant,jugador,nombrePais);
+        this.turnos.devolverDeQuienEsTurno().actualizarFichasActuales(cant);
     }
 
-    public void rondaColocarEjercitos(String color,String nombrePais,int cant){
-        Jugador jugador = this.buscarJugador(color);
-        this.tablero.agregarFichas(cant,jugador,nombrePais,this.turnos);
+    public void rondaColocarEjercitos(Jugador jugador,String nombrePais,int cant){
+        this.tablero.agregarFichas(cant,jugador,nombrePais);
     }
 
     public boolean atacar(String paisAtacante, String paisDefensor, int cantidad){
-        return tablero.atacar(paisAtacante, paisDefensor, cantidad, this.turnos);//Else exception
+        return tablero.atacar(paisAtacante, paisDefensor, cantidad);//Else exception
     }
 
-    public Jugador buscarJugador(String unNombreJugador) {
+    /*public Jugador buscarJugador(String unNombreJugador) {
         return this.jugadores.get(unNombreJugador);
+    }*/
+    public void reagrupar(String paisUno,String paisdos,int cant){
+
+    }
+
+    public Turnos devolverTurnos(){
+        return this.turnos;
+    }
+
+
+    public void repartirPaises() {
+        int indice = 0;
+
+        for (CartaPais cartaPais : this.cartas) {
+            (this.turnos.getJugadores()).get(indice).agregarCartaPais(cartaPais);
+            this.tablero.agregarFichas(1,this.turnos.getJugadores().get(indice),(cartaPais.getPais()).getNombre());
+            if (indice >= (this.turnos.getJugadores()).size()) indice = 0;
+            if (indice>1) break;
+            else indice++;
+        }
     }
 }

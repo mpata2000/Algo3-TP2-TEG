@@ -35,8 +35,12 @@ public class Pais {
     }
 
     public void agregarFichas(int cantidadFichas, Jugador unJugador) throws JugadorNoPoseePaisException {
-        if(this.jugador == null) { this.jugador = unJugador; }
-        if( jugador.devolverFichas()== 0){return;}
+        if (this.jugador == null) {
+            this.jugador = unJugador;
+        }
+        if (jugador.devolverFichas() == 0) {
+            return;
+        }
 
         if (this.esDeJugador(unJugador)) {
             this.ejercito.agregarFichas(cantidadFichas);
@@ -44,7 +48,6 @@ public class Pais {
             throw new JugadorNoPoseePaisException();
         }
     }
-
     /*
     * Le resta cantidadFichas a las fichas del ejercito
     * Devuelve la cantidad de fichas restantes.

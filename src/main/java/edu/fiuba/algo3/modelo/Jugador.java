@@ -21,8 +21,8 @@ public class Jugador {
         return this.fichasIniciales;
     }
 
-    public void agregarFichaInicial(String nombrePais, Turnos turnos){
-        this.tablero.agregarFichas(1,this,nombrePais,turnos);
+    public void agregarFichaInicial(String nombrePais){
+        this.tablero.agregarFichas(1,this,nombrePais);
     }
     public void agregarCartaPais(CartaPais carta){
         carta.asignarPaisA(this);
