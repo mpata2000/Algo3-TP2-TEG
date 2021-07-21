@@ -1,34 +1,41 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.ArrayList;
-import java.io.*;
 
 public class Jugador {
-    private Ejercito ejercito;
-    private Tablero tablero;
-    private String nombre;
+    private final String color;
+    private final ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais();
     private int fichasIniciales ;
 
-    public Jugador(String nombre){
-        this.nombre = nombre;
+    public Jugador(String unColor){
+        this.color = unColor;
         this.fichasIniciales = 8;
     }
-    public void actualizarFichasActuales(int cant){
-        if(cant > this.fichasIniciales){return;}
-        this.fichasIniciales = this.fichasIniciales-cant;
-    }
-    public int devolverFichas(){
-        return this.fichasIniciales;
+
+    public void actualizarFichasActuales(int cantidadFichas){
+        if(cantidadFichas > this.fichasIniciales){
+            this.fichasIniciales = 0;
+            return;
+        }
+        this.fichasIniciales = this.fichasIniciales-cantidadFichas;
     }
 
-    public void agregarFichaInicial(String nombrePais, Turnos turnos){
-        this.tablero.agregarFichas(1,this,nombrePais,turnos);
+    public boolean jugadorPuedeColocarFichas(int cantidadFichas){
+        return ((this.fichasIniciales - cantidadFichas) >= 0);
     }
+
+    public void agregarFichas(int cantidadFichas){
+        this.fichasIniciales += cantidadFichas;
+    }
+
     public void agregarCartaPais(CartaPais carta){
-        carta.asignarPaisA(this);
+        cartasPais.agregarCartaPais(carta);
     }
+
     public boolean esElMismoJugador(Jugador jugador){
         return this == jugador;
     }
 
+    public boolean tieneFichas() {
+        return (this.fichasIniciales > 0);
+    }
 }

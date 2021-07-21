@@ -27,7 +27,6 @@ public class ColeccionDeCartasPais {
 
     public void asignarPaises(List<Jugador> jugadores) {
         Collections.shuffle(this.cartasPais);
-
         ListIterator<CartaPais> cartas = this.cartasPais.listIterator();
         int i = 0;
         while (cartas.hasNext()) {

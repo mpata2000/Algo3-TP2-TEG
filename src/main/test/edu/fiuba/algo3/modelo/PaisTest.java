@@ -159,7 +159,7 @@ public class PaisTest{
     public void paisConDoceFichasPuedeTirarComoMaximoTresDados(){
         Pais paisMio = new Pais("Chile", List.of("Argentina","Peru"));
         Jugador jugador = new Jugador("julio");
-
+        jugador.agregarFichas(18);
         paisMio.asignarJugador(jugador);
         paisMio.agregarFichas(11,jugador);
 
@@ -173,7 +173,7 @@ public class PaisTest{
     public void paisConDoceFichasPuedeTirarComoMaximoTresDadosAunqueSePidanDadosDeMas(){
         Pais paisMio = new Pais("Chile", List.of("Argentina","Peru"));
         Jugador jugador = new Jugador("julio");
-
+        jugador.agregarFichas(18);
         paisMio.asignarJugador(jugador);
         paisMio.agregarFichas(11,jugador);
 

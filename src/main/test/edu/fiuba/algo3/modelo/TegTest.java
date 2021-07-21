@@ -1,16 +1,32 @@
 package edu.fiuba.algo3.modelo;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TegTest {
-/*
-   @Test
-    public void comenzarJuego(){
-        Teg teg = new Teg();
-        teg.comenzarJuego(2);
-        teg.rondaInicialColocarEjercitos("Amarillo","Chile",5);
-        teg.rondaInicialColocarEjercitos("Amarillo","Chile",3);
-        assertThrows(NoEsTuTurno.class, () -> teg.rondaInicialColocarEjercitos("Amarillo","Chile",3));
 
-    }*/
+
+
+    @Test
+    public void comenzarJuego(){
+
+        Turnos turnos = new Turnos();
+        turnos.agregarJugador("Amarillo");
+        turnos.comenzarJuego();
+        turnos.colocarEjercitosEnRondaInicial("Argentina",5);
+        turnos.colocarEjercitosEnRondaInicial("Argentina",3);
+        assertTrue(turnos.devolverRondaActual().esAtaqueReagrupacion());
+    }
+
+    @Test
+    public void ColocarEjercitos2Paises(){
+        Turnos turnos = new Turnos();
+        turnos.agregarJugador("Amarillo");
+        turnos.comenzarJuego();
+        turnos.colocarEjercitosEnRondaInicial("Argentina",5);
+        turnos.colocarEjercitosEnRondaInicial("Argentina",3);
+        turnos.finAtaque();
+        assertTrue(turnos.devolverRondaActual().esColocacion());
+    }
 }

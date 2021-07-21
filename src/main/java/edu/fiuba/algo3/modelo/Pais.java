@@ -23,6 +23,7 @@ public class Pais {
     }
 
     public boolean esAdyacente(Pais unPais){
+        //Puede dar errores si los limitrofes o nombres tienen mal los cases
         return this.paisesLimitrofes.contains(unPais.getNombre());
     }
 
@@ -34,8 +35,8 @@ public class Pais {
 
     public void agregarFichas(int cantidadFichas, Jugador unJugador) throws JugadorNoPoseePaisException {
 
-        if (this.esDeJugador(unJugador)) {
-            //if( (jugador.devolverFichas()-cantidadFichas) < 1){return;}
+        if (this.esDeJugador(unJugador) && unJugador.jugadorPuedeColocarFichas(cantidadFichas)) {
+            unJugador.actualizarFichasActuales(cantidadFichas);
             this.ejercito.agregarFichas(cantidadFichas);
         } else {
             throw new JugadorNoPoseePaisException();
