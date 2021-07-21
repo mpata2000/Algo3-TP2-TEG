@@ -19,6 +19,11 @@ public class Teg {
         this.cartas = new ColeccionDeCartasPais(lector.lectorCartasPais("resources/Teg-Cartas.json"));
     }
 
+   public Teg(Tablero tablero,HashMap <String,Jugador> jugadores){
+        this.tablero = tablero;
+        this.jugadores = jugadores;
+    }
+
 
     public void comenzarJuego(List<String> colores) {
         for (String color : colores) {
