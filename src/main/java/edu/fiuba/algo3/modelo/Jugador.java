@@ -14,7 +14,9 @@ public class Jugador {
         this.fichasIniciales = 8;
     }
     public void actualizarFichasActuales(int cant){
-        if(cant > this.fichasIniciales){return;}
+        if(cant > this.fichasIniciales){
+            this.fichasIniciales = 0;
+            return;}
         this.fichasIniciales = this.fichasIniciales-cant;
     }
     public int devolverFichas(){

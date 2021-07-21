@@ -3,16 +3,20 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 public class Turnos {
-    private int turno = 0;
     private ArrayList<Jugador> rondaJugadores = new ArrayList<Jugador>();
     private TipoRonda tipoDeRonda = new RondaColocacionInicial() ;
     private Teg teg;
+    private ListIterator<Jugador> iter;
+    private Jugador jugadorActual;
 
     Turnos(Map<String, Jugador> jugadores,Teg teg) {
         jugadores.forEach((color, jugador) -> rondaJugadores.add(jugador));
+        this.iter = this.rondaJugadores.listIterator();
+        this.jugadorActual = this.iter.next();
         this.teg = teg;
     }
 
@@ -50,12 +54,12 @@ public class Turnos {
     }
 
     public void avanzarRonda(){
-        if (this.rondaJugadores.get((this.turno)+1) != null) this.turno += 1;
+        if (this.iter.hasNext()) this.jugadorActual = this.iter.next();
         else cambiarRonda();
     }
 
     public void cambiarRonda(){
-        this.turno = 0;
+        ListIterator<Jugador> iter = this.rondaJugadores.listIterator();
         if (this.tipoDeRonda.esColocacionInicial()) this.tipoDeRonda = new RondaAtaque() ;
         if (this.tipoDeRonda.esRondaAtaque()) this.tipoDeRonda = new RondaColocacion();
         if(this.tipoDeRonda.esColocacion()) this.tipoDeRonda = new RondaAtaque();
@@ -70,7 +74,11 @@ public class Turnos {
     }
 
     public Jugador devolverDeQuienEsTurno(){
-        return this.rondaJugadores.get(this.turno);
+        return jugadorActual;
+    }
+
+    public void finAtaque(){
+        this.avanzarRonda();
     }
 
 }

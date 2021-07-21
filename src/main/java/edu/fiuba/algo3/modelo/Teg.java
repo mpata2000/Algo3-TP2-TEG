@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.lector.LectorDeJson;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,12 +25,9 @@ public class Teg {
         for (int i = 0; i < 6 && i < cantidadJugadores; i++) {
             this.jugadores.put(this.colores[i], new Jugador(this.colores[i]));
         }
-        for (String color : this.colores) {
-            this.jugadores.put(color, new Jugador(color));
-        }
 
-        this.turnos = new Turnos(this.jugadores);
-        //this.cartas.asignarPaises(this.jugadores);
+        this.turnos = new Turnos(this.jugadores,this);
+        this.cartas.asignarPaises(new ArrayList<Jugador>(this.jugadores.values()));
     }
 
 
@@ -56,7 +55,7 @@ public class Teg {
         return this.turnos;
     }
 
-
+/*
     public void repartirPaises() {
         int indice = 0;
 
@@ -67,5 +66,5 @@ public class Teg {
             if (indice>1) break;
             else indice++;
         }
-    }
+    }*/
 }
