@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
+
 public class CartaPais {
     private final String nombrePais;
     private final String simbolo;
@@ -28,5 +30,15 @@ public class CartaPais {
 
     public String getSimbolo() {
         return this.simbolo;
+    }
+
+    public boolean esSimbolo(String simbolo) {
+        return this.simbolo.equalsIgnoreCase(simbolo);
+    }
+
+    public void activarCarta(Jugador unJugador){
+        try {
+            this.pais.agregarFichas(2,unJugador);
+        }catch (JugadorNoPoseePaisException e){}
     }
 }

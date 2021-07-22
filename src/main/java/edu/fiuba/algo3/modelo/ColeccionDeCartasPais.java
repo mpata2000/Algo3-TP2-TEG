@@ -1,10 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class ColeccionDeCartasPais {
     private List<CartaPais> cartasPais;
@@ -33,5 +30,36 @@ public class ColeccionDeCartasPais {
             cartas.next().asignarPaisA(jugadores.get(i % jugadores.size()));
             i++;
         }
+    }
+
+    private boolean canjearTresCartasIgules(String simbolo){
+        Iterator<CartaPais> iterator = this.cartasPais.listIterator();
+        int contador = 0;
+        boolean pasoCanje = false;
+
+        while (iterator.hasNext() && contador < 3) {
+            if(iterator.next().esSimbolo(simbolo)){
+                contador++;
+            }
+        }
+
+        if(contador == 3){
+            pasoCanje = true;
+            int i =0;
+            while (i < this.cartasPais.size() && contador > 0) {
+                if(this.cartasPais.get(i).esSimbolo(simbolo)){
+                    this.cartasPais.remove(i);
+                    i--;
+                    contador--;
+                }
+                i++;
+            }
+        }
+        return pasoCanje;
+    }
+
+
+    public boolean canjeDeCartas(){
+        return canjearTresCartasIgules("Globo") || canjearTresCartasIgules("Barco") || canjearTresCartasIgules("Cañon");
     }
 }
