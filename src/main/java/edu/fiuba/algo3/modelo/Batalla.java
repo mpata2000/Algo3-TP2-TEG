@@ -13,14 +13,14 @@ public class Batalla {
         this.paisDefensor = paisDefensor;
     }
 
-    public boolean batallar(int cantidadDeDadosAtacante){
+    public boolean batallar(int cantidadDadosAtacante){
 
         if(!this.validarAtaque()) {throw new AtaqueNoValido();}
 
-        Dados dadosAtacante = this.paisAtacante.tirarDados(cantidadDeDadosAtacante);
+        Dados dadosAtacante = this.paisAtacante.tirarDados(cantidadDadosAtacante);
         Dados dadosDefensor = this.paisDefensor.tirarDados();
 
-        int[] fichasPerdidas = dadosAtacante.comparadorDeDados(dadosDefensor);
+        int[] fichasPerdidas = dadosAtacante.compararDados(dadosDefensor);
 
         this.paisAtacante.perderFichas(fichasPerdidas[0]);
         return (this.paisDefensor.perderFichas(fichasPerdidas[1], this.paisAtacante));

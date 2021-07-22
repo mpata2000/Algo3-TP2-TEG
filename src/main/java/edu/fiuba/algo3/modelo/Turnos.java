@@ -53,14 +53,14 @@ public class Turnos {
 
     public void colocarEjercitosEnRondaInicial(String nombrePais, int cantidad){
         if(this.tipoDeRonda.esColocacionInicial()) {
-            this.teg.rondaInicialColocarEjercitos(jugadorActual,nombrePais,cantidad);
+            this.teg.rondaInicialColocarFichas(jugadorActual,nombrePais,cantidad);
             if(!teg.jugadorTieneFichas(jugadorActual)) {this.avanzarRonda();}
         }
     }
 
     public void colocarEjercitos(String nombrePais, int cantidad){
         if(this.tipoDeRonda.esColocacion()){
-            teg.rondaColocarEjercitos(jugadorActual,nombrePais,cantidad);
+            teg.rondaColocarFichas(jugadorActual,nombrePais,cantidad);
         }
     }
 
@@ -77,10 +77,6 @@ public class Turnos {
 
     public TipoRonda devolverRondaActual(){
         return this.tipoDeRonda;
-    }
-
-    public String devolverDeQuienEsTurno(){
-        return jugadorActual;
     }
 
     public void finAtaque(){

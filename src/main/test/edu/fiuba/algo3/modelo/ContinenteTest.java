@@ -45,7 +45,7 @@ public class ContinenteTest {
         for(Pais pais : paises) {
             pais.asignarJugador(jugadorUno);
         }
-        assertEquals(4, continente.cantidadDePaisesDe(jugadorUno));
+        assertEquals(4, continente.cantidadPaisesDe(jugadorUno));
         assertTrue(continente.esDeJugador(jugadorUno));
     }
 
@@ -60,7 +60,7 @@ public class ContinenteTest {
         paises.get(0).asignarJugador(jugadorUno);
         paises.get(1).asignarJugador(jugadorUno);
 
-        assertEquals(2, continente.cantidadDePaisesDe(jugadorUno));
+        assertEquals(2, continente.cantidadPaisesDe(jugadorUno));
         assertFalse(continente.esDeJugador(jugadorUno));
     }
 
@@ -71,8 +71,8 @@ public class ContinenteTest {
         paises.get(2).asignarJugador(jugadorDos);
         paises.get(3).asignarJugador(jugadorDos);
 
-        assertEquals(2, continente.cantidadDePaisesDe(jugadorUno));
-        assertEquals(2, continente.cantidadDePaisesDe(jugadorDos));
+        assertEquals(2, continente.cantidadPaisesDe(jugadorUno));
+        assertEquals(2, continente.cantidadPaisesDe(jugadorDos));
         assertFalse(continente.esDeJugador(jugadorUno));
         assertFalse(continente.esDeJugador(jugadorDos));
     }

@@ -27,19 +27,19 @@ public class Dados {
     }
 
     //Devuelve el numero del dado en el indice pedido
-    public int obtenerDado(int indiceDelDado){
+    public int getDado(int indiceDelDado){
         return conjuntoDados.get(indiceDelDado);
     }
 
     /* Se comparan los dos conjuntos de dados ordenados de mayor a menor
     * Si el numero del dado, de los dados recividos es menor,
     * */
-    public int[] comparadorDeDados(Dados unosDados){
+    public int[] compararDados(Dados unosDados){
         int cantidadDeDadosAComparar = Math.min(this.cantidadDados(),unosDados.cantidadDados());
         int[] fichasPerdidas = {0,0}; // Pos
 
         for (int i = 0; i < cantidadDeDadosAComparar; i++) {
-            if(this.obtenerDado(i) > unosDados.obtenerDado(i)){
+            if(this.getDado(i) > unosDados.getDado(i)){
                 fichasPerdidas[1]++;
             }else{
                 fichasPerdidas[0]++;

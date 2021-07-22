@@ -29,7 +29,7 @@ public class Continente {
         return this.paises.stream().allMatch( pais -> pais.esDeJugador(unJugador));
     }
 
-    public int cantidadDePaisesDe(Jugador unJugador){
+    public int cantidadPaisesDe(Jugador unJugador){
         return (int)this.paises.stream().filter(pais -> pais.esDeJugador(unJugador)).count();
     }
 }

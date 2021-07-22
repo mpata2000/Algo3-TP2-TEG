@@ -75,7 +75,6 @@ public class Pais {
         return true;
     }
 
-
     public void pasarFichasA(Pais unPais, int cantidadFichas){
         if(!this.esAdyacente(unPais)){
             throw new PaisNoEsLimitrofe();
@@ -84,8 +83,8 @@ public class Pais {
         this.ejercito.pasarFichasADe(unPais,this.jugador,cantidadFichas);
     }
 
-    public boolean esDeJugador(Jugador jugador) {
-        return jugador.esElMismoJugador(this.jugador);
+    public boolean esDeJugador(Jugador unJugador) {
+        return unJugador.esElMismoJugador(this.jugador);
     }
 
     /*
