@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Teg {
-    private Turnos turnos;
     private Tablero tablero;
     private Map<String, Jugador> jugadores = new HashMap<>();
     private ColeccionDeCartasPais cartas;
