@@ -29,6 +29,7 @@ public class Jugador {
 
     public void agregarCartaPais(CartaPais carta){
         cartasPais.agregarCartaPais(carta);
+        carta.activarCarta(this);
     }
 
     public boolean esElMismoJugador(Jugador unJugador){

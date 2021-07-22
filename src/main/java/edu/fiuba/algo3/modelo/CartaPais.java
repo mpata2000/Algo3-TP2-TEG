@@ -12,6 +12,12 @@ public class CartaPais {
         this.simbolo = simbolo;
     }
 
+    CartaPais(String nombrePais,String simbolo,Pais unPais){
+        this.nombrePais = nombrePais;
+        this.simbolo = simbolo;
+        this.pais = unPais;
+    }
+
     public void asignarPaisA(Jugador unJugador){
         this.pais.asignarJugador(unJugador);
     }
