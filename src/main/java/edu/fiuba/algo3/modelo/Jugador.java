@@ -31,8 +31,8 @@ public class Jugador {
         cartasPais.agregarCartaPais(carta);
     }
 
-    public boolean esElMismoJugador(Jugador jugador){
-        return this == jugador;
+    public boolean esElMismoJugador(Jugador unJugador){
+        return this == unJugador;
     }
 
     public boolean tieneFichas() {

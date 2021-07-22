@@ -33,12 +33,12 @@ public class DadosTest {
         Dados dados1 = new Dados(3);
         Dados dados2 = Mockito.mock(Dados.class);
 
-        when(dados2.obtenerDado(0)).thenReturn(6);
-        when(dados2.obtenerDado(1)).thenReturn(6);
-        when(dados2.obtenerDado(2)).thenReturn(6);
+        when(dados2.getDado(0)).thenReturn(6);
+        when(dados2.getDado(1)).thenReturn(6);
+        when(dados2.getDado(2)).thenReturn(6);
         when(dados2.cantidadDados()).thenReturn(3);
 
-        int[] fichasPerdidads = dados1.comparadorDeDados(dados2);
+        int[] fichasPerdidads = dados1.compararDados(dados2);
 
 
         assertEquals(3,fichasPerdidads[0]);
@@ -50,12 +50,12 @@ public class DadosTest {
         Dados dados1 = new Dados(3);
         Dados dados2 = Mockito.mock(Dados.class);
 
-        when(dados2.obtenerDado(0)).thenReturn(0);
-        when(dados2.obtenerDado(1)).thenReturn(0);
-        when(dados2.obtenerDado(2)).thenReturn(0);
+        when(dados2.getDado(0)).thenReturn(0);
+        when(dados2.getDado(1)).thenReturn(0);
+        when(dados2.getDado(2)).thenReturn(0);
         when(dados2.cantidadDados()).thenReturn(3);
 
-        int[] fichasPerdidads = dados1.comparadorDeDados(dados2);
+        int[] fichasPerdidads = dados1.compararDados(dados2);
 
 
         assertEquals(0,fichasPerdidads[0]);
@@ -67,10 +67,10 @@ public class DadosTest {
         Dados dados1 = new Dados(3);
         Dados dados2 = Mockito.mock(Dados.class);
 
-        when(dados2.obtenerDado(0)).thenReturn(0);
+        when(dados2.getDado(0)).thenReturn(0);
         when(dados2.cantidadDados()).thenReturn(1);
 
-        int[] fichasPerdidads = dados1.comparadorDeDados(dados2);
+        int[] fichasPerdidads = dados1.compararDados(dados2);
 
 
         assertEquals(0,fichasPerdidads[0]);
@@ -83,9 +83,9 @@ public class DadosTest {
         Dados dados = new Dados(3);
         int max = 0;
         for(int i = 0; i < dados.cantidadDados();i++){
-            max = Math.max(max, dados.obtenerDado(i));
+            max = Math.max(max, dados.getDado(i));
         }
 
-        assertEquals(max,dados.obtenerDado(0));
+        assertEquals(max,dados.getDado(0));
     }
 }

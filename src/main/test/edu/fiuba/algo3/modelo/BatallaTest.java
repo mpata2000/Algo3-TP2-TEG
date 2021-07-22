@@ -78,7 +78,7 @@ public class BatallaTest {
         Dados dados = Mockito.mock(Dados.class);
         int[] conjunto = {0,3};
 
-        when(dados.comparadorDeDados(any(Dados.class))).thenReturn(conjunto);
+        when(dados.compararDados(any(Dados.class))).thenReturn(conjunto);
         when(paisAtacante.tirarDados(3)).thenReturn(dados);
         when(paisAtacante.getJugador()).thenReturn(jugadorUno);
         when(paisAtacante.esAdyacente(paisDefensor)).thenReturn(true);

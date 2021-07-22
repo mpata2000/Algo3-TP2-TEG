@@ -84,8 +84,8 @@ public class Pais {
         this.ejercito.pasarFichasADe(unPais,this.jugador,cantidadFichas);
     }
 
-    public boolean esDeJugador(Jugador jugador) {
-        return jugador.esElMismoJugador(this.jugador);
+    public boolean esDeJugador(Jugador unJugador) {
+        return unJugador.esElMismoJugador(this.jugador);
     }
 
     /*

@@ -30,36 +30,36 @@ public class Tablero {
         paises.put(unPais.getNombre(), unPais);
     }
 
-    public void agregarFichas(int cantidadTropas, Jugador unJugador, String unNombrePais){
-        this.buscarPais(unNombrePais).agregarFichas(cantidadTropas,unJugador);
+    public void agregarFichas(int cantidadFichas, Jugador unJugador, String unNombrePais){
+        this.buscarPais(unNombrePais).agregarFichas(cantidadFichas,unJugador);
     }
     
-    public boolean atacar(Jugador jugador,String nombrePaisMio , String nombrePaisEnemigo, int cantidadDeDadosAtacante) {
-        Pais paisAtacante = this.buscarPais(nombrePaisMio);
-        if(!paisAtacante.esDeJugador(jugador)){
+    public boolean atacar(Jugador unJugador,String nombrePaisAtacante, String nombrePaisEnemigo, int cantidadDadosAtacante) {
+        Pais paisAtacante = this.buscarPais(nombrePaisAtacante);
+        if(!paisAtacante.esDeJugador(unJugador)){
             return false;
         }
         Pais paisEnemigo = this.buscarPais(nombrePaisEnemigo);
         Batalla batalla = new Batalla(paisAtacante, paisEnemigo);
-        return batalla.batallar(cantidadDeDadosAtacante);
+        return batalla.batallar(cantidadDadosAtacante);
     }
 
-    public Pais buscarPais(String unNombrePais) {
-        return this.paises.get(unNombrePais);
+    public Pais buscarPais(String nombrePais) {
+        return this.paises.get(nombrePais);
     }
 
     public Pais getPais(String nombrePais) {
         return this.paises.get(nombrePais);
     }
 
-    public void calcularFichasDe(Jugador jugador) {
+    public void calcularFichasDe(Jugador unJugador) {
         int contador = 0;
         for(Pais pais: this.paises.values()){
-            if(pais.esDeJugador(jugador)){
+            if(pais.esDeJugador(unJugador)){
                 contador++;
             }
         }
         contador = contador/2;
-         jugador.agregarFichas(contador);
+         unJugador.agregarFichas(contador);
     }
 }

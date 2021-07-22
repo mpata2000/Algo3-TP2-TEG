@@ -33,13 +33,13 @@ public class Teg {
     }
 
 
-    public void rondaInicialColocarEjercitos( String jugador,String nombrePais,int cant){
+    public void rondaInicialColocarFichas(String jugador, String nombrePais, int cant){
 
         this.tablero.agregarFichas(cant,this.jugadores.get(jugador),nombrePais);
     }
 
-    public void rondaColocarEjercitos(String jugador,String nombrePais,int cant){
-        this.tablero.agregarFichas(cant,this.jugadores.get(jugador),nombrePais);
+    public void rondaColocarFichas(String jugador, String nombrePais, int cant){
+        this.tablero.agregarFichas(cant, this.jugadores.get(jugador), nombrePais);
     }
 
     public boolean atacar(String jugador,String paisAtacante, String paisDefensor, int cantidad){
@@ -49,12 +49,8 @@ public class Teg {
     /*public Jugador buscarJugador(String unNombreJugador) {
         return this.jugadores.get(unNombreJugador);
     }*/
-    public void reagrupar(String paisUno,String paisdos,int cant){
+    public void reagrupar(String paisUno, String paisdos, int cant){
 
-    }
-
-    public Turnos devolverTurnos(){
-        return this.turnos;
     }
 
     public boolean jugadorTieneFichas(String jugador) {

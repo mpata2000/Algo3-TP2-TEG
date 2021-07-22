@@ -11,6 +11,7 @@ public class Ejercito {
     public Ejercito(){
         this.cantidadFichas = 1;
     }
+
     public void agregarFichas(int cant){ this.cantidadFichas = cant + this.cantidadFichas;}
     public int getCantFichas(){
         return this.cantidadFichas;
