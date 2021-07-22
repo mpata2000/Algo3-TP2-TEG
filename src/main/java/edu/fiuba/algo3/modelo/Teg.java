@@ -23,7 +23,6 @@ public class Teg {
         this.jugadores = jugadores;
     }
 
-
     public void comenzarJuego(List<String> colores) {
         for (String color : colores) {
             this.jugadores.put(color, new Jugador(color));
@@ -32,29 +31,25 @@ public class Teg {
         this.cartas.asignarPaises(new ArrayList<>(this.jugadores.values()));
     }
 
+    public void rondaInicialColocarFichas(String colorJugador, String nombrePais, int cant){
 
-    public void rondaInicialColocarFichas(String jugador, String nombrePais, int cant){
-
-        this.tablero.agregarFichas(cant,this.jugadores.get(jugador),nombrePais);
+        this.tablero.agregarFichas(cant,this.jugadores.get(colorJugador),nombrePais);
     }
 
     public void rondaColocarFichas(String jugador, String nombrePais, int cant){
         this.tablero.agregarFichas(cant, this.jugadores.get(jugador), nombrePais);
     }
 
-    public boolean atacar(String jugador,String paisAtacante, String paisDefensor, int cantidad){
-        return tablero.atacar(this.jugadores.get(jugador),paisAtacante, paisDefensor, cantidad);//Else exception
+    public boolean atacar(String colorJugador,String paisAtacante, String paisDefensor, int cantidad){
+        return tablero.atacar(this.jugadores.get(colorJugador),paisAtacante, paisDefensor, cantidad);//Else exception
     }
 
-    /*public Jugador buscarJugador(String unNombreJugador) {
-        return this.jugadores.get(unNombreJugador);
-    }*/
-    public void reagrupar(String paisUno, String paisdos, int cant){
+    public void reagrupar(String paisUno, String paisDos, int cant){
 
     }
 
-    public boolean jugadorTieneFichas(String jugador) {
-        return this.jugadores.get(jugador).tieneFichas();
+    public boolean jugadorTieneFichas(String colorJugador) {
+        return this.jugadores.get(colorJugador).tieneFichas();
     }
 
     public void calcularFichasDisponiblesDe(String jugadorActual) {

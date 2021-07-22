@@ -79,10 +79,6 @@ public class Turnos {
         return this.tipoDeRonda;
     }
 
-    public String devolverDeQuienEsTurno(){
-        return jugadorActual;
-    }
-
     public void finAtaque(){
         teg.calcularFichasDisponiblesDe(jugadorActual);
         this.avanzarRonda();

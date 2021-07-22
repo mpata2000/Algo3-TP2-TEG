@@ -75,7 +75,6 @@ public class Pais {
         return true;
     }
 
-
     public void pasarFichasA(Pais unPais, int cantidadFichas){
         if(!this.esAdyacente(unPais)){
             throw new PaisNoEsLimitrofe();

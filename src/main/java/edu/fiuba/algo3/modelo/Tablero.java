@@ -26,10 +26,6 @@ public class Tablero {
         return paises;
     }
 
-    public void agregarPais(Pais unPais) {
-        paises.put(unPais.getNombre(), unPais);
-    }
-
     public void agregarFichas(int cantidadFichas, Jugador unJugador, String unNombrePais){
         this.buscarPais(unNombrePais).agregarFichas(cantidadFichas,unJugador);
     }
@@ -60,6 +56,6 @@ public class Tablero {
             }
         }
         contador = contador/2;
-         unJugador.agregarFichas(contador);
+        unJugador.agregarFichas(contador);
     }
 }
