@@ -52,7 +52,9 @@ public class Teg {
         return this.jugadores.get(colorJugador).tieneFichas();
     }
 
-    public void calcularFichasDisponiblesDe(String jugadorActual) {
-        this.tablero.calcularFichasDe(this.jugadores.get(jugadorActual));
+    public void calcularFichasDisponiblesDe(String colorJugador) {
+        Jugador jugador = this.jugadores.get(colorJugador);
+        jugador.hacerCanje();
+        this.tablero.calcularFichasDe(jugador);
     }
 }

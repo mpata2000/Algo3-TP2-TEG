@@ -39,4 +39,8 @@ public class Jugador {
     public boolean tieneFichas() {
         return (this.fichasIniciales > 0);
     }
+
+    public void hacerCanje() {
+        this.cartasPais.canjeDeCartas();
+    }
 }
