@@ -1,74 +1,131 @@
-@startuml ModeloInicial-V0.3
+@startuml ModeloInicial-V0.4
 
 Class ALTEGO{
 
 }
 
 Class Tablero{
-    -buscarPais(pais)
-    +atacarConA(jugador: Jugador, paisMio: String, pasiEnemigo: String)
-    +agregarFichas(jugador: Jugador, pais: String, num: Integer)
+    + agregarPais(unPais: Pais)
+    + agregarFichas(cantidadFichas: int, unJugador: Jugador, unNombrePais: String)
+    + atacar(jugador: Jugador, nombrepaisMio: String, nombrePaisEnemigo: String, cantidadDeDadosAtacante: int): boolean
+    +calcularDichasDe(unJugador: Jugador)
+
+    + getContinentes(): Map<String, Continente>
+    + getPaises(): Map<String, Pais>
+    + buscarPais(unNombrePais: String): Pais
+    
 }
 
 Class Continente{
-    +ocupadoPorJugador(jugador: Jugador)
-    +cantidadDePaisesOcupadosPor(jugador: Jugador)
+    - nombreContinente
+    - fichas
+
+    + getPaises(): List<Pais>
+    + getFichas(): int
+    + getNombre(): String
+    + esDeJugador(jugador: Jugador): boolean
+    + cantidadDePaisesDe(jugador: Jugador): int
 }
 
 Class Jugador{
-    -tipoEjercito: Ejercito
-    +atacarConA(paisMio: String,paisEnemigo: String)
-    +turnoAgregar()
-    +turnoAtacar()
+    - color
+    - fichasIniciales
+
+    +actualizarFichasActuales(cantidadFichas: int)
+    +jugadorPuedeColocarFichas(cantidadFichas: int)
+    +agregarFichas(cantidadFichas: int)
+    +esElMismoJugador(jugador: Jugador)
+    +tieneFichas(): boolean
+}
+
+Interface ColeccionDeCartasPaisJugador <<Interface>> {
+}
+
+Interface ColeccionDeCartasPaisTeg <<Interface>>{
+}
+
+Class Turnos {
+    - jugadores: List<String>
+    - jugadorActual: String
+    - iteradorJugadores: ListIterator<String>
+
+    + agregarJugador(color: String)
+    + comenzarJuego()
+    + atacar(paisAtacante: String, paisDefensor: String, cant: Integer): boolean
+    + reagrupar(paisUno: String, paisDos: String, cant: Integer)
+    + colocarEjercito
+}
+
+Interface TipoDeRonda <<Interface>> {
+
 }
 
 Class Pais{
-    -jugador: Jugador
-    -adyacentes: Dictionary
-    -actualizarJugador(paisAtacante: Pais)
-    +esAdyacente(pais: Pais)
-    +getJugador(): Jugador
-    +tirarDadosAtacar():
-    +tirarDadosDefender():
-    +esDelJugador(jugador: Jugador): boolean
-    +agregarFichas(jugador: Jugador, num: Integer)
-    +perderFichas(num: Integer)
-    +perderFichas(num: Integer, paisAtacante: Pais):
-    +pasarFichas(pais)
-    +ponerFichasDe(num: Integer,jugador)
+    - jugador: Jugador
+    - nombrePais
+    - paisesLimitrofes: List<String>
+
+    + getNombre(): String
+    + getJugador(): Jugador
+    + esAdyacente(unPais: Pais): boolean
+    + asignarJugador(unJugador: Jugador)
+    + agregarFichas(cantidadFichas: Integer, unJugador: Jugador)
+    + perderFichas(cantidadFichas: Integer)
+    + actualizarDuenio(unPais: Pais)
+    + perderFichas(cantidadFichas: Integer, paisAtacante: Pais): boolean
+    + pasarFichasA(unPais: Pais, cantidadFichas: Integer)
+    + esDeJugador(unJugador: Jugador): boolean
 }
 
 Class Ejercito{
-    -cantidadFichas: Int
-    +tirarDadosAtacar():
-    +tirarDadosDefender():
-    +agregarFichas(num: Int)
-    +perderFichas(num: Integer): Integer
-    +pasarFichasFichasADe(pais: Pais, jugador: Jugador)
+    - cantidadFichas: Integer
+
+    + agregarFichas(cantidadFichas: Int)
+    + getCantFichas(): Integer
+    + perderFichas(cantidadFichas: Integer): Integer
+    + pasarFichasADe(unPais: Pais, unJugador: Jugador, cantidadFichas: Integer)
+    + tirardados(): Dados
+    + tirarDados(cantidadDados: Integer): Dados
 }
 
 
 Class Batalla{
-    +atacarConA(jugador: Jugador, paisMio: Pais, paisEnemigo: Pais):
+    - paisAtacante
+    - paisDefensor
+
+    + batallar(cantidadDadosAtacante: Integer): boolean
+    + validarAtaque(): boolean
 }
 
 Class TarjetaPais{
+    - nombrePais
     - simbolo
 }
 
-Class TarjetaObjetivo{}
+/'Class TarjetaObjetivo{}'/
 
-ALTEGO --> Tablero
+Turnos -right-> ALTEGO
+ALTEGO --> "1" Tablero
 ALTEGO --> "2..6"Jugador
-Jugador  -left-> Tablero
+ALTEGO --right--> ColeccionDeCartasPaisTeg
+
+
+/'Jugador <-- Pais'/
+Jugador --> ColeccionDeCartasPaisJugador
+
 Tablero "1"-->"50" Pais
 Tablero "1"-->"6" Continente
 Tablero ..> Batalla
-Batalla .left.> Pais
+
+Turnos --> TipoDeRonda
+
+Batalla ..> Pais
 Continente --right-->"n..m" Pais
 Pais "1"-->"1" Ejercito
-Jugador --> TarjetaObjetivo
-TarjetaObjetivo ..> Tablero
-TarjetaPais --> Pais
+
+/'Jugador --> TarjetaObjetivo'/
+/'TarjetaObjetivo ..> Tablero'/
+
+Pais <--right-- TarjetaPais
 
 @enduml
