@@ -18,7 +18,7 @@ public class Teg {
         this.cartas = new ColeccionDeCartasPais(lector.lectorCartasPais("resources/Teg-Cartas.json"));
     }
 
-   public Teg(Tablero tablero,HashMap <String,Jugador> jugadores){
+    public Teg(Tablero tablero,Map <String,Jugador> jugadores){
         this.tablero = tablero;
         this.jugadores = jugadores;
     }
@@ -32,7 +32,6 @@ public class Teg {
     }
 
     public void rondaInicialColocarFichas(String colorJugador, String nombrePais, int cant){
-
         this.tablero.agregarFichas(cant,this.jugadores.get(colorJugador),nombrePais);
     }
 
@@ -52,9 +51,17 @@ public class Teg {
         return this.jugadores.get(colorJugador).tieneFichas();
     }
 
-    public void calcularFichasDisponiblesDe(String colorJugador) {
+    public void agregarFichasDisponiblesA(String colorJugador) {
         Jugador jugador = this.jugadores.get(colorJugador);
         jugador.hacerCanje();
         this.tablero.calcularFichasDe(jugador);
+    }
+
+    public void agregarFichasA(String colorJugador, int cantidadFichas) {
+        this.jugadores.get(colorJugador).agregarFichas(cantidadFichas);
+    }
+
+    public void actualizarConquistaPais(String colorJugador) {
+        this.jugadores.get(colorJugador).actualizarConquistaPais();
     }
 }

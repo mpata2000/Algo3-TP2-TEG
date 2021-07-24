@@ -57,5 +57,9 @@ public class Tablero {
         }
         contador = contador/2;
         unJugador.agregarFichas(contador);
+
+        for(Continente continente: this.continentes.values()){
+            continente.agregarFichasExtraA(unJugador);
+        }
     }
 }

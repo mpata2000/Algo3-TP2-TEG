@@ -13,12 +13,12 @@ public class Turnos {
     private String jugadorActual;
 
     Turnos() {
-        this.tipoDeRonda = new RondaColocacionInicial() ;
+        this.tipoDeRonda = new RondaColocacion(1) ;
         this.teg = new Teg();
     }
 
     Turnos(Teg teg, List<String> jugadores){
-        this.tipoDeRonda = new RondaColocacionInicial() ;
+        this.tipoDeRonda = new RondaColocacion(1) ;
         this.teg = teg;
         this.jugadores = jugadores;
         this.iteradorJugadores = this.jugadores.listIterator();
@@ -35,38 +35,35 @@ public class Turnos {
         this.teg.comenzarJuego(jugadores);
         this.iteradorJugadores = this.jugadores.listIterator();
         this.jugadorActual = this.iteradorJugadores.next();
+        this.tipoDeRonda.inicializarRonda(this.jugadores,this.teg);
     }
 
     public boolean atacar(String paisAtacante, String paisDefensor, int cantidad){
-        if(this.tipoDeRonda.esAtaqueReagrupacion()) {
+        if(this.tipoDeRonda.esAtaque()) {
             return this.teg.atacar(jugadorActual,paisAtacante, paisDefensor, cantidad);
         }
         return false;
     }
 
     public void reagrupar(String paisUno,String paisdos,int cant){
-        if(this.tipoDeRonda.esAtaqueReagrupacion()) {
+        if(this.tipoDeRonda.esAtaque()) {
             this.teg.reagrupar(paisUno,paisdos,cant);
-            this.avanzarRonda();
-        }
-    }
-
-    public void colocarEjercitosEnRondaInicial(String nombrePais, int cantidad){
-        if(this.tipoDeRonda.esColocacionInicial()) {
-            this.teg.rondaInicialColocarFichas(jugadorActual,nombrePais,cantidad);
-            if(!teg.jugadorTieneFichas(jugadorActual)) {this.avanzarRonda();}
         }
     }
 
     public void colocarEjercitos(String nombrePais, int cantidad){
-        if(this.tipoDeRonda.esColocacion()){
-            teg.rondaColocarFichas(jugadorActual,nombrePais,cantidad);
+        if(this.tipoDeRonda.esColocacion()) {
+            this.teg.rondaInicialColocarFichas(jugadorActual,nombrePais,cantidad);
+            if(!teg.jugadorTieneFichas(jugadorActual)) {this.avanzarTurno();}
         }
     }
 
-    public void avanzarRonda(){
-        if (this.iteradorJugadores.hasNext()) this.jugadorActual = this.iteradorJugadores.next();
-        else cambiarRonda();
+    public void avanzarTurno(){
+        if (this.iteradorJugadores.hasNext()) {
+            this.jugadorActual = this.iteradorJugadores.next();
+        }else {
+            cambiarRonda();
+        }
     }
 
     public void cambiarRonda(){
@@ -80,8 +77,8 @@ public class Turnos {
     }
 
     public void finAtaque(){
-        teg.calcularFichasDisponiblesDe(jugadorActual);
-        this.avanzarRonda();
+        //darCarta
+        this.tipoDeRonda = this.tipoDeRonda.cambiarDeRonda();
     }
 
 }

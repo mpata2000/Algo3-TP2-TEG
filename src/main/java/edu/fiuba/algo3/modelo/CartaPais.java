@@ -6,16 +6,19 @@ public class CartaPais {
     private final String nombrePais;
     private final String simbolo;
     private Pais pais;
+    private boolean activada;
 
     CartaPais(String nombrePais,String simbolo){
         this.nombrePais = nombrePais;
         this.simbolo = simbolo;
+        this.activada = false;
     }
 
     CartaPais(String nombrePais,String simbolo,Pais unPais){
         this.nombrePais = nombrePais;
         this.simbolo = simbolo;
         this.pais = unPais;
+        this.activada = false;
     }
 
     public void asignarPaisA(Jugador unJugador){
@@ -43,8 +46,13 @@ public class CartaPais {
     }
 
     public void activarCarta(Jugador unJugador){
-        try {
-            this.pais.agregarFichas(2,unJugador);
-        }catch (JugadorNoPoseePaisException e){}
+        if(!this.activada){
+            try {
+                this.pais.agregarFichas(2,unJugador);
+                this.activada = true;
+            }catch (JugadorNoPoseePaisException e){
+                this.activada = false;
+            }
+        }
     }
 }
