@@ -12,7 +12,8 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage){
+
         var javaVersion = SystemInfo.javaVersion();
         var javafxVersion = SystemInfo.javafxVersion();
 
@@ -20,6 +21,7 @@ public class App extends Application {
         var scene = new Scene(new StackPane(label), 640, 480);
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {
