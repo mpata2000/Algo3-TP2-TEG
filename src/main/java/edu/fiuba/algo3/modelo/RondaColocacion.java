@@ -52,9 +52,7 @@ public class RondaColocacion implements TipoRonda {
     }
 
     @Override
-    public void inicializarRonda(List<String> jugadores, Teg teg){
-        for(String colorJugador: jugadores){
-            this.agregarFichasAColocarA(colorJugador,teg);
-        }
+    public void inicializarRonda(String jugadorActual, Teg teg){
+            this.agregarFichasAColocarA(jugadorActual,teg);
     }
 }

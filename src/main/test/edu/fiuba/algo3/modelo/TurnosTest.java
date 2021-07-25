@@ -240,4 +240,44 @@ public class TurnosTest {
         assertTrue((tablero.getPais("Borneo")).esDeJugador(jugadores.get("Amarillo")));
         assertTrue((tablero.getPais("Java")).esDeJugador(jugadores.get("Amarillo")));
     }
+
+    @Test
+    public void reagruparDespuesDeAtacar(){
+        tablero = new Tablero(continentes,paises);
+        Teg teg = new Teg(tablero,jugadores);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+        for (Pais pais : paisesAsia){
+            pais.asignarJugador(jugadores.get("Amarillo"));
+        }
+
+        for (Pais pais : paisesOceania){
+            pais.asignarJugador(jugadores.get("Rojo"));
+        }
+
+        assertEquals("Amarillo",turnos.getJugadorActual());
+        turnos.colocarEjercitos("China",5);
+
+        assertEquals("Rojo",turnos.getJugadorActual());
+        turnos.colocarEjercitos("Borneo",5);
+
+        assertEquals("Amarillo",turnos.getJugadorActual());
+        turnos.colocarEjercitos("Rusia",3);
+
+        assertEquals("Rojo",turnos.getJugadorActual());
+        turnos.colocarEjercitos("Australia",3);
+
+
+        assertTrue(turnos.devolverRondaActual().esAtaque());
+        turnos.finAtaque();
+        assertTrue(turnos.devolverRondaActual().esReagrupacion());
+        turnos.finReagrupacion();
+        assertTrue(turnos.devolverRondaActual().esAtaque());
+        assertEquals("Rojo",turnos.getJugadorActual());
+
+        assertTrue(turnos.devolverRondaActual().esAtaque());
+        turnos.finAtaque();
+        assertTrue(turnos.devolverRondaActual().esReagrupacion());
+        turnos.finReagrupacion();
+        assertTrue(turnos.devolverRondaActual().esColocacion());
+    }
 }

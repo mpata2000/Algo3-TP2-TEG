@@ -23,7 +23,7 @@ public class Turnos {
         this.jugadores = jugadores;
         this.iteradorJugadores = this.jugadores.listIterator();
         this.jugadorActual = this.iteradorJugadores.next();
-        this.tipoDeRonda.inicializarRonda(this.jugadores,this.teg);
+        this.tipoDeRonda.inicializarRonda(this.jugadorActual,this.teg);
     }
 
     public String getJugadorActual() {
@@ -40,7 +40,7 @@ public class Turnos {
         this.teg.comenzarJuego(jugadores);
         this.iteradorJugadores = this.jugadores.listIterator();
         this.jugadorActual = this.iteradorJugadores.next();
-        this.tipoDeRonda.inicializarRonda(this.jugadores,this.teg);
+        this.tipoDeRonda.inicializarRonda(this.jugadorActual,this.teg);
     }
 
     public void atacar(String paisAtacante, String paisDefensor, int cantidad){
@@ -66,6 +66,7 @@ public class Turnos {
     private void avanzarTurno(){
         if (this.iteradorJugadores.hasNext()) {
             this.jugadorActual = this.iteradorJugadores.next();
+            this.tipoDeRonda.inicializarRonda(this.jugadorActual,teg);
         }else {
             cambiarRonda();
         }
@@ -76,7 +77,7 @@ public class Turnos {
         this.jugadorActual = this.iteradorJugadores.next();
 
         this.tipoDeRonda = this.tipoDeRonda.cambiarDeRonda();
-        this.tipoDeRonda.inicializarRonda(this.jugadores,this.teg);
+        this.tipoDeRonda.inicializarRonda(this.jugadorActual,this.teg);
     }
 
     public TipoRonda devolverRondaActual(){
