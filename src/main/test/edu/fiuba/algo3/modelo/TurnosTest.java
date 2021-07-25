@@ -47,7 +47,6 @@ public class TurnosTest {
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
         assertEquals(5,jugadores.get("Amarillo").sacarFichas(0));
-        assertEquals(5,jugadores.get("Rojo").sacarFichas(0));
     }
 
 
@@ -67,7 +66,6 @@ public class TurnosTest {
         turnos.colocarEjercitos("Japon",5);
 
         assertEquals(3,jugadores.get("Amarillo").sacarFichas(0));
-        assertEquals(3,jugadores.get("Rojo").sacarFichas(0));
     }
 
     @Test
