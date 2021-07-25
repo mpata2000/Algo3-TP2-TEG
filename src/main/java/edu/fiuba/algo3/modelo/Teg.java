@@ -55,7 +55,7 @@ public class Teg {
 
     public void agregarFichasDisponiblesA(String colorJugador) {
         Jugador jugador = this.jugadores.get(colorJugador);
-        jugador.hacerCanje(cartas);
+        jugador.hacerCanje(this.cartas);
         this.tablero.agregarFichasA(jugador);
     }
 

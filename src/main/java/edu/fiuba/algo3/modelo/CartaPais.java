@@ -42,7 +42,7 @@ public class CartaPais {
     }
 
     public boolean esSimbolo(String simbolo) {
-        return (this.simbolo.equalsIgnoreCase(simbolo) || this.simbolo.equalsIgnoreCase("Comodin"));
+        return (this.simbolo.equalsIgnoreCase(simbolo));
     }
 
     public void activarCarta(Jugador unJugador){

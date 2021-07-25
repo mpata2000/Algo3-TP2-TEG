@@ -47,6 +47,8 @@ public class ColeccionDeCartasPais {
         }
     }
 
+
+
     private boolean sePuedehacerCanjeDeTresCartasIguales(String simbolo){
         Iterator<CartaPais> iterator = this.cartasPais.listIterator();
         int contador = 0;
@@ -57,6 +59,13 @@ public class ColeccionDeCartasPais {
         }
         return(contador == 3);
     }
+
+    private boolean sePuedehacerCanjeDeTresCartasDistintas(String simbolo, ColeccionDeCartasPais cartasPais){
+       return (this.cartasPais.stream().anyMatch(cartaPais -> cartaPais.esSimbolo()) &&
+               this.cartasPais.stream().anyMatch(cartaPais -> cartaPais.esSimbolo()) &&
+               this.cartasPais.stream().anyMatch(cartaPais -> cartaPais.esSimbolo()));
+    }
+
 
     private boolean canjearTresCartasIgules(List<String> simbolos,ColeccionDeCartasPais cartasPais){
         boolean pasoCanje = false;
@@ -73,7 +82,8 @@ public class ColeccionDeCartasPais {
 
 
     public boolean canjeDeCartas(Jugador unJugador,ColeccionDeCartasPais cartasPais){
-        return canjearTresCartasIgules(List.of("Globo","Barco","Cañon"),cartasPais);
+        return (canjearTresCartasIgules(List.of("Globo","Barco","Cañon"),cartasPais)||
+                sePuedehacerCanjeDeTresCartasDistintas(cartasPais));
     }
 
     public void darCartaA(Jugador jugador) {
