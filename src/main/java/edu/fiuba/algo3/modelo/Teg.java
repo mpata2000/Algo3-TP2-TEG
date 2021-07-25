@@ -40,15 +40,17 @@ public class Teg {
         this.tablero.agregarFichas(cant, this.jugadores.get(jugador), nombrePais);
     }
 
-    public void atacar(String colorJugador,String paisAtacante, String paisDefensor, int cantidad){
+    public boolean atacar(String colorJugador,String paisAtacante, String paisDefensor, int cantidad){
         Jugador jugador = this.jugadores.get(colorJugador);
         if(tablero.atacar(jugador,paisAtacante, paisDefensor, cantidad)){
             jugador.conquistoPais();
+            return true;
         }
+        return false;
     }
 
-    public void reagrupar(String paisUno, String paisDos, int cant){
-
+    public void pasarFichas(String paisUno, String paisDos, int cant){
+        this.tablero.pasarFichas(paisUno, paisDos, cant);
     }
 
     public boolean jugadorTieneFichas(String colorJugador) {
@@ -58,7 +60,7 @@ public class Teg {
     public void agregarFichasDisponiblesA(String colorJugador) {
         Jugador jugador = this.jugadores.get(colorJugador);
         jugador.hacerCanje();
-        this.tablero.calcularFichasDe(jugador);
+        this.tablero.agregarFichasA(jugador);
     }
 
     public void agregarFichasA(String colorJugador, int cantidadFichas) {

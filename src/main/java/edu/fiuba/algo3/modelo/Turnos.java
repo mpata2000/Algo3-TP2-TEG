@@ -42,12 +42,13 @@ public class Turnos {
     public void atacar(String paisAtacante, String paisDefensor, int cantidad){
         if(this.tipoDeRonda.esAtaque()) {
             this.teg.atacar(jugadorActual,paisAtacante, paisDefensor, cantidad);
+            //Todo: Preguntar a jugador cuantas fichas pasar
         }
     }
 
-    public void reagrupar(String paisUno,String paisdos,int cant){
+    public void pasarFichas(String paisUno,String paisdos,int cant){
         if(this.tipoDeRonda.esAtaque()) {
-            this.teg.reagrupar(paisUno,paisdos,cant);
+            this.teg.pasarFichas(paisUno,paisdos,cant);
         }
     }
 
