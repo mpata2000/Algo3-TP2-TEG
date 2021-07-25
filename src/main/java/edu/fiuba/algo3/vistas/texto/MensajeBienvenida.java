@@ -7,7 +7,7 @@ import javafx.scene.text.Font;
 public class MensajeBienvenida extends Label {
 
     public MensajeBienvenida(){//(String color){
-        super("ALTEGO");
+        super("ALTEGO - Prueba Mensaje");
         //super.setFont(Font.font(EstilosApp.FUENTE,80));
         //super.setTextFill(Color.web(color));
         //super.setWrapText(true);
