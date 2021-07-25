@@ -19,7 +19,7 @@ public class RondaColocacion implements TipoRonda {
         if(this.numDeRonda == 1){
             return new RondaColocacion(2);
         }
-        return new RondaAtaque();
+        return new RondaAtaqueReagrupacion();
     }
 
     @Override

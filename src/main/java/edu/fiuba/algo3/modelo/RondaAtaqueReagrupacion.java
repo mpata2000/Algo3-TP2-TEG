@@ -2,9 +2,15 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.List;
 
-public class RondaReagrupacion implements TipoRonda{
+public class RondaAtaqueReagrupacion implements TipoRonda {
+    private boolean parteAtaque = true;
+
     @Override
-    public RondaColocacion cambiarDeRonda(){
+    public TipoRonda cambiarDeRonda(){
+        if(this.parteAtaque){
+            this.parteAtaque = false;
+            return this;
+        }
         return new RondaColocacion();
     }
 
@@ -15,12 +21,12 @@ public class RondaReagrupacion implements TipoRonda{
 
     @Override
     public boolean esAtaque(){
-        return false;
+        return this.parteAtaque;
     }
 
     @Override
     public boolean esReagrupacion(){
-        return true;
+        return !this.parteAtaque;
     }
 
     @Override

@@ -26,6 +26,10 @@ public class Turnos {
         this.tipoDeRonda.inicializarRonda(this.jugadores,this.teg);
     }
 
+    public String getJugadorActual() {
+        return jugadorActual;
+    }
+
     public void agregarJugador(String color){
         if(this.jugadores.size() < 6){
             this.jugadores.add(color);
@@ -59,7 +63,7 @@ public class Turnos {
         }
     }
 
-    public void avanzarTurno(){
+    private void avanzarTurno(){
         if (this.iteradorJugadores.hasNext()) {
             this.jugadorActual = this.iteradorJugadores.next();
         }else {
@@ -67,7 +71,7 @@ public class Turnos {
         }
     }
 
-    public void cambiarRonda(){
+    private void cambiarRonda(){
         this.iteradorJugadores = this.jugadores.listIterator();
         this.jugadorActual = this.iteradorJugadores.next();
 
@@ -80,8 +84,16 @@ public class Turnos {
     }
 
     public void finAtaque(){
-        this.teg.darCarta(this.jugadorActual);
-        this.tipoDeRonda = this.tipoDeRonda.cambiarDeRonda();
+        if(this.tipoDeRonda.esAtaque()){
+            this.teg.darCarta(this.jugadorActual);
+            this.tipoDeRonda = this.tipoDeRonda.cambiarDeRonda();
+        }
+    }
+
+    public void finReagrupacion(){
+        if(this.tipoDeRonda.esReagrupacion()) {
+            this.avanzarTurno();
+        }
     }
 
 }

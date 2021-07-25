@@ -123,6 +123,30 @@ public class TurnosTest {
     }
 
     @Test
+    public void jugadorPoneLasOchoFichasInicialesYFinalizaSuAtaqueDosVecesEsRondaDeReagrupacion(){
+        Turnos turnos = new Turnos();
+        turnos.agregarJugador("Amarillo");
+        turnos.comenzarJuego();
+        turnos.colocarEjercitos("Argentina",5);
+        turnos.colocarEjercitos("Argentina",3);
+        turnos.finAtaque();
+        turnos.finAtaque();
+        assertTrue(turnos.devolverRondaActual().esReagrupacion());
+    }
+
+    @Test
+    public void jugadorPoneLasOchoFichasInicialesYFinalizaSuAtaqueYreagrupacionEsRondaDeColocacion(){
+        Turnos turnos = new Turnos();
+        turnos.agregarJugador("Amarillo");
+        turnos.comenzarJuego();
+        turnos.colocarEjercitos("Argentina",5);
+        turnos.colocarEjercitos("Argentina",3);
+        turnos.finAtaque();
+        turnos.finReagrupacion();
+        assertTrue(turnos.devolverRondaActual().esColocacion());
+    }
+
+    @Test
     public void ColocarEjercitos2Paises2jugadores(){
         tablero = new Tablero(continentes,paises);
         Teg teg = new Teg(tablero,jugadores);
@@ -135,14 +159,24 @@ public class TurnosTest {
             pais.asignarJugador(jugadores.get("Rojo"));
         }
 
+        assertEquals("Amarillo",turnos.getJugadorActual());
         turnos.colocarEjercitos("China",5);
-        turnos.colocarEjercitos("Borneo",5);
-        turnos.colocarEjercitos("Rusia",3);
-        turnos.colocarEjercitos("Australia",3);
-        turnos.finAtaque();
-        turnos.finAtaque();
 
-        assertTrue(turnos.devolverRondaActual().esColocacion());
+        assertEquals("Rojo",turnos.getJugadorActual());
+        turnos.colocarEjercitos("Borneo",5);
+
+        assertEquals("Amarillo",turnos.getJugadorActual());
+        turnos.colocarEjercitos("Rusia",3);
+
+        assertEquals("Rojo",turnos.getJugadorActual());
+        turnos.colocarEjercitos("Australia",3);
+
+
+        assertTrue(turnos.devolverRondaActual().esAtaque());
+        assertEquals(6,paisesAsia.get(0).perderFichas(0));
+        assertEquals(4,paisesAsia.get(2).perderFichas(0));
+        assertEquals(6,paisesOceania.get(0).perderFichas(0));
+        assertEquals(4,paisesOceania.get(2).perderFichas(0));
     }
 
     @Test
