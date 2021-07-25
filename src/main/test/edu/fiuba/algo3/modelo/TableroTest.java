@@ -170,4 +170,33 @@ public class TableroTest {
 
 
     //Todo: Test de cuantas fichas le da a jugador
+
+    @Test
+    public void jugadorConUnContienteSeLeAgregaFichasExtrasCorrectas(){
+        paisAtacante.asignarJugador(jugadorUno);
+        Continente continenteUno = new Continente("A",7, List.of(paisAtacante));
+        Tablero tablero = new Tablero(List.of(continenteUno), paises);
+
+
+        jugadorUno.sacarFichas(10);
+        tablero.agregarFichasA(jugadorUno);
+
+        // 3 fichas del minimo por pais + 7 del contiente
+        assertEquals(10, jugadorUno.sacarFichas(0));
+    }
+
+    @Test
+    public void jugadorConDosContientesSeLeAgregaFichasExtras(){
+        paisAtacante.asignarJugador(jugadorUno);
+        Continente continenteUno = new Continente("A",1, List.of(paisAtacante));
+        Continente continenteDos = new Continente("B",1, List.of(paisAtacante));
+        Tablero tablero = new Tablero(List.of(continenteUno,continenteDos), paises);
+
+
+        jugadorUno.sacarFichas(10);
+        tablero.agregarFichasA(jugadorUno);
+
+        // 3 fichas del minimo por pais + 2 una por cada contiente
+        assertEquals(5, jugadorUno.sacarFichas(0));
+    }
 }
