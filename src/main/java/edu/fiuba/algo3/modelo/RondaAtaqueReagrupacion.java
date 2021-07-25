@@ -11,8 +11,11 @@ public class RondaAtaqueReagrupacion implements TipoRonda {
             this.parteAtaque = false;
             return this;
         }
+
         return new RondaColocacion();
     }
+
+
 
     @Override
     public boolean esColocacion(){
@@ -30,8 +33,8 @@ public class RondaAtaqueReagrupacion implements TipoRonda {
     }
 
     @Override
-    public void inicializarRonda(List<String> jugadores, Teg teg){
-
+    public void inicializarRonda(String jugadorActual, Teg teg){
+        this.parteAtaque = true;
     }
 
 }

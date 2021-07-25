@@ -52,8 +52,8 @@ public class Jugador {
         return (this.fichas > 0);
     }
 
-    public void hacerCanje() {
-        this.cartasPais.canjeDeCartas();
+    public void hacerCanje(ColeccionDeCartasPais cartasPaisTeg) {
+        this.cartasPais.canjeDeCartas(this,cartasPaisTeg);
     }
 
 

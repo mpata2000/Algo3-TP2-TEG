@@ -12,5 +12,5 @@ public interface TipoRonda {
 
     boolean esReagrupacion();
 
-    void inicializarRonda(List<String> jugadores, Teg teg);
+    void inicializarRonda(String jugadorActual, Teg teg);
 }

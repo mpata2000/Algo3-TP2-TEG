@@ -4,8 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ColeccionDeCartasPaisTest {
 
@@ -78,9 +78,37 @@ public class ColeccionDeCartasPaisTest {
     public void coleccionDeCartasHacecanjeSiTieneTresSimboloIguales(){
         cartas.add(new CartaPais("Alaska","Globo"));
         ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
+        Jugador jugadorUno = new Jugador("Julian");
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        assertEquals(2,cartasPais.cantidadDeCartas());
+    }
 
-       assertTrue(cartasPais.canjeDeCartas());
-       assertEquals(2,cartasPais.cantidadDeCartas());
+    @Test
+    public void comodin(){
+        cartas.add(new CartaPais("Alaska","Comodin"));
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
+        Jugador jugadorUno = new Jugador("Julian");
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        assertEquals(2,cartasPais.cantidadDeCartas());
+    }
+
+    @Test
+    public void tresDistintas(){
+        cartas.add(new CartaPais("Alaska","Barco"));
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
+        Jugador jugadorUno = new Jugador("Julian");
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        assertEquals(2,cartasPais.cantidadDeCartas());
+        assertEquals(4,jugadorUno.sacarFichas(0));
+    }
+
+
+    @Test
+    public void soloUnComodinNoHayCanje(){
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(List.of(new CartaPais("Alaska","Comodin")));
+        Jugador jugadorUno = new Jugador("Julian");
+        assertFalse(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        assertEquals(0,jugadorUno.sacarFichas(0));
     }
 
 }

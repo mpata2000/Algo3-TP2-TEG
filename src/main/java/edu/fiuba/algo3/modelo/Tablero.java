@@ -44,16 +44,28 @@ public class Tablero {
         return batalla.batallar(cantidadDadosAtacante);
     }
 
-    public void agregarFichasA(Jugador unJugador) {
+    /*
+    * Devuelve la cantidad de paises poseidos por el jugador
+     */
+    public int cantidadDePaisesJugador(Jugador unJugador){
         int contador = 0;
         for(Pais pais: this.paises.values()){
             if(pais.esDeJugador(unJugador)){
                 contador++;
             }
         }
+        return contador;
+    }
 
-        contador = Math.max(contador/2,3); // como minimo tres fichas
-        unJugador.agregarFichas(contador);
+    /*
+    * Le agrega una cantidad de fichas a el jugador recivido
+    * La cantidad de fichas va a ser la mitad de paises que posee el jugador
+    * o como minimo tres fichas.
+    * Tambien se le agregan fichas extras si posee un contiente entero
+     */
+    public void agregarFichasA(Jugador unJugador) {
+
+        unJugador.agregarFichas(Math.max((this.cantidadDePaisesJugador(unJugador)/2),3));
 
         for(Continente continente: this.continentes.values()){
             continente.agregarFichasExtraA(unJugador);
@@ -62,5 +74,9 @@ public class Tablero {
 
     public void pasarFichas(String paisUno, String paisDos,int cantidadFichas) {
         this.getPais(paisUno).pasarFichasA(this.getPais(paisDos),cantidadFichas);
+    }
+
+    public int cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador) {
+        return this.continentes.get(continente).cantidadPaisesDe(jugador);
     }
 }
