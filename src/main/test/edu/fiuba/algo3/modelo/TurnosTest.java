@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.excepciones.JugadorNoTieneSuficientesFichas;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -19,9 +20,6 @@ public class TurnosTest {
     ArrayList<Pais> paisesAsia= new ArrayList<>();
     ArrayList<Continente> continentes= new ArrayList<>();
     HashMap<String, Jugador> jugadores = new HashMap<>();
-    Jugador jugadorUno;
-    Jugador jugadorDos;
-    Continente continente;
     Tablero tablero;
 
     @BeforeEach
@@ -43,7 +41,67 @@ public class TurnosTest {
     }
 
     @Test
-    public void comenzarJuego(){
+    public void primeraRondaInicialCadaJugadorTieneCincoFichasParaPoner(){
+        tablero = new Tablero(continentes,paises);
+        Teg teg = new Teg(tablero,jugadores);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals(5,jugadores.get("Amarillo").getFichas());
+        assertEquals(5,jugadores.get("Rojo").getFichas());
+    }
+
+
+
+    @Test
+    public void segundaRondaInicialCadaJugadorTieneCincoFichasParaPoner(){
+        tablero = new Tablero(continentes,paises);
+        Teg teg = new Teg(tablero,jugadores);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+
+        paisesAsia.get(0).asignarJugador(jugadores.get("Amarillo"));
+        paisesAsia.get(1).asignarJugador(jugadores.get("Rojo"));
+
+
+        turnos.colocarEjercitos("China",5);
+        turnos.colocarEjercitos("Japon",5);
+
+        assertEquals(3,jugadores.get("Amarillo").getFichas());
+        assertEquals(3,jugadores.get("Rojo").getFichas());
+    }
+
+    @Test
+    public void jugadorNoPuedePonerSieteFichasEnLaPrimeraRondaInicial(){
+        tablero = new Tablero(continentes,paises);
+        Teg teg = new Teg(tablero,jugadores);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+
+        paisesAsia.get(0).asignarJugador(jugadores.get("Amarillo"));
+        paisesAsia.get(1).asignarJugador(jugadores.get("Rojo"));
+
+
+        assertThrows(JugadorNoTieneSuficientesFichas.class,()-> turnos.colocarEjercitos("China",7));
+
+    }
+
+    @Test
+    public void jugadorNoPuedePonerCuatrFichasEnLaSegundaRondaInicial(){
+        tablero = new Tablero(continentes,paises);
+        Teg teg = new Teg(tablero,jugadores);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        paisesAsia.get(0).asignarJugador(jugadores.get("Amarillo"));
+        paisesAsia.get(1).asignarJugador(jugadores.get("Rojo"));
+        turnos.colocarEjercitos("China",5);
+        turnos.colocarEjercitos("Japon",5);
+
+        assertThrows(JugadorNoTieneSuficientesFichas.class,()-> turnos.colocarEjercitos("China",4));
+
+    }
+
+    @Test
+    public void SiUnJugadorPoneCincoFichasYDespuesTresEsRondaAtaque(){
 
         Turnos turnos = new Turnos();
         turnos.agregarJugador("Amarillo");

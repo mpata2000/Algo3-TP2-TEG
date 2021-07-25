@@ -4,29 +4,29 @@ package edu.fiuba.algo3.modelo;
 public class Jugador {
     private final String color;
     private final ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais();
-    private int fichasIniciales ;
+    private int fichas;
     private boolean conquistoPais;
 
     public Jugador(String unColor){
         this.color = unColor;
         this.conquistoPais = false;
-        this.fichasIniciales = 0;
+        this.fichas = 0;
     }
 
     public void actualizarFichasActuales(int cantidadFichas){
-        if(cantidadFichas > this.fichasIniciales){
-            this.fichasIniciales = 0;
+        if(cantidadFichas > this.fichas){
+            this.fichas = 0;
             return;
         }
-        this.fichasIniciales = this.fichasIniciales-cantidadFichas;
+        this.fichas = this.fichas -cantidadFichas;
     }
 
     public boolean jugadorPuedeColocarFichas(int cantidadFichas){
-        return ((this.fichasIniciales - cantidadFichas) >= 0);
+        return ((this.fichas - cantidadFichas) >= 0);
     }
 
     public void agregarFichas(int cantidadFichas){
-        this.fichasIniciales += cantidadFichas;
+        this.fichas += cantidadFichas;
     }
 
     public boolean darCartaPais(CartaPais carta){
@@ -44,7 +44,11 @@ public class Jugador {
     }
 
     public boolean tieneFichas() {
-        return (this.fichasIniciales > 0);
+        return (this.fichas > 0);
+    }
+
+    public int getFichas() {
+        return fichas;
     }
 
     public void hacerCanje() {
