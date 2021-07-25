@@ -5,7 +5,7 @@ import java.util.*;
 
 public class ColeccionDeCartasPais {
     private List<CartaPais> cartasPais;
-    private int fichasCanje = 3;
+    private int fichasCanje = 4;
 
     public ColeccionDeCartasPais(List<CartaPais> cartaPais) {
         this.cartasPais = cartaPais;
@@ -94,6 +94,9 @@ public class ColeccionDeCartasPais {
 
 
     public boolean canjeDeCartas(Jugador unJugador,ColeccionDeCartasPais cartasPais){
+        if(this.cartasPais.size() < 3){
+            return false;
+        }
         List<String> simbolos = List.of("Globo","Barco","Cañon");
         if (canjearTresCartasIgules(simbolos,cartasPais) || canjearTresCartasDistintas(simbolos,cartasPais)){
             unJugador.agregarFichas(this.fichasCanje);
