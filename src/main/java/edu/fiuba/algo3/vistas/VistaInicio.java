@@ -13,8 +13,8 @@ public class VistaInicio extends StackPane {
     public VistaInicio(Stage stagePrincipal, ContenedorPrincipal contenedorPrincipal) {
         this.stage = stagePrincipal;
 
-        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/fondo_inicio.jpg");
-        BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/fondo_inicio.jpeg");
+        BackgroundImage fondoImagen = new BackgroundImage(imagen, BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
 
@@ -37,5 +37,6 @@ public class VistaInicio extends StackPane {
         //grilla.add(cajaPrincipal,0,1);
 
         //super.getChildren().add(grilla);
+        super.getChildren().add(cajaPrincipal);
     }
 }
