@@ -21,7 +21,7 @@ public class ColeccionDeCartasPaisTest {
         paises.add(new Pais("Java", List.of("Australia")));
         tablero = new Tablero(new ArrayList<>(),paises);
 
-        cartas.add(new CartaPais("Borneo","Barco"));
+        cartas.add(new CartaPais("Borneo","Globo"));//Cambio de simbolo de Barco->Globo
         cartas.add(new CartaPais("Sumatra","Globo"));
         cartas.add(new CartaPais("Australia","Cañon"));
         cartas.add(new CartaPais("Java","Cañon"));
@@ -72,6 +72,15 @@ public class ColeccionDeCartasPaisTest {
 
         cartasPais.asignarPaises(List.of(jugadorUno,jugadorDos));
         assertTrue(paises.get(0).esDeJugador(jugadorUno));
+    }
+
+    @Test
+    public void coleccionDeCartasHacecanjeSiTieneTresSimboloIguales(){
+        cartas.add(new CartaPais("Alaska","Globo"));
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
+
+       assertTrue(cartasPais.canjeDeCartas());
+       assertEquals(2,cartasPais.cantidadDeCartas());
     }
 
 }

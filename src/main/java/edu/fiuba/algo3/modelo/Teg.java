@@ -18,9 +18,10 @@ public class Teg {
         this.cartas = new ColeccionDeCartasPais(lector.lectorCartasPais("resources/Teg-Cartas.json"));
     }
 
-   public Teg(Tablero tablero,HashMap <String,Jugador> jugadores){
+    public Teg(Tablero tablero,Map <String,Jugador> jugadores){
         this.tablero = tablero;
         this.jugadores = jugadores;
+        this.cartas = new ColeccionDeCartasPais();
     }
 
     public void comenzarJuego(List<String> colores) {
@@ -32,7 +33,6 @@ public class Teg {
     }
 
     public void rondaInicialColocarFichas(String colorJugador, String nombrePais, int cant){
-
         this.tablero.agregarFichas(cant,this.jugadores.get(colorJugador),nombrePais);
     }
 
@@ -41,18 +41,33 @@ public class Teg {
     }
 
     public boolean atacar(String colorJugador,String paisAtacante, String paisDefensor, int cantidad){
-        return tablero.atacar(this.jugadores.get(colorJugador),paisAtacante, paisDefensor, cantidad);//Else exception
+        Jugador jugador = this.jugadores.get(colorJugador);
+        if(tablero.atacar(jugador,paisAtacante, paisDefensor, cantidad)){
+            jugador.conquistoPais();
+            return true;
+        }
+        return false;
     }
 
-    public void reagrupar(String paisUno, String paisDos, int cant){
-
+    public void pasarFichas(String paisUno, String paisDos, int cant){
+        this.tablero.pasarFichas(paisUno, paisDos, cant);
     }
 
     public boolean jugadorTieneFichas(String colorJugador) {
         return this.jugadores.get(colorJugador).tieneFichas();
     }
 
-    public void calcularFichasDisponiblesDe(String jugadorActual) {
-        this.tablero.calcularFichasDe(this.jugadores.get(jugadorActual));
+    public void agregarFichasDisponiblesA(String colorJugador) {
+        Jugador jugador = this.jugadores.get(colorJugador);
+        jugador.hacerCanje();
+        this.tablero.agregarFichasA(jugador);
+    }
+
+    public void agregarFichasA(String colorJugador, int cantidadFichas) {
+        this.jugadores.get(colorJugador).agregarFichas(cantidadFichas);
+    }
+
+    public void darCarta(String colorJugador) {
+        this.cartas.darCartaA(this.jugadores.get(colorJugador));
     }
 }

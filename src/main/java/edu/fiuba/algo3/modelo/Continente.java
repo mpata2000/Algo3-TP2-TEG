@@ -32,4 +32,10 @@ public class Continente {
     public int cantidadPaisesDe(Jugador unJugador){
         return (int)this.paises.stream().filter(pais -> pais.esDeJugador(unJugador)).count();
     }
+
+    public void agregarFichasExtraA(Jugador unJugador) {
+        if(this.esDeJugador(unJugador)){
+            unJugador.agregarFichas(this.fichas);
+        }
+    }
 }

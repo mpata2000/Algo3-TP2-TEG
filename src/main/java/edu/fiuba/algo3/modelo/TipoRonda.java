@@ -1,13 +1,16 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.List;
+
 public interface TipoRonda {
 
-    public TipoRonda cambiarDeRonda();
+    TipoRonda cambiarDeRonda();
 
-    public Boolean esColocacion();
+    boolean esColocacion();
 
-    public Boolean esColocacionInicial();
+    boolean esAtaque();
 
-    public Boolean esAtaqueReagrupacion();
+    boolean esReagrupacion();
 
+    void inicializarRonda(List<String> jugadores, Teg teg);
 }

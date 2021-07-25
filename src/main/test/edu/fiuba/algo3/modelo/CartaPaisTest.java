@@ -49,4 +49,37 @@ public class CartaPaisTest {
         assertTrue(paises.get(0).esDeJugador(jugador));
     }
 
+
+    @Test
+    public void cartaPaisSeActivaPaisEsDeJugadorYPoneDosFichasAlPais(){
+        CartaPais carta = new CartaPais("Borneo","Barco");
+        carta.setPais(tablero);
+        Jugador jugador = new Jugador("Algo");
+        carta.asignarPaisA(jugador);
+        carta.activarCarta(jugador);
+        assertEquals(3,tablero.getPais("Borneo").perderFichas(0));
+    }
+
+    @Test
+    public void cartaPaisNoSePuedeActivarDosVeces(){
+        CartaPais carta = new CartaPais("Borneo","Barco");
+        carta.setPais(tablero);
+        Jugador jugador = new Jugador("Algo");
+        carta.asignarPaisA(jugador);
+        carta.activarCarta(jugador);
+        carta.activarCarta(jugador);
+        assertEquals(3,tablero.getPais("Borneo").perderFichas(0));
+    }
+
+    @Test
+    public void cartaPaisNoSeActivaSiJugadorNoTieneElPais(){
+        CartaPais carta = new CartaPais("Borneo","Barco");
+        carta.setPais(tablero);
+        Jugador jugadorUno = new Jugador("Algo");
+        Jugador jugadorDos = new Jugador("Algo2");
+        carta.asignarPaisA(jugadorUno);
+        carta.activarCarta(jugadorDos);
+        assertEquals(1,tablero.getPais("Borneo").perderFichas(0));
+    }
+
 }

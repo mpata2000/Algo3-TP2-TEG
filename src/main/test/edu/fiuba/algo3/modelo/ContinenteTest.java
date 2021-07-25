@@ -76,4 +76,15 @@ public class ContinenteTest {
         assertFalse(continente.esDeJugador(jugadorUno));
         assertFalse(continente.esDeJugador(jugadorDos));
     }
+
+    @Test
+    public void elContienteEsDelJugadorYSeleAgreganFichas(){
+        for(Pais pais : paises) {
+            pais.asignarJugador(jugadorUno);
+        }
+        assertEquals(4, continente.cantidadPaisesDe(jugadorUno));
+        assertTrue(continente.esDeJugador(jugadorUno));
+
+        continente.agregarFichasExtraA(jugadorUno);
+    }
 }
