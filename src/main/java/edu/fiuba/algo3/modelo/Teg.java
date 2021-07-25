@@ -32,12 +32,8 @@ public class Teg {
         this.cartas.asignarPaises(new ArrayList<>(this.jugadores.values()));
     }
 
-    public void rondaInicialColocarFichas(String colorJugador, String nombrePais, int cant){
+    public void colocarFichas(String colorJugador, String nombrePais, int cant){
         this.tablero.agregarFichas(cant,this.jugadores.get(colorJugador),nombrePais);
-    }
-
-    public void rondaColocarFichas(String jugador, String nombrePais, int cant){
-        this.tablero.agregarFichas(cant, this.jugadores.get(jugador), nombrePais);
     }
 
     public boolean atacar(String colorJugador,String paisAtacante, String paisDefensor, int cantidad){
@@ -59,7 +55,7 @@ public class Teg {
 
     public void agregarFichasDisponiblesA(String colorJugador) {
         Jugador jugador = this.jugadores.get(colorJugador);
-        jugador.hacerCanje();
+        jugador.hacerCanje(cartas);
         this.tablero.agregarFichasA(jugador);
     }
 
@@ -69,5 +65,13 @@ public class Teg {
 
     public void darCarta(String colorJugador) {
         this.cartas.darCartaA(this.jugadores.get(colorJugador));
+    }
+
+    public int cantidadDePaisesJugador(Jugador jugador) {
+        return this.tablero.cantidadDePaisesJugador(jugador);
+    }
+
+    public int cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador) {
+        return this.tablero.cantidadDePaisesJugadorEnContinente(continente,jugador);
     }
 }

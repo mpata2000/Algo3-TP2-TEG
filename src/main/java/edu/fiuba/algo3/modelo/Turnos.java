@@ -58,7 +58,7 @@ public class Turnos {
 
     public void colocarEjercitos(String nombrePais, int cantidad){
         if(this.tipoDeRonda.esColocacion()) {
-            this.teg.rondaInicialColocarFichas(jugadorActual,nombrePais,cantidad);
+            this.teg.colocarFichas(jugadorActual,nombrePais,cantidad);
             if(!teg.jugadorTieneFichas(jugadorActual)) {this.avanzarTurno();}
         }
     }

@@ -32,12 +32,14 @@ public class ColeccionDeCartasPais {
         }
     }
     
-    private void pasarCartasCanje(String simbolo){
+    private void pasarCartasIgualesCanje(String simbolo, ColeccionDeCartasPais cartasPais){
         int i = 0;
         int cantCartas = 3;
         while (i < this.cartasPais.size() && cantCartas > 0) {
-            if (this.cartasPais.get(i).esSimbolo(simbolo)) {
+            CartaPais carta = this.cartasPais.get(i);
+            if (carta.esSimbolo(simbolo)) {
                 this.cartasPais.remove(i);
+                cartasPais.agregarCartaPais(carta);
                 i--;
                 cantCartas--;
             }
@@ -56,13 +58,13 @@ public class ColeccionDeCartasPais {
         return(contador == 3);
     }
 
-    private boolean canjearTresCartasIgules(List<String> simbolos){
+    private boolean canjearTresCartasIgules(List<String> simbolos,ColeccionDeCartasPais cartasPais){
         boolean pasoCanje = false;
 
         for(String simbolo: simbolos) {
             if (this.sePuedehacerCanjeDeTresCartasIguales(simbolo)) {
                 pasoCanje = true;
-                pasarCartasCanje(simbolo);
+                pasarCartasIgualesCanje(simbolo,cartasPais);
                 break;
             }
         }
@@ -70,8 +72,8 @@ public class ColeccionDeCartasPais {
     }
 
 
-    public boolean canjeDeCartas(){
-        return canjearTresCartasIgules(List.of("Globo","Barco","Cañon"));
+    public boolean canjeDeCartas(Jugador unJugador,ColeccionDeCartasPais cartasPais){
+        return canjearTresCartasIgules(List.of("Globo","Barco","Cañon"),cartasPais);
     }
 
     public void darCartaA(Jugador jugador) {

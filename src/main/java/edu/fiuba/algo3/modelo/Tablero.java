@@ -75,4 +75,8 @@ public class Tablero {
     public void pasarFichas(String paisUno, String paisDos,int cantidadFichas) {
         this.getPais(paisUno).pasarFichasA(this.getPais(paisDos),cantidadFichas);
     }
+
+    public int cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador) {
+        return this.continentes.get(continente).cantidadPaisesDe(jugador);
+    }
 }

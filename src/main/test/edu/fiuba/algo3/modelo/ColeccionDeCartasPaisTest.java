@@ -78,9 +78,9 @@ public class ColeccionDeCartasPaisTest {
     public void coleccionDeCartasHacecanjeSiTieneTresSimboloIguales(){
         cartas.add(new CartaPais("Alaska","Globo"));
         ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
-
-       assertTrue(cartasPais.canjeDeCartas());
-       assertEquals(2,cartasPais.cantidadDeCartas());
+        Jugador jugadorUno = new Jugador("Julian");
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        assertEquals(2,cartasPais.cantidadDeCartas());
     }
 
 }
