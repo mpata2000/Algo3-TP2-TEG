@@ -46,13 +46,10 @@ public class CartaPais {
     }
 
     public void activarCarta(Jugador unJugador){
-        if(!this.activada){
-            try {
-                this.pais.agregarFichas(2,unJugador);
-                this.activada = true;
-            }catch (JugadorNoPoseePaisException e){
-                this.activada = false;
-            }
+        if(!this.activada &&  this.pais.esDeJugador(unJugador)) {
+            unJugador.agregarFichas(2);
+            this.pais.agregarFichas(2, unJugador);
+            this.activada = true;
         }
     }
 }

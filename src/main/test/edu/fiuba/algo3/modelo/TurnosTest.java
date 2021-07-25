@@ -112,7 +112,7 @@ public class TurnosTest {
     }
 
     @Test
-    public void ColocarEjercitos2Paises1jugador(){
+    public void jugadorPoneLasOchoFichasInicialesYFinalizaSuAtaqueEsRondaDeReagrupacion(){
         Turnos turnos = new Turnos();
         turnos.agregarJugador("Amarillo");
         turnos.comenzarJuego();
