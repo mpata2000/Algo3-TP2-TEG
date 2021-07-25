@@ -13,20 +13,25 @@ public class Jugador {
         this.fichas = 0;
     }
 
-    public void actualizarFichasActuales(int cantidadFichas){
-        if(cantidadFichas > this.fichas){
+    /*
+    * Le saca una
+     */
+    public int sacarFichas(int cantidadFichas){
+        if(this.puedeColocarFichas(cantidadFichas)){
+            this.fichas = this.fichas - Math.abs(cantidadFichas);
+        }else{
             this.fichas = 0;
-            return;
         }
-        this.fichas = this.fichas -cantidadFichas;
+        return this.fichas;
     }
 
-    public boolean jugadorPuedeColocarFichas(int cantidadFichas){
-        return ((this.fichas - cantidadFichas) >= 0);
+    public boolean puedeColocarFichas(int cantidadFichas){
+        return ((this.fichas - Math.abs(cantidadFichas)) >= 0);
     }
 
     public void agregarFichas(int cantidadFichas){
-        this.fichas += cantidadFichas;
+
+        this.fichas += Math.abs(cantidadFichas);
     }
 
     public boolean darCartaPais(CartaPais carta){
@@ -45,10 +50,6 @@ public class Jugador {
 
     public boolean tieneFichas() {
         return (this.fichas > 0);
-    }
-
-    public int getFichas() {
-        return fichas;
     }
 
     public void hacerCanje() {

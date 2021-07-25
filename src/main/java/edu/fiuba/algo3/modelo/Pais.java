@@ -38,10 +38,10 @@ public class Pais {
         if (!this.esDeJugador(unJugador)){
             throw new JugadorNoPoseePaisException();
         }
-        if (!unJugador.jugadorPuedeColocarFichas(cantidadFichas)) {
+        if (!unJugador.puedeColocarFichas(cantidadFichas)) {
             throw new JugadorNoTieneSuficientesFichas();
         }
-        unJugador.actualizarFichasActuales(cantidadFichas);
+        unJugador.sacarFichas(cantidadFichas);
         this.ejercito.agregarFichas(cantidadFichas);
     }
 
@@ -81,7 +81,9 @@ public class Pais {
         if(!this.esAdyacente(unPais)){
             throw new PaisNoEsLimitrofe();
         }
-
+        if (!unPais.esDeJugador(this.jugador)){
+            throw new JugadorNoPoseePaisException();
+        }
         this.ejercito.pasarFichasADe(unPais,this.jugador,cantidadFichas);
     }
 
