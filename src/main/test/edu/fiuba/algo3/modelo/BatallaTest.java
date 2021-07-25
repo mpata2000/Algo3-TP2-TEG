@@ -25,6 +25,8 @@ public class BatallaTest {
         paisDefensor = new Pais("Argentina", List.of("Chile","Brazil"));
         jugadorUno = new Jugador("Julian");
         jugadorDos = new Jugador("Sofia");
+        jugadorUno.agregarFichas(20);
+        jugadorDos.agregarFichas(20);
     }
 
     @Test

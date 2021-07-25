@@ -3,19 +3,29 @@ package edu.fiuba.algo3.modelo;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JugadorTest {
 
     @Test
-    public void siJugadorLeTocaUnaCartaQuePoseeelPaisGanaDosFichas(){
+    public void siJugadorNoConquistaPaisNoPuedeRecibirCarta(){
         Jugador jugador = new Jugador("Rojo");
         Pais pais = new Pais("Alaska", List.of("Rusia"));
         CartaPais carta = new CartaPais("Alaska","Globo",pais);
         pais.asignarJugador(jugador);
-        jugador.agregarCartaPais(carta);
-        assertEquals(3,pais.perderFichas(0));
+
+        assertFalse(jugador.darCartaPais(carta));
+    }
+
+    @Test
+    public void siJugadorConquistaPaisYReciveCarta(){
+        Jugador jugador = new Jugador("Rojo");
+        Pais pais = new Pais("Alaska", List.of("Rusia"));
+        CartaPais carta = new CartaPais("Alaska","Globo",pais);
+        pais.asignarJugador(jugador);
+        jugador.conquistoPais();
+        assertTrue(jugador.darCartaPais(carta));
     }
 
     @Test

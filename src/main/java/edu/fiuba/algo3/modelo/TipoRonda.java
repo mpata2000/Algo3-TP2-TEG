@@ -10,5 +10,7 @@ public interface TipoRonda {
 
     boolean esAtaque();
 
+    boolean esReagrupacion();
+
     void inicializarRonda(List<String> jugadores, Teg teg);
 }

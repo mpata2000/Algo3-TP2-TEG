@@ -33,6 +33,11 @@ public class RondaColocacion implements TipoRonda {
         return false;
     }
 
+    @Override
+    public boolean esReagrupacion(){
+        return false;
+    }
+
     public void  agregarFichasAColocarA(String unJugador,Teg teg){
         switch(this.numDeRonda){
             case 1:

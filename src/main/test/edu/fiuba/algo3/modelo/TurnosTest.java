@@ -61,7 +61,7 @@ public class TurnosTest {
         turnos.colocarEjercitos("Argentina",5);
         turnos.colocarEjercitos("Argentina",3);
         turnos.finAtaque();
-        assertTrue(turnos.devolverRondaActual().esColocacion());
+        assertTrue(turnos.devolverRondaActual().esReagrupacion());
     }
 
     @Test
@@ -78,8 +78,8 @@ public class TurnosTest {
         }
 
         turnos.colocarEjercitos("China",5);
-        turnos.colocarEjercitos("Rusia",3);
         turnos.colocarEjercitos("Borneo",5);
+        turnos.colocarEjercitos("Rusia",3);
         turnos.colocarEjercitos("Australia",3);
         turnos.finAtaque();
         turnos.finAtaque();
@@ -103,8 +103,9 @@ public class TurnosTest {
         (paisesOceania.get(2)).asignarJugador(jugadores.get("Verde"));
         (paisesOceania.get(3)).asignarJugador(jugadores.get("Verde"));
 
-        turnos.colocarEjercitos("Borneo",8);
+        turnos.colocarEjercitos("Borneo",5);
         turnos.colocarEjercitos("China",5);
+        turnos.colocarEjercitos("Borneo",3);
         turnos.colocarEjercitos("Rusia",3);
         turnos.colocarEjercitos("Australia",8);
 
@@ -137,8 +138,10 @@ public class TurnosTest {
         (paisesOceania.get(0)).asignarJugador(jugadores.get("Rojo"));
         (paisesOceania.get(3)).asignarJugador(jugadores.get("Rojo"));
 
-        turnos.colocarEjercitos("Sumatra",8);
-        turnos.colocarEjercitos("China",8);
+        turnos.colocarEjercitos("Sumatra",5);
+        turnos.colocarEjercitos("China",5);
+        turnos.colocarEjercitos("Sumatra",3);
+        turnos.colocarEjercitos("China",3);
         jugadores.get("Amarillo").agregarFichas(2);
         turnos.atacar("Australia","Borneo",3);
         turnos.atacar("Australia","Java",3);

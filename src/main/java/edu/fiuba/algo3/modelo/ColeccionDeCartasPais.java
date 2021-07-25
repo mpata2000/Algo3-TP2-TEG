@@ -62,4 +62,14 @@ public class ColeccionDeCartasPais {
     public boolean canjeDeCartas(){
         return canjearTresCartasIgules("Globo") || canjearTresCartasIgules("Barco") || canjearTresCartasIgules("Cañon");
     }
+
+    public void darCartaA(Jugador jugador) {
+        if(cartasPais.isEmpty()){
+            return;
+        }
+
+        if(jugador.darCartaPais(cartasPais.get(0))) {
+            cartasPais.remove(0);
+        }
+    }
 }

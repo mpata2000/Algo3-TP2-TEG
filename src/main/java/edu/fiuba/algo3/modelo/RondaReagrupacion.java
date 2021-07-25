@@ -15,6 +15,11 @@ public class RondaReagrupacion implements TipoRonda{
 
     @Override
     public boolean esAtaque(){
+        return false;
+    }
+
+    @Override
+    public boolean esReagrupacion(){
         return true;
     }
 

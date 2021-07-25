@@ -29,9 +29,14 @@ public class Jugador {
         this.fichasIniciales += cantidadFichas;
     }
 
-    public void agregarCartaPais(CartaPais carta){
-        cartasPais.agregarCartaPais(carta);
-        carta.activarCarta(this);
+    public boolean darCartaPais(CartaPais carta){
+        if(this.conquistoPais) {
+            cartasPais.agregarCartaPais(carta);
+            this.conquistoPais = false;
+            return true;
+        }
+
+        return false;
     }
 
     public boolean esElMismoJugador(Jugador unJugador){
@@ -46,7 +51,8 @@ public class Jugador {
         this.cartasPais.canjeDeCartas();
     }
 
-    public void actualizarConquistaPais() {
-        this.conquistoPais = false;
+
+    public void conquistoPais() {
+        this.conquistoPais = true;
     }
 }

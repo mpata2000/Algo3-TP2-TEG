@@ -20,10 +20,13 @@ public class RondaAtaque implements TipoRonda {
     }
 
     @Override
+    public boolean esReagrupacion(){
+        return false;
+    }
+
+    @Override
     public void inicializarRonda(List<String> jugadores, Teg teg){
-        for(String colorJugador: jugadores){
-            teg.actualizarConquistaPais(colorJugador);
-        }
+
     }
 
 }

@@ -30,6 +30,8 @@ public class TableroTest {
             paisDefensor =  new Pais("Argentina", List.of("Chile","Brazil"));
             jugadorUno = new Jugador("Amarillo");
             jugadorDos = new Jugador("Rojo");
+            jugadorUno.agregarFichas(10);
+            jugadorDos.agregarFichas(10);
             jugadores.put("Amarillo",jugadorUno);
             jugadores.put("Rojo",jugadorDos);
 

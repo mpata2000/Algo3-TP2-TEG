@@ -23,6 +23,7 @@ public class Turnos {
         this.jugadores = jugadores;
         this.iteradorJugadores = this.jugadores.listIterator();
         this.jugadorActual = this.iteradorJugadores.next();
+        this.tipoDeRonda.inicializarRonda(this.jugadores,this.teg);
     }
 
     public void agregarJugador(String color){
@@ -38,11 +39,10 @@ public class Turnos {
         this.tipoDeRonda.inicializarRonda(this.jugadores,this.teg);
     }
 
-    public boolean atacar(String paisAtacante, String paisDefensor, int cantidad){
+    public void atacar(String paisAtacante, String paisDefensor, int cantidad){
         if(this.tipoDeRonda.esAtaque()) {
-            return this.teg.atacar(jugadorActual,paisAtacante, paisDefensor, cantidad);
+            this.teg.atacar(jugadorActual,paisAtacante, paisDefensor, cantidad);
         }
-        return false;
     }
 
     public void reagrupar(String paisUno,String paisdos,int cant){
@@ -69,7 +69,9 @@ public class Turnos {
     public void cambiarRonda(){
         this.iteradorJugadores = this.jugadores.listIterator();
         this.jugadorActual = this.iteradorJugadores.next();
+
         this.tipoDeRonda = this.tipoDeRonda.cambiarDeRonda();
+        this.tipoDeRonda.inicializarRonda(this.jugadores,this.teg);
     }
 
     public TipoRonda devolverRondaActual(){
@@ -77,7 +79,7 @@ public class Turnos {
     }
 
     public void finAtaque(){
-        //darCarta
+        this.teg.darCarta(this.jugadorActual);
         this.tipoDeRonda = this.tipoDeRonda.cambiarDeRonda();
     }
 

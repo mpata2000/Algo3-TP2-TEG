@@ -21,6 +21,7 @@ public class Teg {
     public Teg(Tablero tablero,Map <String,Jugador> jugadores){
         this.tablero = tablero;
         this.jugadores = jugadores;
+        this.cartas = new ColeccionDeCartasPais();
     }
 
     public void comenzarJuego(List<String> colores) {
@@ -39,8 +40,11 @@ public class Teg {
         this.tablero.agregarFichas(cant, this.jugadores.get(jugador), nombrePais);
     }
 
-    public boolean atacar(String colorJugador,String paisAtacante, String paisDefensor, int cantidad){
-        return tablero.atacar(this.jugadores.get(colorJugador),paisAtacante, paisDefensor, cantidad);//Else exception
+    public void atacar(String colorJugador,String paisAtacante, String paisDefensor, int cantidad){
+        Jugador jugador = this.jugadores.get(colorJugador);
+        if(tablero.atacar(jugador,paisAtacante, paisDefensor, cantidad)){
+            jugador.conquistoPais();
+        }
     }
 
     public void reagrupar(String paisUno, String paisDos, int cant){
@@ -61,7 +65,7 @@ public class Teg {
         this.jugadores.get(colorJugador).agregarFichas(cantidadFichas);
     }
 
-    public void actualizarConquistaPais(String colorJugador) {
-        this.jugadores.get(colorJugador).actualizarConquistaPais();
+    public void darCarta(String colorJugador) {
+        this.cartas.darCartaA(this.jugadores.get(colorJugador));
     }
 }
