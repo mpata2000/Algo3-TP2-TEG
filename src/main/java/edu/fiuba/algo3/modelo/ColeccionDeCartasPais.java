@@ -31,28 +31,39 @@ public class ColeccionDeCartasPais {
             i++;
         }
     }
+    
+    private void pasarCartasCanje(String simbolo){
+        int i = 0;
+        int cantCartas = 3;
+        while (i < this.cartasPais.size() && cantCartas > 0) {
+            if (this.cartasPais.get(i).esSimbolo(simbolo)) {
+                this.cartasPais.remove(i);
+                i--;
+                cantCartas--;
+            }
+            i++;
+        }
+    }
 
-    private boolean canjearTresCartasIgules(String simbolo){
+    private boolean sePuedehacerCanjeDeTresCartasIguales(String simbolo){
         Iterator<CartaPais> iterator = this.cartasPais.listIterator();
         int contador = 0;
-        boolean pasoCanje = false;
-
         while (iterator.hasNext() && contador < 3) {
-            if(iterator.next().esSimbolo(simbolo)){
+            if (iterator.next().esSimbolo(simbolo)) {
                 contador++;
             }
         }
+        return(contador == 3);
+    }
 
-        if(contador == 3){
-            pasoCanje = true;
-            int i =0;
-            while (i < this.cartasPais.size() && contador > 0) {
-                if(this.cartasPais.get(i).esSimbolo(simbolo)){
-                    this.cartasPais.remove(i);
-                    i--;
-                    contador--;
-                }
-                i++;
+    private boolean canjearTresCartasIgules(List<String> simbolos){
+        boolean pasoCanje = false;
+
+        for(String simbolo: simbolos) {
+            if (this.sePuedehacerCanjeDeTresCartasIguales(simbolo)) {
+                pasoCanje = true;
+                pasarCartasCanje(simbolo);
+                break;
             }
         }
         return pasoCanje;
@@ -60,7 +71,7 @@ public class ColeccionDeCartasPais {
 
 
     public boolean canjeDeCartas(){
-        return canjearTresCartasIgules("Globo") || canjearTresCartasIgules("Barco") || canjearTresCartasIgules("Cañon");
+        return canjearTresCartasIgules(List.of("Globo","Barco","Cañon"));
     }
 
     public void darCartaA(Jugador jugador) {
