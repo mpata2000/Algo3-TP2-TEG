@@ -59,7 +59,7 @@ public class JugadorTest {
 
     @Test
     public void jugadoresDistintosNoSonElMismoJugador(){
-        assertTrue(jugador.esElMismoJugador(new Jugador("Magenta")));
+        assertFalse(jugador.esElMismoJugador(new Jugador("Magenta")));
     }
 
     @Test
