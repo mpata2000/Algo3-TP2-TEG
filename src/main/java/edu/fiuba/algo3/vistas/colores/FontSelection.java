@@ -11,7 +11,9 @@ public class FontSelection {
     public static final String Verde = "009988";
     public static final String Rosa = "EE3377";
     public static final String Negro = "000000";
+
     public static final String Gris = "#91a5b3";
+    public static final String Blanco = "#FCFCFC";
 
     public static final String TitleFontType = "arial";
     public static final String SubtitleFontType = "arial";
