@@ -54,4 +54,9 @@ public class RondaReagrupacion implements TipoRonda{
         }
         return new RondaColocacion(jugadores);
     }
+
+    @Override
+    public String getJugadorActual() {
+        return this.jugadorActual;
+    }
 }

@@ -25,7 +25,7 @@ public class Turnos {
     }
 
     public String getJugadorActual() {
-        return jugadorActual;
+        return this.tipoDeRonda.getJugadorActual();
     }
 
     public void agregarJugador(String color){

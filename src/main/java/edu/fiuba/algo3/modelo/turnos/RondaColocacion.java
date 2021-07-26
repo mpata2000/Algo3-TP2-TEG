@@ -71,6 +71,11 @@ public class RondaColocacion implements TipoRonda {
             return this;
         }
 
-        return new RondaAtaque(jugadores);
+        return this.tipoColocacion.pasarDeRonda(jugadores);
+    }
+
+    @Override
+    public String getJugadorActual() {
+        return this.jugadorActual;
     }
 }

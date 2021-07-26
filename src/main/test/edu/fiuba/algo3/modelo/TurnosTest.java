@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static edu.fiuba.algo3.vistas.colores.FontSelection.Verde;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -73,7 +74,7 @@ public class TurnosTest {
         turnos.finEtapa();
 
         //La cantidad de fichas se calcula la primera vez que trata de poner fichas
-        turnos.colocarEjercitos("Japon",0);
+        turnos.colocarEjercitos("China",0);
         assertEquals(3,jugadores.get("Amarillo").sacarFichas(0));
     }
 
@@ -192,7 +193,7 @@ public class TurnosTest {
         jugadores.put("Verde",new Jugador("Verde"));
         tablero = new Tablero(continentes,paises);
         Teg teg = new Teg(tablero,jugadores);
-        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo","Verde"));
 
         for (Pais pais : paisesAsia){
             pais.asignarJugador(jugadores.get("Rojo"));
@@ -207,11 +208,13 @@ public class TurnosTest {
         turnos.finEtapa();
         turnos.colocarEjercitos("China",5);
         turnos.finEtapa();
+        turnos.colocarEjercitos("Australia",5);
+        turnos.finEtapa();
         turnos.colocarEjercitos("Borneo",3);
         turnos.finEtapa();
         turnos.colocarEjercitos("Rusia",3);
         turnos.finEtapa();
-        turnos.colocarEjercitos("Australia",8);
+        turnos.colocarEjercitos("Australia",3);
         turnos.finEtapa();
 
         assertTrue(turnos.devolverRondaActual().esAtaque());

@@ -67,4 +67,8 @@ public class RondaAtaque implements TipoRonda {
         return new RondaReagrupacion(this.jugadorActual,this.iteradorJugadores);
     }
 
+    @Override
+    public String getJugadorActual() {
+        return this.jugadorActual;
+    }
 }

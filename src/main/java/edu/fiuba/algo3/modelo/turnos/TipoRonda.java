@@ -20,4 +20,6 @@ public interface TipoRonda {
     void colocarEjercitos(Teg teg,String nombrePais, int cantidad);
 
     TipoRonda finEtapa(List<String> jugadores);
+
+    String getJugadorActual();
 }
