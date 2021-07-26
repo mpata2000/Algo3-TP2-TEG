@@ -10,9 +10,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class ComenzarPartidaButton extends Button {
+public class IniciarPartidaButton extends Button {
 
-    public ComenzarPartidaButton(EventHandler<ActionEvent> controlador){
+    public IniciarPartidaButton(EventHandler<ActionEvent> controlador){
         super.setText("Comenzar Partida");
 
         super.setFont(Font.font(FontSelection.SubtitleFontType, 30));
