@@ -1,0 +1,64 @@
+[
+    {
+        "continentesAConquistar":["Africa"],
+        "paisesPorContinentes":{
+            "America del Norte":5,
+            "Europa":4
+        }
+    },
+    {
+        "continentesAConquistar":["America del Sur"],
+        "paisesPorContinentes":{            
+            "Europa":7
+        }
+    },
+    {
+        "continentesAConquistar":["Asia"],
+        "paisesPorContinentes":{
+            "America del Sur":2            
+        }
+    },
+    {
+        "continentesAConquistar":["Europa"],
+        "paisesPorContinentes":{
+            "Asia":4,            
+            "America del Sur":2
+        }
+    },
+    {
+        "continentesAConquistar":["America del Norte"],
+        "paisesPorContinentes":{
+            "Oceania":2,
+            "Asia":4
+        }
+    },
+    {
+        "continentesAConquistar":[],
+        "paisesPorContinentes":{
+            "Asia":3,
+            "Africa":2,
+            "America del Norte":4,
+            "America del Sur":2,
+            "Europa":3,
+            "Oceania":2
+        }
+    },
+    {
+        "continentesAConquistar":["Oceania","America del Norte"],
+        "paisesPorContinentes":{                        
+            "Europa":2
+        }
+    },
+    {
+        "continentesAConquistar":["Africa","America del Sur"],
+        "paisesPorContinentes":{
+            "Asia":4
+        }
+    },
+    {
+        "continentesAConquistar":["Africa","Oceania"],
+        "paisesPorContinentes":{            
+            "America del Norte":5                        
+        }
+    }
+]
