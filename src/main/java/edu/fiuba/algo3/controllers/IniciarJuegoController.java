@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controllers;
 
 import edu.fiuba.algo3.vistas.ContenedorPrincipal;
+import edu.fiuba.algo3.vistas.SeleccionarJugadoresView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
@@ -15,9 +16,8 @@ public class IniciarJuegoController implements EventHandler<ActionEvent> {
         this.contenedorPrincipal = contenedorPrincipal;
     }
 
-
     @Override
     public void handle(ActionEvent actionEvent) {
-        //contenedorPrincipal.setCentro(new VistaPedirNombres(stage,contenedorPrincipal));
+        contenedorPrincipal.setCentro(new SeleccionarJugadoresView(stage, contenedorPrincipal));
     }
 }
