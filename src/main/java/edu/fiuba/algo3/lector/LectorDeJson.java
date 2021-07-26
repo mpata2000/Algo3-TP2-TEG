@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.cartas.CartaPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoConquista;
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoDestruccion;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 
 import java.io.*;
@@ -53,12 +54,22 @@ public class LectorDeJson {
         return tablero;
     }
 
-    public List<ObjetivoTeg> lectorObjetivos(String pathArchivo) {
+    public List<ObjetivoTeg> lectorObjetivosConquista(String pathArchivo) {
         Reader jsonLeido = this.setReader(pathArchivo);
         Type datasetListType = new TypeToken<Collection<ObjetivoConquista>>() {}.getType();
         List<ObjetivoTeg> objetivos = new Gson().fromJson(jsonLeido, datasetListType);
-
         return objetivos;
+    }
+
+    public List<ObjetivoDestruccion> retornarObjetivosDestruccion(){
+        List<ObjetivoDestruccion> objetivosDestruccion = new ArrayList<>();
+        String[] colores =  new String[]  {"Verde","Rosa","Azul","Rojo","Rosa","Negro"};
+        int i= 0;
+        while (i<6){
+            objetivosDestruccion.add(new ObjetivoDestruccion(colores[i]));
+            i++;
+        }
+        return objetivosDestruccion;
     }
 }
 

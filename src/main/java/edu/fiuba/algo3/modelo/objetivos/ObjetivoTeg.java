@@ -14,4 +14,5 @@ public abstract class ObjetivoTeg {
 
 
     protected abstract boolean objetivoJugador(Teg teg, Jugador jugador);
+
 }

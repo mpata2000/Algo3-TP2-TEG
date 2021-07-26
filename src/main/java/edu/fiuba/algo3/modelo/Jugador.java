@@ -49,6 +49,9 @@ public class Jugador {
         return false;
     }
 
+    public ColeccionDeCartasPais devolverCartasPais(){
+        return this.cartasPais;
+    }
     public boolean esElMismoJugador(Jugador unJugador){
         return this == unJugador;
     }
@@ -72,5 +75,9 @@ public class Jugador {
 
     public boolean gano(Teg teg){
         return this.objetivoTeg.cumplioObjetivo(teg,this);
+    }
+
+    public String devolverColor(){
+        return this.color;
     }
 }

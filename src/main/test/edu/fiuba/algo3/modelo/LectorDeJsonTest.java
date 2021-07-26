@@ -46,7 +46,7 @@ public class LectorDeJsonTest {
     @Test
     public void creacionDeObjetivosConquista(){
         LectorDeJson lector = new LectorDeJson();
-        List<ObjetivoTeg> objetivos = lector.lectorObjetivos("resources/Teg-Objetivos.json");
+        List<ObjetivoTeg> objetivos = lector.lectorObjetivosConquista("resources/Teg-Objetivos.json");
 
         assertEquals(9,objetivos.size());
     }
