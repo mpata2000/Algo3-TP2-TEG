@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.controllers.SeleccionarJugadoresController;
-import edu.fiuba.algo3.vistas.botones.ComenzarPartidaButton;
+import edu.fiuba.algo3.controllers.VolverInicioController;
+import edu.fiuba.algo3.vistas.botones.IniciarPartidaButton;
+import edu.fiuba.algo3.vistas.botones.VolverInicioButton;
 import edu.fiuba.algo3.vistas.colores.FontSelection;
 import edu.fiuba.algo3.vistas.grillas.MenuInicioGrid;
 import edu.fiuba.algo3.vistas.texto.SeleccionarJugadorMessage;
@@ -16,7 +18,7 @@ import javafx.stage.Stage;
 
 public class SeleccionarJugadoresView extends StackPane {
 
-    public SeleccionarJugadoresView(Stage stagePrincipal, ContenedorPrincipal contenedorPrincipal) {
+    public SeleccionarJugadoresView(Stage stage, ContenedorPrincipal contenedorPrincipal) {
 
         Image imagen = new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/fondo_seleccion_jugadores.jpeg");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,null,null, BackgroundPosition.CENTER,null);
@@ -54,8 +56,11 @@ public class SeleccionarJugadoresView extends StackPane {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
 
-        ComenzarPartidaButton botonInicio = new ComenzarPartidaButton(new SeleccionarJugadoresController(stagePrincipal,campoNombreJugador1,campoNombreJugador2,contenedorPrincipal));
+        IniciarPartidaButton botonInicio = new IniciarPartidaButton(new SeleccionarJugadoresController(stage,campoNombreJugador1,campoNombreJugador2,contenedorPrincipal));
         botonConfirmado.getChildren().add(botonInicio);
+
+        VolverInicioButton botonVolverInicio = new VolverInicioButton(new VolverInicioController(stage, contenedorPrincipal));
+        botonConfirmado.getChildren().add(botonVolverInicio);
 
         grillaInicio.add(nombreJuego,0,0);
         grillaInicio.add(cajaJugadores,0,1);
