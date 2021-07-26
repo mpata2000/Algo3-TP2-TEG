@@ -1,11 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.lector.LectorDeJson;
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Teg {
     private Tablero tablero;
@@ -32,6 +30,16 @@ public class Teg {
         }
 
         this.cartas.asignarPaises(new ArrayList<>(this.jugadores.values()));
+        this.asignarObjetivos();
+    }
+
+    private void asignarObjetivos() {
+        Collections.shuffle(this.objetivos);
+        int i = 0;
+        for(Jugador jugador: jugadores.values()){
+            jugador.darObjetivo(this.objetivos.get(i));
+            i++;
+        }
     }
 
     public void colocarFichas(String colorJugador, String nombrePais, int cant){
@@ -75,5 +83,9 @@ public class Teg {
 
     public int cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador) {
         return this.tablero.cantidadDePaisesJugadorEnContinente(continente,jugador);
+    }
+
+    public boolean continenteEsDeJugador(String continente,Jugador jugador) {
+        return this.tablero.continenteEsDeJugador(continente,jugador);
     }
 }

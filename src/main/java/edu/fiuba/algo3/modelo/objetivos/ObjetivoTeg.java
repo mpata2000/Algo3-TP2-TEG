@@ -1,8 +1,11 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.objetivos;
+
+import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Teg;
 
 public abstract class ObjetivoTeg {
 
-    public boolean cumplioObjetivo(Teg teg,Jugador jugador){
+    public boolean cumplioObjetivo(Teg teg, Jugador jugador){
         if(teg.cantidadDePaisesJugador(jugador) > 29){
             return true;
         }

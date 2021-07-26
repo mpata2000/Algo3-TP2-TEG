@@ -1,11 +1,14 @@
 package edu.fiuba.algo3.modelo;
 
 
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
+
 public class Jugador {
     private final String color;
     private final ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais();
     private int fichas;
     private boolean conquistoPais;
+    private ObjetivoTeg objetivoTeg;
 
     public Jugador(String unColor){
         this.color = unColor;
@@ -59,5 +62,13 @@ public class Jugador {
 
     public void conquistoPais() {
         this.conquistoPais = true;
+    }
+
+    public void darObjetivo(ObjetivoTeg objetivoTeg) {
+        this.objetivoTeg = objetivoTeg;
+    }
+
+    public boolean gano(Teg teg){
+        return this.objetivoTeg.cumplioObjetivo(teg,this);
     }
 }
