@@ -8,18 +8,17 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class BienvenidaMessage extends Label {
+public class ReglasMessage extends Label {
 
-    public BienvenidaMessage(String color){
-        super("ALTEGO");
-        super.setFont(Font.font(FontSelection.TitleFontType,70));
-        super.setTextFill(Color.web(color));
-        super.setUnderline(true);
+    public ReglasMessage(){
+        super("Ayuda:");
+
+        super.setFont(Font.font(FontSelection.TitleFontType,30));
+        super.setTextFill(Color.BLACK);
         super.setWrapText(true);
-        //super.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, FontSelection.CURVATURA_BORDE, FontSelection.GROSOR_BORDE)));
+        super.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(0), FontSelection.GROSOR_BORDE)));
         Background unFondo = new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY));
         super.setBackground(unFondo);
         super.setAlignment(Pos.CENTER);
     }
-
 }
