@@ -11,6 +11,11 @@ public class ObjetivoConquista extends ObjetivoTeg{
     HashMap <String,Integer> paisesPorContinente = new HashMap<>();
     List<String> continentesAConquistar;
 
+    public ObjetivoConquista(List<String> continentes,HashMap<String,Integer> paisesPorContinente){
+        this.continentesAConquistar = continentes;
+        this.paisesPorContinente = paisesPorContinente;
+    }
+
     private boolean tieneTodosLosPaises(Teg teg, Jugador jugador){
         for(Map.Entry<String,Integer> entry: paisesPorContinente.entrySet()){
             if(teg.cantidadDePaisesJugadorEnContinente(entry.getKey(),jugador) < entry.getValue()){

@@ -7,9 +7,9 @@ import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import java.util.*;
 
 public class Teg {
-    private Tablero tablero;
+    private final Tablero tablero;
     private Map<String, Jugador> jugadores = new HashMap<>();
-    private ColeccionDeCartasPais cartas;
+    private final ColeccionDeCartasPais cartas;
     private List<ObjetivoTeg> objetivos = new ArrayList<>();
 
     Teg(){

@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Jugador;
 
 public class PrimerosCanjes implements Canje {
 
-    private int fichas;
+    private final int fichas;
 
     PrimerosCanjes(){
         this.fichas = 4;
