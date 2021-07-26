@@ -10,10 +10,10 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class InicioButton extends Button {
+public class VolverInicioButton extends Button {
 
-    public InicioButton (EventHandler<ActionEvent> controlador){
-        super.setText("Comenzar Partida");
+    public VolverInicioButton(EventHandler<ActionEvent> controlador){
+        super.setText("Volver al Inicio");
 
         super.setFont(Font.font(FontSelection.SubtitleFontType, 30));
         super.setPadding(new Insets(10));
