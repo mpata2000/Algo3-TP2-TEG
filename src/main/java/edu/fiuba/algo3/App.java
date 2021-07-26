@@ -1,9 +1,9 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.vistas.ContenedorPrincipal;
+import edu.fiuba.algo3.vistas.MenuInicioView;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -12,14 +12,17 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+    public void start(Stage stage){
+        stage.setTitle("ALTEGO");
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
+        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal();
+        contenedorPrincipal.setCentro(new MenuInicioView(stage,contenedorPrincipal));
+
+        var scene = new Scene(contenedorPrincipal, 1080, 720);
         stage.setScene(scene);
+
         stage.show();
+
     }
 
     public static void main(String[] args) {
