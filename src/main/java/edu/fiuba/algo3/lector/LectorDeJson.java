@@ -3,6 +3,7 @@ package edu.fiuba.algo3.lector;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.cartas.CartaPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoConquista;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 

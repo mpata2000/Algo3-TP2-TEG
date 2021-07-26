@@ -1,6 +1,8 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.cartas;
 
-import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
+import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Pais;
+import edu.fiuba.algo3.modelo.Tablero;
 
 public class CartaPais {
     private final String nombrePais;
@@ -8,13 +10,13 @@ public class CartaPais {
     private Pais pais;
     private boolean activada;
 
-    CartaPais(String nombrePais,String simbolo){
+    public CartaPais(String nombrePais,String simbolo){
         this.nombrePais = nombrePais;
         this.simbolo = simbolo;
         this.activada = false;
     }
 
-    CartaPais(String nombrePais,String simbolo,Pais unPais){
+    public CartaPais(String nombrePais,String simbolo,Pais unPais){
         this.nombrePais = nombrePais;
         this.simbolo = simbolo;
         this.pais = unPais;

@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 
+import edu.fiuba.algo3.modelo.cartas.CartaPais;
+import edu.fiuba.algo3.modelo.cartas.ColeccionDeCartasPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 
 public class Jugador {

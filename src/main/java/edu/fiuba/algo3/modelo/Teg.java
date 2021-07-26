@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.lector.LectorDeJson;
+import edu.fiuba.algo3.modelo.cartas.ColeccionDeCartasPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 
 import java.util.*;
