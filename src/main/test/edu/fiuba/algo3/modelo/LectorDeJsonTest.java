@@ -40,4 +40,12 @@ public class LectorDeJsonTest {
             assertEquals(tablero.getPais(carta.getNombrePais()),carta.getPais());
         }
     }
+
+    @Test
+    public void creacionDeObjetivosConquista(){
+        LectorDeJson lector = new LectorDeJson();
+        List<ObjetivoTeg> objetivos = lector.lectorObjetivos("resources/Teg-Objetivos.json");
+
+        assertEquals(9,objetivos.size());
+    }
 }

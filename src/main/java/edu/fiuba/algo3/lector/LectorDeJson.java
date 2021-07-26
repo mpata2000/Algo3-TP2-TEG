@@ -2,10 +2,7 @@ package edu.fiuba.algo3.lector;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import edu.fiuba.algo3.modelo.CartaPais;
-import edu.fiuba.algo3.modelo.Continente;
-import edu.fiuba.algo3.modelo.Pais;
-import edu.fiuba.algo3.modelo.Tablero;
+import edu.fiuba.algo3.modelo.*;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -51,6 +48,14 @@ public class LectorDeJson {
         tablero = new Tablero(continentes,paises);
 
         return tablero;
+    }
+
+    public List<ObjetivoTeg> lectorObjetivos(String pathArchivo) {
+        Reader jsonLeido = this.setReader(pathArchivo);
+        Type datasetListType = new TypeToken<Collection<ObjetivoConquista>>() {}.getType();
+        List<ObjetivoTeg> objetivos = new Gson().fromJson(jsonLeido, datasetListType);
+
+        return objetivos;
     }
 }
 

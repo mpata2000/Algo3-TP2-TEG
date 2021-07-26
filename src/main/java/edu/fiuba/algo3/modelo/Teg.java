@@ -11,14 +11,16 @@ public class Teg {
     private Tablero tablero;
     private Map<String, Jugador> jugadores = new HashMap<>();
     private ColeccionDeCartasPais cartas;
+    private List<ObjetivoTeg> objetivos = new ArrayList<>();
 
-    public Teg(){
+    Teg(){
         LectorDeJson lector = new LectorDeJson();
         this.tablero = lector.lectorTablero("resources/Teg-Tablero.json");
         this.cartas = new ColeccionDeCartasPais(lector.lectorCartasPais("resources/Teg-Cartas.json"));
+        this.objetivos.addAll(lector.lectorObjetivos("resources/Teg-Objetivos.json"));
     }
 
-    public Teg(Tablero tablero,Map <String,Jugador> jugadores){
+    Teg(Tablero tablero,Map <String,Jugador> jugadores){
         this.tablero = tablero;
         this.jugadores = jugadores;
         this.cartas = new ColeccionDeCartasPais();
