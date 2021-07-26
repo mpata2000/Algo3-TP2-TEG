@@ -14,7 +14,7 @@ public class Teg {
     private List<ObjetivoTeg> objetivos = new ArrayList<>();
     private List<ObjetivoDestruccion> objetivosDestruccion = new ArrayList<>();
 
-    Teg(){
+    public Teg(){
         LectorDeJson lector = new LectorDeJson();
         this.tablero = lector.lectorTablero("resources/Teg-Tablero.json");
         this.cartas = new ColeccionDeCartasPais(lector.lectorCartasPais("resources/Teg-Cartas.json"));
@@ -22,7 +22,7 @@ public class Teg {
         this.objetivosDestruccion = lector.retornarObjetivosDestruccion();
     }
 
-    Teg(Tablero tablero,Map <String,Jugador> jugadores){
+    public Teg(Tablero tablero,Map <String,Jugador> jugadores){
         this.tablero = tablero;
         this.jugadores = jugadores;
         this.cartas = new ColeccionDeCartasPais();
