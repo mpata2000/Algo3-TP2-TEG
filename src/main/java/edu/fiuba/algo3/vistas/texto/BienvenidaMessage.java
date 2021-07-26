@@ -16,7 +16,6 @@ public class BienvenidaMessage extends Label {
         super.setTextFill(Color.web(color));
         super.setUnderline(true);
         super.setWrapText(true);
-        //super.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, FontSelection.CURVATURA_BORDE, FontSelection.GROSOR_BORDE)));
         Background unFondo = new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY));
         super.setBackground(unFondo);
         super.setAlignment(Pos.CENTER);

@@ -11,11 +11,13 @@ import javafx.scene.text.Font;
 public class ReglasMessage extends Label {
 
     public ReglasMessage(){
-        super("Ayuda:");
+        super("Reglas del Juego");
 
         super.setFont(Font.font(FontSelection.TitleFontType,30));
         super.setTextFill(Color.BLACK);
         super.setWrapText(true);
+        super.setUnderline(true);
+
         super.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(0), FontSelection.GROSOR_BORDE)));
         Background unFondo = new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY));
         super.setBackground(unFondo);
