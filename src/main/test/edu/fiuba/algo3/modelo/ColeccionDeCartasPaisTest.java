@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.cartas.CartaPais;
 import edu.fiuba.algo3.modelo.cartas.ColeccionDeCartasPais;
+import edu.fiuba.algo3.modelo.tablero.Pais;
+import edu.fiuba.algo3.modelo.tablero.Tablero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;

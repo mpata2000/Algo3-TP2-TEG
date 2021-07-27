@@ -10,9 +10,10 @@ public class RondaReagrupacion implements TipoRonda{
     private ListIterator<String> iteradorJugadores;
     private String jugadorActual;
 
-    RondaReagrupacion(String jugadorActual,ListIterator<String> iterJugadores) {
+    public RondaReagrupacion(String jugadorActual,List<String> jugadores) {
         this.jugadorActual = jugadorActual;
-        this.iteradorJugadores = iterJugadores;
+        this.iteradorJugadores = jugadores.listIterator(jugadores.indexOf(jugadorActual));
+        this.jugadorActual = this.iteradorJugadores.next();
     }
 
     @Override
@@ -33,7 +34,7 @@ public class RondaReagrupacion implements TipoRonda{
 
     @Override
     public void atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad){
-        teg.atacar(jugadorActual,paisAtacante, paisDefensor, cantidad);
+        throw new NoSePuedeHacerEstaAccionEnEstaRonda();
     }
 
     @Override
@@ -42,16 +43,20 @@ public class RondaReagrupacion implements TipoRonda{
     }
 
     @Override
-    public void colocarEjercitos(Teg teg,String nombrePais, int cantidad){
+    public void colocarFichas(Teg teg, String nombrePais, int cantidad){
         throw new NoSePuedeHacerEstaAccionEnEstaRonda();
     }
 
     @Override
-    public TipoRonda finEtapa(List<String> jugadores){
+    public TipoRonda finEtapa(List<String> jugadores,Teg teg){
         if(this.iteradorJugadores.hasNext()){
             this.jugadorActual = this.iteradorJugadores.next();
-            return new RondaAtaque(jugadorActual,this.iteradorJugadores);
+            return new RondaAtaque(jugadorActual);
         }
+        if(teg.hayGanador()){
+            return new RondaGanador(teg.getGanador());
+        }
+
         return new RondaColocacion(jugadores);
     }
 

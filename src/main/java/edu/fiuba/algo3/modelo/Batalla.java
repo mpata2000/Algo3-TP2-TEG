@@ -2,13 +2,14 @@ package edu.fiuba.algo3.modelo;
 
 
 import edu.fiuba.algo3.excepciones.AtaqueNoValido;
+import edu.fiuba.algo3.modelo.tablero.Pais;
 
 public class Batalla {
 
     private final Pais paisAtacante;
     private final Pais paisDefensor;
 
-    Batalla(Pais paisAtacante, Pais paisDefensor){
+    public Batalla(Pais paisAtacante, Pais paisDefensor){
         this.paisAtacante = paisAtacante;
         this.paisDefensor = paisDefensor;
     }

@@ -7,4 +7,5 @@ module edu.fiuba.algo3 {
     opens edu.fiuba.algo3.modelo.objetivos;
     opens edu.fiuba.algo3.modelo.cartas;
     opens edu.fiuba.algo3.modelo.turnos;
+    opens edu.fiuba.algo3.modelo.tablero;
 }

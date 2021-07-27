@@ -1,9 +1,11 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.tablero;
 
 import edu.fiuba.algo3.excepciones.EjercitoConUnaFichaNoPuedeAtacar;
 import edu.fiuba.algo3.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDados;
 import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
 import edu.fiuba.algo3.excepciones.PaisSinSuficientesFichasParaPasar;
+import edu.fiuba.algo3.modelo.Dados;
+import edu.fiuba.algo3.modelo.Jugador;
 
 public class Ejercito {
     private int cantidadFichas;
@@ -25,7 +27,8 @@ public class Ejercito {
         return this.cantidadFichas;
     }
 
-    public void pasarFichasADe(Pais unPais,Jugador unJugador,int cantidadFichas){
+
+    public void pasarFichasADe(Pais unPais, Jugador unJugador, int cantidadFichas){
         if(this.cantidadFichas <= cantidadFichas) {
             throw new PaisSinSuficientesFichasParaPasar();
         }

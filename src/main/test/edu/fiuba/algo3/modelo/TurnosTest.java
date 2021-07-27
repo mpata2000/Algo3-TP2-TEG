@@ -1,6 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.excepciones.JugadorNoTieneSuficientesFichas;
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
+import edu.fiuba.algo3.modelo.tablero.Continente;
+import edu.fiuba.algo3.modelo.tablero.Pais;
+import edu.fiuba.algo3.modelo.tablero.Tablero;
 import edu.fiuba.algo3.modelo.turnos.Turnos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static edu.fiuba.algo3.vistas.colores.FontSelection.Verde;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -23,6 +26,8 @@ public class TurnosTest {
     ArrayList<Continente> continentes= new ArrayList<>();
     HashMap<String, Jugador> jugadores = new HashMap<>();
     Tablero tablero;
+    ObjetivoTeg objetivoGana ;
+    ObjetivoTeg objetivoPierde ;
 
     @BeforeEach
     void setUp() {
@@ -39,7 +44,10 @@ public class TurnosTest {
         jugadores.put("Rojo",new Jugador("Rojo"));
         paises.addAll(paisesAsia);
         paises.addAll(paisesOceania);
-
+        objetivoGana = Mockito.mock(ObjetivoTeg.class);
+        objetivoPierde = Mockito.mock(ObjetivoTeg.class);
+        when(objetivoGana.cumplioObjetivo(any(Teg.class))).thenReturn(true);
+        when(objetivoPierde.cumplioObjetivo(any(Teg.class))).thenReturn(false);
     }
 
     @Test
@@ -135,20 +143,6 @@ public class TurnosTest {
         turnos.finEtapa();
         turnos.finEtapa();
         assertTrue(turnos.devolverRondaActual().esReagrupacion());
-    }
-
-    @Test
-    public void jugadorPoneLasOchoFichasInicialesYFinalizaSuAtaqueYreagrupacionEsRondaDeColocacion(){
-        Turnos turnos = new Turnos();
-        turnos.agregarJugador("Amarillo");
-        turnos.comenzarJuego();
-        turnos.colocarEjercitos("Argentina",5);
-        turnos.finEtapa();
-        turnos.colocarEjercitos("Argentina",3);
-        turnos.finEtapa();
-        turnos.finEtapa();
-        turnos.finEtapa();
-        assertTrue(turnos.devolverRondaActual().esColocacion());
     }
 
     @Test
@@ -264,6 +258,8 @@ public class TurnosTest {
     @Test
     public void reagruparDespuesDeAtacar(){
         tablero = new Tablero(continentes,paises);
+        jugadores.get("Amarillo").darObjetivo(objetivoPierde);
+        jugadores.get("Rojo").darObjetivo(objetivoPierde);
         Teg teg = new Teg(tablero,jugadores);
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
         for (Pais pais : paisesAsia){

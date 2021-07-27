@@ -4,6 +4,7 @@ import edu.fiuba.algo3.excepciones.AtaqueNoValido;
 import edu.fiuba.algo3.excepciones.EjercitoConUnaFichaNoPuedeAtacar;
 import edu.fiuba.algo3.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDados;
 import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
+import edu.fiuba.algo3.modelo.tablero.Pais;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

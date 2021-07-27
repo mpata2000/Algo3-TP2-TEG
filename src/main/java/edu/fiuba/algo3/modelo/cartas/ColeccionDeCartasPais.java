@@ -5,8 +5,8 @@ import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.*;
 
-public class ColeccionDeCartasPais {
-    private List<CartaPais> cartasPais;
+public class ColeccionDeCartasPais implements CartasPaisTeg,CartasPaisJugador{
+    private final List<CartaPais> cartasPais;
     private Canje numeroDecanje = new PrimerosCanjes();
 
     public ColeccionDeCartasPais(List<CartaPais> cartaPais) {
@@ -25,6 +25,10 @@ public class ColeccionDeCartasPais {
         this.cartasPais.add(cartaPais);
     }
 
+    public void agregarCartasPais(List<CartaPais> cartas) {
+        this.cartasPais.addAll(cartas);
+    }
+
     public void asignarPaises(List<Jugador> jugadores) {
         Collections.shuffle(this.cartasPais);
         ListIterator<CartaPais> cartas = this.cartasPais.listIterator();
@@ -35,11 +39,8 @@ public class ColeccionDeCartasPais {
         }
     }
 
-    public void agregarCartasPais(List<CartaPais> cartas) {
-        this.cartasPais.addAll(cartas);
-    }
 
-    private void pasarCartasCanje(List<CartaPais> cartas, ColeccionDeCartasPais cartasPais){
+    private void pasarCartasCanje(List<CartaPais> cartas, CartasPaisTeg cartasPais){
         this.cartasPais.removeAll(cartas);
         cartasPais.agregarCartasPais(cartas);
     }
@@ -58,7 +59,7 @@ public class ColeccionDeCartasPais {
         return cartas;
     }
 
-    private boolean canjearTresCartasIgules(List<String> simbolos,ColeccionDeCartasPais cartasPais){
+    private boolean canjearTresCartasIgules(List<String> simbolos,CartasPaisTeg cartasPais){
         boolean pasoCanje = false;
 
         for(String simbolo: simbolos) {
@@ -72,7 +73,7 @@ public class ColeccionDeCartasPais {
         return pasoCanje;
     }
 
-    private boolean canjearTresCartasDistintas(List<String> simbolos,ColeccionDeCartasPais cartasPais){
+    private boolean canjearTresCartasDistintas(List<String> simbolos,CartasPaisTeg cartasPais){
         List<CartaPais> cartas = new ArrayList<>();
         CartaPais carta;
         for(String simbolo: simbolos) {
@@ -94,8 +95,13 @@ public class ColeccionDeCartasPais {
         return false;
     }
 
+    public void activarCartas(Jugador unJugador){
+        for(CartaPais carta: this.cartasPais){
+            carta.activarCarta(unJugador);
+        }
+    }
 
-    public boolean canjeDeCartas(Jugador unJugador,ColeccionDeCartasPais cartasPais){
+    public boolean canjeDeCartas(Jugador unJugador,CartasPaisTeg cartasPais){
         if(this.cartasPais.size() < 3){
             return false;
         }

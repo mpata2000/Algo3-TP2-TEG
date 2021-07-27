@@ -5,14 +5,20 @@ import edu.fiuba.algo3.modelo.Teg;
 
 public abstract class ObjetivoTeg {
 
-    public boolean cumplioObjetivo(Teg teg, Jugador jugador){
-        if(teg.cantidadDePaisesJugador(jugador) > 29){
+    protected Jugador duenioObjetivo;
+
+    public boolean cumplioObjetivo(Teg teg){
+        if(teg.cantidadDePaisesJugador(this.duenioObjetivo) > 29){
             return true;
         }
-        return this.objetivoJugador(teg,jugador);
+        return this.objetivoJugador(teg);
+    }
+
+    public void setDuenio(Jugador unJugador){
+        this.duenioObjetivo = unJugador;
     }
 
 
-    protected abstract boolean objetivoJugador(Teg teg, Jugador jugador);
+    protected abstract boolean objetivoJugador(Teg teg);
 
 }

@@ -48,7 +48,7 @@ public class Turnos {
     }
 
     public void colocarEjercitos(String nombrePais, int cantidad){
-        this.tipoDeRonda.colocarEjercitos(this.teg,nombrePais,cantidad);
+        this.tipoDeRonda.colocarFichas(this.teg,nombrePais,cantidad);
     }
 
     public TipoRonda devolverRondaActual(){
@@ -57,7 +57,7 @@ public class Turnos {
 
 
     public void finEtapa(){
-        this.tipoDeRonda = this.tipoDeRonda.finEtapa(jugadores);
+        this.tipoDeRonda = this.tipoDeRonda.finEtapa(jugadores,this.teg);
     }
 
 }

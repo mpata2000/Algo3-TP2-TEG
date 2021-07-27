@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
 import edu.fiuba.algo3.excepciones.PaisNoEsLimitrofe;
 import edu.fiuba.algo3.excepciones.PaisSinSuficientesFichasParaPasar;
+import edu.fiuba.algo3.modelo.tablero.Pais;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;

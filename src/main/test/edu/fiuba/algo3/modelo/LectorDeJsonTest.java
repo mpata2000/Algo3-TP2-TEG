@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.lector.LectorDeJson;
 import edu.fiuba.algo3.modelo.cartas.CartaPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
+import edu.fiuba.algo3.modelo.tablero.Tablero;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

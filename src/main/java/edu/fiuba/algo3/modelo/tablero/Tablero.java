@@ -1,4 +1,7 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.tablero;
+
+import edu.fiuba.algo3.modelo.Batalla;
+import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.HashMap;
 import java.util.List;

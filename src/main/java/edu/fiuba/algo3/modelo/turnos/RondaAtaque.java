@@ -3,23 +3,16 @@ package edu.fiuba.algo3.modelo.turnos;
 import edu.fiuba.algo3.modelo.Teg;
 
 import java.util.List;
-import java.util.ListIterator;
 
 public class RondaAtaque implements TipoRonda {
-    private ListIterator<String> iteradorJugadores;
-    private String jugadorActual;
+    private final String jugadorActual;
     private boolean conquistoPais = false;
     private String paisAtcante;
     private String paisConquistado;
 
-    RondaAtaque(List<String> jugadores){
-        this.iteradorJugadores = jugadores.listIterator();
-        this.jugadorActual = this.iteradorJugadores.next();
-    }
 
-    RondaAtaque(String jugadorActual, ListIterator<String> iteradorJugadores){
+    public RondaAtaque(String jugadorActual){
         this.jugadorActual = jugadorActual;
-        this.iteradorJugadores = iteradorJugadores;
     }
 
 
@@ -58,13 +51,13 @@ public class RondaAtaque implements TipoRonda {
     }
 
     @Override
-    public void colocarEjercitos(Teg teg,String nombrePais, int cantidad){
+    public void colocarFichas(Teg teg, String nombrePais, int cantidad){
         throw new NoSePuedeHacerEstaAccionEnEstaRonda();
     }
 
     @Override
-    public TipoRonda finEtapa(List<String> jugadores){
-        return new RondaReagrupacion(this.jugadorActual,this.iteradorJugadores);
+    public TipoRonda finEtapa(List<String> jugadores,Teg teg){
+        return new RondaReagrupacion(this.jugadorActual,jugadores);
     }
 
     @Override

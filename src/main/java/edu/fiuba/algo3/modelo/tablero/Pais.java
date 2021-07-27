@@ -1,8 +1,10 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.tablero;
 
 import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
 import edu.fiuba.algo3.excepciones.JugadorNoTieneSuficientesFichas;
 import edu.fiuba.algo3.excepciones.PaisNoEsLimitrofe;
+import edu.fiuba.algo3.modelo.Dados;
+import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.List;
 
@@ -24,7 +26,6 @@ public class Pais {
     }
 
     public boolean esAdyacente(Pais unPais){
-        //Puede dar errores si los limitrofes o nombres tienen mal los cases
         return this.paisesLimitrofes.contains(unPais.getNombre());
     }
 

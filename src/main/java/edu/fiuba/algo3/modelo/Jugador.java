@@ -2,12 +2,14 @@ package edu.fiuba.algo3.modelo;
 
 
 import edu.fiuba.algo3.modelo.cartas.CartaPais;
+import edu.fiuba.algo3.modelo.cartas.CartasPaisJugador;
+import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
 import edu.fiuba.algo3.modelo.cartas.ColeccionDeCartasPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 
 public class Jugador {
     private final String color;
-    private final ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais();
+    private final CartasPaisJugador cartasPais = new ColeccionDeCartasPais();
     private int fichas;
     private boolean conquistoPais;
     private ObjetivoTeg objetivoTeg;
@@ -49,9 +51,6 @@ public class Jugador {
         return false;
     }
 
-    public ColeccionDeCartasPais devolverCartasPais(){
-        return this.cartasPais;
-    }
     public boolean esElMismoJugador(Jugador unJugador){
         return this == unJugador;
     }
@@ -60,24 +59,28 @@ public class Jugador {
         return (this.fichas > 0);
     }
 
-    public void hacerCanje(ColeccionDeCartasPais cartasPaisTeg) {
+    public void hacerCanje(CartasPaisTeg cartasPaisTeg) {
         this.cartasPais.canjeDeCartas(this,cartasPaisTeg);
     }
-
 
     public void conquistoPais() {
         this.conquistoPais = true;
     }
 
     public void darObjetivo(ObjetivoTeg objetivoTeg) {
+        objetivoTeg.setDuenio(this);
         this.objetivoTeg = objetivoTeg;
     }
 
     public boolean gano(Teg teg){
-        return this.objetivoTeg.cumplioObjetivo(teg,this);
+        return this.objetivoTeg.cumplioObjetivo(teg);
     }
 
-    public String devolverColor(){
+    public  void activarCartas(){
+        this.cartasPais.activarCartas(this);
+    }
+
+    public String getColor(){
         return this.color;
     }
 }
