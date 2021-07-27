@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.cartas.CartaPais;
+import edu.fiuba.algo3.modelo.cartas.ColeccionDeCartasPais;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -109,6 +111,188 @@ public class ColeccionDeCartasPaisTest {
         Jugador jugadorUno = new Jugador("Julian");
         assertFalse(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
         assertEquals(0,jugadorUno.sacarFichas(0));
+    }
+
+
+    @Test
+    public void segundoCanjeDaSieteFichasAJugador(){
+        cartas.add(new CartaPais("Alaska","Globo"));
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
+        Jugador jugadorUno = new Jugador("Julian");
+
+        //Suma 4 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        jugadorUno.sacarFichas(4);
+
+        cartasPais.agregarCartaPais(new CartaPais("Algo","Cañon"));
+        //Suma 7 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        assertEquals(7,jugadorUno.sacarFichas(0));
+
+    }
+
+
+    @Test
+    public void tercerCanjeDaDiezFichasAJugador(){
+        cartas.add(new CartaPais("Alaska","Globo"));
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
+        Jugador jugadorUno = new Jugador("Julian");
+
+        //Suma 4 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        jugadorUno.sacarFichas(4);
+
+        cartasPais.agregarCartaPais(new CartaPais("Algo","Cañon"));
+        //Suma 7 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        jugadorUno.sacarFichas(7);
+
+        cartasPais.agregarCartasPais(List.of(
+                new CartaPais("A","Cañon"),
+                new CartaPais("B","Cañon"),
+                new CartaPais("C","Cañon")));
+        //Suma 10 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        assertEquals(10,jugadorUno.sacarFichas(0));
+
+
+    }
+
+
+    @Test
+    public void cuartoCanjeDaQuinceFichasAJugador(){
+        cartas.add(new CartaPais("Alaska","Globo"));
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
+        Jugador jugadorUno = new Jugador("Julian");
+
+        //Suma 4 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        jugadorUno.sacarFichas(4);
+
+        cartasPais.agregarCartaPais(new CartaPais("Algo","Cañon"));
+        //Suma 7 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        jugadorUno.sacarFichas(7);
+
+        cartasPais.agregarCartasPais(List.of(
+                new CartaPais("A","Cañon"),
+                new CartaPais("B","Cañon"),
+                new CartaPais("C","Cañon")));
+        //Suma 10 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        jugadorUno.sacarFichas(10);
+
+        cartasPais.agregarCartasPais(List.of(
+                new CartaPais("A","Cañon"),
+                new CartaPais("B","Cañon"),
+                new CartaPais("C","Cañon")));
+        //Suma 15 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        assertEquals(15,jugadorUno.sacarFichas(0));
+
+
+    }
+
+    @Test
+    public void enesimoCanjeDaCincoFichasMasQueElCanjeAnteriorAJugador(){
+        cartas.add(new CartaPais("Alaska","Globo"));
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
+        Jugador jugadorUno = new Jugador("Julian");
+
+
+        //Suma 4 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        jugadorUno.sacarFichas(4);
+
+        cartasPais.agregarCartaPais(new CartaPais("Algo","Cañon"));
+        //Suma 7 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        jugadorUno.sacarFichas(7);
+
+        cartasPais.agregarCartasPais(List.of(
+                new CartaPais("A","Cañon"),
+                new CartaPais("B","Cañon"),
+                new CartaPais("C","Cañon")));
+        //Suma 10 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        jugadorUno.sacarFichas(10);
+
+        cartasPais.agregarCartasPais(List.of(
+                new CartaPais("A","Cañon"),
+                new CartaPais("B","Cañon"),
+                new CartaPais("C","Cañon")));
+        //Suma 15 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        jugadorUno.sacarFichas(15);
+
+        cartasPais.agregarCartasPais(List.of(
+                new CartaPais("A","Cañon"),
+                new CartaPais("B","Cañon"),
+                new CartaPais("C","Cañon")));
+        //Suma 20 fichas a Jugador
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        assertEquals(20,jugadorUno.sacarFichas(0));
+
+    }
+
+    @Test
+    public void coleccionConDosCanjesPosiblesHaceUnoNoPierdeElOtro(){
+        cartas.add(new CartaPais("Alaska","Globo"));
+        cartas.add(new CartaPais("Alaska","Cañon"));
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
+        Jugador jugadorUno = new Jugador("Julian");
+
+        assertEquals(6,cartasPais.cantidadDeCartas());
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        assertEquals(3,cartasPais.cantidadDeCartas());
+
+    }
+
+    @Test
+    public void coleccionConDosCanjesPosiblesHaceLosDosCanjes(){
+        cartas.add(new CartaPais("Alaska","Barco"));
+        cartas.add(new CartaPais("Alaska","Barco"));
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
+        Jugador jugadorUno = new Jugador("Julian");
+
+        assertEquals(6,cartasPais.cantidadDeCartas());
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        assertEquals(3,cartasPais.cantidadDeCartas());
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,new ColeccionDeCartasPais()));
+        assertEquals(11,jugadorUno.sacarFichas(0));
+    }
+
+    @Test
+    public void coleccionAlHacerCanjePasaBienLasCartasALaOtraColeccionUnCanje(){
+        cartas.add(new CartaPais("Alaska","Barco"));
+        cartas.add(new CartaPais("Alaska","Barco"));
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
+        ColeccionDeCartasPais mazo = new ColeccionDeCartasPais();
+        Jugador jugadorUno = new Jugador("Julian");
+
+
+        assertEquals(6,cartasPais.cantidadDeCartas());
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,mazo));
+        assertEquals(3,cartasPais.cantidadDeCartas());
+        assertEquals(3,mazo.cantidadDeCartas());
+    }
+
+    @Test
+    public void coleccionAlHacerCanjePasaBienLasCartasALaOtraColeccionDosCanjes(){
+        cartas.add(new CartaPais("Alaska","Barco"));
+        cartas.add(new CartaPais("Alaska","Barco"));
+        ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais(cartas);
+        ColeccionDeCartasPais mazo = new ColeccionDeCartasPais();
+        Jugador jugadorUno = new Jugador("Julian");
+
+
+        assertEquals(6,cartasPais.cantidadDeCartas());
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,mazo));
+        assertEquals(3,cartasPais.cantidadDeCartas());
+        assertEquals(3,mazo.cantidadDeCartas());
+        assertTrue(cartasPais.canjeDeCartas(jugadorUno,mazo));
+        assertEquals(0,cartasPais.cantidadDeCartas());
+        assertEquals(6,mazo.cantidadDeCartas());
     }
 
 }

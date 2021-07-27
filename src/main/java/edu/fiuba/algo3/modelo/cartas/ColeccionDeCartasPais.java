@@ -1,11 +1,13 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.cartas;
 
+
+import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.*;
 
 public class ColeccionDeCartasPais {
     private List<CartaPais> cartasPais;
-    private int fichasCanje = 4;
+    private Canje numeroDecanje = new PrimerosCanjes();
 
     public ColeccionDeCartasPais(List<CartaPais> cartaPais) {
         this.cartasPais = cartaPais;
@@ -75,8 +77,8 @@ public class ColeccionDeCartasPais {
         CartaPais carta;
         for(String simbolo: simbolos) {
             carta = this.cartasPais.stream().filter(cartaPais -> cartaPais.esSimbolo(simbolo))
-                    .findFirst()
-                    .orElse(null);
+                    .findFirst().orElse(null);
+
             if(carta != null){
                 cartas.add(carta);
                 this.cartasPais.remove(carta);
@@ -98,14 +100,9 @@ public class ColeccionDeCartasPais {
             return false;
         }
         List<String> simbolos = List.of("Globo","Barco","Cañon");
-        if (canjearTresCartasIgules(simbolos,cartasPais) || canjearTresCartasDistintas(simbolos,cartasPais)){
-            unJugador.agregarFichas(this.fichasCanje);
 
-            if(this.fichasCanje < 10){
-                this.fichasCanje += 3;
-            }else{
-                this.fichasCanje += 5;
-            }
+        if (canjearTresCartasIgules(simbolos,cartasPais) || canjearTresCartasDistintas(simbolos,cartasPais)){
+            this.numeroDecanje = this.numeroDecanje.hacerCanje(unJugador);
             return true;
         }
         return false;

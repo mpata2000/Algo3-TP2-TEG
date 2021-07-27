@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.excepciones.JugadorNoTieneSuficientesFichas;
+import edu.fiuba.algo3.modelo.turnos.Turnos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static edu.fiuba.algo3.vistas.colores.FontSelection.Verde;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -46,6 +48,10 @@ public class TurnosTest {
         Teg teg = new Teg(tablero,jugadores);
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
+        paisesAsia.get(0).asignarJugador(jugadores.get("Amarillo"));
+
+        //La cantidad de fichas se calcula la primera vez que trata de poner fichas
+        turnos.colocarEjercitos("China",0);
         assertEquals(5,jugadores.get("Amarillo").sacarFichas(0));
     }
 
@@ -63,8 +69,12 @@ public class TurnosTest {
 
 
         turnos.colocarEjercitos("China",5);
+        turnos.finEtapa();
         turnos.colocarEjercitos("Japon",5);
+        turnos.finEtapa();
 
+        //La cantidad de fichas se calcula la primera vez que trata de poner fichas
+        turnos.colocarEjercitos("China",0);
         assertEquals(3,jugadores.get("Amarillo").sacarFichas(0));
     }
 
@@ -92,9 +102,12 @@ public class TurnosTest {
         paisesAsia.get(0).asignarJugador(jugadores.get("Amarillo"));
         paisesAsia.get(1).asignarJugador(jugadores.get("Rojo"));
         turnos.colocarEjercitos("China",5);
+        turnos.finEtapa();
         turnos.colocarEjercitos("Japon",5);
+        turnos.finEtapa();
 
         assertThrows(JugadorNoTieneSuficientesFichas.class,()-> turnos.colocarEjercitos("China",4));
+        turnos.finEtapa();
 
     }
 
@@ -105,7 +118,9 @@ public class TurnosTest {
         turnos.agregarJugador("Amarillo");
         turnos.comenzarJuego();
         turnos.colocarEjercitos("Argentina",5);
+        turnos.finEtapa();
         turnos.colocarEjercitos("Argentina",3);
+        turnos.finEtapa();
         assertTrue(turnos.devolverRondaActual().esAtaque());
     }
 
@@ -115,20 +130,10 @@ public class TurnosTest {
         turnos.agregarJugador("Amarillo");
         turnos.comenzarJuego();
         turnos.colocarEjercitos("Argentina",5);
+        turnos.finEtapa();
         turnos.colocarEjercitos("Argentina",3);
-        turnos.finAtaque();
-        assertTrue(turnos.devolverRondaActual().esReagrupacion());
-    }
-
-    @Test
-    public void jugadorPoneLasOchoFichasInicialesYFinalizaSuAtaqueDosVecesEsRondaDeReagrupacion(){
-        Turnos turnos = new Turnos();
-        turnos.agregarJugador("Amarillo");
-        turnos.comenzarJuego();
-        turnos.colocarEjercitos("Argentina",5);
-        turnos.colocarEjercitos("Argentina",3);
-        turnos.finAtaque();
-        turnos.finAtaque();
+        turnos.finEtapa();
+        turnos.finEtapa();
         assertTrue(turnos.devolverRondaActual().esReagrupacion());
     }
 
@@ -138,9 +143,11 @@ public class TurnosTest {
         turnos.agregarJugador("Amarillo");
         turnos.comenzarJuego();
         turnos.colocarEjercitos("Argentina",5);
+        turnos.finEtapa();
         turnos.colocarEjercitos("Argentina",3);
-        turnos.finAtaque();
-        turnos.finReagrupacion();
+        turnos.finEtapa();
+        turnos.finEtapa();
+        turnos.finEtapa();
         assertTrue(turnos.devolverRondaActual().esColocacion());
     }
 
@@ -159,15 +166,19 @@ public class TurnosTest {
 
         assertEquals("Amarillo",turnos.getJugadorActual());
         turnos.colocarEjercitos("China",5);
+        turnos.finEtapa();
 
         assertEquals("Rojo",turnos.getJugadorActual());
         turnos.colocarEjercitos("Borneo",5);
+        turnos.finEtapa();
 
         assertEquals("Amarillo",turnos.getJugadorActual());
         turnos.colocarEjercitos("Rusia",3);
+        turnos.finEtapa();
 
         assertEquals("Rojo",turnos.getJugadorActual());
         turnos.colocarEjercitos("Australia",3);
+        turnos.finEtapa();
 
 
         assertTrue(turnos.devolverRondaActual().esAtaque());
@@ -182,7 +193,7 @@ public class TurnosTest {
         jugadores.put("Verde",new Jugador("Verde"));
         tablero = new Tablero(continentes,paises);
         Teg teg = new Teg(tablero,jugadores);
-        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo","Verde"));
 
         for (Pais pais : paisesAsia){
             pais.asignarJugador(jugadores.get("Rojo"));
@@ -194,10 +205,17 @@ public class TurnosTest {
         (paisesOceania.get(3)).asignarJugador(jugadores.get("Verde"));
 
         turnos.colocarEjercitos("Borneo",5);
+        turnos.finEtapa();
         turnos.colocarEjercitos("China",5);
+        turnos.finEtapa();
+        turnos.colocarEjercitos("Australia",5);
+        turnos.finEtapa();
         turnos.colocarEjercitos("Borneo",3);
+        turnos.finEtapa();
         turnos.colocarEjercitos("Rusia",3);
-        turnos.colocarEjercitos("Australia",8);
+        turnos.finEtapa();
+        turnos.colocarEjercitos("Australia",3);
+        turnos.finEtapa();
 
         assertTrue(turnos.devolverRondaActual().esAtaque());
         assertTrue(continentes.get(1).esDeJugador(jugadores.get("Rojo")));
@@ -229,9 +247,13 @@ public class TurnosTest {
         (paisesOceania.get(3)).asignarJugador(jugadores.get("Rojo"));
 
         turnos.colocarEjercitos("Sumatra",5);
+        turnos.finEtapa();
         turnos.colocarEjercitos("China",5);
+        turnos.finEtapa();
         turnos.colocarEjercitos("Sumatra",3);
+        turnos.finEtapa();
         turnos.colocarEjercitos("China",3);
+        turnos.finEtapa();
         jugadores.get("Amarillo").agregarFichas(2);
         turnos.atacar("Australia","Borneo",3);
         turnos.atacar("Australia","Java",3);
@@ -254,28 +276,32 @@ public class TurnosTest {
 
         assertEquals("Amarillo",turnos.getJugadorActual());
         turnos.colocarEjercitos("China",5);
+        turnos.finEtapa();
 
         assertEquals("Rojo",turnos.getJugadorActual());
         turnos.colocarEjercitos("Borneo",5);
+        turnos.finEtapa();
 
         assertEquals("Amarillo",turnos.getJugadorActual());
         turnos.colocarEjercitos("Rusia",3);
+        turnos.finEtapa();
 
         assertEquals("Rojo",turnos.getJugadorActual());
         turnos.colocarEjercitos("Australia",3);
+        turnos.finEtapa();
 
 
         assertTrue(turnos.devolverRondaActual().esAtaque());
-        turnos.finAtaque();
+        turnos.finEtapa();
         assertTrue(turnos.devolverRondaActual().esReagrupacion());
-        turnos.finReagrupacion();
+        turnos.finEtapa();
         assertTrue(turnos.devolverRondaActual().esAtaque());
         assertEquals("Rojo",turnos.getJugadorActual());
 
         assertTrue(turnos.devolverRondaActual().esAtaque());
-        turnos.finAtaque();
+        turnos.finEtapa();
         assertTrue(turnos.devolverRondaActual().esReagrupacion());
-        turnos.finReagrupacion();
+        turnos.finEtapa();
         assertTrue(turnos.devolverRondaActual().esColocacion());
     }
 }

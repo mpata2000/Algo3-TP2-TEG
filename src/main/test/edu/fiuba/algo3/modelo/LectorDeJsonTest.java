@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.lector.LectorDeJson;
+import edu.fiuba.algo3.modelo.cartas.CartaPais;
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -39,5 +41,13 @@ public class LectorDeJsonTest {
         for(CartaPais carta: cartasPais){
             assertEquals(tablero.getPais(carta.getNombrePais()),carta.getPais());
         }
+    }
+
+    @Test
+    public void creacionDeObjetivosConquista(){
+        LectorDeJson lector = new LectorDeJson();
+        List<ObjetivoTeg> objetivos = lector.lectorObjetivosConquista("resources/Teg-Objetivos.json");
+
+        assertEquals(9,objetivos.size());
     }
 }
