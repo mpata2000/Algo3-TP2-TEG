@@ -21,7 +21,7 @@ public class ObjetivoDestruccion extends ObjetivoTeg{
     public void setDuenio(Jugador unJugador){
         this.duenioObjetivo = unJugador;
         if(unJugador.esElMismoJugador(jugadorADestruir) || (jugadorADestruir == null)){
-            jugadorADestruir = jugadores.get(jugadores.indexOf(unJugador)+1);
+            jugadorADestruir = jugadores.get(jugadores.indexOf(unJugador)+1%jugadores.size());
         }
     }
 

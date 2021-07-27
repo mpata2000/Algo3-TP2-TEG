@@ -115,7 +115,7 @@ public class JugadorTest {
     public void siJugadorCumplioObjetivoGano(){
         ObjetivoTeg objetivo = Mockito.mock(ObjetivoTeg.class);
         Teg teg = new Teg();
-        when(objetivo.cumplioObjetivo(teg,jugador)).thenReturn(true);
+        when(objetivo.cumplioObjetivo(teg)).thenReturn(true);
         jugador.darObjetivo(objetivo);
         assertTrue(jugador.gano(teg));
     }
@@ -124,7 +124,7 @@ public class JugadorTest {
     public void siJugadorNoCumplioObjetivoNoGano(){
         ObjetivoTeg objetivo = Mockito.mock(ObjetivoTeg.class);
         Teg teg = new Teg();
-        when(objetivo.cumplioObjetivo(teg,jugador)).thenReturn(false);
+        when(objetivo.cumplioObjetivo(teg)).thenReturn(false);
         jugador.darObjetivo(objetivo);
         assertFalse(jugador.gano(teg));
     }

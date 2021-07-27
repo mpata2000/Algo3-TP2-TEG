@@ -28,7 +28,8 @@ public class ObjetivoTegTests {
         Teg teg = Mockito.mock(Teg.class);
         when(teg.cantidadDePaisesJugador(jugadorUno)).thenReturn(0);
         when(teg.continenteEsDeJugador("Africa",jugadorUno)).thenReturn(false);
-        assertFalse(objetivo.cumplioObjetivo(teg,jugadorUno));
+        objetivo.setDuenio(jugadorUno);
+        assertFalse(objetivo.cumplioObjetivo(teg));
     }
 
     @Test
@@ -37,7 +38,8 @@ public class ObjetivoTegTests {
         Jugador jugadorUno = new Jugador("Rojo");
         Teg teg = Mockito.mock(Teg.class);
         when(teg.cantidadDePaisesJugador(jugadorUno)).thenReturn(30);
-        assertTrue(objetivo.cumplioObjetivo(teg,jugadorUno));
+        objetivo.setDuenio(jugadorUno);
+        assertTrue(objetivo.cumplioObjetivo(teg));
     }
 
     @Test
@@ -47,6 +49,7 @@ public class ObjetivoTegTests {
         Teg teg = Mockito.mock(Teg.class);
         when(teg.cantidadDePaisesJugador(jugadorUno)).thenReturn(0);
         when(teg.continenteEsDeJugador("Africa",jugadorUno)).thenReturn(true);
-        assertTrue(objetivo.cumplioObjetivo(teg,jugadorUno));
+        objetivo.setDuenio(jugadorUno);
+        assertTrue(objetivo.cumplioObjetivo(teg));
     }
 }
