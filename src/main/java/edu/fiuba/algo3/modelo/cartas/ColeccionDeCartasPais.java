@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Jugador;
 import java.util.*;
 
 public class ColeccionDeCartasPais implements CartasPaisTeg,CartasPaisJugador{
-    private List<CartaPais> cartasPais;
+    private final List<CartaPais> cartasPais;
     private Canje numeroDecanje = new PrimerosCanjes();
 
     public ColeccionDeCartasPais(List<CartaPais> cartaPais) {

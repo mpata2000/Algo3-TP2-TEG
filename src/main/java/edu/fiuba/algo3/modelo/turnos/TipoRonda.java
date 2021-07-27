@@ -13,13 +13,13 @@ public interface TipoRonda {
 
     boolean esReagrupacion();
 
-    void atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad);
+    void atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad) throws NoSePuedeHacerEstaAccionEnEstaRonda;
 
-    void pasarFichas(Teg teg,String paisUno,String paisdos,int cant);
+    void pasarFichas(Teg teg,String paisUno,String paisdos,int cant)throws NoSePuedeHacerEstaAccionEnEstaRonda;
 
-    void colocarEjercitos(Teg teg,String nombrePais, int cantidad);
+    void colocarFichas(Teg teg, String nombrePais, int cantidad)throws NoSePuedeHacerEstaAccionEnEstaRonda;
 
-    TipoRonda finEtapa(List<String> jugadores);
+    TipoRonda finEtapa(List<String> jugadores,Teg teg);
 
     String getJugadorActual();
 }

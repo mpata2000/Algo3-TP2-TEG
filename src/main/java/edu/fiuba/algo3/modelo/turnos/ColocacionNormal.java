@@ -12,6 +12,6 @@ public class ColocacionNormal implements TipoColocacion{
 
     @Override
     public TipoRonda pasarDeRonda(List<String> jugadores){
-        return  new RondaAtaque(jugadores);
+        return  new RondaAtaque(jugadores.get(0));
     }
 }

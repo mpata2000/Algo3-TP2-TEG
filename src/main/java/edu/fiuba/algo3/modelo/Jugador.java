@@ -63,7 +63,6 @@ public class Jugador {
         this.cartasPais.canjeDeCartas(this,cartasPaisTeg);
     }
 
-
     public void conquistoPais() {
         this.conquistoPais = true;
     }

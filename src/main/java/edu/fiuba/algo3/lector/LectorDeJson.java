@@ -2,11 +2,13 @@ package edu.fiuba.algo3.lector;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.cartas.CartaPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoConquista;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoDestruccion;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
+import edu.fiuba.algo3.modelo.tablero.Continente;
+import edu.fiuba.algo3.modelo.tablero.Pais;
+import edu.fiuba.algo3.modelo.tablero.Tablero;
 
 import java.io.*;
 import java.lang.reflect.Type;

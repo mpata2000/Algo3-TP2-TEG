@@ -12,13 +12,13 @@ public class RondaColocacion implements TipoRonda {
     private String jugadorActual;
     private boolean turnoInicilizado = false;
 
-    RondaColocacion(List<String> jugadores){
+    public RondaColocacion(List<String> jugadores){
         this.tipoColocacion = new ColocacionPrimeraRonda();
         this.iteradorJugadores = jugadores.listIterator();
         this.jugadorActual = this.iteradorJugadores.next();
     }
 
-    RondaColocacion(TipoColocacion colocacion,List<String> jugadores){
+    public RondaColocacion(TipoColocacion colocacion,List<String> jugadores){
         this.tipoColocacion = colocacion;
         this.iteradorJugadores = jugadores.listIterator();
         this.jugadorActual = this.iteradorJugadores.next();
@@ -58,13 +58,17 @@ public class RondaColocacion implements TipoRonda {
     }
 
     @Override
-    public void colocarEjercitos(Teg teg,String nombrePais, int cantidad){
+    public void colocarFichas(Teg teg, String nombrePais, int cantidad){
         this.inicializarTurno(teg);
         teg.colocarFichas(jugadorActual,nombrePais,cantidad);
     }
 
     @Override
-    public TipoRonda finEtapa(List<String> jugadores){
+    public TipoRonda finEtapa(List<String> jugadores,Teg teg){
+        if(teg.jugadorTieneFichas(this.jugadorActual)){
+            //Todo tirar excepcion
+            return this;
+        }
         if(this.iteradorJugadores.hasNext()){
             this.jugadorActual = this.iteradorJugadores.next();
             this.turnoInicilizado = false;

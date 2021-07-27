@@ -1,12 +1,16 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.cartas.CartaPais;
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
+import edu.fiuba.algo3.modelo.tablero.Pais;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 public class JugadorTest {
 
@@ -105,5 +109,23 @@ public class JugadorTest {
     public void jugadorConSieteFichasPuedePonerSieteFichas(){
         jugador.agregarFichas(7);
         assertTrue(jugador.puedeColocarFichas(7));
+    }
+
+    @Test
+    public void siJugadorCumplioObjetivoGano(){
+        ObjetivoTeg objetivo = Mockito.mock(ObjetivoTeg.class);
+        Teg teg = new Teg();
+        when(objetivo.cumplioObjetivo(teg,jugador)).thenReturn(true);
+        jugador.darObjetivo(objetivo);
+        assertTrue(jugador.gano(teg));
+    }
+
+    @Test
+    public void siJugadorNoCumplioObjetivoNoGano(){
+        ObjetivoTeg objetivo = Mockito.mock(ObjetivoTeg.class);
+        Teg teg = new Teg();
+        when(objetivo.cumplioObjetivo(teg,jugador)).thenReturn(false);
+        jugador.darObjetivo(objetivo);
+        assertFalse(jugador.gano(teg));
     }
 }

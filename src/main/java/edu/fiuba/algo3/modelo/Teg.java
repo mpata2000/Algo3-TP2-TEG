@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
 import edu.fiuba.algo3.modelo.cartas.ColeccionDeCartasPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoDestruccion;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
+import edu.fiuba.algo3.modelo.tablero.Tablero;
 
 import java.util.*;
 
@@ -104,5 +105,21 @@ public class Teg {
 
     public boolean continenteEsDeJugador(String continente,Jugador jugador) {
         return this.tablero.continenteEsDeJugador(continente,jugador);
+    }
+
+    public boolean hayGanador(){
+        return this.jugadores.values().stream().anyMatch(j -> j.gano(this));
+    }
+
+    public boolean jugadorTieneFichas(String colorJugador) {
+        return this.jugadores.get(colorJugador).tieneFichas();
+    }
+
+    public String getGanador() {
+        return this.jugadores.entrySet().stream()
+                .filter(e -> e.getValue().gano(this))
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse(null);
     }
 }

@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.excepciones.JugadorNoTieneSuficientesFichas;
+import edu.fiuba.algo3.modelo.tablero.Continente;
+import edu.fiuba.algo3.modelo.tablero.Pais;
+import edu.fiuba.algo3.modelo.tablero.Tablero;
 import edu.fiuba.algo3.modelo.turnos.Turnos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static edu.fiuba.algo3.vistas.colores.FontSelection.Verde;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
