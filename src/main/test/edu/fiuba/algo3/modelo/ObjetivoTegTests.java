@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoConquista;
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoDestruccion;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,4 +53,27 @@ public class ObjetivoTegTests {
         objetivo.setDuenio(jugadorUno);
         assertTrue(objetivo.cumplioObjetivo(teg));
     }
+
+    @Test
+    public void objetivoDestruccionCumplido(){
+        Jugador jugadorUno = new Jugador("Rojo");
+        Jugador jugadorDos = new Jugador("Negro");
+        ObjetivoTeg objetivo = new ObjetivoDestruccion("Rojo", List.of(jugadorDos, jugadorUno));
+        objetivo.setDuenio(jugadorDos);
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.cantidadDePaisesJugador(jugadorUno)).thenReturn(0);
+        assertTrue(objetivo.cumplioObjetivo(teg));
+    }
+
+    @Test
+    public void objetivoDestruccionNoCumplido(){
+        Jugador jugadorUno = new Jugador("Rojo");
+        Jugador jugadorDos = new Jugador("Negro");
+        ObjetivoTeg objetivo = new ObjetivoDestruccion("Rojo", List.of(jugadorDos, jugadorUno));
+        objetivo.setDuenio(jugadorDos);
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.cantidadDePaisesJugador(jugadorUno)).thenReturn(3);
+        assertFalse(objetivo.cumplioObjetivo(teg));
+    }
+
 }
