@@ -2,6 +2,7 @@ package edu.fiuba.algo3.lector;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.cartas.CartaPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoConquista;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoDestruccion;
@@ -59,17 +60,13 @@ public class LectorDeJson {
     public List<ObjetivoTeg> lectorObjetivosConquista(String pathArchivo) {
         Reader jsonLeido = this.setReader(pathArchivo);
         Type datasetListType = new TypeToken<Collection<ObjetivoConquista>>() {}.getType();
-        List<ObjetivoTeg> objetivos = new Gson().fromJson(jsonLeido, datasetListType);
-        return objetivos;
+        return new Gson().fromJson(jsonLeido, datasetListType);
     }
 
-    public List<ObjetivoDestruccion> retornarObjetivosDestruccion(){
-        List<ObjetivoDestruccion> objetivosDestruccion = new ArrayList<>();
-        String[] colores =  new String[]  {"Verde","Rosa","Azul","Rojo","Rosa","Negro"};
-        int i= 0;
-        while (i<6){
-            objetivosDestruccion.add(new ObjetivoDestruccion(colores[i]));
-            i++;
+    public static List<ObjetivoTeg> creadorDeObjetivososDestruccion(List<Jugador> jugadoresEnOrden){
+        List<ObjetivoTeg> objetivosDestruccion = new ArrayList<>();
+        for(String color: List.of("Verde","Rosa","Azul","Rojo","Rosa","Negro")){
+            objetivosDestruccion.add(new ObjetivoDestruccion(color,jugadoresEnOrden));
         }
         return objetivosDestruccion;
     }

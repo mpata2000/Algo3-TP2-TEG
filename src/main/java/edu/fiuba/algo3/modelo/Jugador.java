@@ -68,18 +68,19 @@ public class Jugador {
     }
 
     public void darObjetivo(ObjetivoTeg objetivoTeg) {
+        objetivoTeg.setDuenio(this);
         this.objetivoTeg = objetivoTeg;
     }
 
     public boolean gano(Teg teg){
-        return this.objetivoTeg.cumplioObjetivo(teg,this);
+        return this.objetivoTeg.cumplioObjetivo(teg);
     }
 
     public  void activarCartas(){
         this.cartasPais.activarCartas(this);
     }
 
-    public String devolverColor(){
+    public String getColor(){
         return this.color;
     }
 }

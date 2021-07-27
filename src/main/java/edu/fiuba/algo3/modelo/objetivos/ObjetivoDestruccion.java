@@ -3,31 +3,30 @@ package edu.fiuba.algo3.modelo.objetivos;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Teg;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class ObjetivoDestruccion extends ObjetivoTeg{
-    private String colorADestruir;
+    private final List<Jugador> jugadores;
+    private Jugador jugadorADestruir;
 
-    public ObjetivoDestruccion(String color){
-        this.colorADestruir = color;
-    }
-    protected boolean objetivoJugador(Teg teg, Jugador jugador){
-        return true;
-    }
-
-    public String getColor(){
-        return this.colorADestruir;
+    public ObjetivoDestruccion(String color,List<Jugador> jugadoresEnOrden){
+        this.jugadorADestruir = jugadoresEnOrden.stream()
+                .filter(j -> j.getColor().equalsIgnoreCase(color))
+                .findFirst()
+                .orElse(null);
+        this.jugadores = jugadoresEnOrden;
     }
 
-    private Boolean destruyoEnemigo(HashMap<String,Jugador> jugadores){
-        /*
-        if(jugadores.get(this.colorADestruir).devolverCartasPais() == null){
-            return true;
-        }return false;
+    @Override
+    public void setDuenio(Jugador unJugador){
+        this.duenioObjetivo = unJugador;
+        if(unJugador.esElMismoJugador(jugadorADestruir) || (jugadorADestruir == null)){
+            jugadorADestruir = jugadores.get(jugadores.indexOf(unJugador)+1);
+        }
+    }
 
-         */
-        return  false;
+    protected boolean objetivoJugador(Teg teg){
+        return (teg.cantidadDePaisesJugador(jugadorADestruir) < 1);
     }
 
 }
