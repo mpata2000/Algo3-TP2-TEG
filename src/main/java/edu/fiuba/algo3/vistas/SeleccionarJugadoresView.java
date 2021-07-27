@@ -1,19 +1,14 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.SeleccionarJugadoresController;
 import edu.fiuba.algo3.controllers.VolverInicioController;
-import edu.fiuba.algo3.vistas.botones.IniciarPartidaButton;
+import edu.fiuba.algo3.vistas.botones.ColorPickerButton;
 import edu.fiuba.algo3.vistas.botones.VolverInicioButton;
 import edu.fiuba.algo3.vistas.colores.FontSelection;
 import edu.fiuba.algo3.vistas.grillas.MenuInicioGrid;
 import edu.fiuba.algo3.vistas.texto.SeleccionarJugadorMessage;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class SeleccionarJugadoresView extends StackPane {
@@ -32,39 +27,37 @@ public class SeleccionarJugadoresView extends StackPane {
         SeleccionarJugadorMessage textoAlgoHootInicio = new SeleccionarJugadorMessage(FontSelection.Negro);
         nombreJuego.getChildren().add(textoAlgoHootInicio);
 
-        VBox cajaJugadores = new VBox(10);
-        cajaJugadores.setAlignment(Pos.CENTER);
+        VBox botonesColores = new VBox(0);
+        botonesColores.setAlignment(Pos.BOTTOM_CENTER);
 
-        Label labelJugador1 = new Label("Ingrese el nombre del Jugador 1");
-        labelJugador1.setFont(Font.font(FontSelection.TitleFontType,20));
-        labelJugador1.setTextFill(Color.web(FontSelection.Negro));
-        cajaJugadores.getChildren().add(labelJugador1);
+        ColorPickerButton botonAmarillo = new ColorPickerButton(FontSelection.Amarillo);
+        botonesColores.getChildren().add(botonAmarillo);
 
-        TextField campoNombreJugador1 = new TextField();
-        campoNombreJugador1.setMaxWidth(300);
-        cajaJugadores.getChildren().add(campoNombreJugador1);
+        ColorPickerButton botonMagenta = new ColorPickerButton(FontSelection.Magenta);
+        botonesColores.getChildren().add(botonMagenta);
 
-        Label labelJugador2 = new Label("Ingrese el nombre del Jugador 2");
-        labelJugador2.setFont(Font.font(FontSelection.TitleFontType,20));
-        labelJugador2.setTextFill(Color.web(FontSelection.Negro));
-        cajaJugadores.getChildren().add(labelJugador2);
+        ColorPickerButton botonNegro = new ColorPickerButton(FontSelection.Negro);
+        botonesColores.getChildren().add(botonNegro);
 
-        TextField campoNombreJugador2 = new TextField();
-        campoNombreJugador2.setMaxWidth(300);
-        cajaJugadores.getChildren().add(campoNombreJugador2);
+        ColorPickerButton botonVerde = new ColorPickerButton(FontSelection.Verde);
+        botonesColores.getChildren().add(botonVerde);
 
-        VBox botonConfirmado = new VBox(0);
-        botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
+        ColorPickerButton botonAzul = new ColorPickerButton(FontSelection.Azul);
+        botonesColores.getChildren().add(botonAzul);
 
-        IniciarPartidaButton botonInicio = new IniciarPartidaButton(new SeleccionarJugadoresController(stage,campoNombreJugador1,campoNombreJugador2,contenedorPrincipal));
-        botonConfirmado.getChildren().add(botonInicio);
+        VBox botonesMenu = new VBox(0);
+        botonesMenu.setAlignment(Pos.BOTTOM_CENTER);
 
         VolverInicioButton botonVolverInicio = new VolverInicioButton(new VolverInicioController(stage, contenedorPrincipal));
-        botonConfirmado.getChildren().add(botonVolverInicio);
+        botonesMenu.getChildren().add(botonVolverInicio);
+
+        /*Tooltip tooltip = new Tooltip("Boton Volver");
+        Tooltip.install(botonVolverInicio,tooltip);
+        botonVolverInicio.setStyle("-fx-background-color:yellow;-fx-margin:10px");*/
 
         grillaInicio.add(nombreJuego,0,0);
-        grillaInicio.add(cajaJugadores,0,1);
-        grillaInicio.add(botonConfirmado,0,2);
+        grillaInicio.add(botonesColores,0,1);
+        grillaInicio.add(botonesMenu,0,2);
 
         super.getChildren().add(grillaInicio);
     }
