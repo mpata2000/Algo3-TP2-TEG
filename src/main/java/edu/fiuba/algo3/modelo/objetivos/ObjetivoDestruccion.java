@@ -21,9 +21,13 @@ public class ObjetivoDestruccion extends ObjetivoTeg{
     }
 
     private Boolean destruyoEnemigo(HashMap<String,Jugador> jugadores){
+        /*
         if(jugadores.get(this.colorADestruir).devolverCartasPais() == null){
             return true;
         }return false;
+
+         */
+        return  false;
     }
 
 }

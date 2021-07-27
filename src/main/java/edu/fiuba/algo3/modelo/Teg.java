@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.lector.LectorDeJson;
+import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
 import edu.fiuba.algo3.modelo.cartas.ColeccionDeCartasPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoDestruccion;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
@@ -10,7 +11,7 @@ import java.util.*;
 public class Teg {
     private final Tablero tablero;
     private Map<String, Jugador> jugadores = new HashMap<>();
-    private final ColeccionDeCartasPais cartas;
+    private final CartasPaisTeg cartas;
     private List<ObjetivoTeg> objetivos = new ArrayList<>();
     private List<ObjetivoDestruccion> objetivosDestruccion = new ArrayList<>();
 
@@ -64,6 +65,7 @@ public class Teg {
         Jugador jugador = this.jugadores.get(colorJugador);
         if(tablero.atacar(jugador,paisAtacante, paisDefensor, cantidad)){
             jugador.conquistoPais();
+            //Todo: Preguntar dar carta automaticamente
             return true;
         }
         return false;
@@ -73,18 +75,19 @@ public class Teg {
         this.tablero.pasarFichas(paisUno, paisDos, cant);
     }
 
-    public boolean jugadorTieneFichas(String colorJugador) {
-        return this.jugadores.get(colorJugador).tieneFichas();
-    }
-
     public void agregarFichasDisponiblesA(String colorJugador) {
         Jugador jugador = this.jugadores.get(colorJugador);
-        jugador.hacerCanje(this.cartas);
+        jugador.activarCartas();
         this.tablero.agregarFichasA(jugador);
+        //Todo: Preguntar si hacer canje automatico
     }
 
     public void agregarFichasA(String colorJugador, int cantidadFichas) {
         this.jugadores.get(colorJugador).agregarFichas(cantidadFichas);
+    }
+
+    public void hacerCanjeJugador(String colorJugador){
+         this.jugadores.get(colorJugador).hacerCanje(this.cartas);
     }
 
     public void darCarta(String colorJugador) {
