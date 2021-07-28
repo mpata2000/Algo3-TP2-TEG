@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.tablero;
 
+import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
 import edu.fiuba.algo3.modelo.Batalla;
 import edu.fiuba.algo3.modelo.Jugador;
 
@@ -75,8 +76,12 @@ public class Tablero {
         }
     }
 
-    public void pasarFichas(String paisUno, String paisDos,int cantidadFichas) {
-        this.getPais(paisUno).pasarFichasA(this.getPais(paisDos),cantidadFichas);
+    public void pasarFichas(Jugador unJugador,String paisUno, String paisDos,int cantidadFichas) {
+        Pais pais = this.getPais(paisUno);
+        if(!pais.esDeJugador(unJugador)) {
+            throw new JugadorNoPoseePaisException();
+        }
+        pais.pasarFichasA(this.getPais(paisDos),cantidadFichas);
     }
 
     public int cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador) {

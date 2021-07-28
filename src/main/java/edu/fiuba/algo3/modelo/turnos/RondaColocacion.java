@@ -24,22 +24,6 @@ public class RondaColocacion implements TipoRonda {
         this.jugadorActual = this.iteradorJugadores.next();
     }
 
-    @Override
-    public boolean esColocacion(){
-        return true;
-    }
-
-
-    @Override
-    public boolean esAtaque(){
-        return false;
-    }
-
-    @Override
-    public boolean esReagrupacion(){
-        return false;
-    }
-
     private void inicializarTurno(Teg teg){
         if(!this.turnoInicilizado) {
             this.tipoColocacion.colocarFichas(jugadorActual, teg);
@@ -47,27 +31,26 @@ public class RondaColocacion implements TipoRonda {
         }
     }
 
-    @Override
+
     public void atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad){
         throw new NoSePuedeHacerEstaAccionEnEstaRonda();
     }
 
-    @Override
+
     public void pasarFichas(Teg teg,String paisUno,String paisdos,int cant){
         throw new NoSePuedeHacerEstaAccionEnEstaRonda();
     }
 
-    @Override
+
     public void colocarFichas(Teg teg, String nombrePais, int cantidad){
         this.inicializarTurno(teg);
         teg.colocarFichas(jugadorActual,nombrePais,cantidad);
     }
 
-    @Override
+
     public TipoRonda finEtapa(List<String> jugadores,Teg teg){
         if(teg.jugadorTieneFichas(this.jugadorActual)){
-            //Todo tirar excepcion
-            return this;
+            throw new JugadorSigueTeniendoFichas();
         }
         if(this.iteradorJugadores.hasNext()){
             this.jugadorActual = this.iteradorJugadores.next();
@@ -78,7 +61,7 @@ public class RondaColocacion implements TipoRonda {
         return this.tipoColocacion.pasarDeRonda(jugadores);
     }
 
-    @Override
+
     public String getJugadorActual() {
         return this.jugadorActual;
     }

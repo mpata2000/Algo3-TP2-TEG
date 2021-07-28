@@ -7,12 +7,6 @@ import java.util.List;
 
 public interface TipoRonda {
 
-    boolean esColocacion();
-
-    boolean esAtaque();
-
-    boolean esReagrupacion();
-
     void atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad) throws NoSePuedeHacerEstaAccionEnEstaRonda;
 
     void pasarFichas(Teg teg,String paisUno,String paisdos,int cant)throws NoSePuedeHacerEstaAccionEnEstaRonda;

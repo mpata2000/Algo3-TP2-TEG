@@ -5,6 +5,9 @@ import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import edu.fiuba.algo3.modelo.tablero.Continente;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
+import edu.fiuba.algo3.modelo.turnos.RondaAtaque;
+import edu.fiuba.algo3.modelo.turnos.RondaColocacion;
+import edu.fiuba.algo3.modelo.turnos.RondaReagrupacion;
 import edu.fiuba.algo3.modelo.turnos.Turnos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -129,7 +132,7 @@ public class TurnosTest {
         turnos.finEtapa();
         turnos.colocarEjercitos("Argentina",3);
         turnos.finEtapa();
-        assertTrue(turnos.devolverRondaActual().esAtaque());
+        assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
     }
 
     @Test
@@ -142,7 +145,7 @@ public class TurnosTest {
         turnos.colocarEjercitos("Argentina",3);
         turnos.finEtapa();
         turnos.finEtapa();
-        assertTrue(turnos.devolverRondaActual().esReagrupacion());
+        assertTrue(turnos.devolverRondaActual() instanceof RondaReagrupacion);
     }
 
     @Test
@@ -175,7 +178,7 @@ public class TurnosTest {
         turnos.finEtapa();
 
 
-        assertTrue(turnos.devolverRondaActual().esAtaque());
+        assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
         assertEquals(6,paisesAsia.get(0).perderFichas(0));
         assertEquals(4,paisesAsia.get(2).perderFichas(0));
         assertEquals(6,paisesOceania.get(0).perderFichas(0));
@@ -211,7 +214,7 @@ public class TurnosTest {
         turnos.colocarEjercitos("Australia",3);
         turnos.finEtapa();
 
-        assertTrue(turnos.devolverRondaActual().esAtaque());
+        assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
         assertTrue(continentes.get(1).esDeJugador(jugadores.get("Rojo")));
     }
 
@@ -287,17 +290,17 @@ public class TurnosTest {
         turnos.finEtapa();
 
 
-        assertTrue(turnos.devolverRondaActual().esAtaque());
+        assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
         turnos.finEtapa();
-        assertTrue(turnos.devolverRondaActual().esReagrupacion());
+        assertTrue(turnos.devolverRondaActual() instanceof RondaReagrupacion);
         turnos.finEtapa();
-        assertTrue(turnos.devolverRondaActual().esAtaque());
+        assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
         assertEquals("Rojo",turnos.getJugadorActual());
 
-        assertTrue(turnos.devolverRondaActual().esAtaque());
+        assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
         turnos.finEtapa();
-        assertTrue(turnos.devolverRondaActual().esReagrupacion());
+        assertTrue(turnos.devolverRondaActual() instanceof RondaReagrupacion);
         turnos.finEtapa();
-        assertTrue(turnos.devolverRondaActual().esColocacion());
+        assertTrue(turnos.devolverRondaActual() instanceof RondaColocacion);
     }
 }

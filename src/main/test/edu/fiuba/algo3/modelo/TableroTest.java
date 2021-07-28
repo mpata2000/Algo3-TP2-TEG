@@ -151,7 +151,7 @@ public class TableroTest {
         tablero.agregarFichas(3, jugadorUno, "Argentina");
 
         assertEquals(4, paisDefensor.perderFichas(0));
-        tablero.pasarFichas("Argentina", "Chile", 2);
+        tablero.pasarFichas(jugadorUno,"Argentina", "Chile", 2);
 
         assertEquals(2, paisDefensor.perderFichas(0));
         assertEquals(3, paisAtacante.perderFichas(0));

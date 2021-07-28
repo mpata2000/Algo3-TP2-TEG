@@ -61,8 +61,8 @@ public class Teg {
         return false;
     }
 
-    public void pasarFichas(String paisUno, String paisDos, int cant){
-        this.tablero.pasarFichas(paisUno, paisDos, cant);
+    public void pasarFichas(String colorJugador,String paisUno, String paisDos, int cant){
+        this.tablero.pasarFichas(jugadores.get(colorJugador),paisUno, paisDos, cant);
     }
 
     public void agregarFichasDisponiblesA(String colorJugador) {
