@@ -1,8 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
+import edu.fiuba.algo3.modelo.cartas.CartasPais;
 import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
+import edu.fiuba.algo3.modelo.objetivos.Objetivos;
+import edu.fiuba.algo3.modelo.tablero.ConstructorTablero;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 
 import java.util.*;
@@ -15,9 +18,9 @@ public class Teg {
     private List<ObjetivoTeg> objetivos = new ArrayList<>();
 
     public Teg(){
-        this.tablero = CreadorDeObjetosTeg.lectorTablero("resources/Teg-Tablero.json");
-        this.cartas = new MazoDeCartasPais(CreadorDeObjetosTeg.lectorCartasPais("resources/Teg-Cartas.json",this.tablero));
-        this.objetivos.addAll(CreadorDeObjetosTeg.lectorObjetivosConquista("resources/Teg-Objetivos.json"));
+        this.tablero = ConstructorTablero.create("resources/Teg-Tablero.json");
+        this.cartas = new MazoDeCartasPais(CartasPais.create("resources/Teg-Cartas.json",this.tablero));
+        this.objetivos.addAll(Objetivos.lectorObjetivosConquista("resources/Teg-Objetivos.json"));
     }
 
     public Teg(Tablero tablero,Map <String,Jugador> jugadores,MazoDeCartasPais mazoDeCartasPais){
@@ -31,7 +34,7 @@ public class Teg {
             this.jugadores.put(color, new Jugador(color));
         }
         this.cartas.asignarPaises(new ArrayList<>(this.jugadores.values()));
-        this.objetivos.addAll(CreadorDeObjetosTeg.creadorDeObjetivososDestruccion(new ArrayList<>(this.jugadores.values())));
+        this.objetivos.addAll(Objetivos.creadorDeObjetivososDestruccion(new ArrayList<>(this.jugadores.values())));
         this.asignarObjetivos();
     }
 
