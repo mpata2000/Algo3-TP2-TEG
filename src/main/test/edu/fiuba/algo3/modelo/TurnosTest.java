@@ -122,33 +122,28 @@ public class TurnosTest {
     }
 
     @Test
-    public void SiUnJugadorPoneCincoFichasYDespuesTresEsRondaAtaque(){
+    public void NoSePuedeComenzarJuegoCOn(){
 
         Turnos turnos = new Turnos();
         turnos.agregarJugador("Amarillo");
-        turnos.comenzarJuego();
-        turnos.colocarEjercitos("Argentina",5);
-        turnos.finEtapa();
-        turnos.colocarEjercitos("Argentina",3);
-        turnos.finEtapa();
-        assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
+        assertThrows(NoHaySuficientesJugadoresException.class, turnos::comenzarJuego);
     }
 
     @Test
-    public void jugadorPoneLasOchoFichasInicialesYFinalizaSuAtaqueEsRondaDeReagrupacion(){
+    public void NoSePuedeAgregarMasDeSeisJugadores(){
+
         Turnos turnos = new Turnos();
         turnos.agregarJugador("Amarillo");
-        turnos.comenzarJuego();
-        turnos.colocarEjercitos("Argentina",5);
-        turnos.finEtapa();
-        turnos.colocarEjercitos("Argentina",3);
-        turnos.finEtapa();
-        turnos.finEtapa();
-        assertTrue(turnos.devolverRondaActual() instanceof RondaReagrupacion);
+        turnos.agregarJugador("Rojo");
+        turnos.agregarJugador("Verde");
+        turnos.agregarJugador("Magenta");
+        turnos.agregarJugador("Negro");
+        turnos.agregarJugador("Azul");
+        assertThrows(LimiteDeJugadoresException.class, ()->  turnos.agregarJugador("Celeste"));
     }
 
     @Test
-    public void ColocarEjercitos2Paises2jugadores(){
+    public void PrimerasDosROndasEntreDosJugadoresPuedenColocarSusOchoFichasIniciales(){
         tablero = new Tablero(continentes,paises);
         Teg teg = new Teg(tablero,jugadores);
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));

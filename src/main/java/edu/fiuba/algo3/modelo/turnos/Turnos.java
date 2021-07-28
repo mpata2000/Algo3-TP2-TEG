@@ -27,12 +27,16 @@ public class Turnos {
     }
 
     public void agregarJugador(String color){
-        if(this.jugadores.size() < 6){
-            this.jugadores.add(color);
+        if(this.jugadores.size() >= 6){
+            throw new LimiteDeJugadoresException();
         }
+        this.jugadores.add(color);
     }
 
     public void comenzarJuego(){
+        if(this.jugadores.size() < 6){
+            throw new NoHaySuficientesJugadoresException();
+        }
         this.teg.comenzarJuego(jugadores);
         this.tipoDeRonda = new RondaColocacion(jugadores) ;
     }

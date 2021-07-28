@@ -275,6 +275,7 @@ public class TipoDeRondaTest {
     }
 
 
+
     @Test
     public void rondaDeColocacionNormalDaFichasSegunTableroAJugadorLaPrimeraVezQueSeLLamaAPasarFichas(){
         List<String> list = List.of("A","B");
@@ -282,6 +283,19 @@ public class TipoDeRondaTest {
         Teg teg = Mockito.mock(Teg.class);
         when(teg.jugadorTieneFichas("A")).thenReturn(true);
 
+        ronda.colocarFichas(teg,"A",0);
+        verify(teg,times(1)).agregarFichasDisponiblesA("A");
+        assertEquals("A",ronda.getJugadorActual());
+    }
+
+    @Test
+    public void rondaDeColocacionNoDaDosVecesFichas(){
+        List<String> list = List.of("A","B");
+        TipoRonda ronda = new RondaColocacion(new ColocacionNormal(),list);
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.jugadorTieneFichas("A")).thenReturn(true);
+
+        ronda.colocarFichas(teg,"A",0);
         ronda.colocarFichas(teg,"A",0);
         verify(teg,times(1)).agregarFichasDisponiblesA("A");
         assertEquals("A",ronda.getJugadorActual());
