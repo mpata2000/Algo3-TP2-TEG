@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.excepciones.EjercitoConUnaFichaNoPuedeAtacar;
-import edu.fiuba.algo3.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDados;
+import edu.fiuba.algo3.modelo.ataque.EjercitoConUnaFichaNoPuedeAtacarException;
+import edu.fiuba.algo3.modelo.ataque.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
+import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.tablero.Ejercito;
 import org.junit.jupiter.api.Test;
 
@@ -65,7 +66,7 @@ public class EjercitoTest {
     @Test
     public void ejercitoAtacanteConUnaFichaTiraExcepcion(){
         Ejercito ejercito = new Ejercito();
-        assertThrows(EjercitoConUnaFichaNoPuedeAtacar.class, () -> ejercito.tirarDados(1));
+        assertThrows(EjercitoConUnaFichaNoPuedeAtacarException.class, () -> ejercito.tirarDados(1));
     }
 
     @Test
@@ -97,7 +98,7 @@ public class EjercitoTest {
         Ejercito ejercito = new Ejercito();
         ejercito.agregarFichas(1);
 
-        assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDados.class, () -> ejercito.tirarDados(2));
+        assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDadosException.class, () -> ejercito.tirarDados(2));
 
     }
 }

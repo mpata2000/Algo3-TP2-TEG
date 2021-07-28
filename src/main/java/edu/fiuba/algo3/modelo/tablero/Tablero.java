@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.tablero;
 
-import edu.fiuba.algo3.modelo.Batalla;
+import edu.fiuba.algo3.modelo.ataque.Batalla;
 import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.HashMap;
@@ -40,7 +40,7 @@ public class Tablero {
     public boolean atacar(Jugador unJugador,String nombrePaisAtacante, String nombrePaisEnemigo, int cantidadDadosAtacante) {
         Pais paisAtacante = this.getPais(nombrePaisAtacante);
         if(!paisAtacante.esDeJugador(unJugador)){
-            return false;
+            throw new JugadorNoPoseePaisException();
         }
         Pais paisEnemigo = this.getPais(nombrePaisEnemigo);
         Batalla batalla = new Batalla(paisAtacante, paisEnemigo);
@@ -75,8 +75,12 @@ public class Tablero {
         }
     }
 
-    public void pasarFichas(String paisUno, String paisDos,int cantidadFichas) {
-        this.getPais(paisUno).pasarFichasA(this.getPais(paisDos),cantidadFichas);
+    public void pasarFichas(Jugador unJugador,String paisUno, String paisDos,int cantidadFichas) {
+        Pais pais = this.getPais(paisUno);
+        if(!pais.esDeJugador(unJugador)) {
+            throw new JugadorNoPoseePaisException();
+        }
+        pais.pasarFichasA(this.getPais(paisDos),cantidadFichas);
     }
 
     public int cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador) {

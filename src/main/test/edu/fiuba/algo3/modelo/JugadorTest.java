@@ -1,12 +1,14 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.cartas.CartaPais;
+import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -127,5 +129,83 @@ public class JugadorTest {
         when(objetivo.cumplioObjetivo(teg)).thenReturn(false);
         jugador.darObjetivo(objetivo);
         assertFalse(jugador.gano(teg));
+    }
+
+    @Test
+    public void jugadorNoPuedeRecivirCartaSiNoConquistoUnPais(){
+        assertFalse(jugador.darCartaPais(new CartaPais("A","Globo")));
+    }
+
+    @Test
+    public void jugadorPuedeRecivirCartaSiConquistoUnPais(){
+        jugador.conquistoPais();
+        assertTrue(jugador.darCartaPais(new CartaPais("A","Globo")));
+    }
+
+    @Test
+    public void jugadorNoPuedeRecivirUnaSegundaCartaSinHaberConquistadoAntesOtroPais(){
+        jugador.conquistoPais();
+        assertTrue(jugador.darCartaPais(new CartaPais("A","Globo")));
+        assertFalse(jugador.darCartaPais(new CartaPais("A","Globo")));
+    }
+
+    @Test
+    public void jugadorHaceCanjeDeTresCartasReciveFichasYSeLasPasaAMazo(){
+        jugador.conquistoPais();
+        jugador.darCartaPais(new CartaPais("A","Globo"));
+        jugador.conquistoPais();
+        jugador.darCartaPais(new CartaPais("B","Globo"));
+        jugador.conquistoPais();
+        jugador.darCartaPais(new CartaPais("C","Globo"));
+        MazoDeCartasPais mazo = new MazoDeCartasPais();
+
+        assertFalse(jugador.tieneFichas());
+        jugador.hacerCanje(mazo);
+        assertEquals(4,jugador.sacarFichas(0));
+        assertEquals(3,mazo.cantidadDeCartas());
+    }
+
+    @Test
+    public void jugadorNoHaceCanjeDeTresCartas(){
+        jugador.conquistoPais();
+        jugador.darCartaPais(new CartaPais("B","Globo"));
+        jugador.conquistoPais();
+        jugador.darCartaPais(new CartaPais("C","Globo"));
+        MazoDeCartasPais mazo = new MazoDeCartasPais();
+
+        assertFalse(jugador.tieneFichas());
+        jugador.hacerCanje(mazo);
+        assertEquals(0,jugador.sacarFichas(0));
+        assertEquals(0,mazo.cantidadDeCartas());
+    }
+
+    @Test
+    public void jugadorActivaLasCartasDeLasCualesPoseeElPais() {
+        List<Pais> paises = new ArrayList<>();
+        paises.add(new Pais("A",new ArrayList<>()));
+        paises.add(new Pais("B",new ArrayList<>()));
+        paises.add(new Pais("C",new ArrayList<>()));
+        paises.add(new Pais("D",new ArrayList<>()));
+
+        paises.get(0).asignarJugador(jugador);
+        paises.get(1).asignarJugador(jugador); //Agrega una ficha la asignasion
+        paises.get(2).asignarJugador(new Jugador("A"));
+        paises.get(3).asignarJugador(new Jugador("A"));
+
+        jugador.conquistoPais();
+        jugador.darCartaPais(new CartaPais("A","Globo",paises.get(0)));
+        jugador.conquistoPais();
+        jugador.darCartaPais(new CartaPais("B","Globo",paises.get(1)));
+        jugador.conquistoPais();
+        jugador.darCartaPais(new CartaPais("C","Globo",paises.get(2)));
+        jugador.conquistoPais();
+        jugador.darCartaPais(new CartaPais("D","Globo",paises.get(3)));
+
+        jugador.activarCartas();
+
+        assertEquals(3,paises.get(0).perderFichas(0));
+        assertEquals(3,paises.get(1).perderFichas(0));
+        assertEquals(1,paises.get(2).perderFichas(0));
+        assertEquals(1,paises.get(3).perderFichas(0));
     }
 }

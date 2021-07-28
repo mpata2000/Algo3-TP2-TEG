@@ -9,9 +9,8 @@ public class ObjetivoDestruccion extends ObjetivoTeg{
     private final List<Jugador> jugadores;
     private Jugador jugadorADestruir;
 
-    public ObjetivoDestruccion(String color,List<Jugador> jugadoresEnOrden){
-        this.jugadorADestruir = jugadoresEnOrden.stream()
-                .filter(j -> j.getColor().equalsIgnoreCase(color))
+    public ObjetivoDestruccion(String colorADestruir,List<Jugador> jugadoresEnOrden){
+        this.jugadorADestruir = jugadoresEnOrden.stream().filter(j -> j.getColor().equalsIgnoreCase(colorADestruir))
                 .findFirst()
                 .orElse(null);
         this.jugadores = jugadoresEnOrden;
@@ -19,14 +18,14 @@ public class ObjetivoDestruccion extends ObjetivoTeg{
 
     @Override
     public void setDuenio(Jugador unJugador){
-        this.duenioObjetivo = unJugador;
+        this.colorDuenio = unJugador.getColor();
         if(unJugador.esElMismoJugador(jugadorADestruir) || (jugadorADestruir == null)){
-            jugadorADestruir = jugadores.get(jugadores.indexOf(unJugador)+1%jugadores.size());
+            jugadorADestruir = jugadores.get((jugadores.indexOf(unJugador)+1) % jugadores.size());
         }
     }
 
     protected boolean objetivoJugador(Teg teg){
-        return (teg.cantidadDePaisesJugador(jugadorADestruir) < 1);
+        return (teg.cantidadDePaisesJugador(jugadorADestruir.getColor()) < 1);
     }
 
 }

@@ -1,6 +1,4 @@
-package edu.fiuba.algo3.modelo;
-
-import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
+package edu.fiuba.algo3.modelo.ataque;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -9,8 +7,8 @@ import static java.util.Comparator.reverseOrder;
 public class Dados {
     private final ArrayList<Integer> conjuntoDados = new ArrayList<>();
 
-    public Dados(int cantidadDados) throws NoSePuedenCrearCeroDados {
-        if(cantidadDados<1){ throw new NoSePuedenCrearCeroDados();}
+    public Dados(int cantidadDados) throws NoSePuedenCrearCeroDadosException {
+        if(cantidadDados<1){ throw new NoSePuedenCrearCeroDadosException();}
 
         Random rand = new Random();
 

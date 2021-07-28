@@ -88,5 +88,14 @@ public class ContinenteTest {
         assertTrue(continente.esDeJugador(jugadorUno));
 
         continente.agregarFichasExtraA(jugadorUno);
+        assertEquals(2,jugadorUno.sacarFichas(0));
+    }
+
+    @Test
+    public void elContienteNoEsDelJugadorEntoncesNoSeLeAgregaFichas(){
+        assertFalse(continente.esDeJugador(jugadorUno));
+
+        continente.agregarFichasExtraA(jugadorUno);
+        assertEquals(0,jugadorUno.sacarFichas(0));
     }
 }

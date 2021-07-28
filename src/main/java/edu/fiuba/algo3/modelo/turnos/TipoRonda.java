@@ -7,17 +7,11 @@ import java.util.List;
 
 public interface TipoRonda {
 
-    boolean esColocacion();
+    void atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad) throws NoSePuedeHacerEstaAccionEnEstaRondaException;
 
-    boolean esAtaque();
+    void pasarFichas(Teg teg,String paisUno,String paisdos,int cant)throws NoSePuedeHacerEstaAccionEnEstaRondaException;
 
-    boolean esReagrupacion();
-
-    void atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad) throws NoSePuedeHacerEstaAccionEnEstaRonda;
-
-    void pasarFichas(Teg teg,String paisUno,String paisdos,int cant)throws NoSePuedeHacerEstaAccionEnEstaRonda;
-
-    void colocarFichas(Teg teg, String nombrePais, int cantidad)throws NoSePuedeHacerEstaAccionEnEstaRonda;
+    void colocarFichas(Teg teg, String nombrePais, int cantidad)throws NoSePuedeHacerEstaAccionEnEstaRondaException;
 
     TipoRonda finEtapa(List<String> jugadores,Teg teg);
 

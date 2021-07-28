@@ -17,7 +17,7 @@ public class ObjetivoConquista extends ObjetivoTeg{
 
     private boolean tieneTodosLosPaises(Teg teg){
         for(Map.Entry<String,Integer> entry: paisesPorContinente.entrySet()){
-            if(teg.cantidadDePaisesJugadorEnContinente(entry.getKey(),this.duenioObjetivo) < entry.getValue()){
+            if(teg.cantidadDePaisesJugadorEnContinente(entry.getKey(),this.colorDuenio) < entry.getValue()){
                 return false;
             }
         }
@@ -26,7 +26,7 @@ public class ObjetivoConquista extends ObjetivoTeg{
 
     private boolean tieneTodosLosContienetes(Teg teg){
         for(String continente: continentesAConquistar){
-            if(!teg.continenteEsDeJugador(continente,this.duenioObjetivo)){
+            if(!teg.continenteEsDeJugador(continente,this.colorDuenio)){
                 return false;
             }
         }

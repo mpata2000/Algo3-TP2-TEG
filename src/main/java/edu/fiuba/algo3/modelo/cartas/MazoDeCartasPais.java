@@ -5,15 +5,15 @@ import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.*;
 
-public class ColeccionDeCartasPais implements CartasPaisTeg,CartasPaisJugador{
+public class MazoDeCartasPais implements CartasPaisTeg,CartasPaisJugador{
     private final List<CartaPais> cartasPais;
     private Canje numeroDecanje = new PrimerosCanjes();
 
-    public ColeccionDeCartasPais(List<CartaPais> cartaPais) {
+    public MazoDeCartasPais(List<CartaPais> cartaPais) {
         this.cartasPais = cartaPais;
     }
 
-    public ColeccionDeCartasPais() {
+    public MazoDeCartasPais() {
         this.cartasPais = new ArrayList<>();
     }
 
@@ -116,7 +116,7 @@ public class ColeccionDeCartasPais implements CartasPaisTeg,CartasPaisJugador{
 
     public void darCartaA(Jugador jugador) {
         if(cartasPais.isEmpty()){
-            return;
+            throw new MazoNoTieneSuficientesCartasException();
         }
 
         if(jugador.darCartaPais(cartasPais.get(0))) {

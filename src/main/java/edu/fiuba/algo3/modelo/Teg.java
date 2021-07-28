@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.lector.LectorDeJson;
 import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
-import edu.fiuba.algo3.modelo.cartas.ColeccionDeCartasPais;
+import edu.fiuba.algo3.modelo.cartas.CartasPais;
+import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
+import edu.fiuba.algo3.modelo.objetivos.Objetivos;
+import edu.fiuba.algo3.modelo.tablero.ConstructorTablero;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 
 import java.util.*;
@@ -11,21 +13,20 @@ import java.util.*;
 
 public class Teg {
     private final Tablero tablero;
-    private Map<String, Jugador> jugadores = new HashMap<>();
+    private Map<String, Jugador> jugadores = new LinkedHashMap<>();
     private final CartasPaisTeg cartas;
     private List<ObjetivoTeg> objetivos = new ArrayList<>();
 
     public Teg(){
-        LectorDeJson lector = new LectorDeJson();
-        this.tablero = lector.lectorTablero("resources/Teg-Tablero.json");
-        this.cartas = new ColeccionDeCartasPais(lector.lectorCartasPais("resources/Teg-Cartas.json"));
-        this.objetivos.addAll(lector.lectorObjetivosConquista("resources/Teg-Objetivos.json"));
+        this.tablero = ConstructorTablero.create("resources/Teg-Tablero.json");
+        this.cartas = new MazoDeCartasPais(CartasPais.create("resources/Teg-Cartas.json",this.tablero));
+        this.objetivos.addAll(Objetivos.lectorObjetivosConquista("resources/Teg-Objetivos.json"));
     }
 
-    public Teg(Tablero tablero,Map <String,Jugador> jugadores){
+    public Teg(Tablero tablero,Map <String,Jugador> jugadores,MazoDeCartasPais mazoDeCartasPais){
         this.tablero = tablero;
         this.jugadores = jugadores;
-        this.cartas = new ColeccionDeCartasPais();
+        this.cartas = mazoDeCartasPais;
     }
 
     public void comenzarJuego(List<String> colores) {
@@ -33,7 +34,7 @@ public class Teg {
             this.jugadores.put(color, new Jugador(color));
         }
         this.cartas.asignarPaises(new ArrayList<>(this.jugadores.values()));
-        this.objetivos.addAll(LectorDeJson.creadorDeObjetivososDestruccion(new ArrayList<>(this.jugadores.values())));
+        this.objetivos.addAll(Objetivos.creadorDeObjetivososDestruccion(new ArrayList<>(this.jugadores.values())));
         this.asignarObjetivos();
     }
 
@@ -61,8 +62,8 @@ public class Teg {
         return false;
     }
 
-    public void pasarFichas(String paisUno, String paisDos, int cant){
-        this.tablero.pasarFichas(paisUno, paisDos, cant);
+    public void pasarFichas(String colorJugador,String paisUno, String paisDos, int cant){
+        this.tablero.pasarFichas(jugadores.get(colorJugador),paisUno, paisDos, cant);
     }
 
     public void agregarFichasDisponiblesA(String colorJugador) {
@@ -84,16 +85,16 @@ public class Teg {
         this.cartas.darCartaA(this.jugadores.get(colorJugador));
     }
 
-    public int cantidadDePaisesJugador(Jugador jugador) {
-        return this.tablero.cantidadDePaisesJugador(jugador);
+    public int cantidadDePaisesJugador(String colorJugador) {
+        return this.tablero.cantidadDePaisesJugador(jugadores.get(colorJugador));
     }
 
-    public int cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador) {
-        return this.tablero.cantidadDePaisesJugadorEnContinente(continente,jugador);
+    public int cantidadDePaisesJugadorEnContinente(String continente, String jugador) {
+        return this.tablero.cantidadDePaisesJugadorEnContinente(continente,jugadores.get(jugador));
     }
 
-    public boolean continenteEsDeJugador(String continente,Jugador jugador) {
-        return this.tablero.continenteEsDeJugador(continente,jugador);
+    public boolean continenteEsDeJugador(String continente,String jugador) {
+        return this.tablero.continenteEsDeJugador(continente,jugadores.get(jugador));
     }
 
     public boolean hayGanador(){

@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo.tablero;
 
-import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
-import edu.fiuba.algo3.excepciones.JugadorNoTieneSuficientesFichas;
-import edu.fiuba.algo3.excepciones.PaisNoEsLimitrofe;
-import edu.fiuba.algo3.modelo.Dados;
+import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.List;
@@ -40,7 +37,7 @@ public class Pais {
             throw new JugadorNoPoseePaisException();
         }
         if (!unJugador.puedeColocarFichas(cantidadFichas)) {
-            throw new JugadorNoTieneSuficientesFichas();
+            throw new JugadorNoTieneSuficientesFichasException();
         }
         unJugador.sacarFichas(cantidadFichas);
         this.ejercito.agregarFichas(cantidadFichas);
@@ -80,7 +77,7 @@ public class Pais {
 
     public void pasarFichasA(Pais unPais, int cantidadFichas){
         if(!this.esAdyacente(unPais)){
-            throw new PaisNoEsLimitrofe();
+            throw new PaisNoEsLimitrofeException();
         }
         if (!unPais.esDeJugador(this.jugador)){
             throw new JugadorNoPoseePaisException();

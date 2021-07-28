@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.excepciones.AtaqueNoValido;
-import edu.fiuba.algo3.excepciones.EjercitoConUnaFichaNoPuedeAtacar;
-import edu.fiuba.algo3.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDados;
-import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
+import edu.fiuba.algo3.modelo.ataque.AtaqueNoValido;
+import edu.fiuba.algo3.modelo.ataque.EjercitoConUnaFichaNoPuedeAtacarException;
+import edu.fiuba.algo3.modelo.ataque.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
+import edu.fiuba.algo3.modelo.ataque.NoSePuedenCrearCeroDadosException;
+import edu.fiuba.algo3.modelo.ataque.Batalla;
+import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,7 +40,7 @@ public class BatallaTest {
         paisDefensor.agregarFichas(4, jugadorDos);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
-        assertThrows(NoSePuedenCrearCeroDados.class, () -> batalla.batallar(0));
+        assertThrows(NoSePuedenCrearCeroDadosException.class, () -> batalla.batallar(0));
     }
 
     @Test
@@ -49,7 +51,7 @@ public class BatallaTest {
         paisDefensor.agregarFichas(4, jugadorDos);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
-        assertThrows(EjercitoConUnaFichaNoPuedeAtacar.class, () -> batalla.batallar(1));
+        assertThrows(EjercitoConUnaFichaNoPuedeAtacarException.class, () -> batalla.batallar(1));
     }
 
     @Test
@@ -60,7 +62,7 @@ public class BatallaTest {
         paisDefensor.agregarFichas(4, jugadorDos);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
-        assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDados.class, () -> batalla.batallar(3));
+        assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDadosException.class, () -> batalla.batallar(3));
     }
 
     @Test

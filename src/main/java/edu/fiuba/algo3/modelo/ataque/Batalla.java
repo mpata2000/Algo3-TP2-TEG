@@ -1,7 +1,6 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.ataque;
 
 
-import edu.fiuba.algo3.excepciones.AtaqueNoValido;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 
 public class Batalla {
