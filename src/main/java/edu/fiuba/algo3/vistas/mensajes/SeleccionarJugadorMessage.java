@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vistas.texto;
+package edu.fiuba.algo3.vistas.mensajes;
 
 import edu.fiuba.algo3.vistas.colores.FontSelection;
 import javafx.scene.control.Label;
