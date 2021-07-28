@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
 import edu.fiuba.algo3.modelo.tablero.JugadorNoTieneSuficientesFichasException;
 import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
@@ -54,7 +55,7 @@ public class TurnosTest {
     @Test
     public void primeraRondaInicialCadaJugadorTieneCincoFichasParaPoner(){
         tablero = new Tablero(continentes,paises);
-        Teg teg = new Teg(tablero,jugadores);
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
         paisesAsia.get(0).asignarJugador(jugadores.get("Amarillo"));
@@ -69,7 +70,7 @@ public class TurnosTest {
     @Test
     public void segundaRondaInicialCadaJugadorTieneCincoFichasParaPoner(){
         tablero = new Tablero(continentes,paises);
-        Teg teg = new Teg(tablero,jugadores);
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
 
@@ -90,7 +91,7 @@ public class TurnosTest {
     @Test
     public void jugadorNoPuedePonerSieteFichasEnLaPrimeraRondaInicial(){
         tablero = new Tablero(continentes,paises);
-        Teg teg = new Teg(tablero,jugadores);
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
 
@@ -105,7 +106,7 @@ public class TurnosTest {
     @Test
     public void jugadorNoPuedePonerCuatrFichasEnLaSegundaRondaInicial(){
         tablero = new Tablero(continentes,paises);
-        Teg teg = new Teg(tablero,jugadores);
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
         paisesAsia.get(0).asignarJugador(jugadores.get("Amarillo"));
@@ -145,7 +146,7 @@ public class TurnosTest {
     @Test
     public void PrimerasDosROndasEntreDosJugadoresPuedenColocarSusOchoFichasIniciales(){
         tablero = new Tablero(continentes,paises);
-        Teg teg = new Teg(tablero,jugadores);
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
         for (Pais pais : paisesAsia){
             pais.asignarJugador(jugadores.get("Amarillo"));
@@ -183,7 +184,7 @@ public class TurnosTest {
     public void ColocarEjercitos2Paises3jugadores(){
         jugadores.put("Verde",new Jugador("Verde"));
         tablero = new Tablero(continentes,paises);
-        Teg teg = new Teg(tablero,jugadores);
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo","Verde"));
 
         for (Pais pais : paisesAsia){
@@ -228,7 +229,7 @@ public class TurnosTest {
         when(paisAtacante.esAdyacente(paisesOceania.get(3))).thenReturn(true);
 
         tablero = new Tablero(continentes,paises);
-        Teg teg = new Teg(tablero,jugadores);
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
         paisAtacante.asignarJugador(jugadores.get("Amarillo"));
@@ -257,7 +258,7 @@ public class TurnosTest {
         tablero = new Tablero(continentes,paises);
         jugadores.get("Amarillo").darObjetivo(objetivoPierde);
         jugadores.get("Rojo").darObjetivo(objetivoPierde);
-        Teg teg = new Teg(tablero,jugadores);
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
         for (Pais pais : paisesAsia){
             pais.asignarJugador(jugadores.get("Amarillo"));
@@ -304,7 +305,7 @@ public class TurnosTest {
         tablero = new Tablero(continentes,paises);
         jugadores.get("Amarillo").darObjetivo(objetivoPierde);
         jugadores.get("Rojo").darObjetivo(objetivoPierde);
-        Teg teg = new Teg(tablero,jugadores);
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
         for (Pais pais : paisesAsia){
             pais.asignarJugador(jugadores.get("Rojo"));

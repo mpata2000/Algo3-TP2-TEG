@@ -18,14 +18,14 @@ public class ObjetivoDestruccion extends ObjetivoTeg{
 
     @Override
     public void setDuenio(Jugador unJugador){
-        this.duenioObjetivo = unJugador;
+        this.colorDuenio = unJugador.getColor();
         if(unJugador.esElMismoJugador(jugadorADestruir) || (jugadorADestruir == null)){
             jugadorADestruir = jugadores.get((jugadores.indexOf(unJugador)+1) % jugadores.size());
         }
     }
 
     protected boolean objetivoJugador(Teg teg){
-        return (teg.cantidadDePaisesJugador(jugadorADestruir) < 1);
+        return (teg.cantidadDePaisesJugador(jugadorADestruir.getColor()) < 1);
     }
 
 }

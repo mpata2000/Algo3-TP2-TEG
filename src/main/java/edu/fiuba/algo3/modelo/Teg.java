@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Teg {
     private final Tablero tablero;
-    private Map<String, Jugador> jugadores = new HashMap<>();
+    private Map<String, Jugador> jugadores = new LinkedHashMap<>();
     private final CartasPaisTeg cartas;
     private List<ObjetivoTeg> objetivos = new ArrayList<>();
 
@@ -20,10 +20,10 @@ public class Teg {
         this.objetivos.addAll(CreadorDeObjetosTeg.lectorObjetivosConquista("resources/Teg-Objetivos.json"));
     }
 
-    public Teg(Tablero tablero,Map <String,Jugador> jugadores){
+    public Teg(Tablero tablero,Map <String,Jugador> jugadores,MazoDeCartasPais mazoDeCartasPais){
         this.tablero = tablero;
         this.jugadores = jugadores;
-        this.cartas = new MazoDeCartasPais();
+        this.cartas = mazoDeCartasPais;
     }
 
     public void comenzarJuego(List<String> colores) {
@@ -82,16 +82,16 @@ public class Teg {
         this.cartas.darCartaA(this.jugadores.get(colorJugador));
     }
 
-    public int cantidadDePaisesJugador(Jugador jugador) {
-        return this.tablero.cantidadDePaisesJugador(jugador);
+    public int cantidadDePaisesJugador(String colorJugador) {
+        return this.tablero.cantidadDePaisesJugador(jugadores.get(colorJugador));
     }
 
-    public int cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador) {
-        return this.tablero.cantidadDePaisesJugadorEnContinente(continente,jugador);
+    public int cantidadDePaisesJugadorEnContinente(String continente, String jugador) {
+        return this.tablero.cantidadDePaisesJugadorEnContinente(continente,jugadores.get(jugador));
     }
 
-    public boolean continenteEsDeJugador(String continente,Jugador jugador) {
-        return this.tablero.continenteEsDeJugador(continente,jugador);
+    public boolean continenteEsDeJugador(String continente,String jugador) {
+        return this.tablero.continenteEsDeJugador(continente,jugadores.get(jugador));
     }
 
     public boolean hayGanador(){
