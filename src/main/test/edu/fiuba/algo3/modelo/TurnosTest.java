@@ -5,10 +5,7 @@ import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import edu.fiuba.algo3.modelo.tablero.Continente;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
-import edu.fiuba.algo3.modelo.turnos.RondaAtaque;
-import edu.fiuba.algo3.modelo.turnos.RondaColocacion;
-import edu.fiuba.algo3.modelo.turnos.RondaReagrupacion;
-import edu.fiuba.algo3.modelo.turnos.Turnos;
+import edu.fiuba.algo3.modelo.turnos.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -118,7 +115,8 @@ public class TurnosTest {
         turnos.finEtapa();
 
         assertThrows(JugadorNoTieneSuficientesFichas.class,()-> turnos.colocarEjercitos("China",4));
-        turnos.finEtapa();
+        assertThrows(JugadorSigueTeniendoFichas.class, turnos::finEtapa);
+
 
     }
 
