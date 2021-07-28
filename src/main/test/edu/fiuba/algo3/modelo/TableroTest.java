@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,20 +19,21 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 public class TableroTest {
 
     Map<String, Jugador> jugadores = new HashMap<>();
     Jugador jugadorUno;
     Jugador jugadorDos;
-    Pais paisAtacante;
     Pais paisDefensor;
+    Pais paisAtacante;
     ArrayList<Pais> paises = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
-        paisAtacante = new Pais("Chile", List.of("Argentina", "Brazil"));
-        paisDefensor = new Pais("Argentina", List.of("Chile", "Brazil"));
+        paisDefensor = new Pais("Chile", List.of("Argentina", "Brazil"));
+        paisAtacante = new Pais("Argentina", List.of("Chile", "Brazil"));
         jugadorUno = new Jugador("Amarillo");
         jugadorDos = new Jugador("Rojo");
         jugadorUno.agregarFichas(10);
@@ -43,28 +45,28 @@ public class TableroTest {
 
     @Test
     public void seObtieneElPaisesperadoDetablero() {
-        paises.add(paisAtacante);
+        paises.add(paisDefensor);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
-        assertEquals(paisAtacante, tablero.getPais(paisAtacante.getNombre()));
+        assertEquals(paisDefensor, tablero.getPais(paisDefensor.getNombre()));
     }
 
 
     @Test
     public void tableroAgregaCincoFichasAPaisDeJugadorQuedaConSeis() {
-        paises.add(paisAtacante);
-        paisAtacante.asignarJugador(jugadorUno);
+        paises.add(paisDefensor);
+        paisDefensor.asignarJugador(jugadorUno);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
         tablero.agregarFichas(5, jugadorUno, "Chile");
 
-        assertEquals(6, paisAtacante.perderFichas(0));
+        assertEquals(6, paisDefensor.perderFichas(0));
     }
 
     @Test
     public void agregarFichasAUnPaisQueNoEsDelJugadorLanzaExcepcionTest() {
-        paises.add(paisAtacante);
-        paisAtacante.asignarJugador(jugadorUno);
+        paises.add(paisDefensor);
+        paisDefensor.asignarJugador(jugadorUno);
 
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
@@ -73,10 +75,10 @@ public class TableroTest {
 
     @Test
     public void paisAtacanteNoPuedeTirarCeroDados() {
-        paisDefensor.asignarJugador(jugadorUno);
-        paisAtacante.asignarJugador(jugadorDos);
-        paises.add(paisAtacante);
+        paisAtacante.asignarJugador(jugadorUno);
+        paisDefensor.asignarJugador(jugadorDos);
         paises.add(paisDefensor);
+        paises.add(paisAtacante);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
 
@@ -88,13 +90,13 @@ public class TableroTest {
 
     @Test
     public void paisAtacanteConUnaFichaNoPuedeAtacar() {
-        paises.add(paisAtacante);
         paises.add(paisDefensor);
+        paises.add(paisAtacante);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
 
-        paisDefensor.asignarJugador(jugadorUno);
-        paisAtacante.asignarJugador(jugadorDos);
+        paisAtacante.asignarJugador(jugadorUno);
+        paisDefensor.asignarJugador(jugadorDos);
         tablero.agregarFichas(5, jugadorDos, "Chile");
 
         assertThrows(EjercitoConUnaFichaNoPuedeAtacarException.class, () -> tablero.atacar(jugadorUno, "Argentina", "Chile", 1));
@@ -102,10 +104,10 @@ public class TableroTest {
 
     @Test
     public void paisAtacanteNoPuedeTirarDadosDeMas() {
-        paisDefensor.asignarJugador(jugadorUno);
-        paisAtacante.asignarJugador(jugadorDos);
-        paises.add(paisAtacante);
+        paisAtacante.asignarJugador(jugadorUno);
+        paisDefensor.asignarJugador(jugadorDos);
         paises.add(paisDefensor);
+        paises.add(paisAtacante);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
 
@@ -117,10 +119,10 @@ public class TableroTest {
 
     @Test
     public void paisAtacanteNoConquistaPais() {
-        paisDefensor.asignarJugador(jugadorUno);
-        paisAtacante.asignarJugador(jugadorDos);
-        paises.add(paisAtacante);
+        paisAtacante.asignarJugador(jugadorUno);
+        paisDefensor.asignarJugador(jugadorDos);
         paises.add(paisDefensor);
+        paises.add(paisAtacante);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
         tablero.agregarFichas(5, jugadorUno, "Argentina");
@@ -132,10 +134,10 @@ public class TableroTest {
 
     @Test
     public void JugadorNoPuedeAtacarseASiMismo() {
-        paises.add(paisAtacante);
         paises.add(paisDefensor);
-        paisAtacante.asignarJugador(jugadorUno);
+        paises.add(paisAtacante);
         paisDefensor.asignarJugador(jugadorUno);
+        paisAtacante.asignarJugador(jugadorUno);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
         tablero.agregarFichas(4, jugadorUno, "Argentina");
@@ -145,62 +147,235 @@ public class TableroTest {
     }
 
     @Test
-    public void sePuedePasarDosFichasAUnPaisLimitrofeTeniendocuatroFichas() {
-        paises.add(paisAtacante);
+    public void JugadorNoPuedeAtacarConUnPaisQueNoEsSuyo() {
+        paisDefensor.asignarJugador(new Jugador("A"));
+        paisAtacante.asignarJugador(jugadorDos);
         paises.add(paisDefensor);
-        paisAtacante.asignarJugador(jugadorUno);
+        paises.add(paisAtacante);
+        Tablero tablero = new Tablero(new ArrayList<>(), paises);
+
+        assertThrows(JugadorNoPoseePaisException.class, () -> tablero.atacar(jugadorUno, "Argentina", "Chile", 1));
+    }
+
+    @Test
+    public void sePuedePasarDosFichasAUnPaisLimitrofeTeniendocuatroFichas() {
+        paises.add(paisDefensor);
+        paises.add(paisAtacante);
         paisDefensor.asignarJugador(jugadorUno);
+        paisAtacante.asignarJugador(jugadorUno);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
         tablero.agregarFichas(3, jugadorUno, "Argentina");
 
-        assertEquals(4, paisDefensor.perderFichas(0));
+        assertEquals(4, paisAtacante.perderFichas(0));
         tablero.pasarFichas(jugadorUno,"Argentina", "Chile", 2);
 
-        assertEquals(2, paisDefensor.perderFichas(0));
-        assertEquals(3, paisAtacante.perderFichas(0));
+        assertEquals(2, paisAtacante.perderFichas(0));
+        assertEquals(3, paisDefensor.perderFichas(0));
+
+    }
+
+    @Test
+    public void pasarFichasDeUnPaisQueNoEsDelJudoriraExcepcion() {
+        paises.add(paisDefensor);
+        paises.add(paisAtacante);
+        paisDefensor.asignarJugador(jugadorUno);
+        paisAtacante.asignarJugador(jugadorDos);
+        Tablero tablero = new Tablero(new ArrayList<>(), paises);
+
+
+        assertThrows(JugadorNoPoseePaisException.class, () -> tablero.pasarFichas(jugadorUno,"Argentina", "Chile", 2));
 
     }
 
     @Test
     public void aJugadorSinPaisesSeLeAgregaTresFichas() {
-        paises.add(paisAtacante);
         paises.add(paisDefensor);
+        paises.add(paisAtacante);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
         jugadorUno.sacarFichas(10);
         tablero.agregarFichasA(jugadorUno);
         assertEquals(3, jugadorUno.sacarFichas(0));
     }
 
+    @Test
+    public void tableroDevuelveQueJugadorTieneSeisPaises() {
+        paises.add(paisDefensor);
+        paises.add(paisAtacante);
+        paises.add(new Pais("A",new ArrayList<>()));
+        paises.add(new Pais("B",new ArrayList<>()));
+        paises.add(new Pais("C",new ArrayList<>()));
+        paises.add(new Pais("D",new ArrayList<>()));
 
-    //Todo: Test de cuantas fichas le da a jugador
+        for (Pais pais: paises){
+            pais.asignarJugador(jugadorUno);
+        }
+        Tablero tablero = new Tablero(new ArrayList<>(), paises);
+
+        assertEquals(6,tablero.cantidadDePaisesJugador(jugadorUno));
+    }
+
+    @Test
+    public void tableroDevuelveQueJugadorTieneCeroPaisesSiNotienePaises() {
+        paises.add(paisDefensor);
+        paises.add(paisAtacante);
+        paises.add(new Pais("A",new ArrayList<>()));
+        paises.add(new Pais("B",new ArrayList<>()));
+        paises.add(new Pais("C",new ArrayList<>()));
+        paises.add(new Pais("D",new ArrayList<>()));
+
+        Tablero tablero = new Tablero(new ArrayList<>(), paises);
+
+        assertEquals(0,tablero.cantidadDePaisesJugador(jugadorUno));
+    }
+
+    @Test
+    public void tableroDevuelveQueJugadorTieneTresDeSeisPaisesDelTablero() {
+        paises.add(paisDefensor);
+        paises.add(paisAtacante);
+        paises.add(new Pais("A",new ArrayList<>()));
+        paises.add(new Pais("B",new ArrayList<>()));
+        paises.add(new Pais("C",new ArrayList<>()));
+        paises.add(new Pais("D",new ArrayList<>()));
+
+        paises.get(0).asignarJugador(jugadorUno);
+        paises.get(1).asignarJugador(jugadorUno);
+        paises.get(4).asignarJugador(jugadorUno);
+
+        Tablero tablero = new Tablero(new ArrayList<>(), paises);
+
+        assertEquals(3,tablero.cantidadDePaisesJugador(jugadorUno));
+    }
+
 
     @Test
     public void jugadorConUnContienteSeLeAgregaFichasExtrasCorrectas(){
-        paisAtacante.asignarJugador(jugadorUno);
-        Continente continenteUno = new Continente("A",7, List.of(paisAtacante));
+        paisDefensor.asignarJugador(jugadorUno);
+        Continente continenteUno = new Continente("A",7, List.of(paisDefensor));
         Tablero tablero = new Tablero(List.of(continenteUno), paises);
 
 
         jugadorUno.sacarFichas(10);
         tablero.agregarFichasA(jugadorUno);
 
+        assertTrue(tablero.continenteEsDeJugador("A",jugadorUno));
+        assertEquals(0,tablero.cantidadDePaisesJugador(jugadorUno));
         // 3 fichas del minimo por pais + 7 del contiente
         assertEquals(10, jugadorUno.sacarFichas(0));
     }
 
     @Test
     public void jugadorConDosContientesSeLeAgregaFichasExtras(){
-        paisAtacante.asignarJugador(jugadorUno);
-        Continente continenteUno = new Continente("A",1, List.of(paisAtacante));
-        Continente continenteDos = new Continente("B",1, List.of(paisAtacante));
+        paisDefensor.asignarJugador(jugadorUno);
+        Continente continenteUno = new Continente("A",1, List.of(paisDefensor));
+        Continente continenteDos = new Continente("B",1, List.of(paisDefensor));
+
         Tablero tablero = new Tablero(List.of(continenteUno,continenteDos), paises);
 
 
         jugadorUno.sacarFichas(10);
         tablero.agregarFichasA(jugadorUno);
 
+        assertTrue(tablero.continenteEsDeJugador("A",jugadorUno));
+        assertTrue(tablero.continenteEsDeJugador("B",jugadorUno));
         // 3 fichas del minimo por pais + 2 una por cada contiente
         assertEquals(5, jugadorUno.sacarFichas(0));
+    }
+
+
+    @Test
+    public void jugadorConDiezPaisesYDosContientesObtieneSieteFichas(){
+        paises.add(paisDefensor);
+        paises.add(paisAtacante);
+        paises.add(new Pais("A",new ArrayList<>()));
+        paises.add(new Pais("B",new ArrayList<>()));
+        paises.add(new Pais("C",new ArrayList<>()));
+        paises.add(new Pais("D",new ArrayList<>()));
+        paises.add(new Pais("E",new ArrayList<>()));
+        paises.add(new Pais("F",new ArrayList<>()));
+        paises.add(new Pais("G",new ArrayList<>()));
+        paises.add(new Pais("H",new ArrayList<>()));
+
+        for (Pais pais: paises){
+            pais.asignarJugador(jugadorUno);
+        }
+        Continente continenteUno = new Continente("A",1, List.of(paisDefensor));
+        Continente continenteDos = new Continente("B",1, List.of(paisDefensor));
+
+        Tablero tablero = new Tablero(List.of(continenteUno,continenteDos), paises);
+
+
+        jugadorUno.sacarFichas(10);
+        tablero.agregarFichasA(jugadorUno);
+
+        assertTrue(tablero.continenteEsDeJugador("A",jugadorUno));
+        assertTrue(tablero.continenteEsDeJugador("B",jugadorUno));
+        assertEquals(10,tablero.cantidadDePaisesJugador(jugadorUno));
+        // 5 fichas(10 paises/2) + 2 una por cada contiente
+        assertEquals(7, jugadorUno.sacarFichas(0));
+    }
+
+    @Test
+    public void jugadorConDiezPaisesObtieneCincoFichas(){
+        paises.add(paisDefensor);
+        paises.add(paisAtacante);
+        paises.add(new Pais("A",new ArrayList<>()));
+        paises.add(new Pais("B",new ArrayList<>()));
+        paises.add(new Pais("C",new ArrayList<>()));
+        paises.add(new Pais("D",new ArrayList<>()));
+        paises.add(new Pais("E",new ArrayList<>()));
+        paises.add(new Pais("F",new ArrayList<>()));
+        paises.add(new Pais("G",new ArrayList<>()));
+        paises.add(new Pais("H",new ArrayList<>()));
+
+        for (Pais pais: paises){
+            pais.asignarJugador(jugadorUno);
+        }
+
+        Tablero tablero = new Tablero(new ArrayList<>(), paises);
+
+
+        jugadorUno.sacarFichas(10);
+        tablero.agregarFichasA(jugadorUno);
+
+        assertEquals(10,tablero.cantidadDePaisesJugador(jugadorUno));
+        // 5 fichas(10 paises/2)
+        assertEquals(5, jugadorUno.sacarFichas(0));
+    }
+
+    @Test
+    public void tableroDevuelveQueElcontieneteEsDeUnJugadorsiLoEs(){
+        Continente continente = Mockito.mock(Continente.class);
+
+        when(continente.getNombre()).thenReturn("A");
+        when(continente.esDeJugador(jugadorUno)).thenReturn(true);
+        Tablero tablero = new Tablero(List.of(continente), paises);
+
+        assertTrue(tablero.continenteEsDeJugador("A",jugadorUno));
+        verify(continente,times(1)).esDeJugador(jugadorUno);
+    }
+
+    @Test
+    public void tableroDevuelveQueElContieneteNoEsDeUnJugadorSiElContinenteNoEsDelJugador(){
+        Continente continente = Mockito.mock(Continente.class);
+
+        when(continente.getNombre()).thenReturn("A");
+        when(continente.esDeJugador(jugadorUno)).thenReturn(false);
+        Tablero tablero = new Tablero(List.of(continente), paises);
+
+        assertFalse(tablero.continenteEsDeJugador("A",jugadorUno));
+        verify(continente,times(1)).esDeJugador(jugadorUno);
+    }
+
+    @Test
+    public void tableroDevuelvelaCantidadDePaisesQueTieneElJugadorEnElContinente(){
+        Continente continente = Mockito.mock(Continente.class);
+
+        when(continente.getNombre()).thenReturn("A");
+        when(continente.cantidadPaisesDe(jugadorUno)).thenReturn(5);
+        Tablero tablero = new Tablero(List.of(continente), paises);
+
+        assertEquals(5,tablero.cantidadDePaisesJugadorEnContinente("A",jugadorUno));
+        verify(continente,times(1)).cantidadPaisesDe(jugadorUno);
     }
 }

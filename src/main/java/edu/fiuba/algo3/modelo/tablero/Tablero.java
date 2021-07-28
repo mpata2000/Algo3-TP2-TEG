@@ -40,7 +40,7 @@ public class Tablero {
     public boolean atacar(Jugador unJugador,String nombrePaisAtacante, String nombrePaisEnemigo, int cantidadDadosAtacante) {
         Pais paisAtacante = this.getPais(nombrePaisAtacante);
         if(!paisAtacante.esDeJugador(unJugador)){
-            return false;
+            throw new JugadorNoPoseePaisException();
         }
         Pais paisEnemigo = this.getPais(nombrePaisEnemigo);
         Batalla batalla = new Batalla(paisAtacante, paisEnemigo);
