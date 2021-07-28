@@ -1,8 +1,7 @@
-package edu.fiuba.algo3.lector;
+package edu.fiuba.algo3.modelo;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.cartas.CartaPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoConquista;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoDestruccion;
@@ -17,10 +16,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class LectorDeJson {
-    private Tablero tablero;
+public class CreadorDeObjetosTeg {
 
-    private Reader setReader(String pathArchivo){
+    private static Reader setReader(String pathArchivo){
         Reader jsonLeido = null;
         try {
             jsonLeido = Files.newBufferedReader(Paths.get(pathArchivo));
@@ -30,9 +28,8 @@ public class LectorDeJson {
         return jsonLeido;
     }
 
-    public List<CartaPais> lectorCartasPais(String pathArchivo){
-        Reader jsonLeido = this.setReader(pathArchivo);
-
+    public static List<CartaPais> lectorCartasPais(String pathArchivo,Tablero tablero){
+        Reader jsonLeido = CreadorDeObjetosTeg.setReader(pathArchivo);
         Type datasetListType = new TypeToken<Collection<CartaPais>>() {}.getType();
         List<CartaPais> cartasPais = new Gson().fromJson(jsonLeido, datasetListType);
 
@@ -42,9 +39,9 @@ public class LectorDeJson {
         return cartasPais;
     }
 
-    public Tablero lectorTablero(String pathArchivo) {
-        this.tablero = null;
-        Reader jsonLeido = this.setReader(pathArchivo);
+    public static Tablero lectorTablero(String pathArchivo) {
+        Tablero tablero = null;
+        Reader jsonLeido = CreadorDeObjetosTeg.setReader(pathArchivo);
         Type datasetListType = new TypeToken<Collection<Continente>>() {}.getType();
         List<Continente> continentes = new Gson().fromJson(jsonLeido, datasetListType);
 
@@ -57,8 +54,8 @@ public class LectorDeJson {
         return tablero;
     }
 
-    public List<ObjetivoTeg> lectorObjetivosConquista(String pathArchivo) {
-        Reader jsonLeido = this.setReader(pathArchivo);
+    public static List<ObjetivoTeg> lectorObjetivosConquista(String pathArchivo) {
+        Reader jsonLeido = CreadorDeObjetosTeg.setReader(pathArchivo);
         Type datasetListType = new TypeToken<Collection<ObjetivoConquista>>() {}.getType();
         return new Gson().fromJson(jsonLeido, datasetListType);
     }

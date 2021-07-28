@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.lector.LectorDeJson;
 import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
-import edu.fiuba.algo3.modelo.cartas.ColeccionDeCartasPais;
+import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 
@@ -16,16 +15,15 @@ public class Teg {
     private List<ObjetivoTeg> objetivos = new ArrayList<>();
 
     public Teg(){
-        LectorDeJson lector = new LectorDeJson();
-        this.tablero = lector.lectorTablero("resources/Teg-Tablero.json");
-        this.cartas = new ColeccionDeCartasPais(lector.lectorCartasPais("resources/Teg-Cartas.json"));
-        this.objetivos.addAll(lector.lectorObjetivosConquista("resources/Teg-Objetivos.json"));
+        this.tablero = CreadorDeObjetosTeg.lectorTablero("resources/Teg-Tablero.json");
+        this.cartas = new MazoDeCartasPais(CreadorDeObjetosTeg.lectorCartasPais("resources/Teg-Cartas.json",this.tablero));
+        this.objetivos.addAll(CreadorDeObjetosTeg.lectorObjetivosConquista("resources/Teg-Objetivos.json"));
     }
 
     public Teg(Tablero tablero,Map <String,Jugador> jugadores){
         this.tablero = tablero;
         this.jugadores = jugadores;
-        this.cartas = new ColeccionDeCartasPais();
+        this.cartas = new MazoDeCartasPais();
     }
 
     public void comenzarJuego(List<String> colores) {
@@ -33,7 +31,7 @@ public class Teg {
             this.jugadores.put(color, new Jugador(color));
         }
         this.cartas.asignarPaises(new ArrayList<>(this.jugadores.values()));
-        this.objetivos.addAll(LectorDeJson.creadorDeObjetivososDestruccion(new ArrayList<>(this.jugadores.values())));
+        this.objetivos.addAll(CreadorDeObjetosTeg.creadorDeObjetivososDestruccion(new ArrayList<>(this.jugadores.values())));
         this.asignarObjetivos();
     }
 

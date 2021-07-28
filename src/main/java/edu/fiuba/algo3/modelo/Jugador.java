@@ -4,12 +4,12 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.cartas.CartaPais;
 import edu.fiuba.algo3.modelo.cartas.CartasPaisJugador;
 import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
-import edu.fiuba.algo3.modelo.cartas.ColeccionDeCartasPais;
+import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 
 public class Jugador {
     private final String color;
-    private final CartasPaisJugador cartasPais = new ColeccionDeCartasPais();
+    private final CartasPaisJugador cartasPais = new MazoDeCartasPais();
     private int fichas;
     private boolean conquistoPais;
     private ObjetivoTeg objetivoTeg;
@@ -47,7 +47,7 @@ public class Jugador {
             this.conquistoPais = false;
             return true;
         }
-
+        //Todo excepcion?
         return false;
     }
 
