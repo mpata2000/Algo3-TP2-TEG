@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.vistas;
 
+import edu.fiuba.algo3.controllers.SeleccionarJugadoresController;
 import edu.fiuba.algo3.controllers.VolverInicioController;
 import edu.fiuba.algo3.vistas.botones.ColorPickerButton;
 import edu.fiuba.algo3.vistas.botones.VolverInicioButton;
 import edu.fiuba.algo3.vistas.colores.FontSelection;
 import edu.fiuba.algo3.vistas.grillas.MenuInicioGrid;
-import edu.fiuba.algo3.vistas.texto.SeleccionarJugadorMessage;
+import edu.fiuba.algo3.vistas.mensajes.SeleccionarJugadorMessage;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -29,20 +30,22 @@ public class SeleccionarJugadoresView extends StackPane {
 
         VBox botonesColores = new VBox(0);
         botonesColores.setAlignment(Pos.BOTTOM_CENTER);
+        botonesColores.setSpacing(10);
 
-        ColorPickerButton botonAmarillo = new ColorPickerButton(FontSelection.Amarillo);
+
+        ColorPickerButton botonAmarillo = new ColorPickerButton(new SeleccionarJugadoresController(stage, contenedorPrincipal), FontSelection.Amarillo);
         botonesColores.getChildren().add(botonAmarillo);
 
-        ColorPickerButton botonMagenta = new ColorPickerButton(FontSelection.Magenta);
+        ColorPickerButton botonMagenta = new ColorPickerButton(new SeleccionarJugadoresController(stage, contenedorPrincipal), FontSelection.Magenta);
         botonesColores.getChildren().add(botonMagenta);
 
-        ColorPickerButton botonNegro = new ColorPickerButton(FontSelection.Negro);
+        ColorPickerButton botonNegro = new ColorPickerButton(new SeleccionarJugadoresController(stage, contenedorPrincipal), FontSelection.Negro);
         botonesColores.getChildren().add(botonNegro);
 
-        ColorPickerButton botonVerde = new ColorPickerButton(FontSelection.Verde);
+        ColorPickerButton botonVerde = new ColorPickerButton(new SeleccionarJugadoresController(stage, contenedorPrincipal), FontSelection.Verde);
         botonesColores.getChildren().add(botonVerde);
 
-        ColorPickerButton botonAzul = new ColorPickerButton(FontSelection.Azul);
+        ColorPickerButton botonAzul = new ColorPickerButton(new SeleccionarJugadoresController(stage, contenedorPrincipal), FontSelection.Azul);
         botonesColores.getChildren().add(botonAzul);
 
         VBox botonesMenu = new VBox(0);
@@ -50,10 +53,6 @@ public class SeleccionarJugadoresView extends StackPane {
 
         VolverInicioButton botonVolverInicio = new VolverInicioButton(new VolverInicioController(stage, contenedorPrincipal));
         botonesMenu.getChildren().add(botonVolverInicio);
-
-        /*Tooltip tooltip = new Tooltip("Boton Volver");
-        Tooltip.install(botonVolverInicio,tooltip);
-        botonVolverInicio.setStyle("-fx-background-color:yellow;-fx-margin:10px");*/
 
         grillaInicio.add(nombreJuego,0,0);
         grillaInicio.add(botonesColores,0,1);
