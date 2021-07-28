@@ -11,8 +11,6 @@ public class Turnos {
     private List<String> jugadores = new ArrayList<>();
     private TipoRonda tipoDeRonda;
     private final Teg teg;
-    private ListIterator<String> iteradorJugadores;
-    private String jugadorActual;
 
     public Turnos() {
         this.teg = new Teg();

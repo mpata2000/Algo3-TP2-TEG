@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Teg;
 
 import java.util.List;
 
-public class ColocacionPrimeraRonda implements TipoColocacion{
+public class ColocacionPrimeraRonda extends ColocacionNormal{
     @Override
     public void colocarFichas(String unJugador, Teg teg){
         teg.agregarFichasA(unJugador,5);

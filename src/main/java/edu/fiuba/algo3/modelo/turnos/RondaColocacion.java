@@ -7,7 +7,7 @@ import java.util.ListIterator;
 
 public class RondaColocacion implements TipoRonda {
 
-    private final TipoColocacion tipoColocacion;
+    private final ColocacionNormal tipoColocacion;
     private ListIterator<String> iteradorJugadores;
     private String jugadorActual;
     private boolean turnoInicilizado = false;
@@ -18,7 +18,7 @@ public class RondaColocacion implements TipoRonda {
         this.jugadorActual = this.iteradorJugadores.next();
     }
 
-    public RondaColocacion(TipoColocacion colocacion,List<String> jugadores){
+    public RondaColocacion(ColocacionNormal colocacion,List<String> jugadores){
         this.tipoColocacion = colocacion;
         this.iteradorJugadores = jugadores.listIterator();
         this.jugadorActual = this.iteradorJugadores.next();

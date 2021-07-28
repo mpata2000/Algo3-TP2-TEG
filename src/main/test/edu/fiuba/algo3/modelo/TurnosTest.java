@@ -302,4 +302,45 @@ public class TurnosTest {
         turnos.finEtapa();
         assertTrue(turnos.devolverRondaActual() instanceof RondaColocacion);
     }
+
+
+    @Test
+    public void enRondaReagrupacionSePuedenPasarFichasCorrectamente(){
+        tablero = new Tablero(continentes,paises);
+        jugadores.get("Amarillo").darObjetivo(objetivoPierde);
+        jugadores.get("Rojo").darObjetivo(objetivoPierde);
+        Teg teg = new Teg(tablero,jugadores);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+        for (Pais pais : paisesAsia){
+            pais.asignarJugador(jugadores.get("Rojo"));
+        }
+
+        for (Pais pais : paisesOceania){
+            pais.asignarJugador(jugadores.get("Amarillo"));
+        }
+
+        assertEquals("Amarillo",turnos.getJugadorActual());
+        turnos.colocarEjercitos("Borneo",5);
+        turnos.finEtapa();
+
+        assertEquals("Rojo",turnos.getJugadorActual());
+        turnos.colocarEjercitos("China",5);
+        turnos.finEtapa();
+
+        assertEquals("Amarillo",turnos.getJugadorActual());
+        turnos.colocarEjercitos("Australia",3);
+        turnos.finEtapa();
+
+        assertEquals("Rojo",turnos.getJugadorActual());
+        turnos.colocarEjercitos("Rusia",3);
+        turnos.finEtapa();
+
+
+        assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
+        turnos.finEtapa();
+        assertTrue(turnos.devolverRondaActual() instanceof RondaReagrupacion);
+        turnos.pasarFichas("Borneo","Australia",3);
+        assertEquals(3,paisesOceania.get(0).perderFichas(0));
+        assertEquals(7,paisesOceania.get(2).perderFichas(0));
+    }
 }

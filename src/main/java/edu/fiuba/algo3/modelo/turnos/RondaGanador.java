@@ -25,7 +25,7 @@ public class RondaGanador implements TipoRonda {
     }
 
     public TipoRonda finEtapa(List<String> jugadores,Teg teg){
-        return this;
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
     public String getJugadorActual() {

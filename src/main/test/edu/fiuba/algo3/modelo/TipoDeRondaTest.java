@@ -242,6 +242,15 @@ public class TipoDeRondaTest {
     }
 
     @Test
+    public void enRondaGanadorNoSePuedepasarDeEtapa(){
+        List<String> list = List.of("A","B");
+        TipoRonda ronda = new RondaGanador("A");
+        Teg teg = new Teg();
+
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class,()-> ronda.finEtapa(list,teg));
+    }
+
+    @Test
     public void primeraRondaLeDaCincoFichasAJugadorLaPrimeraVezQueSeLLamaAPasarFichas(){
         List<String> list = List.of("A","B");
         TipoRonda ronda = new RondaColocacion(new ColocacionPrimeraRonda(),list);
@@ -277,6 +286,19 @@ public class TipoDeRondaTest {
         verify(teg,times(1)).agregarFichasDisponiblesA("A");
         assertEquals("A",ronda.getJugadorActual());
     }
+
+    @Test
+    public void rondaDeColocacionPasaARondaAtaqueAlTerminar(){
+        List<String> list = List.of("A","B");
+        TipoRonda ronda = new RondaColocacion(new ColocacionNormal(),list);
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.jugadorTieneFichas("A")).thenReturn(true);
+
+        ronda.colocarFichas(teg,"A",0);
+        verify(teg,times(1)).agregarFichasDisponiblesA("A");
+        assertEquals("A",ronda.getJugadorActual());
+    }
+
     @Test
     public void primeraRondaColocacionPasaASegundaRondaColocacionCuandoNoHayMasJugadoresYNoTienenFichasYArrancaPorElPrimerJugador(){
         List<String> list = List.of("A","B");
@@ -313,6 +335,16 @@ public class TipoDeRondaTest {
         when(teg.jugadorTieneFichas("A")).thenReturn(true);
 
         assertThrows(JugadorSigueTeniendoFichasException.class,()-> ronda.finEtapa(list,teg));
+    }
+
+    @Test
+    public void enRondaDeReagrupacionSePuedenPasarFichas(){
+        List<String> list = List.of("A","B");
+        TipoRonda ronda = new RondaReagrupacion("A",list);
+        Teg teg = Mockito.mock(Teg.class);
+
+        ronda.pasarFichas(teg,"A","B",3);
+        verify(teg,times(1)).pasarFichas("A","A","B",3);
     }
 
 }
