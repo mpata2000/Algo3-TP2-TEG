@@ -29,13 +29,13 @@ public class RondaAtaque implements TipoRonda {
         if(this.conquistoPais && paisUno.equalsIgnoreCase(this.paisAtcante) && paisDos.equalsIgnoreCase(this.paisConquistado)) {
             teg.pasarFichas(jugadorActual,paisUno, paisDos, cant);
         }else{
-            throw new PasajeDeFichasNoValidoEnAtaque();
+            throw new PasajeDeFichasNoValidoEnAtaqueException();
         }
     }
 
 
     public void colocarFichas(Teg teg, String nombrePais, int cantidad){
-        throw new NoSePuedeHacerEstaAccionEnEstaRonda();
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
 

@@ -15,7 +15,7 @@ public class TipoDeRondaTest {
     public void enRondaDeColocacionNoSePuedeAtacar(){
         TipoRonda ronda = new RondaColocacion(List.of("A"));
         Teg teg = new Teg();
-        assertThrows(NoSePuedeHacerEstaAccionEnEstaRonda.class,()-> ronda.atacar(teg,"A","B",3));
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class,()-> ronda.atacar(teg,"A","B",3));
     }
 
     @Test
@@ -23,7 +23,7 @@ public class TipoDeRondaTest {
         TipoRonda ronda = new RondaColocacion(List.of("A"));
         Teg teg = new Teg();
 
-        assertThrows(NoSePuedeHacerEstaAccionEnEstaRonda.class,()-> ronda.pasarFichas(teg,"A","B",3));
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class,()-> ronda.pasarFichas(teg,"A","B",3));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class TipoDeRondaTest {
         TipoRonda ronda = new RondaReagrupacion(list.get(0), list);
         Teg teg = new Teg();
 
-        assertThrows(NoSePuedeHacerEstaAccionEnEstaRonda.class,()-> ronda.atacar(teg,"A","B",3));
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class,()-> ronda.atacar(teg,"A","B",3));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class TipoDeRondaTest {
         TipoRonda ronda = new RondaReagrupacion(list.get(0), list);
         Teg teg = new Teg();
 
-        assertThrows(NoSePuedeHacerEstaAccionEnEstaRonda.class,()-> ronda.colocarFichas(teg,"A",3));
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class,()-> ronda.colocarFichas(teg,"A",3));
     }
 
     @Test
@@ -124,7 +124,7 @@ public class TipoDeRondaTest {
         TipoRonda ronda = new RondaAtaque("A");
         Teg teg = new Teg();
 
-        assertThrows(NoSePuedeHacerEstaAccionEnEstaRonda.class,()-> ronda.colocarFichas(teg,"A",3));
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class,()-> ronda.colocarFichas(teg,"A",3));
     }
 
     @Test
@@ -132,7 +132,7 @@ public class TipoDeRondaTest {
         TipoRonda ronda = new RondaAtaque("A");
         Teg teg = new Teg();
 
-        assertThrows(PasajeDeFichasNoValidoEnAtaque.class,()-> ronda.pasarFichas(teg,"A","B",3));
+        assertThrows(PasajeDeFichasNoValidoEnAtaqueException.class,()-> ronda.pasarFichas(teg,"A","B",3));
     }
 
     @Test
@@ -153,7 +153,7 @@ public class TipoDeRondaTest {
         when(teg.atacar("A","A","B",3)).thenReturn(false);
 
         ronda.atacar(teg,"A","B",3);
-        assertThrows(PasajeDeFichasNoValidoEnAtaque.class,()-> ronda.pasarFichas(teg,"A","B",3));
+        assertThrows(PasajeDeFichasNoValidoEnAtaqueException.class,()-> ronda.pasarFichas(teg,"A","B",3));
         verify(teg,times(0)).pasarFichas("A","A","B",3);
         verify(teg,times(1)).atacar("A","A","B",3);
     }
@@ -165,7 +165,7 @@ public class TipoDeRondaTest {
         when(teg.atacar("A","A","B",3)).thenReturn(true);
 
         ronda.atacar(teg,"A","B",3);
-        assertThrows(PasajeDeFichasNoValidoEnAtaque.class,()-> ronda.pasarFichas(teg,"A","C",3));
+        assertThrows(PasajeDeFichasNoValidoEnAtaqueException.class,()-> ronda.pasarFichas(teg,"A","C",3));
         verify(teg,times(0)).pasarFichas("A","A","C",3);
         verify(teg,times(1)).atacar("A","A","B",3);
     }
@@ -177,7 +177,7 @@ public class TipoDeRondaTest {
         when(teg.atacar("A","A","B",3)).thenReturn(true);
 
         ronda.atacar(teg,"A","B",3);
-        assertThrows(PasajeDeFichasNoValidoEnAtaque.class,()-> ronda.pasarFichas(teg,"C","B",3));
+        assertThrows(PasajeDeFichasNoValidoEnAtaqueException.class,()-> ronda.pasarFichas(teg,"C","B",3));
         verify(teg,times(0)).pasarFichas("A","C","B",3);
         verify(teg,times(1)).atacar("A","A","B",3);
     }
@@ -189,7 +189,7 @@ public class TipoDeRondaTest {
         when(teg.atacar("A","A","B",3)).thenReturn(true);
 
         ronda.atacar(teg,"A","B",3);
-        assertThrows(PasajeDeFichasNoValidoEnAtaque.class,()-> ronda.pasarFichas(teg,"B","C",3));
+        assertThrows(PasajeDeFichasNoValidoEnAtaqueException.class,()-> ronda.pasarFichas(teg,"B","C",3));
         verify(teg,times(0)).pasarFichas("A","B","C",3);
         verify(teg,times(1)).atacar("A","A","B",3);
     }
@@ -222,7 +222,7 @@ public class TipoDeRondaTest {
         TipoRonda ronda = new RondaGanador("A");
         Teg teg = new Teg();
 
-        assertThrows(NoSePuedeHacerEstaAccionEnEstaRonda.class,()-> ronda.colocarFichas(teg,"A",3));
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class,()-> ronda.colocarFichas(teg,"A",3));
     }
 
     @Test
@@ -230,7 +230,7 @@ public class TipoDeRondaTest {
         TipoRonda ronda = new RondaGanador("A");
         Teg teg = new Teg();
 
-        assertThrows(NoSePuedeHacerEstaAccionEnEstaRonda.class,()-> ronda.pasarFichas(teg,"A","B",3));
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class,()-> ronda.pasarFichas(teg,"A","B",3));
     }
 
     @Test
@@ -238,7 +238,7 @@ public class TipoDeRondaTest {
         TipoRonda ronda = new RondaGanador("A");
         Teg teg = new Teg();
 
-        assertThrows(NoSePuedeHacerEstaAccionEnEstaRonda.class,()-> ronda.atacar(teg,"A","B",3));
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class,()-> ronda.atacar(teg,"A","B",3));
     }
 
     @Test
@@ -312,7 +312,7 @@ public class TipoDeRondaTest {
         Teg teg = Mockito.mock(Teg.class);
         when(teg.jugadorTieneFichas("A")).thenReturn(true);
 
-        assertThrows(JugadorSigueTeniendoFichas.class,()-> ronda.finEtapa(list,teg));
+        assertThrows(JugadorSigueTeniendoFichasException.class,()-> ronda.finEtapa(list,teg));
     }
 
 }

@@ -13,15 +13,15 @@ public class RondaGanador implements TipoRonda {
 
 
     public void atacar(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
-        throw new NoSePuedeHacerEstaAccionEnEstaRonda();
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
     public void pasarFichas(Teg teg,String paisUno,String paisDos,int cant){
-        throw new NoSePuedeHacerEstaAccionEnEstaRonda();
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
     public void colocarFichas(Teg teg, String nombrePais, int cantidad){
-        throw new NoSePuedeHacerEstaAccionEnEstaRonda();
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
     public TipoRonda finEtapa(List<String> jugadores,Teg teg){

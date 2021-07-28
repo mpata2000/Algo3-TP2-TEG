@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
-import edu.fiuba.algo3.excepciones.PaisNoEsLimitrofe;
-import edu.fiuba.algo3.excepciones.PaisSinSuficientesFichasParaPasar;
+import edu.fiuba.algo3.modelo.tablero.JugadorNoPoseePaisException;
+import edu.fiuba.algo3.modelo.tablero.PaisNoEsLimitrofeException;
+import edu.fiuba.algo3.modelo.tablero.PaisSinSuficientesFichasParaPasarException;
+import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -193,7 +194,7 @@ public class PaisTest{
         paisUno.agregarFichas(2,jugadorUno);
         paisDos.agregarFichas(3,jugadorUno);
 
-        assertThrows(PaisSinSuficientesFichasParaPasar.class, ()->paisUno.pasarFichasA(paisDos, 3));
+        assertThrows(PaisSinSuficientesFichasParaPasarException.class, ()->paisUno.pasarFichasA(paisDos, 3));
     }
 
     @Test
@@ -236,7 +237,7 @@ public class PaisTest{
         paisUno.agregarFichas(2,jugadorUno);
         paisDos.agregarFichas(2,jugadorUno);
 
-        assertThrows(PaisNoEsLimitrofe.class, ()->paisUno.pasarFichasA(paisDos, 2));
+        assertThrows(PaisNoEsLimitrofeException.class, ()->paisUno.pasarFichasA(paisDos, 2));
     }
 
 

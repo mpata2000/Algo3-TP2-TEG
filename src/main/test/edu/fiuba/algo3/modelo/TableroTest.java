@@ -1,7 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.excepciones.*;
+import edu.fiuba.algo3.modelo.ataque.AtaqueNoValido;
+import edu.fiuba.algo3.modelo.ataque.EjercitoConUnaFichaNoPuedeAtacarException;
+import edu.fiuba.algo3.modelo.ataque.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
+import edu.fiuba.algo3.modelo.ataque.NoSePuedenCrearCeroDadosException;
 import edu.fiuba.algo3.modelo.tablero.Continente;
+import edu.fiuba.algo3.modelo.tablero.JugadorNoPoseePaisException;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 import org.junit.jupiter.api.BeforeEach;
@@ -79,7 +83,7 @@ public class TableroTest {
         tablero.agregarFichas(3, jugadorUno, "Argentina");
         tablero.agregarFichas(5, jugadorDos, "Chile");
 
-        assertThrows(NoSePuedenCrearCeroDados.class, () -> tablero.atacar(jugadorUno, "Argentina", "Chile", 0));
+        assertThrows(NoSePuedenCrearCeroDadosException.class, () -> tablero.atacar(jugadorUno, "Argentina", "Chile", 0));
     }
 
     @Test
@@ -93,7 +97,7 @@ public class TableroTest {
         paisAtacante.asignarJugador(jugadorDos);
         tablero.agregarFichas(5, jugadorDos, "Chile");
 
-        assertThrows(EjercitoConUnaFichaNoPuedeAtacar.class, () -> tablero.atacar(jugadorUno, "Argentina", "Chile", 1));
+        assertThrows(EjercitoConUnaFichaNoPuedeAtacarException.class, () -> tablero.atacar(jugadorUno, "Argentina", "Chile", 1));
     }
 
     @Test
@@ -108,7 +112,7 @@ public class TableroTest {
         tablero.agregarFichas(1, jugadorUno, "Argentina");
         tablero.agregarFichas(4, jugadorDos, "Chile");
 
-        assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDados.class, () -> tablero.atacar(jugadorUno, "Argentina", "Chile", 3));
+        assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDadosException.class, () -> tablero.atacar(jugadorUno, "Argentina", "Chile", 3));
     }
 
     @Test

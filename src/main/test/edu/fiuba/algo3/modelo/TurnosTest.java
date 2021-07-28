@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.excepciones.JugadorNoTieneSuficientesFichas;
+import edu.fiuba.algo3.modelo.tablero.JugadorNoTieneSuficientesFichasException;
+import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import edu.fiuba.algo3.modelo.tablero.Continente;
 import edu.fiuba.algo3.modelo.tablero.Pais;
@@ -97,7 +98,7 @@ public class TurnosTest {
         paisesAsia.get(1).asignarJugador(jugadores.get("Rojo"));
 
 
-        assertThrows(JugadorNoTieneSuficientesFichas.class,()-> turnos.colocarEjercitos("China",7));
+        assertThrows(JugadorNoTieneSuficientesFichasException.class,()-> turnos.colocarEjercitos("China",7));
 
     }
 
@@ -114,8 +115,8 @@ public class TurnosTest {
         turnos.colocarEjercitos("Japon",5);
         turnos.finEtapa();
 
-        assertThrows(JugadorNoTieneSuficientesFichas.class,()-> turnos.colocarEjercitos("China",4));
-        assertThrows(JugadorSigueTeniendoFichas.class, turnos::finEtapa);
+        assertThrows(JugadorNoTieneSuficientesFichasException.class,()-> turnos.colocarEjercitos("China",4));
+        assertThrows(JugadorSigueTeniendoFichasException.class, turnos::finEtapa);
 
 
     }

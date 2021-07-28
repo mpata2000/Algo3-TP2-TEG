@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.modelo.tablero;
 
-import edu.fiuba.algo3.excepciones.EjercitoConUnaFichaNoPuedeAtacar;
-import edu.fiuba.algo3.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDados;
-import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
-import edu.fiuba.algo3.excepciones.PaisSinSuficientesFichasParaPasar;
-import edu.fiuba.algo3.modelo.Dados;
+import edu.fiuba.algo3.modelo.ataque.EjercitoConUnaFichaNoPuedeAtacarException;
+import edu.fiuba.algo3.modelo.ataque.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
+import edu.fiuba.algo3.modelo.ataque.NoSePuedenCrearCeroDadosException;
+import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.Jugador;
 
 public class Ejercito {
@@ -30,7 +29,7 @@ public class Ejercito {
 
     public void pasarFichasADe(Pais unPais, Jugador unJugador, int cantidadFichas){
         if(this.cantidadFichas <= cantidadFichas) {
-            throw new PaisSinSuficientesFichasParaPasar();
+            throw new PaisSinSuficientesFichasParaPasarException();
         }
         this.cantidadFichas -= cantidadFichas;
         unJugador.agregarFichas(cantidadFichas);
@@ -41,15 +40,15 @@ public class Ejercito {
         return new Dados(Math.min(this.cantidadFichas,3));
     }
 
-    public Dados tirarDados(int unaCantidadDeDados) throws EjercitoConUnaFichaNoPuedeAtacar, EjercitoNoPuedeTirarEsaCantidadDeDados, NoSePuedenCrearCeroDados {
+    public Dados tirarDados(int unaCantidadDeDados) throws EjercitoConUnaFichaNoPuedeAtacarException, EjercitoNoPuedeTirarEsaCantidadDeDadosException, NoSePuedenCrearCeroDadosException {
         if(this.cantidadFichas < 2){
-            throw new EjercitoConUnaFichaNoPuedeAtacar();
+            throw new EjercitoConUnaFichaNoPuedeAtacarException();
         }
 
         int cantidadDeDados = Math.min(unaCantidadDeDados,3);
 
         if(cantidadDeDados >= (this.cantidadFichas)){
-            throw new EjercitoNoPuedeTirarEsaCantidadDeDados();
+            throw new EjercitoNoPuedeTirarEsaCantidadDeDadosException();
         }
         return new Dados(cantidadDeDados);
     }

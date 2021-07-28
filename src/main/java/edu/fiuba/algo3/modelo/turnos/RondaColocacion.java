@@ -33,12 +33,12 @@ public class RondaColocacion implements TipoRonda {
 
 
     public void atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad){
-        throw new NoSePuedeHacerEstaAccionEnEstaRonda();
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
 
     public void pasarFichas(Teg teg,String paisUno,String paisdos,int cant){
-        throw new NoSePuedeHacerEstaAccionEnEstaRonda();
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
 
@@ -50,7 +50,7 @@ public class RondaColocacion implements TipoRonda {
 
     public TipoRonda finEtapa(List<String> jugadores,Teg teg){
         if(teg.jugadorTieneFichas(this.jugadorActual)){
-            throw new JugadorSigueTeniendoFichas();
+            throw new JugadorSigueTeniendoFichasException();
         }
         if(this.iteradorJugadores.hasNext()){
             this.jugadorActual = this.iteradorJugadores.next();

@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.tablero;
 
-import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
-import edu.fiuba.algo3.modelo.Batalla;
+import edu.fiuba.algo3.modelo.ataque.Batalla;
 import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.HashMap;
