@@ -6,14 +6,15 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class ColorPickerButton extends Button {
 
-    public ColorPickerButton(String unColor){ //EventHandler<ActionEvent> controlador, String unColor){
-        super.setText("Click Me");
+    public ColorPickerButton(EventHandler<ActionEvent> controlador, String unColor){
+        super.setText("Add Me");
 
         super.setFont(Font.font(FontSelection.SubtitleFontType, 30));
         super.setPadding(new Insets(10));
@@ -23,6 +24,6 @@ public class ColorPickerButton extends Button {
         super.setBackground(unFondo);
         super.setAlignment(Pos.CENTER);
 
-        //super.setOnAction(controlador);
+        super.setOnAction(controlador);
     }
 }

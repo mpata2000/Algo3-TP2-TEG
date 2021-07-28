@@ -15,7 +15,7 @@ public class App extends Application {
     public void start(Stage stage){
         stage.setTitle("ALTEGO");
 
-        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal();
+        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage);
         contenedorPrincipal.setCentro(new MenuInicioView(stage,contenedorPrincipal));
 
         var scene = new Scene(contenedorPrincipal, 1080, 720);

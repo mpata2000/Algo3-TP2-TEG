@@ -4,6 +4,7 @@ import edu.fiuba.algo3.vistas.ContenedorPrincipal;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -12,9 +13,30 @@ public class SeleccionarJugadoresController implements EventHandler<ActionEvent>
     private Stage stage;
     private TextField textoJugador1;
     private TextField textoJugador2;
+    private Button boton;
     private ContenedorPrincipal contenedorPrincipal;
 
-    public SeleccionarJugadoresController(Stage stage, TextField textoJugador1, TextField textoJugador2, ContenedorPrincipal contenedorPrincipal){
+    public SeleccionarJugadoresController(Stage stage, ContenedorPrincipal contenedorPrincipal){
+        this.stage = stage;
+        //this.boton = unBoton;
+        this.contenedorPrincipal = contenedorPrincipal;
+    }
+
+
+    @Override
+    public void handle(ActionEvent actionEvent) {
+        boton.setText("Added");
+        String textoBoton = boton.getText();
+        if (textoBoton == "Add Me"){
+            boton.setText("Added");
+        } else {
+            Alert nombresSinCompletar = new Alert(Alert.AlertType.ERROR);
+            nombresSinCompletar.setHeaderText("No completo los dos nombres");
+            nombresSinCompletar.setContentText("Los dos jugadores deben de tener un nombre!");
+            nombresSinCompletar.show();
+        }
+    }
+    /*public SeleccionarJugadoresController(Stage stage, TextField textoJugador1, TextField textoJugador2, ContenedorPrincipal contenedorPrincipal){
         this.stage = stage;
         this.textoJugador1 = textoJugador1;
         this.textoJugador2 = textoJugador2;
@@ -46,8 +68,8 @@ public class SeleccionarJugadoresController implements EventHandler<ActionEvent>
                 archivoNoEncontrado.setContentText("Por favor revise que existe el archivo \n" + System.getProperty("user.dir") + ex.getMessage() + "\n y tiene el formato correcto");
                 archivoNoEncontrado.show();
             }
-            contenedorPrincipal.setCentro(new VistaTransicionPregunta(stage,contenedorPrincipal));*/
+            contenedorPrincipal.setCentro(new VistaTransicionPregunta(stage,contenedorPrincipal));
         //}
-    }
+    }*/
 
 }
