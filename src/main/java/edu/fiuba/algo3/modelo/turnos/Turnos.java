@@ -4,6 +4,7 @@ package edu.fiuba.algo3.modelo.turnos;
 import edu.fiuba.algo3.modelo.Teg;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -34,9 +35,10 @@ public class Turnos {
     }
 
     public void comenzarJuego(){
-        if(this.jugadores.size() < 6){
+        if(this.jugadores.size() < 2){
             throw new NoHaySuficientesJugadoresException();
         }
+        Collections.shuffle(jugadores); //Mezclar los jugadores como si tiraron Dados
         this.teg.comenzarJuego(jugadores);
         this.tipoDeRonda = new RondaColocacion(jugadores) ;
     }

@@ -131,6 +131,16 @@ public class TurnosTest {
     }
 
     @Test
+    public void TurnosPuedeComenzarConDosJugadoresYArrancaEnRondaColocacion(){
+
+        Turnos turnos = new Turnos();
+        turnos.agregarJugador("Amarillo");
+        turnos.agregarJugador("Rojo");
+        turnos.comenzarJuego();
+        assertTrue(turnos.devolverRondaActual() instanceof RondaColocacion);
+    }
+
+    @Test
     public void NoSePuedeAgregarMasDeSeisJugadores(){
 
         Turnos turnos = new Turnos();
