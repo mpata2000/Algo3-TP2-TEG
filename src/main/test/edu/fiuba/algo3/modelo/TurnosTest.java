@@ -126,7 +126,7 @@ public class TurnosTest {
     public void NoSePuedeComenzarJuegoCOn(){
 
         Turnos turnos = new Turnos();
-        turnos.agregarJugador(List.of("Amarillo"));
+        turnos.agregarJugadores(List.of("Amarillo"));
         assertThrows(NoHaySuficientesJugadoresException.class, turnos::comenzarJuego);
     }
 
@@ -134,7 +134,7 @@ public class TurnosTest {
     public void TurnosPuedeComenzarConDosJugadoresYArrancaEnRondaColocacion(){
 
         Turnos turnos = new Turnos();
-        turnos.agregarJugador(List.of("Amarillo","Rojo"));
+        turnos.agregarJugadores(List.of("Amarillo","Rojo"));
         turnos.comenzarJuego();
         assertTrue(turnos.devolverRondaActual() instanceof RondaColocacion);
     }
@@ -143,7 +143,7 @@ public class TurnosTest {
     public void NoSePuedeAgregarMasDeSeisJugadores(){
 
         Turnos turnos = new Turnos();
-        assertThrows(LimiteDeJugadoresException.class, ()->  turnos.agregarJugador(List.of("Amarillo", "Rojo", "Verde", "Magenta","Negro","Azul","Celeste")));
+        assertThrows(LimiteDeJugadoresException.class, ()->  turnos.agregarJugadores(List.of("Amarillo", "Rojo", "Verde", "Magenta","Negro","Azul","Celeste")));
     }
 
     @Test

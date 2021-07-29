@@ -14,6 +14,13 @@ public class Turnos {
     private TipoRonda tipoDeRonda;
     private final Teg teg;
 
+    public static Turnos getInstance() {
+        if(turnos == null){
+            turnos = new Turnos();
+        }
+        return turnos;
+    }
+
     public Turnos() {
         this.teg = new Teg();
     }
@@ -28,7 +35,7 @@ public class Turnos {
         return this.tipoDeRonda.getJugadorActual();
     }
 
-    public void agregarJugador(List<String> listaJugadores){
+    public void agregarJugadores(List<String> listaJugadores){
         if(listaJugadores.size() >= 6){
             throw new LimiteDeJugadoresException();
         }
