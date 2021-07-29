@@ -15,11 +15,8 @@ import java.util.List;
 
 public class TableroMessage extends Label {
 
-    public TableroMessage(String pais){
-
-
-
-        super(pais);
+    public TableroMessage(String infoContinente){
+        super(infoContinente);
 
         super.setFont(Font.font(FontSelection.TitleFontType,10));
         super.setTextFill(Color.BLACK);
@@ -31,4 +28,5 @@ public class TableroMessage extends Label {
         super.setBackground(unFondo);
         super.setAlignment(Pos.CENTER);
     }
+
 }

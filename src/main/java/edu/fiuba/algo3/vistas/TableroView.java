@@ -33,25 +33,23 @@ public class TableroView extends StackPane {
         VBox contenedorVertical = new VBox(50);
         contenedorVertical.setAlignment(Pos.CENTER);
 
+        HBox contenedorContinentes = new HBox(50);
+        contenedorContinentes.setAlignment(Pos.CENTER);
 
-        /* List <HBox> boxes = List.of(new HBox(50),new HBox(50),new HBox(50),new HBox(50),new HBox(50));
-        int i=0;
-        for(Pais pais:Turnos.getInstance().getTeg().getTablero().getPaises().values()){
-            TableroMessage tableroMessage = new TableroMessage(pais.paisToString());
-            boxes.get(i%5).getChildren().add(tableroMessage);
+        HBox contenedorContinentes2 = new HBox(50);
+        contenedorContinentes2.setAlignment(Pos.CENTER);
 
-            i++;
+        Collection<Continente> listaContinentes = Turnos.getInstance().getTeg().getTablero().getContinentes().values();
+        for(Continente continente: Turnos.getInstance().getTeg().getTablero().getContinentes().values()){
+            TableroMessage mensaje = new TableroMessage(continente.obtenerInfo());
+            contenedorContinentes.getChildren().add(mensaje);
         }
-        */
+        //boxes.get(i%5).getChildren().add(tableroMessage);
 
         grillaInicio.getChildren().addAll(selectedImage);
         grillaInicio.add(contenedorVertical,0,1);
-        /*
-        grillaInicio.add(boxes.get(0), 0, 2);
-        grillaInicio.add(boxes.get(1), 0, 3);
-        grillaInicio.add(boxes.get(2), 0, 4);
-        grillaInicio.add(boxes.get(3), 0, 5);
-        grillaInicio.add(boxes.get(4), 0, 6);*/
+        grillaInicio.add(contenedorContinentes,0,2);
+
         super.getChildren().add(grillaInicio);
 
     }
