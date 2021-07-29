@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controllers;
 
+import edu.fiuba.algo3.modelo.turnos.Turnos;
 import edu.fiuba.algo3.vistas.ContenedorPrincipal;
 import edu.fiuba.algo3.vistas.SeleccionarJugadoresView;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ public class IniciarJuegoController implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        Turnos.getInstance();
         contenedorPrincipal.setCentro(new SeleccionarJugadoresView(stage, contenedorPrincipal));
     }
 }

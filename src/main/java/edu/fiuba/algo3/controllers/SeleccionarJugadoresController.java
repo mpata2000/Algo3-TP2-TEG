@@ -1,53 +1,52 @@
 package edu.fiuba.algo3.controllers;
 
+import edu.fiuba.algo3.modelo.turnos.Turnos;
 import edu.fiuba.algo3.vistas.ContenedorPrincipal;
+import edu.fiuba.algo3.vistas.MenuInicioView;
+import edu.fiuba.algo3.vistas.TableroView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
+import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SeleccionarJugadoresController implements EventHandler<ActionEvent> {
 
     private Stage stage;
-    private TextField textoJugador1;
-    private TextField textoJugador2;
+    private List<CheckBox> listaBoxes;
+    private List<String> listaColores;
     private ContenedorPrincipal contenedorPrincipal;
 
-    public SeleccionarJugadoresController(Stage stage, TextField textoJugador1, TextField textoJugador2, ContenedorPrincipal contenedorPrincipal){
+    public SeleccionarJugadoresController(Stage stage, ContenedorPrincipal contenedorPrincipal, List<CheckBox> listaBoxes, List<String> listaColores){
         this.stage = stage;
-        this.textoJugador1 = textoJugador1;
-        this.textoJugador2 = textoJugador2;
+        this.listaBoxes = listaBoxes;
+        this.listaColores = listaColores;
         this.contenedorPrincipal = contenedorPrincipal;
     }
 
-
     @Override
     public void handle(ActionEvent actionEvent) {
-        String nombreJugador1 = textoJugador1.getText();
-        String nombreJugador2 = textoJugador2.getText();
-        if(nombreJugador1.isEmpty() || nombreJugador2.isEmpty()){
-            Alert nombresSinCompletar = new Alert(Alert.AlertType.ERROR);
-            nombresSinCompletar.setHeaderText("No completo los dos nombres");
-            nombresSinCompletar.setContentText("Los dos jugadores deben de tener un nombre!");
-            nombresSinCompletar.show();
+        List<String> coloresJugador = new ArrayList<>();
+
+        for (int i = 0; i < 6; i++){
+            if(listaBoxes.get(i).isSelected()){
+                coloresJugador.add(listaColores.get(i));
+            }
         }
-        //else{
-            //ComenzarJuego
 
-
-            /*try{
-                AlgoHoot.getInstance().inicializarJuego(nombreJugador1,nombreJugador2,new CriterioDesorden());
-            }
-            catch(ArchivoNoEncontradoException ex) {
-                ex.printStackTrace();
-                Alert archivoNoEncontrado = new Alert(Alert.AlertType.ERROR);
-                archivoNoEncontrado.setHeaderText("Archivo no Encontrado");
-                archivoNoEncontrado.setContentText("Por favor revise que existe el archivo \n" + System.getProperty("user.dir") + ex.getMessage() + "\n y tiene el formato correcto");
-                archivoNoEncontrado.show();
-            }
-            contenedorPrincipal.setCentro(new VistaTransicionPregunta(stage,contenedorPrincipal));*/
-        //}
+        if(coloresJugador.size() < 2){
+            Alert insuficientesJugadores = new Alert(Alert.AlertType.ERROR);
+            insuficientesJugadores.setHeaderText("No hay suficientes jugadores");
+            insuficientesJugadores.setContentText("Se deben seleccionar un minimo de 2 jugadores!");
+            insuficientesJugadores.show();
+        } else {
+            Turnos.getInstance().agregarJugadores(coloresJugador);
+            Turnos.getInstance().comenzarJuego();
+            contenedorPrincipal.setCentro(new TableroView(stage, contenedorPrincipal));
+        }
     }
 
 }

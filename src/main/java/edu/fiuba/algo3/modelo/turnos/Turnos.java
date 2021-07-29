@@ -9,9 +9,17 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class Turnos {
+    private static Turnos turnos;
     private List<String> jugadores = new ArrayList<>();
     private TipoRonda tipoDeRonda;
     private final Teg teg;
+
+    public static Turnos getInstance() {
+        if(turnos == null){
+            turnos = new Turnos();
+        }
+        return turnos;
+    }
 
     public Turnos() {
         this.teg = new Teg();
@@ -27,11 +35,11 @@ public class Turnos {
         return this.tipoDeRonda.getJugadorActual();
     }
 
-    public void agregarJugador(String color){
-        if(this.jugadores.size() >= 6){
+    public void agregarJugadores(List<String> listaJugadores){
+        if(listaJugadores.size() >= 6){
             throw new LimiteDeJugadoresException();
         }
-        this.jugadores.add(color);
+        this.jugadores.addAll(listaJugadores);
     }
 
     public void comenzarJuego(){

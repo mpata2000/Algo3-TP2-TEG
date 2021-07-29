@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controllers;
 
+
 import edu.fiuba.algo3.vistas.ContenedorPrincipal;
 import edu.fiuba.algo3.vistas.MenuInicioView;
 import javafx.event.ActionEvent;
@@ -7,7 +8,6 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
 public class VolverInicioController implements EventHandler<ActionEvent> {
-
     private Stage stage;
     private ContenedorPrincipal contenedorPrincipal;
 

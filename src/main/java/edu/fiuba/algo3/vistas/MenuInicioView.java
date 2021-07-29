@@ -6,7 +6,7 @@ import edu.fiuba.algo3.vistas.botones.AyudaButton;
 import edu.fiuba.algo3.vistas.botones.IniciarPartidaButton;
 import edu.fiuba.algo3.vistas.colores.FontSelection;
 import edu.fiuba.algo3.vistas.grillas.MenuInicioGrid;
-import edu.fiuba.algo3.vistas.texto.BienvenidaMessage;
+import edu.fiuba.algo3.vistas.mensajes.BienvenidaMessage;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;

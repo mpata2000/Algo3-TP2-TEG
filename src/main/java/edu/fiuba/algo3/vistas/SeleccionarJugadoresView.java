@@ -1,17 +1,23 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.VolverInicioController;
-import edu.fiuba.algo3.vistas.botones.ColorPickerButton;
-import edu.fiuba.algo3.vistas.botones.VolverInicioButton;
+import edu.fiuba.algo3.controllers.SeleccionarJugadoresController;
+import edu.fiuba.algo3.vistas.botones.IniciarPartidaButton;
 import edu.fiuba.algo3.vistas.colores.FontSelection;
 import edu.fiuba.algo3.vistas.grillas.MenuInicioGrid;
-import edu.fiuba.algo3.vistas.texto.SeleccionarJugadorMessage;
+import edu.fiuba.algo3.vistas.mensajes.SeleccionarJugadorMessage;
 import javafx.geometry.Pos;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SeleccionarJugadoresView extends StackPane {
+
+    private Stage stage;
 
     public SeleccionarJugadoresView(Stage stage, ContenedorPrincipal contenedorPrincipal) {
 
@@ -20,7 +26,7 @@ public class SeleccionarJugadoresView extends StackPane {
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
 
-        MenuInicioGrid grillaInicio = new MenuInicioGrid(720, 480);
+        MenuInicioGrid grillaInicio = new MenuInicioGrid(480, 480);
 
         VBox nombreJuego = new VBox(0);
         nombreJuego.setAlignment(Pos.TOP_CENTER);
@@ -28,32 +34,25 @@ public class SeleccionarJugadoresView extends StackPane {
         nombreJuego.getChildren().add(textoAlgoHootInicio);
 
         VBox botonesColores = new VBox(0);
-        botonesColores.setAlignment(Pos.BOTTOM_CENTER);
+        botonesColores.setAlignment(Pos.BOTTOM_LEFT);
+        botonesColores.setSpacing(10);
 
-        ColorPickerButton botonAmarillo = new ColorPickerButton(FontSelection.Amarillo);
-        botonesColores.getChildren().add(botonAmarillo);
+        List<CheckBox> listaBoxes = new ArrayList<>();
 
-        ColorPickerButton botonMagenta = new ColorPickerButton(FontSelection.Magenta);
-        botonesColores.getChildren().add(botonMagenta);
-
-        ColorPickerButton botonNegro = new ColorPickerButton(FontSelection.Negro);
-        botonesColores.getChildren().add(botonNegro);
-
-        ColorPickerButton botonVerde = new ColorPickerButton(FontSelection.Verde);
-        botonesColores.getChildren().add(botonVerde);
-
-        ColorPickerButton botonAzul = new ColorPickerButton(FontSelection.Azul);
-        botonesColores.getChildren().add(botonAzul);
+        Label l = new Label("This is a check box");
+        List<String> listaColores = List.of("Azul","Rojo","Amarillo","Verde","Magenta","Negro");
+        botonesColores.getChildren().add(l);
+        for (int i = 0; i < listaColores.size(); i++) {
+            CheckBox c = new CheckBox(listaColores.get(i));
+            botonesColores.getChildren().add(c);
+            listaBoxes.add(c);
+        }
 
         VBox botonesMenu = new VBox(0);
         botonesMenu.setAlignment(Pos.BOTTOM_CENTER);
 
-        VolverInicioButton botonVolverInicio = new VolverInicioButton(new VolverInicioController(stage, contenedorPrincipal));
-        botonesMenu.getChildren().add(botonVolverInicio);
-
-        /*Tooltip tooltip = new Tooltip("Boton Volver");
-        Tooltip.install(botonVolverInicio,tooltip);
-        botonVolverInicio.setStyle("-fx-background-color:yellow;-fx-margin:10px");*/
+        IniciarPartidaButton botonIniciarPartida = new IniciarPartidaButton(new SeleccionarJugadoresController(stage, contenedorPrincipal, listaBoxes, listaColores));
+        botonesMenu.getChildren().add(botonIniciarPartida);
 
         grillaInicio.add(nombreJuego,0,0);
         grillaInicio.add(botonesColores,0,1);
@@ -61,5 +60,4 @@ public class SeleccionarJugadoresView extends StackPane {
 
         super.getChildren().add(grillaInicio);
     }
-
 }
