@@ -107,6 +107,7 @@ public class Pais {
 
 
     public String paisToString(){
-        return (this.nombrePais+"\n" + this.perderFichas(0)+"\n"+this.jugador.getColor());
+
+        return ("\n" + this.nombrePais + "\t" + this.perderFichas(0)+ "\t" + this.jugador.getColor());
     }
 }
