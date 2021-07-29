@@ -112,4 +112,7 @@ public class Teg {
                 .findFirst()
                 .orElse(null);
     }
+    public Tablero getTablero(){
+        return this.tablero;
+    }
 }

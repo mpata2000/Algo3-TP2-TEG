@@ -11,11 +11,10 @@ public class MenuInicioGrid extends GridPane {
     private static int TAM_SECCION_PREGUNTA = 375;
     private static int TAM_BOTON_ENVIAR = 50;
 
+    public MenuInicioGrid(double screenWidth, double screenHeight) {
 
-    public MenuInicioGrid(double anchoPantalla, double altoPantalla) {
-
-        super.setMinSize(anchoPantalla + 50, altoPantalla);
-        super.setMaxSize(anchoPantalla + 50, altoPantalla);
+        super.setMinSize(screenWidth + 50, screenHeight);
+        super.setMaxSize(screenWidth + 50, screenHeight);
         super.setAlignment(Pos.CENTER);
         super.setVgap(DISTANCIA_FILAS);
         super.getRowConstraints().add(new RowConstraints(TAM_ENCABEZADO));

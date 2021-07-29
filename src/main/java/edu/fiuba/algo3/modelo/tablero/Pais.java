@@ -105,4 +105,9 @@ public class Pais {
         return this.ejercito.tirarDados(cantidadDeDados);
     }
 
+
+    public String paisToString(){
+
+        return ("\n" + this.nombrePais + "\t" + this.perderFichas(0)+ "\t" + this.jugador.getColor());
+    }
 }

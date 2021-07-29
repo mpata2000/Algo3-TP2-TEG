@@ -40,4 +40,14 @@ public class Continente {
             unJugador.agregarFichas(this.fichas);
         }
     }
+
+    public String obtenerInfo(){
+        String info = this.nombreContinente;
+
+        for(Pais pais: this.paises){
+            info = info.concat(pais.paisToString());
+        }
+
+        return info;
+    }
 }
