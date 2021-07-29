@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.vistas.mensajes;
 
+import edu.fiuba.algo3.modelo.tablero.Continente;
+import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.vistas.colores.FontSelection;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,13 +10,18 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TableroMessage extends Label {
 
-    public TableroMessage(String continente){
+    public TableroMessage(String pais){
 
-        super(continente);
 
-        super.setFont(Font.font(FontSelection.TitleFontType,20));
+
+        super(pais);
+
+        super.setFont(Font.font(FontSelection.TitleFontType,10));
         super.setTextFill(Color.BLACK);
         super.setWrapText(true);
         super.setUnderline(true);

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.modelo.tablero.Continente;
+import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.modelo.turnos.Turnos;
 import edu.fiuba.algo3.vistas.colores.FontSelection;
 import edu.fiuba.algo3.vistas.grillas.MenuInicioGrid;
@@ -12,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.util.Map;
+import java.util.*;
 
 public class TableroView extends StackPane {
 
@@ -33,19 +34,24 @@ public class TableroView extends StackPane {
         contenedorVertical.setAlignment(Pos.CENTER);
 
 
-        final Map<String, Continente> continentes = Turnos.getInstance().getTeg().getTablero().getContinentes();
+        /* List <HBox> boxes = List.of(new HBox(50),new HBox(50),new HBox(50),new HBox(50),new HBox(50));
+        int i=0;
+        for(Pais pais:Turnos.getInstance().getTeg().getTablero().getPaises().values()){
+            TableroMessage tableroMessage = new TableroMessage(pais.paisToString());
+            boxes.get(i%5).getChildren().add(tableroMessage);
 
-        HBox contenedorContinentes = new HBox(50);
-
-        for (Map.Entry<String, Continente> entry : continentes.entrySet()) {
-
-            TableroMessage tableroMessage = new TableroMessage(entry.getKey());
-            contenedorContinentes.getChildren().add(tableroMessage);
-            }
+            i++;
+        }
+        */
 
         grillaInicio.getChildren().addAll(selectedImage);
-        grillaInicio.add(contenedorContinentes, 0, 2);
         grillaInicio.add(contenedorVertical,0,1);
+        /*
+        grillaInicio.add(boxes.get(0), 0, 2);
+        grillaInicio.add(boxes.get(1), 0, 3);
+        grillaInicio.add(boxes.get(2), 0, 4);
+        grillaInicio.add(boxes.get(3), 0, 5);
+        grillaInicio.add(boxes.get(4), 0, 6);*/
         super.getChildren().add(grillaInicio);
 
     }
