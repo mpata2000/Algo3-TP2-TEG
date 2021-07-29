@@ -2,6 +2,8 @@ package edu.fiuba.algo3.controllers;
 
 import edu.fiuba.algo3.modelo.turnos.Turnos;
 import edu.fiuba.algo3.vistas.ContenedorPrincipal;
+import edu.fiuba.algo3.vistas.MenuInicioView;
+import edu.fiuba.algo3.vistas.TableroView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -34,7 +36,6 @@ public class SeleccionarJugadoresController implements EventHandler<ActionEvent>
                 coloresJugador.add(listaColores.get(i));
             }
         }
-        System.out.println(coloresJugador);
 
         if(coloresJugador.size() < 2){
             Alert insuficientesJugadores = new Alert(Alert.AlertType.ERROR);
@@ -44,6 +45,8 @@ public class SeleccionarJugadoresController implements EventHandler<ActionEvent>
         } else {
             Turnos.getInstance().agregarJugadores(coloresJugador);
             Turnos.getInstance().comenzarJuego();
+            contenedorPrincipal.setCentro(new TableroView(stage, contenedorPrincipal));
         }
     }
+
 }
