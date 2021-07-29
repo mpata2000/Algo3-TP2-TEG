@@ -26,7 +26,7 @@ public class SeleccionarJugadoresView extends StackPane {
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
 
-        MenuInicioGrid grillaInicio = new MenuInicioGrid(720, 480);
+        MenuInicioGrid grillaInicio = new MenuInicioGrid(480, 480);
 
         VBox nombreJuego = new VBox(0);
         nombreJuego.setAlignment(Pos.TOP_CENTER);
@@ -34,7 +34,7 @@ public class SeleccionarJugadoresView extends StackPane {
         nombreJuego.getChildren().add(textoAlgoHootInicio);
 
         VBox botonesColores = new VBox(0);
-        botonesColores.setAlignment(Pos.BOTTOM_CENTER);
+        botonesColores.setAlignment(Pos.BOTTOM_LEFT);
         botonesColores.setSpacing(10);
 
         List<CheckBox> listaBoxes = new ArrayList<>();
