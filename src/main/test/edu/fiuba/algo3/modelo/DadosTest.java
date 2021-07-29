@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.excepciones.NoSePuedenCrearCeroDados;
+import edu.fiuba.algo3.modelo.ataque.NoSePuedenCrearCeroDadosException;
+import edu.fiuba.algo3.modelo.ataque.Dados;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -25,7 +26,7 @@ public class DadosTest {
     @Test
     public void crearDadosConCeroDadosTiraExcepcionNoSePuedenCrearCeroDados(){
 
-        assertThrows(NoSePuedenCrearCeroDados.class, () -> new Dados(0));
+        assertThrows(NoSePuedenCrearCeroDadosException.class, () -> new Dados(0));
     }
 
     @Test

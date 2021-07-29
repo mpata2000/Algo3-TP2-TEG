@@ -1,34 +1,54 @@
 package edu.fiuba.algo3.modelo;
 
 
+import edu.fiuba.algo3.modelo.cartas.CartaPais;
+import edu.fiuba.algo3.modelo.cartas.CartasPaisJugador;
+import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
+import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
+
 public class Jugador {
     private final String color;
-    private final ColeccionDeCartasPais cartasPais = new ColeccionDeCartasPais();
-    private int fichasIniciales ;
+    private final CartasPaisJugador cartasPais = new MazoDeCartasPais();
+    private int fichas;
+    private boolean conquistoPais;
+    private ObjetivoTeg objetivoTeg;
 
     public Jugador(String unColor){
         this.color = unColor;
-        this.fichasIniciales = 8;
+        this.conquistoPais = false;
+        this.fichas = 0;
     }
 
-    public void actualizarFichasActuales(int cantidadFichas){
-        if(cantidadFichas > this.fichasIniciales){
-            this.fichasIniciales = 0;
-            return;
+    /*
+    * Le saca una
+     */
+    public int sacarFichas(int cantidadFichas){
+        if(this.puedeColocarFichas(cantidadFichas)){
+            this.fichas = this.fichas - Math.abs(cantidadFichas);
+        }else{
+            this.fichas = 0;
         }
-        this.fichasIniciales = this.fichasIniciales-cantidadFichas;
+        return this.fichas;
     }
 
-    public boolean jugadorPuedeColocarFichas(int cantidadFichas){
-        return ((this.fichasIniciales - cantidadFichas) >= 0);
+    public boolean puedeColocarFichas(int cantidadFichas){
+        return ((this.fichas - Math.abs(cantidadFichas)) >= 0);
     }
 
     public void agregarFichas(int cantidadFichas){
-        this.fichasIniciales += cantidadFichas;
+
+        this.fichas += Math.abs(cantidadFichas);
     }
 
-    public void agregarCartaPais(CartaPais carta){
-        cartasPais.agregarCartaPais(carta);
+    public boolean darCartaPais(CartaPais carta){
+        if(this.conquistoPais) {
+            cartasPais.agregarCartaPais(carta);
+            this.conquistoPais = false;
+            return true;
+        }
+        //Todo excepcion?
+        return false;
     }
 
     public boolean esElMismoJugador(Jugador unJugador){
@@ -36,6 +56,31 @@ public class Jugador {
     }
 
     public boolean tieneFichas() {
-        return (this.fichasIniciales > 0);
+        return (this.fichas > 0);
+    }
+
+    public void hacerCanje(CartasPaisTeg cartasPaisTeg) {
+        this.cartasPais.canjeDeCartas(this,cartasPaisTeg);
+    }
+
+    public void conquistoPais() {
+        this.conquistoPais = true;
+    }
+
+    public void darObjetivo(ObjetivoTeg objetivoTeg) {
+        objetivoTeg.setDuenio(this);
+        this.objetivoTeg = objetivoTeg;
+    }
+
+    public boolean gano(Teg teg){
+        return this.objetivoTeg.cumplioObjetivo(teg);
+    }
+
+    public  void activarCartas(){
+        this.cartasPais.activarCartas(this);
+    }
+
+    public String getColor(){
+        return this.color;
     }
 }

@@ -1,8 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.excepciones.JugadorNoPoseePaisException;
-import edu.fiuba.algo3.excepciones.PaisNoEsLimitrofe;
-import edu.fiuba.algo3.excepciones.PaisSinSuficientesFichasParaPasar;
+import edu.fiuba.algo3.modelo.tablero.JugadorNoPoseePaisException;
+import edu.fiuba.algo3.modelo.tablero.PaisNoEsLimitrofeException;
+import edu.fiuba.algo3.modelo.tablero.PaisSinSuficientesFichasParaPasarException;
+import edu.fiuba.algo3.modelo.ataque.Dados;
+import edu.fiuba.algo3.modelo.tablero.Pais;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,32 +14,40 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PaisTest{
 
+    Jugador jugadorUno;
+    Jugador jugadorDos;
+
+    @BeforeEach
+    void setUp(){
+        jugadorUno = new Jugador("Julian");
+        jugadorDos = new Jugador("Sofia");
+        jugadorUno.agregarFichas(15);
+        jugadorDos.agregarFichas(15);
+    }
+
      @Test
      public void colocacionDeEjercitoEnPaisTest(){
          Pais paisMio = new Pais("Chile", List.of("Argentina","Peru"));
-         Jugador jugador = new Jugador("julio");
-         paisMio.asignarJugador(jugador);
 
-         assertEquals(paisMio.getJugador(),jugador);
+         paisMio.asignarJugador(jugadorUno);
+
+         assertEquals(paisMio.getJugador(),jugadorUno);
      }
 
     @Test
     public void paisNoSePuedeAsignarDosVeces(){
         Pais paisMio = new Pais("Chile", List.of("Argentina","Peru"));
-        Jugador jugador = new Jugador("julio");
-        Jugador jugadorDos = new Jugador("Sofia");
-        paisMio.asignarJugador(jugador);
+
+        paisMio.asignarJugador(jugadorUno);
         paisMio.asignarJugador(jugadorDos);
 
-        assertEquals(paisMio.getJugador(),jugador);
+        assertEquals(paisMio.getJugador(),jugadorUno);
     }
 
 
     @Test
     public void agregarTropasAUnPaisQueNoEsDelJugadorLanzaExcepcionTest(){
         Pais paisMio = new Pais("Chile",List.of("Argentina","Peru"));
-        Jugador jugadorUno = new Jugador("Julian");
-        Jugador jugadorDos = new Jugador("Sofia");
 
         paisMio.asignarJugador(jugadorUno);
 
@@ -49,8 +60,6 @@ public class PaisTest{
         Pais paisAtacante = new Pais("Chile",List.of("Algo","Peru"));
         Pais paisDefensor = new Pais("Algo",List.of("Argentina","Chile"));
 
-        Jugador jugadorUno = new Jugador("Julian");
-        Jugador jugadorDos = new Jugador("Sofia");
 
         paisAtacante.asignarJugador(jugadorUno);
         paisDefensor.asignarJugador(jugadorDos);
@@ -66,7 +75,6 @@ public class PaisTest{
     public void paisConCIncoFichasPierdeTresQuedaConDos(){
         Pais pais = new Pais("Chile",List.of("Argentina","Peru"));
 
-        Jugador jugadorUno = new Jugador("Julian");
         pais.asignarJugador(jugadorUno);
         pais.agregarFichas(4,jugadorUno);
 
@@ -81,8 +89,6 @@ public class PaisTest{
         Pais paisAtacante = new Pais("Chile",List.of("Algo","Peru"));
         Pais paisDefensor = new Pais("Algo",List.of("Argentina","Chile"));
 
-        Jugador jugadorUno = new Jugador("Julian");
-        Jugador jugadorDos = new Jugador("Sofia");
         paisAtacante.asignarJugador(jugadorUno);
         paisDefensor.asignarJugador(jugadorDos);
 
@@ -100,8 +106,6 @@ public class PaisTest{
         Pais paisAtacante = new Pais("Chile",List.of("Algo","Peru"));
         Pais paisDefensor = new Pais("Algo",List.of("Argentina","Chile"));
 
-        Jugador jugadorUno = new Jugador("Julian");
-        Jugador jugadorDos = new Jugador("Sofia");
         paisAtacante.asignarJugador(jugadorUno);
         paisDefensor.asignarJugador(jugadorDos);
 
@@ -117,8 +121,6 @@ public class PaisTest{
         Pais paisAtacante = new Pais("Chile",List.of("Algo","Peru"));
         Pais paisDefensor = new Pais("Algo",List.of("Argentina","Chile"));
 
-        Jugador jugadorUno = new Jugador("Julian");
-        Jugador jugadorDos = new Jugador("Sofia");
         paisAtacante.asignarJugador(jugadorUno);
         paisDefensor.asignarJugador(jugadorDos);
 
@@ -132,9 +134,9 @@ public class PaisTest{
     @Test
     public void paisConCincoFichasPuedeTirarUnDado(){
         Pais paisMio = new Pais("Chile", List.of("Argentina","Peru"));
-        Jugador jugador = new Jugador("julio");
-        paisMio.asignarJugador(jugador);
-        paisMio.agregarFichas(5,jugador);
+
+        paisMio.asignarJugador(jugadorUno);
+        paisMio.agregarFichas(5,jugadorUno);
 
         Dados dados = paisMio.tirarDados(1);
 
@@ -145,8 +147,8 @@ public class PaisTest{
     @Test
     public void paisConUnaFichaTirarUnDado(){
         Pais paisMio = new Pais("Chile", List.of("Argentina","Peru"));
-        Jugador jugador = new Jugador("julio");
-        paisMio.asignarJugador(jugador);
+
+        paisMio.asignarJugador(jugadorUno);
 
         Dados dados = paisMio.tirarDados();
 
@@ -158,10 +160,9 @@ public class PaisTest{
     @Test
     public void paisConDoceFichasPuedeTirarComoMaximoTresDados(){
         Pais paisMio = new Pais("Chile", List.of("Argentina","Peru"));
-        Jugador jugador = new Jugador("julio");
-        jugador.agregarFichas(18);
-        paisMio.asignarJugador(jugador);
-        paisMio.agregarFichas(11,jugador);
+
+        paisMio.asignarJugador(jugadorUno);
+        paisMio.agregarFichas(11,jugadorUno);
 
         Dados dados = paisMio.tirarDados();
 
@@ -172,10 +173,9 @@ public class PaisTest{
     @Test
     public void paisConDoceFichasPuedeTirarComoMaximoTresDadosAunqueSePidanDadosDeMas(){
         Pais paisMio = new Pais("Chile", List.of("Argentina","Peru"));
-        Jugador jugador = new Jugador("julio");
-        jugador.agregarFichas(18);
-        paisMio.asignarJugador(jugador);
-        paisMio.agregarFichas(11,jugador);
+
+        paisMio.asignarJugador(jugadorUno);
+        paisMio.agregarFichas(11,jugadorUno);
 
         Dados dados = paisMio.tirarDados(6);
 
@@ -188,14 +188,13 @@ public class PaisTest{
         Pais paisUno = new Pais("Chile",List.of("Algo","Peru"));
         Pais paisDos = new Pais("Algo",List.of("Argentina","Chile"));
 
-        Jugador jugadorUno = new Jugador("Julian");
         paisUno.asignarJugador(jugadorUno);
         paisDos.asignarJugador(jugadorUno);
 
         paisUno.agregarFichas(2,jugadorUno);
         paisDos.agregarFichas(3,jugadorUno);
 
-        assertThrows(PaisSinSuficientesFichasParaPasar.class, ()->paisUno.pasarFichasA(paisDos, 3));
+        assertThrows(PaisSinSuficientesFichasParaPasarException.class, ()->paisUno.pasarFichasA(paisDos, 3));
     }
 
     @Test
@@ -203,8 +202,6 @@ public class PaisTest{
         Pais paisUno = new Pais("Chile",List.of("Algo","Peru"));
         Pais paisDos = new Pais("Algo",List.of("Argentina","Chile"));
 
-        Jugador jugadorUno = new Jugador("Julian");
-        Jugador jugadorDos = new Jugador("Juan");
         paisUno.asignarJugador(jugadorUno);
         paisDos.asignarJugador(jugadorDos);
 
@@ -219,7 +216,6 @@ public class PaisTest{
         Pais paisUno = new Pais("Chile", List.of("Algo","Peru"));
         Pais paisDos = new Pais("Algo", List.of("Argentina","Chile"));
 
-        Jugador jugadorUno = new Jugador("Julian");
         paisUno.asignarJugador(jugadorUno);
         paisDos.asignarJugador(jugadorUno);
 
@@ -235,14 +231,13 @@ public class PaisTest{
         Pais paisUno = new Pais("Chile",List.of("Argentina","Peru"));
         Pais paisDos = new Pais("Algo",List.of("Argentina","Chile"));
 
-        Jugador jugadorUno = new Jugador("Julian");
         paisUno.asignarJugador(jugadorUno);
         paisDos.asignarJugador(jugadorUno);
 
         paisUno.agregarFichas(2,jugadorUno);
         paisDos.agregarFichas(2,jugadorUno);
 
-        assertThrows(PaisNoEsLimitrofe.class, ()->paisUno.pasarFichasA(paisDos, 2));
+        assertThrows(PaisNoEsLimitrofeException.class, ()->paisUno.pasarFichasA(paisDos, 2));
     }
 
 

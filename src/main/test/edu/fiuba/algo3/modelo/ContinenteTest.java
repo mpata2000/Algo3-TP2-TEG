@@ -1,4 +1,6 @@
 package edu.fiuba.algo3.modelo;
+import edu.fiuba.algo3.modelo.tablero.Continente;
+import edu.fiuba.algo3.modelo.tablero.Pais;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -75,5 +77,25 @@ public class ContinenteTest {
         assertEquals(2, continente.cantidadPaisesDe(jugadorDos));
         assertFalse(continente.esDeJugador(jugadorUno));
         assertFalse(continente.esDeJugador(jugadorDos));
+    }
+
+    @Test
+    public void elContienteEsDelJugadorYSeleAgreganFichas(){
+        for(Pais pais : paises) {
+            pais.asignarJugador(jugadorUno);
+        }
+        assertEquals(4, continente.cantidadPaisesDe(jugadorUno));
+        assertTrue(continente.esDeJugador(jugadorUno));
+
+        continente.agregarFichasExtraA(jugadorUno);
+        assertEquals(2,jugadorUno.sacarFichas(0));
+    }
+
+    @Test
+    public void elContienteNoEsDelJugadorEntoncesNoSeLeAgregaFichas(){
+        assertFalse(continente.esDeJugador(jugadorUno));
+
+        continente.agregarFichasExtraA(jugadorUno);
+        assertEquals(0,jugadorUno.sacarFichas(0));
     }
 }
