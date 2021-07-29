@@ -31,12 +31,16 @@ public class Turnos {
         this.jugadores = jugadores;
     }
 
+    public Teg getTeg() {
+        return this.teg;
+    }
+
     public String getJugadorActual() {
         return this.tipoDeRonda.getJugadorActual();
     }
 
     public void agregarJugadores(List<String> listaJugadores){
-        if(listaJugadores.size() >= 6){
+        if(listaJugadores.size() > 6){
             throw new LimiteDeJugadoresException();
         }
         this.jugadores.addAll(listaJugadores);
