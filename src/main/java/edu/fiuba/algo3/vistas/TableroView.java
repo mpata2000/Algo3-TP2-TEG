@@ -25,8 +25,8 @@ public class TableroView extends StackPane {
         super.setBackground(unFondo);
 
         final ImageView selectedImage = new ImageView();
-        Image imagentablero = new Image("file:" + System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/tableroTEG.png");
-        selectedImage.setImage(imagentablero);
+        Image imagenTablero = new Image("file:" + System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/tableroTEG.png");
+        selectedImage.setImage(imagenTablero);
 
         MenuInicioGrid grillaInicio = new MenuInicioGrid(720, 480);
 
