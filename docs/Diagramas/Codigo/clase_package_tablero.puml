@@ -1,0 +1,61 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package tablero{
+
+class Tablero{
+    + Tablero(List<Continente> continentes, List<Pais> paises){
+    + getPais(String nombrePais): Pais
+    + agregarFichas(int cantidadFichas, Jugador unJugador, String unNombrePais){
+    + atacar(Jugador unJugador,String nombrePaisAtacante, String nombrePaisEnemigo, int cantidadDadosAtacante): Boolean
+    + cantidadDePaisesJugador(Jugador unJugador): Integer
+    + agregarFichasA(Jugador unJugador)
+    + pasarFichas(Jugador unJugador,String paisUno, String paisDos,int cantidadFichas)
+    + cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador): Integer
+    + continenteEsDeJugador(String continente, Jugador jugador): Boolean
+}
+
+class ConstructorTablero{
+    + {static} Tablero create(String pathArchivo): Tablero
+}
+
+class Continente{
+    - String nombreContinente
+    - int fichas
+
+    + Continente(String nombreContinente, int fichas, List<Pais> paises): Continente
+    + esDeJugador(Jugador unJugador): Boolean
+    + cantidadPaisesDe(Jugador unJugador): Integer
+    + agregarFichasExtraA(Jugador unJugador)
+}
+
+class Pais{
+    - String nombrePais
+    - Jugador jugador
+    - List<String> paisesLimitrofes
+
+    + Pais(String nombrePais, List<String>paisesLimitrofes)
+    + esAdyacente(Pais unPais): Boolean
+    + asignarJugador(Jugador unJugador)
+    + agregarFichas(int cantidadFichas, Jugador unJugador)
+    + int perderFichas(int cantidadFichas)
+    - actualizarDuenio(Pais unPais)
+    + perderFichas(int cantidadFichas, Pais paisAtacante): Boolean
+    + pasarFichasA(Pais unPais, int cantidadFichas)
+    + esDeJugador(Jugador unJugador): Boolean
+    + tirarDados(): Dados
+    + tirarDados(int cantidadDeDados): Dados
+}
+
+class Ejercito{}
+
+
+Tablero"1  " --> "6 "Continente
+Tablero"    1" --> "50  " Pais
+Continente"1" -right-> "n"Pais
+Pais "1" -down-> "1" Ejercito
+ConstructorTablero ..> Tablero: <<create>>
+
+}
+
+@enduml

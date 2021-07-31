@@ -5,13 +5,9 @@ Class ALTEGO{
 }
 
 Class Tablero{
-    + agregarPais(unPais: Pais)
     + agregarFichas(cantidadFichas: int, unJugador: Jugador, unNombrePais: String)
     + atacar(jugador: Jugador, nombrepaisMio: String, nombrePaisEnemigo: String, cantidadDeDadosAtacante: int): boolean
-    +calcularDichasDe(unJugador: Jugador)
-
-    + getContinentes(): Map<String, Continente>
-    + getPaises(): Map<String, Pais>
+    + calcularDichasDe(unJugador: Jugador)
     + buscarPais(unNombrePais: String): Pais
     
 }
@@ -38,22 +34,20 @@ Class Jugador{
     +tieneFichas(): boolean
 }
 
-Interface ColeccionDeCartasPaisJugador <<Interface>> {
+Interface CartasPaisJugador <<Interface>> {
 }
 
-Interface ColeccionDeCartasPaisTeg <<Interface>>{
+Interface CartasPaisTeg <<Interface>>{
 }
 
 Class Turnos {
     - jugadores: List<String>
-    - jugadorActual: String
-    - iteradorJugadores: ListIterator<String>
 
     + agregarJugador(color: String)
     + comenzarJuego()
     + atacar(paisAtacante: String, paisDefensor: String, cant: Integer): boolean
     + reagrupar(paisUno: String, paisDos: String, cant: Integer)
-    + colocarEjercito
+    + colocarEjercito()
 }
 
 Interface TipoDeRonda <<Interface>> {
@@ -107,11 +101,11 @@ Class TarjetaPais{
 Turnos -right-> ALTEGO
 ALTEGO --> "1" Tablero
 ALTEGO --> "2..6"Jugador
-ALTEGO --right--> ColeccionDeCartasPaisTeg
+ALTEGO --right--> CartasPaisTeg
 
 
 /'Jugador <-- Pais'/
-Jugador --> ColeccionDeCartasPaisJugador
+Jugador --> CartasPaisJugador
 
 Tablero "1"-->"50" Pais
 Tablero "1"-->"6" Continente
