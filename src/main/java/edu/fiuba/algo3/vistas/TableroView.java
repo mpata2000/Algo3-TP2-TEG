@@ -1,11 +1,8 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.modelo.tablero.Continente;
-import edu.fiuba.algo3.modelo.tablero.Pais;
-import edu.fiuba.algo3.modelo.turnos.Turnos;
-import edu.fiuba.algo3.vistas.colores.FontSelection;
+import edu.fiuba.algo3.modelo.Turnos;
 import edu.fiuba.algo3.vistas.grillas.MenuInicioGrid;
-import edu.fiuba.algo3.vistas.mensajes.BienvenidaMessage;
 import edu.fiuba.algo3.vistas.mensajes.TableroMessage;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;

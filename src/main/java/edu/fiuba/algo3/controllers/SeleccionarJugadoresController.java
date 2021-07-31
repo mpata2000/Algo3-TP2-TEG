@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.controllers;
 
-import edu.fiuba.algo3.modelo.turnos.Turnos;
+import edu.fiuba.algo3.modelo.Turnos;
 import edu.fiuba.algo3.vistas.ContenedorPrincipal;
-import edu.fiuba.algo3.vistas.MenuInicioView;
 import edu.fiuba.algo3.vistas.TableroView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Jugador;
 public class EnesimoCanje implements Canje {
     private final int fichas;
 
-    public EnesimoCanje(int fichas) {
+    EnesimoCanje(int fichas) {
         this.fichas = fichas+5;
     }
 

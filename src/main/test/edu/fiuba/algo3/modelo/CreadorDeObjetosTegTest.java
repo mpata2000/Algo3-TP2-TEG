@@ -45,14 +45,14 @@ public class CreadorDeObjetosTegTest {
 
     @Test
     public void creacionDeObjetivosConquista(){
-        List<ObjetivoTeg> objetivos = Objetivos.lectorObjetivosConquista("resources/Teg-Objetivos.json");
+        List<ObjetivoTeg> objetivos = Objetivos.objetivosConquista("resources/Teg-Objetivos.json");
 
         assertEquals(9,objetivos.size());
     }
 
     @Test
     public void creadorDeObjetivososDestruccion(){
-        List<ObjetivoTeg> objetivos = Objetivos.creadorDeObjetivososDestruccion(new ArrayList<>());
+        List<ObjetivoTeg> objetivos = Objetivos.objetivososDestruccion(new ArrayList<>());
 
         assertEquals(6,objetivos.size());
     }

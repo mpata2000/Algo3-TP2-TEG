@@ -23,7 +23,7 @@ public class Pais {
     }
 
     public boolean esAdyacente(Pais unPais){
-        return this.paisesLimitrofes.contains(unPais.getNombre());
+        return this.paisesLimitrofes.stream().anyMatch((unPais.getNombre())::equalsIgnoreCase);
     }
 
     public void asignarJugador(Jugador unJugador){
@@ -32,7 +32,7 @@ public class Pais {
         this.ejercito = new Ejercito();
     }
 
-    public void agregarFichas(int cantidadFichas, Jugador unJugador) throws JugadorNoPoseePaisException {
+    public void agregarFichas(int cantidadFichas, Jugador unJugador) {
         if (!this.esDeJugador(unJugador)){
             throw new JugadorNoPoseePaisException();
         }

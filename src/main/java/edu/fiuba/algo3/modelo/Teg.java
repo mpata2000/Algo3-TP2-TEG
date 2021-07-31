@@ -20,7 +20,7 @@ public class Teg {
     public Teg(){
         this.tablero = ConstructorTablero.create("resources/Teg-Tablero.json");
         this.cartas = new MazoDeCartasPais(CartasPais.create("resources/Teg-Cartas.json",this.tablero));
-        this.objetivos.addAll(Objetivos.lectorObjetivosConquista("resources/Teg-Objetivos.json"));
+        this.objetivos.addAll(Objetivos.objetivosConquista("resources/Teg-Objetivos.json"));
     }
 
     public Teg(Tablero tablero,Map <String,Jugador> jugadores,MazoDeCartasPais mazoDeCartasPais){
@@ -34,7 +34,7 @@ public class Teg {
             this.jugadores.put(color, new Jugador(color));
         }
         this.cartas.asignarPaises(new ArrayList<>(this.jugadores.values()));
-        this.objetivos.addAll(Objetivos.creadorDeObjetivososDestruccion(new ArrayList<>(this.jugadores.values())));
+        this.objetivos.addAll(Objetivos.objetivososDestruccion(new ArrayList<>(this.jugadores.values())));
         this.asignarObjetivos();
     }
 

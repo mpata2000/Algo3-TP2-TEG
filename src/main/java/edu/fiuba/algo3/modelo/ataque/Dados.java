@@ -7,7 +7,7 @@ import static java.util.Comparator.reverseOrder;
 public class Dados {
     private final ArrayList<Integer> conjuntoDados = new ArrayList<>();
 
-    public Dados(int cantidadDados) throws NoSePuedenCrearCeroDadosException {
+    public Dados(int cantidadDados) {
         if(cantidadDados<1){ throw new NoSePuedenCrearCeroDadosException();}
 
         Random rand = new Random();

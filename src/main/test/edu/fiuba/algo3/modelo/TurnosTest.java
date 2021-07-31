@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import edu.fiuba.algo3.modelo.tablero.Continente;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
-import edu.fiuba.algo3.modelo.turnos.*;
+import edu.fiuba.algo3.modelo.rondas.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -141,9 +141,9 @@ public class TurnosTest {
 
     @Test
     public void NoSePuedeAgregarMasDeSeisJugadores(){
-
+        List<String> list = List.of("Amarillo", "Rojo", "Verde", "Magenta","Negro","Azul","Celeste");
         Turnos turnos = new Turnos();
-        assertThrows(LimiteDeJugadoresException.class, ()->  turnos.agregarJugadores(List.of("Amarillo", "Rojo", "Verde", "Magenta","Negro","Azul","Celeste")));
+        assertThrows(LimiteDeJugadoresException.class, ()->  turnos.agregarJugadores(list));
     }
 
     @Test

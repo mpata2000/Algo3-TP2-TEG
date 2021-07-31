@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.tablero;
 
 import edu.fiuba.algo3.modelo.ataque.EjercitoConUnaFichaNoPuedeAtacarException;
 import edu.fiuba.algo3.modelo.ataque.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
-import edu.fiuba.algo3.modelo.ataque.NoSePuedenCrearCeroDadosException;
 import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.Jugador;
 
@@ -40,7 +39,7 @@ public class Ejercito {
         return new Dados(Math.min(this.cantidadFichas,3));
     }
 
-    public Dados tirarDados(int unaCantidadDeDados) throws EjercitoConUnaFichaNoPuedeAtacarException, EjercitoNoPuedeTirarEsaCantidadDeDadosException, NoSePuedenCrearCeroDadosException {
+    public Dados tirarDados(int unaCantidadDeDados){
         if(this.cantidadFichas < 2){
             throw new EjercitoConUnaFichaNoPuedeAtacarException();
         }

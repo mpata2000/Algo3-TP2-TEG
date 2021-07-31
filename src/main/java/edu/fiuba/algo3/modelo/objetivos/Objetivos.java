@@ -14,13 +14,13 @@ import java.util.List;
 public class Objetivos {
     private Objetivos(){}
 
-    public static List<ObjetivoTeg> lectorObjetivosConquista(String pathArchivo) {
+    public static List<ObjetivoTeg> objetivosConquista(String pathArchivo) {
         Reader jsonLeido = LectorJson.setReader(pathArchivo);
         Type datasetListType = new TypeToken<Collection<ObjetivoConquista>>() {}.getType();
         return new Gson().fromJson(jsonLeido, datasetListType);
     }
 
-    public static List<ObjetivoTeg> creadorDeObjetivososDestruccion(List<Jugador> jugadoresEnOrden){
+    public static List<ObjetivoTeg> objetivososDestruccion(List<Jugador> jugadoresEnOrden){
         List<ObjetivoTeg> objetivosDestruccion = new ArrayList<>();
         for(String color: List.of("Verde","Rosa","Azul","Rojo","Rosa","Negro")){
             objetivosDestruccion.add(new ObjetivoDestruccion(color,jugadoresEnOrden));
