@@ -9,6 +9,8 @@ interface TipoDeRonda <<Inteface>>{
     + colocarFichas(Teg teg, String nombrePais, int cantidad)
     + finEtapa(List<String> jugadores,Teg teg): TipoRonda
     + getJugadorActual(): String
+    + darCartaPais(Teg teg): Boolean
+    + hacerCanje(Teg teg): Boolean
 }
 
 class RondaAtaque{}
