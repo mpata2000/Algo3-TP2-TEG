@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.turnos;
+package edu.fiuba.algo3.modelo.rondas;
 
 import edu.fiuba.algo3.modelo.Teg;
 
@@ -26,7 +26,7 @@ public class RondaColocacion implements TipoRonda {
 
     private void inicializarTurno(Teg teg){
         if(!this.turnoInicilizado) {
-            this.tipoColocacion.colocarFichas(jugadorActual, teg);
+            this.tipoColocacion.agregarFichas(jugadorActual, teg);
             this.turnoInicilizado = true;
         }
     }
@@ -37,7 +37,7 @@ public class RondaColocacion implements TipoRonda {
     }
 
 
-    public void pasarFichas(Teg teg,String paisUno,String paisdos,int cant){
+    public void pasarFichas(Teg teg, String paisOrigen, String paisDestino, int cant){
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 

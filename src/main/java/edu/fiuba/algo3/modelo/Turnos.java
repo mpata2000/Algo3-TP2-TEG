@@ -1,12 +1,14 @@
-package edu.fiuba.algo3.modelo.turnos;
+package edu.fiuba.algo3.modelo;
 
 
-import edu.fiuba.algo3.modelo.Teg;
+import edu.fiuba.algo3.modelo.rondas.LimiteDeJugadoresException;
+import edu.fiuba.algo3.modelo.rondas.NoHaySuficientesJugadoresException;
+import edu.fiuba.algo3.modelo.rondas.RondaColocacion;
+import edu.fiuba.algo3.modelo.rondas.TipoRonda;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.ListIterator;
 
 public class Turnos {
     private static Turnos turnos;

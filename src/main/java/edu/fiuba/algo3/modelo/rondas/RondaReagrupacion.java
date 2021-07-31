@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.turnos;
+package edu.fiuba.algo3.modelo.rondas;
 
 import edu.fiuba.algo3.modelo.Teg;
 
@@ -20,8 +20,8 @@ public class RondaReagrupacion implements TipoRonda{
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
-    public void pasarFichas(Teg teg,String paisUno,String paisDos,int cant){
-        teg.pasarFichas(jugadorActual,paisUno,paisDos,cant);
+    public void pasarFichas(Teg teg, String paisOrigen, String paisDestino, int cant){
+        teg.pasarFichas(jugadorActual, paisOrigen, paisDestino,cant);
     }
 
     public void colocarFichas(Teg teg, String nombrePais, int cantidad){
