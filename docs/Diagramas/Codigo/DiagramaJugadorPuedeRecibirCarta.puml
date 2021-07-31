@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+actor Interfaz
+participant Turnos as ":Turnos"
+participant Ronda as "tipoRonda:RondaColocacion"
+participant Teg as ":Teg"
+participant MazoTeg as ":CartasPaisTeg"
+participant Jugador as ":Jugador"
+participant MazoJugador as ":CartasPaisJugador"
+
+Interfaz -> Turnos: darCartaPais()
+
+Turnos -> Ronda: darCartaPais(Teg teg)
+activate Ronda
+Ronda -> Teg: darCartaPaisA(String jugador)
+activate Teg
+Teg -> MazoTeg: darCartaA(Jugador j)
+activate MazoTeg
+MazoTeg -> Jugador: darCartaA(Jugador j)
+activate Jugador
+note over Jugador
+ Se comprueba que el jugador
+ haya capturado un pais.
+ En este caso si capturo
+end note
+Jugador -> Jugador: sacarConquista()
+Jugador -> MazoJugador: agregarCartaPais(CartaPais carta)
+
+'returns
+Jugador --> MazoTeg: true: Boolean
+deactivate Jugador
+MazoTeg --> Teg: true: Boolean
+deactivate MazoTeg
+Teg --> Ronda: true: Boolean
+deactivate Teg
+Ronda --> Turnos: true: Boolean
+deactivate
+
+
+@enduml

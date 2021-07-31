@@ -61,6 +61,12 @@ public class Teg {
         return false;
     }
 
+    public void sacarConquistaDePaisAJugadores(){
+        for(Jugador jugador: jugadores.values()){
+            jugador.sacarConquista();
+        }
+    }
+
     public void pasarFichas(String colorJugador,String paisUno, String paisDos, int cant){
         this.tablero.pasarFichas(jugadores.get(colorJugador),paisUno, paisDos, cant);
     }
@@ -79,7 +85,7 @@ public class Teg {
          return this.jugadores.get(colorJugador).hacerCanje(this.cartas);
     }
 
-    public boolean darCarta(String colorJugador) {
+    public boolean darCartaPaisA(String colorJugador) {
         return this.cartas.darCartaA(this.jugadores.get(colorJugador));
     }
 

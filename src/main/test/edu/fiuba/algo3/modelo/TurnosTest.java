@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.cartas.CartaPais;
-import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
 import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
 import edu.fiuba.algo3.modelo.tablero.JugadorNoTieneSuficientesFichasException;
 import edu.fiuba.algo3.modelo.ataque.Dados;
@@ -430,7 +428,7 @@ public class TurnosTest {
     @Test
     public void TurnoEnRondaReagrupacionPuedeDarCartaSiJugadorPuede(){
         Teg teg = Mockito.mock(Teg.class);
-        when(teg.darCarta("Amarillo")).thenReturn(true);
+        when(teg.darCartaPaisA("Amarillo")).thenReturn(true);
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
         turnos.finEtapa();
@@ -448,7 +446,7 @@ public class TurnosTest {
     @Test
     public void TurnoEnRondaReagrupacionNoPuedeDarCartaSiJugadorNoPuede(){
         Teg teg = Mockito.mock(Teg.class);
-        when(teg.darCarta("Amarillo")).thenReturn(false);
+        when(teg.darCartaPaisA("Amarillo")).thenReturn(false);
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
         turnos.finEtapa();

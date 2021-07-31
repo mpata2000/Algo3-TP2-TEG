@@ -63,6 +63,17 @@ public class TegTest {
     }
 
     @Test
+    public void tegLeSacaLaCoquistaDepaisATodosLosJugadores(){
+        jugadores.put("Rojo",jugadorMock1);
+        jugadores.put("Amarillo",jugadorMock2);
+
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
+        teg.sacarConquistaDePaisAJugadores();
+        verify(jugadorMock1,times(1)).sacarConquista();
+        verify(jugadorMock2,times(1)).sacarConquista();
+    }
+
+    @Test
     public void teDevuelveElPrimerGanador(){
         when(jugadorMock1.gano(any(Teg.class))).thenReturn(true);
         when(jugadorMock2.gano(any(Teg.class))).thenReturn(true);
@@ -82,7 +93,7 @@ public class TegTest {
         jugadores.put("Amarillo",jugadorMock2);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
-        teg.darCarta("Rojo");
+        teg.darCartaPaisA("Rojo");
 
         verify(jugadorMock1,times(1)).darCartaPais(any(CartaPais.class));
     }
@@ -230,7 +241,7 @@ public class TegTest {
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
 
-        assertFalse(teg.darCarta("Rojo"));
+        assertFalse(teg.darCartaPaisA("Rojo"));
     }
 
     @Test
@@ -242,7 +253,7 @@ public class TegTest {
         List<CartaPais> lista = CartasPais.create("resources/Teg-Cartas.json",tablero);
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(lista));
 
-        assertTrue(teg.darCarta("Rojo"));
+        assertTrue(teg.darCartaPaisA("Rojo"));
     }
 
 }

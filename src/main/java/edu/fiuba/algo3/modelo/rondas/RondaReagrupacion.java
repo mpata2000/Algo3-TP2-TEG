@@ -29,7 +29,7 @@ public class RondaReagrupacion implements TipoRonda{
     }
 
     public boolean darCartaPais(Teg teg){
-        return  teg.darCarta(jugadorActual);
+        return  teg.darCartaPaisA(jugadorActual);
     }
 
     public boolean hacerCanje(Teg teg){
@@ -44,7 +44,7 @@ public class RondaReagrupacion implements TipoRonda{
         if(teg.hayGanador()){
             return new RondaGanador(teg.getGanador());
         }
-
+        teg.sacarConquistaDePaisAJugadores();
         return new RondaColocacion(jugadores);
     }
 

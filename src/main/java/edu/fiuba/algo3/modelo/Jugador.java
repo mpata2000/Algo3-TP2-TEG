@@ -43,8 +43,8 @@ public class Jugador {
 
     public boolean darCartaPais(CartaPais carta){
         if(this.conquistoPais) {
+            sacarConquista();
             cartasPais.agregarCartaPais(carta);
-            this.conquistoPais = false;
             return true;
         }
         return false;
@@ -81,5 +81,9 @@ public class Jugador {
 
     public String getColor(){
         return this.color;
+    }
+
+    public void sacarConquista() {
+        conquistoPais = false;
     }
 }
