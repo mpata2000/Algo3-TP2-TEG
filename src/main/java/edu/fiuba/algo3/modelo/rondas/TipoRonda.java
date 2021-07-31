@@ -16,4 +16,8 @@ public interface TipoRonda {
     TipoRonda finEtapa(List<String> jugadores,Teg teg);
 
     String getJugadorActual();
+
+    boolean darCartaPais(Teg teg);
+
+    boolean hacerCanje(Teg teg);
 }

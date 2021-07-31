@@ -28,9 +28,17 @@ public class RondaReagrupacion implements TipoRonda{
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
+    public boolean darCartaPais(Teg teg){
+        return  teg.darCarta(jugadorActual);
+    }
+
+    public boolean hacerCanje(Teg teg){
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
+    }
+
     public TipoRonda finEtapa(List<String> jugadores,Teg teg){
-        if(this.iteradorJugadores.hasNext()){
-            this.jugadorActual = this.iteradorJugadores.next();
+        if(iteradorJugadores.hasNext()){
+            jugadorActual = iteradorJugadores.next();
             return new RondaAtaque(jugadorActual);
         }
         if(teg.hayGanador()){
@@ -41,6 +49,6 @@ public class RondaReagrupacion implements TipoRonda{
     }
 
     public String getJugadorActual() {
-        return this.jugadorActual;
+        return jugadorActual;
     }
 }

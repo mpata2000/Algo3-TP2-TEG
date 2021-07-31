@@ -15,7 +15,7 @@ public class Teg {
     private final Tablero tablero;
     private Map<String, Jugador> jugadores = new LinkedHashMap<>();
     private final CartasPaisTeg cartas;
-    private List<ObjetivoTeg> objetivos = new ArrayList<>();
+    private final List<ObjetivoTeg> objetivos = new ArrayList<>();
 
     public Teg(){
         this.tablero = ConstructorTablero.create("resources/Teg-Tablero.json");
@@ -56,7 +56,6 @@ public class Teg {
         Jugador jugador = this.jugadores.get(colorJugador);
         if(tablero.atacar(jugador,paisAtacante, paisDefensor, cantidad)){
             jugador.conquistoPais();
-            //Todo: Preguntar dar carta automaticamente
             return true;
         }
         return false;
@@ -70,19 +69,18 @@ public class Teg {
         Jugador jugador = this.jugadores.get(colorJugador);
         jugador.activarCartas();
         this.tablero.agregarFichasA(jugador);
-        //Todo: Preguntar si hacer canje automatico
     }
 
     public void agregarFichasA(String colorJugador, int cantidadFichas) {
         this.jugadores.get(colorJugador).agregarFichas(cantidadFichas);
     }
 
-    public void hacerCanjeJugador(String colorJugador){
-         this.jugadores.get(colorJugador).hacerCanje(this.cartas);
+    public boolean hacerCanjeJugador(String colorJugador){
+         return this.jugadores.get(colorJugador).hacerCanje(this.cartas);
     }
 
-    public void darCarta(String colorJugador) {
-        this.cartas.darCartaA(this.jugadores.get(colorJugador));
+    public boolean darCarta(String colorJugador) {
+        return this.cartas.darCartaA(this.jugadores.get(colorJugador));
     }
 
     public int cantidadDePaisesJugador(String colorJugador) {
@@ -112,6 +110,7 @@ public class Teg {
                 .findFirst()
                 .orElse(null);
     }
+
     public Tablero getTablero(){
         return this.tablero;
     }

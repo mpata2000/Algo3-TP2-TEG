@@ -7,7 +7,7 @@ import java.util.List;
 public interface CartasPaisTeg {
     void asignarPaises(List<Jugador> jugadors);
 
-    void darCartaA(Jugador jugador);
+    boolean darCartaA(Jugador jugador);
 
     void agregarCartasPais(List<CartaPais> cartas);
 }

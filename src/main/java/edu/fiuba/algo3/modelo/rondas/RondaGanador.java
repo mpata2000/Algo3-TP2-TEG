@@ -28,6 +28,14 @@ public class RondaGanador implements TipoRonda {
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
+    public boolean darCartaPais(Teg teg){
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
+    }
+
+    public boolean hacerCanje(Teg teg){
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
+    }
+
     public String getJugadorActual() {
         return this.ganador;
     }

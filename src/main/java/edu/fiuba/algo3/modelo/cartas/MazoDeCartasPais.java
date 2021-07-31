@@ -114,13 +114,15 @@ public class MazoDeCartasPais implements CartasPaisTeg,CartasPaisJugador{
         return false;
     }
 
-    public void darCartaA(Jugador jugador) {
+    public boolean darCartaA(Jugador jugador) {
         if(cartasPais.isEmpty()){
             throw new MazoNoTieneSuficientesCartasException();
         }
 
         if(jugador.darCartaPais(cartasPais.get(0))) {
             cartasPais.remove(0);
+            return true;
         }
+        return false;
     }
 }

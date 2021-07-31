@@ -1,13 +1,14 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.cartas.CartaPais;
+import edu.fiuba.algo3.modelo.cartas.CartasPais;
+import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
 import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -35,7 +36,6 @@ public class TegTest {
         teg.comenzarJuego(List.of("Rojo","Amarillo"));
         assertEquals(25,teg.cantidadDePaisesJugador("Rojo"));
         assertEquals(25,teg.cantidadDePaisesJugador("Amarillo"));
-        assertFalse(teg.hayGanador());
     }
 
     @Test
@@ -194,6 +194,55 @@ public class TegTest {
         verify(tablero,times(1)).cantidadDePaisesJugadorEnContinente("A",jugadorMock1);
         verify(tablero,times(1)).cantidadDePaisesJugadorEnContinente("A",jugadorMock2);
 
+    }
+
+
+    @Test
+    public void jugadorPuedeHacerCanjeYTegDevuelveTrue(){
+        jugadores.put("Rojo",jugadorMock1);
+        jugadores.put("Amarillo",jugadorMock2);
+        when(jugadorMock1.hacerCanje(any(CartasPaisTeg.class))).thenReturn(true);
+
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
+
+        assertTrue(teg.hacerCanjeJugador("Rojo"));
+
+    }
+
+
+    @Test
+    public void jugadorNoPuedeHacerCanjeYTegDevuelveFalse(){
+        jugadores.put("Rojo",jugadorMock1);
+        jugadores.put("Amarillo",jugadorMock2);
+        when(jugadorMock1.hacerCanje(any(CartasPaisTeg.class))).thenReturn(false);
+
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
+
+        assertFalse(teg.hacerCanjeJugador("Rojo"));
+    }
+
+
+    @Test
+    public void jugadorNoPuedeRecivirCartapaisYTegDevuelveFalse(){
+        jugadores.put("Rojo",jugadorMock1);
+        jugadores.put("Amarillo",jugadorMock2);
+        when(jugadorMock1.darCartaPais(any(CartaPais.class))).thenReturn(false);
+
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
+
+        assertFalse(teg.darCarta("Rojo"));
+    }
+
+    @Test
+    public void jugadorPuedeRecivirCartapaisYTegDevuelveTrue(){
+        jugadores.put("Rojo",jugadorMock1);
+        jugadores.put("Amarillo",jugadorMock2);
+        when(jugadorMock1.darCartaPais(any(CartaPais.class))).thenReturn(true);
+
+        List<CartaPais> lista = CartasPais.create("resources/Teg-Cartas.json",tablero);
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(lista));
+
+        assertTrue(teg.darCarta("Rojo"));
     }
 
 }

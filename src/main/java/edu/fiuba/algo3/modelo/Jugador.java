@@ -47,7 +47,6 @@ public class Jugador {
             this.conquistoPais = false;
             return true;
         }
-        //Todo excepcion?
         return false;
     }
 
@@ -59,8 +58,8 @@ public class Jugador {
         return (this.fichas > 0);
     }
 
-    public void hacerCanje(CartasPaisTeg cartasPaisTeg) {
-        this.cartasPais.canjeDeCartas(this,cartasPaisTeg);
+    public boolean hacerCanje(CartasPaisTeg cartasPaisTeg) {
+        return this.cartasPais.canjeDeCartas(this,cartasPaisTeg);
     }
 
     public void conquistoPais() {

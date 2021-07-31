@@ -25,9 +25,9 @@ public class RondaColocacion implements TipoRonda {
     }
 
     private void inicializarTurno(Teg teg){
-        if(!this.turnoInicilizado) {
-            this.tipoColocacion.agregarFichas(jugadorActual, teg);
-            this.turnoInicilizado = true;
+        if(!turnoInicilizado) {
+            tipoColocacion.agregarFichas(jugadorActual, teg);
+            turnoInicilizado = true;
         }
     }
 
@@ -49,20 +49,27 @@ public class RondaColocacion implements TipoRonda {
 
 
     public TipoRonda finEtapa(List<String> jugadores,Teg teg){
-        if(teg.jugadorTieneFichas(this.jugadorActual)){
+        if(teg.jugadorTieneFichas(jugadorActual)){
             throw new JugadorSigueTeniendoFichasException();
         }
         if(this.iteradorJugadores.hasNext()){
-            this.jugadorActual = this.iteradorJugadores.next();
-            this.turnoInicilizado = false;
+            jugadorActual = iteradorJugadores.next();
+            turnoInicilizado = false;
             return this;
         }
 
-        return this.tipoColocacion.pasarDeRonda(jugadores);
+        return tipoColocacion.pasarDeRonda(jugadores);
     }
 
+    public boolean darCartaPais(Teg teg){
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
+    }
+
+    public boolean hacerCanje(Teg teg){
+        return  teg.hacerCanjeJugador(jugadorActual);
+    }
 
     public String getJugadorActual() {
-        return this.jugadorActual;
+        return jugadorActual;
     }
 }

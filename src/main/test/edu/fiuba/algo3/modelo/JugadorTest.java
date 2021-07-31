@@ -133,6 +133,7 @@ public class JugadorTest {
 
     @Test
     public void jugadorNoPuedeRecivirCartaSiNoConquistoUnPais(){
+        jugador.darCartaPais(new CartaPais("A","Globo"));
         assertFalse(jugador.darCartaPais(new CartaPais("A","Globo")));
     }
 

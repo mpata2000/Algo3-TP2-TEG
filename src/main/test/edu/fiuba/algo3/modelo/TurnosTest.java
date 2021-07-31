@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.cartas.CartaPais;
+import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
 import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
 import edu.fiuba.algo3.modelo.tablero.JugadorNoTieneSuficientesFichasException;
 import edu.fiuba.algo3.modelo.ataque.Dados;
@@ -18,6 +20,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class TurnosTest {
@@ -140,6 +143,33 @@ public class TurnosTest {
     }
 
     @Test
+    public void TurnoEnRondaDeColocacionNoSePuedeDarCarta(){
+
+        Turnos turnos = new Turnos();
+        turnos.agregarJugadores(List.of("Amarillo","Rojo"));
+        turnos.comenzarJuego();
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class, turnos :: darCartaPais);
+    }
+
+    @Test
+    public void TurnoEnRondaDeColocacionSePuedeHacerCanjeSiJugadorPuede(){
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.hacerCanjeJugador("Amarillo")).thenReturn(true);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertTrue(turnos.hacerCanje());
+    }
+
+    @Test
+    public void TurnoEnRondaDeColocacionDevuelveFalseCanjeSiJugadorNoPuedeHacerCanje(){
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.hacerCanjeJugador("Amarillo")).thenReturn(false);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertFalse(turnos.hacerCanje());
+    }
+
+    @Test
     public void NoSePuedeAgregarMasDeSeisJugadores(){
         List<String> list = List.of("Amarillo", "Rojo", "Verde", "Magenta","Negro","Azul","Celeste");
         Turnos turnos = new Turnos();
@@ -214,6 +244,38 @@ public class TurnosTest {
 
         assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
         assertTrue(continentes.get(1).esDeJugador(jugadores.get("Rojo")));
+    }
+
+
+    @Test
+    public void TurnoEnRondaDeAtaqueNoSePuedeHacerCanje(){
+        Teg teg = Mockito.mock(Teg.class);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        turnos.finEtapa();
+        turnos.finEtapa();
+
+        turnos.finEtapa();
+        turnos.finEtapa();
+
+        assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class, turnos :: hacerCanje);
+    }
+
+    @Test
+    public void TurnoEnRondaDeAtaqueNoSePuedeDarCartaPais(){
+        Teg teg = Mockito.mock(Teg.class);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        turnos.finEtapa();
+        turnos.finEtapa();
+
+        turnos.finEtapa();
+        turnos.finEtapa();
+
+
+        assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class, turnos :: darCartaPais);
     }
 
     @Test
@@ -304,7 +366,7 @@ public class TurnosTest {
 
 
     @Test
-    public void enRondaReagrupacionSePuedenPasarFichasCorrectamente(){
+    public void TurnoEnRondaReagrupacionSePuedenPasarFichasCorrectamente(){
         tablero = new Tablero(continentes,paises);
         jugadores.get("Amarillo").darObjetivo(objetivoPierde);
         jugadores.get("Rojo").darObjetivo(objetivoPierde);
@@ -341,5 +403,63 @@ public class TurnosTest {
         turnos.pasarFichas("Borneo","Australia",3);
         assertEquals(3,paisesOceania.get(0).perderFichas(0));
         assertEquals(7,paisesOceania.get(2).perderFichas(0));
+    }
+
+
+    @Test
+    public void TurnoEnRondaReagrupacionNoSePuedeHacerCanje(){
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.hacerCanjeJugador("Amarillo")).thenReturn(true);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+
+        turnos.finEtapa();
+        turnos.finEtapa();
+
+
+        turnos.finEtapa();
+        turnos.finEtapa();
+
+        turnos.finEtapa();
+
+        assertTrue(turnos.devolverRondaActual() instanceof RondaReagrupacion);
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class, turnos :: hacerCanje);
+    }
+
+
+    @Test
+    public void TurnoEnRondaReagrupacionPuedeDarCartaSiJugadorPuede(){
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.darCarta("Amarillo")).thenReturn(true);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        turnos.finEtapa();
+        turnos.finEtapa();
+
+        turnos.finEtapa();
+        turnos.finEtapa();
+
+        turnos.finEtapa();
+
+        assertTrue(turnos.devolverRondaActual() instanceof RondaReagrupacion);
+        assertTrue(turnos.darCartaPais());
+    }
+
+    @Test
+    public void TurnoEnRondaReagrupacionNoPuedeDarCartaSiJugadorNoPuede(){
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.darCarta("Amarillo")).thenReturn(false);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        turnos.finEtapa();
+        turnos.finEtapa();
+
+        turnos.finEtapa();
+        turnos.finEtapa();
+
+        turnos.finEtapa();
+
+        assertTrue(turnos.devolverRondaActual() instanceof RondaReagrupacion);
+        assertFalse(turnos.darCartaPais());
     }
 }

@@ -69,6 +69,14 @@ public class Turnos {
         this.tipoDeRonda.colocarFichas(this.teg,nombrePais,cantidad);
     }
 
+    public boolean darCartaPais(){
+        return this.tipoDeRonda.darCartaPais(this.teg);
+    }
+
+    public boolean hacerCanje(){
+        return this.tipoDeRonda.hacerCanje(this.teg);
+    }
+
     public TipoRonda devolverRondaActual(){
         return this.tipoDeRonda;
     }

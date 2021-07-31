@@ -38,6 +38,13 @@ public class RondaAtaque implements TipoRonda {
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
+    public boolean darCartaPais(Teg teg){
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
+    }
+
+    public boolean hacerCanje(Teg teg){
+        throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
+    }
 
     public TipoRonda finEtapa(List<String> jugadores,Teg teg){
         return new RondaReagrupacion(this.jugadorActual,jugadores);
