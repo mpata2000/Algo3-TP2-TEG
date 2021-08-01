@@ -19,7 +19,6 @@ public class ComenzarAtaqueController implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        Turnos.getInstance();
         contenedorPrincipal.setCentro(new AtacarPaisView(stage, contenedorPrincipal));
     }
 }
