@@ -6,6 +6,7 @@ participant Ronda
 participant Teg as ":Teg"
 participant Tablero as ":Tablero"
 participant Pais as  ":Pais"
+participant Jugador as ":Jugador"
 
 
 

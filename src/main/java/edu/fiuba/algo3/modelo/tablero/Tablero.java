@@ -75,12 +75,12 @@ public class Tablero {
         }
     }
 
-    public void pasarFichas(Jugador unJugador,String paisUno, String paisDos,int cantidadFichas) {
-        Pais pais = this.getPais(paisUno);
+    public void pasarFichas(Jugador unJugador,String paisOrigen, String paisDestino,int cantidadFichas) {
+        Pais pais = this.getPais(paisOrigen);
         if(!pais.esDeJugador(unJugador)) {
             throw new JugadorNoPoseePaisException();
         }
-        pais.pasarFichasA(this.getPais(paisDos),cantidadFichas);
+        pais.pasarFichasA(this.getPais(paisDestino),cantidadFichas);
     }
 
     public int cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador) {

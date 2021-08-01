@@ -1,0 +1,69 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+participant Ronda
+participant Teg as ":Teg"
+participant Tablero as ":Tablero"
+participant PaisOrigen as  "paisOrigen:Pais"
+participant EjercitoOrigen as ":EjercitoOrigen"
+participant PaisDestino as  "paisDestino:Pais"
+participant EjercitoDestino as ":EjercitoDestino"
+participant Jugador as ":Jugador"
+
+
+Ronda -> Teg: colocarFichas(jugadorActual,nombrePais,cantidad)
+activate Teg
+Teg -> Tablero: pasarFichas(Jugador jugador,String origen, String destino,int cant)
+deactivate Teg
+
+activate Tablero
+Tablero -> Tablero: getPais(String origen)
+activate Tablero
+Tablero --> Tablero: Pais
+deactivate Tablero
+Tablero -> PaisOrigen: esDeJugador(Jugador jugador)
+activate PaisOrigen
+PaisOrigen -> Jugador: esElMismoJugador(Jugador jugador)
+activate Jugador
+return Boolean
+return Boolean
+Tablero -> PaisOrigen:pasarFichasA(Pais destino, int cant)
+deactivate Tablero
+
+activate PaisOrigen
+'Adyacencia
+PaisOrigen -> PaisOrigen: esAdyacente(Pais pais)
+activate PaisOrigen
+PaisOrigen -> PaisDestino: getNombre()
+activate PaisDestino
+return nombre: String
+return Boolean
+'Chequeo si detino es del jugador
+PaisOrigen -> PaisDestino: esDeJugador(Jugador jugador)
+activate PaisDestino
+PaisDestino -> Jugador: esElMismoJugador(Jugador jugador)
+activate Jugador
+return Boolean
+return Boolean
+
+PaisOrigen -> EjercitoOrigen:pasarFichasADe(Pais unPais,Jugador jugador,int cantidadFichas)
+deactivate PaisOrigen
+activate EjercitoOrigen
+EjercitoOrigen -> Jugador: agregarFichas(int cantidadFichas)
+
+EjercitoOrigen -> PaisDestino: agregarFichas(int cant,Jugador jugador)
+deactivate EjercitoOrigen
+
+
+activate PaisDestino
+PaisDestino -> Jugador: esElMismoJugador(jugador)
+activate Jugador
+return Boolean
+PaisDestino -> Jugador: puedeColocarFichas(Int cant)
+activate Jugador
+return Boolean
+PaisDestino -> Jugador: sacarFichas(Int cant)
+PaisDestino -> EjercitoDestino: agregarFichas(Int cant)
+
+@enduml
