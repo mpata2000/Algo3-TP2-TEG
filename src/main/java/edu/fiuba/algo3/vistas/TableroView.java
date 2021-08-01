@@ -25,16 +25,16 @@ public class TableroView extends StackPane {
         Image imagenTablero = new Image("file:" + System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/tableroTEG.png");
         selectedImage.setImage(imagenTablero);
 
-        MenuInicioGrid grillaInicio = new MenuInicioGrid(720, 480);
+        MenuInicioGrid grillaInicio = new MenuInicioGrid(720, 720);
 
-        VBox contenedorVertical = new VBox(50);
+        VBox contenedorVertical = new VBox(30);
         contenedorVertical.setAlignment(Pos.CENTER);
 
-        HBox contenedorContinentes = new HBox(50);
+        HBox contenedorContinentes = new HBox(30);
         contenedorContinentes.setAlignment(Pos.CENTER);
 
-        HBox contenedorContinentes2 = new HBox(50);
-        contenedorContinentes2.setAlignment(Pos.CENTER);
+        /*HBox contenedorContinentes2 = new HBox(50);
+        contenedorContinentes2.setAlignment(Pos.CENTER);*/
 
         Collection<Continente> listaContinentes = Turnos.getInstance().getTeg().getTablero().getContinentes().values();
         for(Continente continente: Turnos.getInstance().getTeg().getTablero().getContinentes().values()){
@@ -43,11 +43,10 @@ public class TableroView extends StackPane {
         }
         //boxes.get(i%5).getChildren().add(tableroMessage);
 
-        grillaInicio.getChildren().addAll(selectedImage);
+        contenedorVertical.getChildren().add(selectedImage);
+        contenedorVertical.getChildren().add(contenedorContinentes);
         grillaInicio.add(contenedorVertical,0,1);
-        grillaInicio.add(contenedorContinentes,0,2);
 
         super.getChildren().add(grillaInicio);
-
     }
 }
