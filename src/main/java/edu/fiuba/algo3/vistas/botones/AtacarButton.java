@@ -15,7 +15,7 @@ public class AtacarButton extends Button {
     public AtacarButton(EventHandler<ActionEvent> controlador){
         super.setText("Atacar");
 
-        super.setFont(Font.font(FontSelection.SubtitleFontType, 30));
+        super.setFont(Font.font(FontSelection.SubtitleFontType, 20));
         super.setPadding(new Insets(10));
         super.setTextFill(Color.BLACK);
         super.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, FontSelection.CURVATURA_BORDE, FontSelection.GROSOR_BORDE)));
