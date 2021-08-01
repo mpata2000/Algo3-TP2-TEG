@@ -1,10 +1,13 @@
 package edu.fiuba.algo3.vistas;
 
+import edu.fiuba.algo3.controllers.ElegirPaisesAtacarController;
 import edu.fiuba.algo3.modelo.tablero.Continente;
 import edu.fiuba.algo3.modelo.Turnos;
+import edu.fiuba.algo3.vistas.botones.AtacarButton;
 import edu.fiuba.algo3.vistas.grillas.MenuInicioGrid;
 import edu.fiuba.algo3.vistas.mensajes.TableroMessage;
 import javafx.geometry.Pos;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -21,33 +24,48 @@ public class TableroView extends StackPane {
         Background unFondo = new Background(fondoImagen);
         super.setBackground(unFondo);
 
+        MenuInicioGrid grillaInicio = new MenuInicioGrid(1080, 720);
+
+        VBox contenedorVertical = new VBox(30);
+        contenedorVertical.setAlignment(Pos.CENTER);
+
         final ImageView selectedImage = new ImageView();
         Image imagenTablero = new Image("file:" + System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/tableroTEG.png");
         selectedImage.setImage(imagenTablero);
 
-        MenuInicioGrid grillaInicio = new MenuInicioGrid(720, 480);
+        grillaInicio.add(selectedImage,0,0);
 
-        VBox contenedorVertical = new VBox(50);
-        contenedorVertical.setAlignment(Pos.CENTER);
-
-        HBox contenedorContinentes = new HBox(50);
+        HBox contenedorContinentes = new HBox(30);
         contenedorContinentes.setAlignment(Pos.CENTER);
-
-        HBox contenedorContinentes2 = new HBox(50);
-        contenedorContinentes2.setAlignment(Pos.CENTER);
 
         Collection<Continente> listaContinentes = Turnos.getInstance().getTeg().getTablero().getContinentes().values();
         for(Continente continente: Turnos.getInstance().getTeg().getTablero().getContinentes().values()){
             TableroMessage mensaje = new TableroMessage(continente.obtenerInfo());
             contenedorContinentes.getChildren().add(mensaje);
         }
-        //boxes.get(i%5).getChildren().add(tableroMessage);
 
-        grillaInicio.getChildren().addAll(selectedImage);
+        contenedorVertical.getChildren().add(contenedorContinentes);
+
+        HBox elegirPaisesBox = new HBox(10);
+        elegirPaisesBox.setAlignment(Pos.CENTER);
+
+        TextField textoPaisAtacante = new TextField();
+        textoPaisAtacante.setPromptText("Ingrese el pais atacante");
+        elegirPaisesBox.getChildren().add(textoPaisAtacante);
+
+        TextField textoPaisDefensor = new TextField();
+        textoPaisDefensor.setPromptText("Ingrese el pais defensor");
+        elegirPaisesBox.getChildren().add(textoPaisDefensor);
+
+        VBox botonAtacarBox = new VBox(0);
+        botonAtacarBox.setAlignment(Pos.BOTTOM_CENTER);
+
+        AtacarButton botonAtacar = new AtacarButton(new ElegirPaisesAtacarController(stage, textoPaisAtacante, textoPaisDefensor, contenedorPrincipal));
+        elegirPaisesBox.getChildren().add(botonAtacar);
+
         grillaInicio.add(contenedorVertical,0,1);
-        grillaInicio.add(contenedorContinentes,0,2);
+        grillaInicio.add(elegirPaisesBox,0,2);
 
         super.getChildren().add(grillaInicio);
-
     }
 }

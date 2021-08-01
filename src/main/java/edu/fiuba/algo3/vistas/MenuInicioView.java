@@ -26,19 +26,19 @@ public class MenuInicioView extends StackPane {
 
         MenuInicioGrid grillaInicio = new MenuInicioGrid(720, 480);
 
-        VBox contenedorVertical = new VBox(30);
-        contenedorVertical.setAlignment(Pos.CENTER);
-
         BienvenidaMessage textoMensajeBienvenida = new BienvenidaMessage(FontSelection.Negro);
-        contenedorVertical.getChildren().add(textoMensajeBienvenida);
+        grillaInicio.add(textoMensajeBienvenida,0, 0);
+
+        VBox contenedorBotones = new VBox(30);
+        contenedorBotones.setAlignment(Pos.CENTER);
 
         IniciarPartidaButton botonIniciarPartida = new IniciarPartidaButton(new IniciarJuegoController(stage, contenedorPrincipal));
-        contenedorVertical.getChildren().add(botonIniciarPartida);
+        contenedorBotones.getChildren().add(botonIniciarPartida);
 
         AyudaButton botonAyuda = new AyudaButton(new IniciarReglasController(stage, contenedorPrincipal));
-        contenedorVertical.getChildren().add(botonAyuda);
+        contenedorBotones.getChildren().add(botonAyuda);
 
-        grillaInicio.add(contenedorVertical,0,1);
+        grillaInicio.add(contenedorBotones,0,1);
         super.getChildren().add(grillaInicio);
     }
 }

@@ -21,7 +21,7 @@ public class SeleccionarJugadoresView extends StackPane {
 
     public SeleccionarJugadoresView(Stage stage, ContenedorPrincipal contenedorPrincipal) {
 
-        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/fondo_seleccion_jugadores.jpeg");
+        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/fondo_marron.png");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,null,null, BackgroundPosition.CENTER,null);
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
@@ -38,10 +38,8 @@ public class SeleccionarJugadoresView extends StackPane {
         botonesColores.setSpacing(10);
 
         List<CheckBox> listaBoxes = new ArrayList<>();
-
-        Label l = new Label("This is a check box");
         List<String> listaColores = List.of("Azul","Rojo","Amarillo","Verde","Magenta","Negro");
-        botonesColores.getChildren().add(l);
+
         for (int i = 0; i < listaColores.size(); i++) {
             CheckBox c = new CheckBox(listaColores.get(i));
             botonesColores.getChildren().add(c);
