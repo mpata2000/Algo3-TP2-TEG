@@ -52,7 +52,7 @@ public class Teg {
         this.tablero.agregarFichas(nombrePais, this.jugadores.get(colorJugador), cant);
     }
 
-    public boolean atacar(String colorJugador,String paisAtacante, String paisDefensor, int cantidad){
+    public boolean atacarConA(String colorJugador, String paisAtacante, String paisDefensor, int cantidad){
         Jugador jugador = this.jugadores.get(colorJugador);
         if(tablero.atacar(jugador,paisAtacante, paisDefensor, cantidad)){
             jugador.conquistoPais();

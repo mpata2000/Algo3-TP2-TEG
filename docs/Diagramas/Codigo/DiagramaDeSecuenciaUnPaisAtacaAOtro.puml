@@ -36,6 +36,7 @@ deactivate Pais
 Batalla -> PaisEnemigo: esDeJugador(jugador)
 activate PaisEnemigo
 PaisEnemigo --> Batalla: false: Boolean
+
 deactivate PaisEnemigo
 Batalla --> Batalla: true:Boolean
 deactivate Batalla
@@ -63,5 +64,9 @@ deactivate PaisEnemigo
 Batalla --> Tablero: resultadoBatalla: Boolean
 deactivate Batalla
 Tablero --> Teg: resultadoBatalla: Boolean
+
+alt si el resultado de la batalla es true
+    Teg -> Jugador: conquistoPais
+end
 
 @enduml

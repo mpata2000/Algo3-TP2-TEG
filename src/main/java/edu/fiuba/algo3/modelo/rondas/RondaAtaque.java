@@ -18,7 +18,7 @@ public class RondaAtaque implements TipoRonda {
 
 
     public void atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad){
-        if(teg.atacar(jugadorActual,paisAtacante, paisDefensor, cantidad)){
+        if(teg.atacarConA(jugadorActual,paisAtacante, paisDefensor, cantidad)){
             this.conquistoPais = true;
             this.paisAtcante = paisAtacante;
             this.paisConquistado = paisDefensor;

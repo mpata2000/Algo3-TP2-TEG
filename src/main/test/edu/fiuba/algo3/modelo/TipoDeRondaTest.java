@@ -139,7 +139,7 @@ public class TipoDeRondaTest {
     public void enRondaDeAtaqueSePuedeReagruparSiJugadorGanoBatalla(){
         TipoRonda ronda = new RondaAtaque("A");
         Teg teg = Mockito.mock(Teg.class);
-        when(teg.atacar("A","A","B",3)).thenReturn(true);
+        when(teg.atacarConA("A","A","B",3)).thenReturn(true);
 
         ronda.atacar(teg,"A","B",3);
         ronda.pasarFichas(teg,"A","B",3);
@@ -150,58 +150,58 @@ public class TipoDeRondaTest {
     public void enRondaDeAtaqueNoSePuedeReagruparSiJugadorNoGanoBatalla(){
         TipoRonda ronda = new RondaAtaque("A");
         Teg teg = Mockito.mock(Teg.class);
-        when(teg.atacar("A","A","B",3)).thenReturn(false);
+        when(teg.atacarConA("A","A","B",3)).thenReturn(false);
 
         ronda.atacar(teg,"A","B",3);
         assertThrows(PasajeDeFichasNoValidoEnAtaqueException.class,()-> ronda.pasarFichas(teg,"A","B",3));
         verify(teg,times(0)).pasarFichas("A","A","B",3);
-        verify(teg,times(1)).atacar("A","A","B",3);
+        verify(teg,times(1)).atacarConA("A","A","B",3);
     }
 
     @Test
     public void enRondaDeAtaqueNoSePuedeReagruparSiNoSePasanFichasAPaisConquistado(){
         TipoRonda ronda = new RondaAtaque("A");
         Teg teg = Mockito.mock(Teg.class);
-        when(teg.atacar("A","A","B",3)).thenReturn(true);
+        when(teg.atacarConA("A","A","B",3)).thenReturn(true);
 
         ronda.atacar(teg,"A","B",3);
         assertThrows(PasajeDeFichasNoValidoEnAtaqueException.class,()-> ronda.pasarFichas(teg,"A","C",3));
         verify(teg,times(0)).pasarFichas("A","A","C",3);
-        verify(teg,times(1)).atacar("A","A","B",3);
+        verify(teg,times(1)).atacarConA("A","A","B",3);
     }
 
     @Test
     public void enRondaDeAtaqueNoSePuedeReagruparSiNoSePasanFichasDesdePaisAtacante(){
         TipoRonda ronda = new RondaAtaque("A");
         Teg teg = Mockito.mock(Teg.class);
-        when(teg.atacar("A","A","B",3)).thenReturn(true);
+        when(teg.atacarConA("A","A","B",3)).thenReturn(true);
 
         ronda.atacar(teg,"A","B",3);
         assertThrows(PasajeDeFichasNoValidoEnAtaqueException.class,()-> ronda.pasarFichas(teg,"C","B",3));
         verify(teg,times(0)).pasarFichas("A","C","B",3);
-        verify(teg,times(1)).atacar("A","A","B",3);
+        verify(teg,times(1)).atacarConA("A","A","B",3);
     }
 
     @Test
     public void enRondaDeAtaqueNoSePuedeReagruparSiNoSePasanFichasDesdePaisAtacanteAPaisConquistado(){
         TipoRonda ronda = new RondaAtaque("A");
         Teg teg = Mockito.mock(Teg.class);
-        when(teg.atacar("A","A","B",3)).thenReturn(true);
+        when(teg.atacarConA("A","A","B",3)).thenReturn(true);
 
         ronda.atacar(teg,"A","B",3);
         assertThrows(PasajeDeFichasNoValidoEnAtaqueException.class,()-> ronda.pasarFichas(teg,"B","C",3));
         verify(teg,times(0)).pasarFichas("A","B","C",3);
-        verify(teg,times(1)).atacar("A","A","B",3);
+        verify(teg,times(1)).atacarConA("A","A","B",3);
     }
 
     @Test
     public void enRondaDeAtaqueSePuedeAtacar(){
         TipoRonda ronda = new RondaAtaque("A");
         Teg teg = Mockito.mock(Teg.class);
-        when(teg.atacar("A","A","B",3)).thenReturn(true);
+        when(teg.atacarConA("A","A","B",3)).thenReturn(true);
 
         ronda.atacar(teg,"A","B",3);
-        verify(teg,times(1)).atacar("A","A","B",3);
+        verify(teg,times(1)).atacarConA("A","A","B",3);
     }
 
     @Test

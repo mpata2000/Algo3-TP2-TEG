@@ -138,7 +138,7 @@ public class TegTest {
         when(tablero.atacar(jugadorMock1,"A","B",1)).thenReturn(true);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
-        assertTrue(teg.atacar("Rojo","A","B",1));
+        assertTrue(teg.atacarConA("Rojo","A","B",1));
         verify(jugadorMock1,times(1)).conquistoPais();
     }
 
@@ -149,7 +149,7 @@ public class TegTest {
         when(tablero.atacar(jugadorMock1,"A","B",1)).thenReturn(false);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
-        assertFalse(teg.atacar("Rojo","A","B",1));
+        assertFalse(teg.atacarConA("Rojo","A","B",1));
         verify(jugadorMock1,times(0)).conquistoPais();
     }
 
