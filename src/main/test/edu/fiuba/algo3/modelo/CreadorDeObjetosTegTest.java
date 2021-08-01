@@ -17,27 +17,27 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CreadorDeObjetosTegTest {
     @Test
     public void TableroSeCreaConCincuentaPaises(){
-        Tablero tablero = ConstructorTablero.create("resources/Teg-Tablero.json");
+        Tablero tablero = ConstructorTablero.create(Teg.PATHJSON.concat("Teg-Tablero.json"));
         assertEquals(50,tablero.getPaises().size());
     }
 
     @Test
     public void TableroSeCreaConSeisContientes(){
-        Tablero tablero = ConstructorTablero.create("resources/Teg-Tablero.json");
+        Tablero tablero = ConstructorTablero.create(Teg.PATHJSON.concat("Teg-Tablero.json"));
         assertEquals(6,tablero.getContinentes().size());
     }
 
     @Test
     public void SeCreanCincuentaCartasPais(){
-        Tablero tablero = ConstructorTablero.create("resources/Teg-Tablero.json");
-        List<CartaPais> cartasPais = CartasPais.create("resources/Teg-Cartas.json",tablero);
+        Tablero tablero = ConstructorTablero.create(Teg.PATHJSON.concat("Teg-Tablero.json"));
+        List<CartaPais> cartasPais = CartasPais.create(Teg.PATHJSON.concat("Teg-Cartas.json"),tablero);
         assertEquals(50,cartasPais.size());
     }
 
     @Test
     public void LasCartasPaisesTienenLaReferenciaCorrectaAPais(){
-        Tablero tablero = ConstructorTablero.create("resources/Teg-Tablero.json");
-        List<CartaPais> cartasPais = CartasPais.create("resources/Teg-Cartas.json",tablero);
+        Tablero tablero = ConstructorTablero.create(Teg.PATHJSON.concat("Teg-Tablero.json"));
+        List<CartaPais> cartasPais = CartasPais.create(Teg.PATHJSON.concat("Teg-Cartas.json"),tablero);
         for(CartaPais carta: cartasPais){
             assertEquals(tablero.getPais(carta.getNombrePais()),carta.getPais());
         }
@@ -45,7 +45,7 @@ public class CreadorDeObjetosTegTest {
 
     @Test
     public void creacionDeObjetivosConquista(){
-        List<ObjetivoTeg> objetivos = Objetivos.objetivosConquista("resources/Teg-Objetivos.json");
+        List<ObjetivoTeg> objetivos = Objetivos.objetivosConquista(Teg.PATHJSON.concat("Teg-Objetivos.json"));
 
         assertEquals(9,objetivos.size());
     }
