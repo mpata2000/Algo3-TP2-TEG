@@ -33,8 +33,8 @@ public class Tablero {
         return paises;
     }
 
-    public void agregarFichas(int cantidadFichas, Jugador unJugador, String unNombrePais){
-        this.getPais(unNombrePais).agregarFichas(cantidadFichas,unJugador);
+    public void agregarFichas(String nombrePais, Jugador unJugador, int cantidadFichas){
+        this.getPais(nombrePais).agregarFichas(cantidadFichas,unJugador);
     }
 
     public boolean atacar(Jugador unJugador,String nombrePaisAtacante, String nombrePaisEnemigo, int cantidadDadosAtacante) {

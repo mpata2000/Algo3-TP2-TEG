@@ -12,13 +12,13 @@ public class Ejercito {
         this.cantidadFichas = 1;
     }
 
-    public void agregarFichas(int cant){ this.cantidadFichas = cant + this.cantidadFichas;}
+    public void agregarFichas(int cant){ this.cantidadFichas += Math.abs(cant);}
     public int getCantFichas(){
         return this.cantidadFichas;
     }
 
     public int perderFichas(int cantidadFichas){
-        this.cantidadFichas -= cantidadFichas;
+        this.cantidadFichas -= Math.abs(cantidadFichas);
         if (this.cantidadFichas < 1){
             this.cantidadFichas=0;
         }
@@ -27,6 +27,7 @@ public class Ejercito {
 
 
     public void pasarFichasADe(Pais unPais, Jugador unJugador, int cantidadFichas){
+        cantidadFichas = Math.abs(cantidadFichas);
         if(this.cantidadFichas <= cantidadFichas) {
             throw new PaisSinSuficientesFichasParaPasarException();
         }
@@ -40,11 +41,12 @@ public class Ejercito {
     }
 
     public Dados tirarDados(int unaCantidadDeDados){
+
         if(this.cantidadFichas < 2){
             throw new EjercitoConUnaFichaNoPuedeAtacarException();
         }
 
-        int cantidadDeDados = Math.min(unaCantidadDeDados,3);
+        int cantidadDeDados = Math.min(Math.abs(unaCantidadDeDados),3);
 
         if(cantidadDeDados >= (this.cantidadFichas)){
             throw new EjercitoNoPuedeTirarEsaCantidadDeDadosException();

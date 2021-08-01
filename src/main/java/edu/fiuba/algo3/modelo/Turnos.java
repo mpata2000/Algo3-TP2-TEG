@@ -65,7 +65,7 @@ public class Turnos {
         this.tipoDeRonda.pasarFichas(this.teg,paisUno,paisdos,cant);
     }
 
-    public void colocarEjercitos(String nombrePais, int cantidad){
+    public void colocarFichas(String nombrePais, int cantidad){
         this.tipoDeRonda.colocarFichas(this.teg,nombrePais,cantidad);
     }
 

@@ -8,7 +8,6 @@ participant Ronda as "tipoRonda:RondaColocacion"
 participant Teg as ":Teg"
 participant MazoTeg as ":CartasPaisTeg"
 participant Jugador as ":Jugador"
-participant MazoJugador as ":CartasPaisJugador"
 
 Interfaz -> Turnos: darCartaPais()
 
@@ -23,20 +22,20 @@ activate Jugador
 note over Jugador
  Se comprueba que el jugador
  haya capturado un pais.
- En este caso si capturo
+ En este caso no capturo
 end note
-Jugador -> Jugador: sacarConquista()
-Jugador -> MazoJugador: agregarCartaPais(CartaPais carta)
+
 
 'returns
-Jugador --> MazoTeg: true: Boolean
+Jugador --> MazoTeg: false: Boolean
 deactivate Jugador
-MazoTeg --> Teg: true: Boolean
+MazoTeg --> Teg: false: Boolean
 deactivate MazoTeg
-Teg --> Ronda: true: Boolean
+Teg --> Ronda: false: Boolean
 deactivate Teg
-Ronda --> Turnos: true: Boolean
+Ronda --> Turnos: false: Boolean
 deactivate
-Turnos --> Interfaz: true: Boolean
+Turnos --> Interfaz: false: Boolean
+
 
 @enduml

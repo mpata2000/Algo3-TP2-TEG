@@ -58,7 +58,7 @@ public class TableroTest {
         paisDefensor.asignarJugador(jugadorUno);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
-        tablero.agregarFichas(5, jugadorUno, "Chile");
+        tablero.agregarFichas("Chile", jugadorUno, 5);
 
         assertEquals(6, paisDefensor.perderFichas(0));
     }
@@ -70,7 +70,7 @@ public class TableroTest {
 
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
-        assertThrows(JugadorNoPoseePaisException.class, () -> tablero.agregarFichas(5, jugadorDos, "Chile"));
+        assertThrows(JugadorNoPoseePaisException.class, () -> tablero.agregarFichas("Chile", jugadorDos, 5));
     }
 
     @Test
@@ -82,8 +82,8 @@ public class TableroTest {
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
 
-        tablero.agregarFichas(3, jugadorUno, "Argentina");
-        tablero.agregarFichas(5, jugadorDos, "Chile");
+        tablero.agregarFichas("Argentina", jugadorUno, 3);
+        tablero.agregarFichas("Chile", jugadorDos, 5);
 
         assertThrows(NoSePuedenCrearCeroDadosException.class, () -> tablero.atacar(jugadorUno, "Argentina", "Chile", 0));
     }
@@ -97,7 +97,7 @@ public class TableroTest {
 
         paisAtacante.asignarJugador(jugadorUno);
         paisDefensor.asignarJugador(jugadorDos);
-        tablero.agregarFichas(5, jugadorDos, "Chile");
+        tablero.agregarFichas("Chile", jugadorDos, 5);
 
         assertThrows(EjercitoConUnaFichaNoPuedeAtacarException.class, () -> tablero.atacar(jugadorUno, "Argentina", "Chile", 1));
     }
@@ -111,8 +111,8 @@ public class TableroTest {
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
 
-        tablero.agregarFichas(1, jugadorUno, "Argentina");
-        tablero.agregarFichas(4, jugadorDos, "Chile");
+        tablero.agregarFichas("Argentina", jugadorUno, 1);
+        tablero.agregarFichas("Chile", jugadorDos, 4);
 
         assertThrows(EjercitoNoPuedeTirarEsaCantidadDeDadosException.class, () -> tablero.atacar(jugadorUno, "Argentina", "Chile", 3));
     }
@@ -125,8 +125,8 @@ public class TableroTest {
         paises.add(paisAtacante);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
-        tablero.agregarFichas(5, jugadorUno, "Argentina");
-        tablero.agregarFichas(5, jugadorDos, "Chile");
+        tablero.agregarFichas("Argentina", jugadorUno, 5);
+        tablero.agregarFichas("Chile", jugadorDos, 5);
 
         assertFalse(tablero.atacar(jugadorUno, "Argentina", "Chile", 2));
 
@@ -140,7 +140,7 @@ public class TableroTest {
         paisAtacante.asignarJugador(jugadorUno);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
-        tablero.agregarFichas(4, jugadorUno, "Argentina");
+        tablero.agregarFichas("Argentina", jugadorUno, 4);
 
 
         assertThrows(AtaqueNoValido.class, () -> tablero.atacar(jugadorUno, "Argentina", "Chile", 1));
@@ -165,7 +165,7 @@ public class TableroTest {
         paisAtacante.asignarJugador(jugadorUno);
         Tablero tablero = new Tablero(new ArrayList<>(), paises);
 
-        tablero.agregarFichas(3, jugadorUno, "Argentina");
+        tablero.agregarFichas("Argentina", jugadorUno, 3);
 
         assertEquals(4, paisAtacante.perderFichas(0));
         tablero.pasarFichas(jugadorUno,"Argentina", "Chile", 2);

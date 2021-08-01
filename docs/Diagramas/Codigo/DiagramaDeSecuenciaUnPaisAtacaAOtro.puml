@@ -1,6 +1,6 @@
 @startuml DiagramaDeSecuenciaUnPaisAtacaAOtro-V0.6
 
-Participant Jugador
+Participant Teg
 Participant Tablero
 Participant Batalla
 Participant Pais as "paisAtacante: Pais"
@@ -8,7 +8,7 @@ Participant PaisEnemigo as "paisDefensor: Pais"
 Participant DadosAtacante as "dadosAtacante: Dados"
 
 activate Tablero
-Jugador->Tablero: atacarConA(jugador, paisMio, paisEnemigo)
+Teg->Tablero: atacarConA(jugador, paisMio, paisEnemigo)
 Tablero -> Tablero: buscarPais(PaisMio)
 activate Tablero
 Tablero --> Tablero: paisMio
@@ -25,7 +25,8 @@ create Batalla
 Tablero -> Batalla: Batalla(paisMio: Pais, paisEnemigo: Pais)
 activate Batalla
 Tablero -> Batalla: batallar(cantidadDeDados: Integer)
-note left: Aca le podemos pasar jugador y hacer la comprobacion
+
+
 Batalla -> Batalla: esAtaqueValido(paisMio, paisEnemigo)
 activate Batalla
 Batalla -> Pais: esAdyacente(paisEnemigo)
@@ -61,6 +62,6 @@ PaisEnemigo --> Batalla: resultadoBatalla: Boolean
 deactivate PaisEnemigo
 Batalla --> Tablero: resultadoBatalla: Boolean
 deactivate Batalla
-Tablero --> Jugador: resultadoBatalla: Boolean
+Tablero --> Teg: resultadoBatalla: Boolean
 
 @enduml

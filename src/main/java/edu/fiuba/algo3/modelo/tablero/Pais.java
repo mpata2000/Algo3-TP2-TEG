@@ -33,7 +33,7 @@ public class Pais {
     }
 
     public void agregarFichas(int cantidadFichas, Jugador unJugador) {
-        if (!this.esDeJugador(unJugador)){
+        if (!jugador.esElMismoJugador(unJugador)){
             throw new JugadorNoPoseePaisException();
         }
         if (!unJugador.puedeColocarFichas(cantidadFichas)) {

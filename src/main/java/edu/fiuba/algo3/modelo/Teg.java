@@ -49,7 +49,7 @@ public class Teg {
     }
 
     public void colocarFichas(String colorJugador, String nombrePais, int cant){
-        this.tablero.agregarFichas(cant,this.jugadores.get(colorJugador),nombrePais);
+        this.tablero.agregarFichas(nombrePais, this.jugadores.get(colorJugador), cant);
     }
 
     public boolean atacar(String colorJugador,String paisAtacante, String paisDefensor, int cantidad){

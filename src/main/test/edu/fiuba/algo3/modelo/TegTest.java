@@ -128,7 +128,7 @@ public class TegTest {
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
         teg.colocarFichas("Rojo","A",3);
 
-        verify(tablero,times(1)).agregarFichas(3,jugadorMock1,"A");
+        verify(tablero,times(1)).agregarFichas("A", jugadorMock1, 3);
     }
 
     @Test

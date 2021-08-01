@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+participant Ronda
+participant Teg as ":Teg"
+participant Tablero as ":Tablero"
+participant Pais as  ":Pais"
+
+
+
+
+Ronda -> Teg: colocarFichas(jugadorActual,nombrePais,cantidad)
+activate Teg
+Teg -> Tablero: agregarFichas(String pais, Jugador jugador, int cant)
+deactivate Teg
+
+activate Tablero
+Tablero -> Tablero: getPais(String pais)
+activate Tablero
+Tablero --> Tablero: Pais
+deactivate Tablero
+Tablero -> Pais: agregarFichas(int cant,Jugador jugador)
+deactivate Tablero
+
+activate Pais
+Pais -> Jugador: esElMismoJugador(jugador)
+activate Jugador
+return Boolean
+Pais -> Jugador: puedeColocarFichas(Int cant)
+activate Jugador
+return Boolean
+Pais -> Jugador: sacarFichas(Int cant)
+Pais -> Ejercito: agregarFichas(Int cant)
+
+@enduml
