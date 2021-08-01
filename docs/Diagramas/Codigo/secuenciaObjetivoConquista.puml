@@ -1,0 +1,75 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ObjetivoConquista as ":ObjetivoConquista"
+participant Teg as ":Teg"
+participant Tablero as ":Tablero"
+participant Continente as ":Continente"
+participant Pais as ":Pais"
+
+-> ObjetivoConquista: cumplioObjetivo(Teg teg)
+activate ObjetivoConquista
+ObjetivoConquista -> ObjetivoConquista: objetivoPrincipal(Teg teg)
+activate ObjetivoConquista
+ObjetivoConquista -> Teg:cantidadDePaisesJugador(String jugador)
+activate Teg
+Teg -> Tablero: cantidadDePaisesJugador(String colorJugador)
+loop todos los paises
+activate Tablero
+Tablero -> Pais: esDeJugador()
+activate Pais
+return Boolean
+end
+return Integer
+return Integer
+return Boolean
+
+ObjetivoConquista -> ObjetivoConquista: objetivoJugador(Teg teg)
+activate ObjetivoConquista
+ObjetivoConquista -> ObjetivoConquista: tieneTodosLosContienetes(Teg teg)
+activate ObjetivoConquista
+loop todos los continentes requeridos
+    ObjetivoConquista -> Teg: continenteEsDeJugador(String continente,String Jugador)
+    activate Teg
+    Teg -> Tablero: continenteEsDeJugador(String continente,String jugador)
+    activate Tablero
+    Tablero -> Continente: esDeJugador(Jugador unJugador)
+    activate Continente
+    loop si todos los paises lo cumplen
+        Continente -> Pais: esDeJugador(Jugador jugador)
+        activate Pais
+        return Boolean
+end
+
+return Boolean
+return Boolean
+return Boolean
+end
+return Boolean
+
+ObjetivoConquista -> ObjetivoConquista: tieneTodosLosPaises(Teg teg)
+activate ObjetivoConquista
+loop todos los paises por continente
+    ObjetivoConquista -> Teg: cantidadDePaisesJugadorEnContinente(String continente, String jugador)
+    activate Teg
+    Teg -> Tablero: cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador)
+    activate Tablero
+    Tablero -> Continente: cantidadPaisesDe(Jugador unJugador)
+    activate Continente
+    loop si todos los paises lo cumplen
+        Continente -> Pais: esDeJugador(Jugador jugador)
+        activate Pais
+        return Integer
+end
+
+    return Integer
+    return Integer
+    return Integer
+end
+    return Boolean
+
+<-- ObjetivoConquista:true: Boolean
+
+
+
+@enduml

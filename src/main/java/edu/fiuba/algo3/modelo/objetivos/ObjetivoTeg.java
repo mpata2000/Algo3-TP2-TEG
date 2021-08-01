@@ -7,18 +7,18 @@ public abstract class ObjetivoTeg {
 
     protected String colorDuenio;
 
+    protected boolean objetivoPrincipal(Teg teg){
+        return (teg.cantidadDePaisesJugador(this.colorDuenio) > 29);
+    }
+
+    protected abstract boolean objetivoJugador(Teg teg);
+
     public boolean cumplioObjetivo(Teg teg){
-        if(teg.cantidadDePaisesJugador(this.colorDuenio) > 29){
-            return true;
-        }
-        return this.objetivoJugador(teg);
+        return objetivoPrincipal(teg) || objetivoJugador(teg);
     }
 
     public void setDuenio(Jugador unJugador){
         this.colorDuenio = unJugador.getColor();
     }
-
-
-    protected abstract boolean objetivoJugador(Teg teg);
 
 }
