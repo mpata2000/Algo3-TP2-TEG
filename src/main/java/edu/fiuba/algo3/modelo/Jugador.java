@@ -45,6 +45,7 @@ public class Jugador {
         if(this.conquistoPais) {
             sacarConquista();
             cartasPais.agregarCartaPais(carta);
+            carta.activarCarta(this);
             return true;
         }
         return false;

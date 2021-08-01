@@ -310,8 +310,8 @@ public class TurnosTest {
         turnos.colocarFichas("China",3);
         turnos.finEtapa();
         jugadores.get("Amarillo").agregarFichas(2);
-        turnos.atacar("Australia","Borneo",3);
-        turnos.atacar("Australia","Java",3);
+        turnos.atacarACon("Australia","Borneo",3);
+        turnos.atacarACon("Australia","Java",3);
         assertTrue((tablero.getPais("Borneo")).esDeJugador(jugadores.get("Amarillo")));
         assertTrue((tablero.getPais("Java")).esDeJugador(jugadores.get("Amarillo")));
     }

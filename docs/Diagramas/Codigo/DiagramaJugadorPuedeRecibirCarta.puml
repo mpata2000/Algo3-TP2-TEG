@@ -16,9 +16,9 @@ Turnos -> Ronda: darCartaPais(Teg teg)
 activate Ronda
 Ronda -> Teg: darCartaPaisA(String jugador)
 activate Teg
-Teg -> MazoTeg: darCartaA(Jugador j)
+Teg -> MazoTeg: darCartaA(Jugador jugador)
 activate MazoTeg
-MazoTeg -> Jugador: darCartaA(Jugador j)
+MazoTeg -> Jugador: darCartaA(Jugador jugador)
 activate Jugador
 note over Jugador
  Se comprueba que el jugador
@@ -27,6 +27,20 @@ note over Jugador
 end note
 Jugador -> Jugador: sacarConquista()
 Jugador -> MazoJugador: agregarCartaPais(CartaPais carta)
+
+Jugador -> Carta: activarCarta(Jugador unJugador)
+activate Carta
+Carta -> Pais: esDeJugador()
+activate Pais
+Pais -> Jugador: esElMismoJugador()
+activate Jugador
+return Boolean
+return Boolean
+alt si no se activo y el pais es del jugador
+    Carta -> Jugador: agregarFichas(2)
+    Carta -> Pais: agregarFichas(2, Jugador jugador)
+end
+deactivate Carta
 
 'returns
 Jugador --> MazoTeg: true: Boolean

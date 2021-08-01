@@ -1,0 +1,23 @@
+@startuml DiagramaDeSecuenciaAJugadorLeCartaPais-v0.1
+
+Turno -> Teg:comenzarJuego(List<String> colores)
+activate Teg
+Teg -> MazoDeCartasPais: asignarPaises(List<Jugador> jugadores)
+activate MazoDeCartasPais
+loop para todas las cartas del mazo
+    MazoDeCartasPais -> CartaPais: asignarPaisA(Jugador jugador)
+    note over MazoDeCartasPais: se itera para los jugadores de la lista
+end
+deactivate MazoDeCartasPais
+Teg -> Teg: asignarObjetivos()
+activate Teg
+loop para todos los jugadores
+    Teg -> Jugador: darObjetivo(ObjetivoTeg objetivo)
+    activate Jugador
+    Jugador -> ObjetivoTeg: setDuenio(Jugador jugador)
+    deactivate Jugador
+    note over Teg: se le da un objetivo al azar de todos los objetivos
+end
+deactivate Teg
+deactivate Teg
+@enduml

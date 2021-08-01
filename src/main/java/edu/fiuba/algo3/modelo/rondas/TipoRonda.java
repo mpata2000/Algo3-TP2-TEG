@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TipoRonda {
 
-    void atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad);
+    void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad);
 
     void pasarFichas(Teg teg,String paisOrigen,String paisDestino,int cant);
 

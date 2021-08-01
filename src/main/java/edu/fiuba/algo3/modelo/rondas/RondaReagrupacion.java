@@ -16,7 +16,7 @@ public class RondaReagrupacion implements TipoRonda{
         this.jugadorActual = this.iteradorJugadores.next();
     }
 
-    public void atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad){
+    public void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 

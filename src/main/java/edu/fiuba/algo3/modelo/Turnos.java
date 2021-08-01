@@ -57,8 +57,8 @@ public class Turnos {
         this.tipoDeRonda = new RondaColocacion(jugadores) ;
     }
 
-    public void atacar(String paisAtacante, String paisDefensor, int cantidad){
-        this.tipoDeRonda.atacar(this.teg,paisAtacante, paisDefensor, cantidad);
+    public void atacarACon(String paisAtacante, String paisDefensor, int cantidad){
+        this.tipoDeRonda.atacarACon(this.teg,paisAtacante, paisDefensor, cantidad);
     }
 
     public void pasarFichas(String paisUno,String paisdos,int cant){

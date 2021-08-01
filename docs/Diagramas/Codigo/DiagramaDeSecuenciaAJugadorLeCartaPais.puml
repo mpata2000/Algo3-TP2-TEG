@@ -1,8 +1,0 @@
-@startuml DiagramaDeSecuenciaAJugadorLeCartaPais-v0.1
-
-Tablero -> Jugador: recibirCarta(unaCarta: CartaPais)
-Jugador -> CartaPais: darPaisJugador(unJugador: Jugador)
-CartaPais -> Pais: asignarJugador(1,unJugador: Jugador)
-
-
-@enduml

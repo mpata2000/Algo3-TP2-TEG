@@ -32,7 +32,7 @@ public class RondaColocacion implements TipoRonda {
     }
 
 
-    public void atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad){
+    public void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 

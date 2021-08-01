@@ -17,10 +17,11 @@ import static org.mockito.Mockito.when;
 public class JugadorTest {
 
     Jugador jugador;
-
+    Pais paisMock;
     @BeforeEach
     void setUp(){
         jugador = new Jugador("Rojo");
+        paisMock = Mockito.mock(Pais.class);
     }
 
     @Test
@@ -140,24 +141,24 @@ public class JugadorTest {
     @Test
     public void jugadorPuedeRecivirCartaSiConquistoUnPais(){
         jugador.conquistoPais();
-        assertTrue(jugador.darCartaPais(new CartaPais("A","Globo")));
+        assertTrue(jugador.darCartaPais(new CartaPais("A","Globo",paisMock)));
     }
 
     @Test
     public void jugadorNoPuedeRecivirUnaSegundaCartaSinHaberConquistadoAntesOtroPais(){
         jugador.conquistoPais();
-        assertTrue(jugador.darCartaPais(new CartaPais("A","Globo")));
-        assertFalse(jugador.darCartaPais(new CartaPais("A","Globo")));
+        assertTrue(jugador.darCartaPais(new CartaPais("A","Globo",paisMock)));
+        assertFalse(jugador.darCartaPais(new CartaPais("A","Globo",paisMock)));
     }
 
     @Test
     public void jugadorHaceCanjeDeTresCartasReciveFichasYSeLasPasaAMazo(){
         jugador.conquistoPais();
-        jugador.darCartaPais(new CartaPais("A","Globo"));
+        jugador.darCartaPais(new CartaPais("A","Globo",paisMock));
         jugador.conquistoPais();
-        jugador.darCartaPais(new CartaPais("B","Globo"));
+        jugador.darCartaPais(new CartaPais("B","Globo",paisMock));
         jugador.conquistoPais();
-        jugador.darCartaPais(new CartaPais("C","Globo"));
+        jugador.darCartaPais(new CartaPais("C","Globo",paisMock));
         MazoDeCartasPais mazo = new MazoDeCartasPais();
 
         assertFalse(jugador.tieneFichas());
@@ -169,9 +170,9 @@ public class JugadorTest {
     @Test
     public void jugadorNoHaceCanjeDeTresCartas(){
         jugador.conquistoPais();
-        jugador.darCartaPais(new CartaPais("B","Globo"));
+        jugador.darCartaPais(new CartaPais("B","Globo", paisMock));
         jugador.conquistoPais();
-        jugador.darCartaPais(new CartaPais("C","Globo"));
+        jugador.darCartaPais(new CartaPais("C","Globo", paisMock));
         MazoDeCartasPais mazo = new MazoDeCartasPais();
 
         assertFalse(jugador.tieneFichas());
