@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.controllers;
+package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.vistas.ContenedorPrincipal;
 import edu.fiuba.algo3.vistas.SeleccionarJugadoresView;

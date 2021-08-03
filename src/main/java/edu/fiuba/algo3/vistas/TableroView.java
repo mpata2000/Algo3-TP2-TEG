@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.ElegirPaisesAtacarController;
+import edu.fiuba.algo3.controller.ElegirPaisesAtacarController;
 import edu.fiuba.algo3.modelo.tablero.Continente;
 import edu.fiuba.algo3.modelo.Turnos;
 import edu.fiuba.algo3.vistas.botones.AtacarButton;

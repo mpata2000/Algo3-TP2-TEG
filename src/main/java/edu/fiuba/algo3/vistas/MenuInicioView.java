@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.IniciarJuegoController;
-import edu.fiuba.algo3.controllers.IniciarReglasController;
+import edu.fiuba.algo3.controller.IniciarJuegoController;
+import edu.fiuba.algo3.controller.IniciarReglasController;
 import edu.fiuba.algo3.vistas.botones.AyudaButton;
 import edu.fiuba.algo3.vistas.botones.IniciarPartidaButton;
 import edu.fiuba.algo3.vistas.colores.FontSelection;

@@ -19,10 +19,16 @@ import java.io.IOException;
  */
 public class App extends Application {
 
+    private static Stage stage;
     @Override
     public void start(Stage stage) throws IOException {
+        App.stage = stage;
+        Parent root = FXMLLoader.load(getClass().getResource("/vistas/menuInicio.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
-        Parent rootTablero = FXMLLoader.load(getClass().getResource("/vistas/tablero.fxml"));
+        /*Parent rootTablero = FXMLLoader.load(getClass().getResource("/vistas/tablero.fxml"));
 
         Scene sceneTablero = new Scene(rootTablero);
         stage.setScene(sceneTablero);
@@ -39,6 +45,9 @@ public class App extends Application {
 
     }
 
+    public static Stage devolverEscena(){
+        return stage;
+    }
     public static void main(String[] args) {
         launch(args);
     }

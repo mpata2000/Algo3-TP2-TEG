@@ -1,13 +1,12 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.SeleccionarJugadoresController;
+import edu.fiuba.algo3.controller.SeleccionarJugadoresController;
 import edu.fiuba.algo3.vistas.botones.IniciarPartidaButton;
 import edu.fiuba.algo3.vistas.colores.FontSelection;
 import edu.fiuba.algo3.vistas.grillas.MenuInicioGrid;
 import edu.fiuba.algo3.vistas.mensajes.SeleccionarJugadorMessage;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
