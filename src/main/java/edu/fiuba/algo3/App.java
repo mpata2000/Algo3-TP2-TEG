@@ -21,10 +21,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vistas/tablero.fxml"));
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Parent rootTablero = FXMLLoader.load(getClass().getResource("/vistas/tablero.fxml"));
+
+        Scene sceneTablero = new Scene(rootTablero);
+        stage.setScene(sceneTablero);
         stage.show();
         /*stage.setTitle("ALTEGO");
 
