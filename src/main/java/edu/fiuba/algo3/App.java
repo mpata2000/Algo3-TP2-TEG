@@ -18,7 +18,7 @@ public class App extends Application {
         ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage);
         contenedorPrincipal.setCentro(new MenuInicioView(stage,contenedorPrincipal));
 
-        var scene = new Scene(contenedorPrincipal, 1080, 800);
+        var scene = new Scene(contenedorPrincipal, 1000, 700);
         stage.setScene(scene);
 
         stage.show();
