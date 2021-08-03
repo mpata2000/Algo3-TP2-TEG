@@ -32,18 +32,7 @@ public class ElegirPaisesAtacarController implements EventHandler<ActionEvent> {
             nombresSinCompletar.show();
         }
         else{
-            /*try{
-                AlgoHoot.getInstance().inicializarJuego(nombreJugador1,nombreJugador2,new CriterioDesorden());
-            }
-            catch(ArchivoNoEncontradoException ex) {
-                ex.printStackTrace();
-                Alert archivoNoEncontrado = new Alert(Alert.AlertType.ERROR);
-                archivoNoEncontrado.setHeaderText("Archivo no Encontrado");
-                archivoNoEncontrado.setContentText("Por favor revise que existe el archivo \n" + System.getProperty("user.dir") + ex.getMessage() + "\n y tiene el formato correcto");
-                archivoNoEncontrado.show();
-            }*/
 
-            //contenedorPrincipal.setCentro(new VistaTransicionPregunta(stage,contenedorPrincipal));
         }
     }
 }
