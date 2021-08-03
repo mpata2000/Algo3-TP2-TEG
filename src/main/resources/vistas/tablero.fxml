@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="855.0" prefWidth="1140.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controllers.ControllerTablero">
+<AnchorPane prefHeight="855.0" prefWidth="1140.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label fx:id="tipoRonda" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="490.0" style="-fx-background-color: #4CAF50;" text="Ronda de Reagrupacion" textAlignment="CENTER" textFill="WHITE">
             <font>

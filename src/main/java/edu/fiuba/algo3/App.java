@@ -7,7 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.animation.*;
+import javafx.fxml.FXML;
+import javafx.scene.SubScene;
+import javafx.scene.layout.AnchorPane;;
+import javafx.util.Duration;
 import java.io.IOException;
 
 /**
@@ -18,11 +22,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vistas/tablero.fxml"));
-        stage.setTitle("ALTEGO");
-        stage.setScene(new Scene(root, 1080, 800));
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
-
-
         /*stage.setTitle("ALTEGO");
 
         ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage);
