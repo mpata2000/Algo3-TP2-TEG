@@ -24,8 +24,8 @@ public class CargadorDeEscena {
 
     public static void cargarEscena(String escena){
 
-        URL path = App.class.getResource("/vista/" + escena + ".fxml");
-        loader = new FXMLLoader(path);
+        URL root = App.class.getResource(escena);
+        loader = new FXMLLoader(root);
 
         Parent mainNode = null;
 

@@ -14,19 +14,19 @@ public class AñadirJugadoresController {
 
     private Stage stage;
 
-    public void handle(ActionEvent actionEvent) {
+    public void jugar(){
         List<String> coloresJugador = new ArrayList<>();
 
-        if (coloresJugador.size() < 2) {
+        /*if (coloresJugador.size() < 2) {
             Alert insuficientesJugadores = new Alert(Alert.AlertType.ERROR);
             insuficientesJugadores.setHeaderText("No hay suficientes jugadores");
             insuficientesJugadores.setContentText("Se deben seleccionar un minimo de 2 jugadores!");
             insuficientesJugadores.show();
-        } else {
-            Turnos.getInstance().agregarJugadores(coloresJugador);
-            Turnos.getInstance().comenzarJuego();
-            CargadorDeEscena.cargarEscena("src/main/resources/vistas/tablero.fxml");
+        } else {*/
+            /*Turnos.getInstance().agregarJugadores(coloresJugador);
+            Turnos.getInstance().comenzarJuego();*/
+            CargadorDeEscena.cargarEscena("/vistas/tablero.fxml");
 
-        }
+
     }
 }

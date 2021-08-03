@@ -13,6 +13,9 @@ import javafx.scene.SubScene;
 import javafx.scene.layout.AnchorPane;;
 import javafx.util.Duration;
 import java.io.IOException;
+import java.net.URL;
+
+import edu.fiuba.algo3.vistas.CargadorDeEscena;
 
 /**
  * JavaFX App
@@ -27,6 +30,13 @@ public class App extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+
+
+             /* Parent root = FXMLLoader.load(getClass().getResource("/vistas/menuInicio.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();*/
 
         /*Parent rootTablero = FXMLLoader.load(getClass().getResource("/vistas/tablero.fxml"));
 
@@ -49,7 +59,7 @@ public class App extends Application {
         return stage;
     }
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 
 }

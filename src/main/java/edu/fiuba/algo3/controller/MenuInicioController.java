@@ -5,11 +5,11 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import edu.fiuba.algo3.vistas.CargadorDeEscena;
 
-public class MenuInicioController implements EventHandler<ActionEvent> {
+public class MenuInicioController{
 
     private Stage stage;
 
-    public void handle(ActionEvent actionEvent){
-        CargadorDeEscena.cargarEscena("src/main/resources/vistas/añadirJugadores.fxml");
+    public void comenzarPartida(){
+        CargadorDeEscena.cargarEscena("/vistas/añadirJugadores.fxml");
     }
 }
