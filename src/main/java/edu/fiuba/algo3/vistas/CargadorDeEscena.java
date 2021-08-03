@@ -22,14 +22,10 @@ public class CargadorDeEscena {
     private  CargadorDeEscena() {
     }
 
-    private static void loadFXML(String fileName){
-        URL path = App.class.getResource("/vista/" + fileName + ".fxml");
-        loader = new FXMLLoader(path);
-    }
     public static void cargarEscena(String escena){
 
-
-        loadFXML(escena);
+        URL path = App.class.getResource("/vista/" + escena + ".fxml");
+        loader = new FXMLLoader(path);
 
         Parent mainNode = null;
 
