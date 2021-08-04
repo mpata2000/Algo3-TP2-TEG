@@ -41,6 +41,9 @@ public class Turnos {
         return this.tipoDeRonda.getJugadorActual();
     }
 
+    /*
+     * Agrega los jugadores a una lista de strings
+     */
     public void agregarJugadores(List<String> listaJugadores){
         if(listaJugadores.size() > 6){
             throw new LimiteDeJugadoresException();
@@ -48,40 +51,64 @@ public class Turnos {
         this.jugadores.addAll(listaJugadores);
     }
 
+    /*
+     * Comienza el juego, elijiendo aleatoriamente el orden inicial
+     * de los jugadores y creando una primera ronda de colocacion
+     */
     public void comenzarJuego(){
         if(this.jugadores.size() < 2){
             throw new NoHaySuficientesJugadoresException();
         }
-        Collections.shuffle(jugadores); //Mezclar los jugadores como si tiraron Dados
+        Collections.shuffle(jugadores); //Mezcla los jugadores como si tiraron Dados
         this.teg.comenzarJuego(jugadores);
         this.tipoDeRonda = new RondaColocacion(jugadores) ;
     }
 
+    /*
+     * Ataque de un pais a otro con una cierta cantidad de fichas
+     */
     public void atacarACon(String paisAtacante, String paisDefensor, int cantidad){
         this.tipoDeRonda.atacarACon(this.teg,paisAtacante, paisDefensor, cantidad);
     }
 
+    /*
+     * Pasaje de una cierta cantidad de fichas de un pais a otro
+     */
     public void pasarFichas(String paisUno,String paisdos,int cant){
         this.tipoDeRonda.pasarFichas(this.teg,paisUno,paisdos,cant);
     }
 
+    /*
+     * Colocacion de una cierta cantidad de fichas en un pais
+     */
     public void colocarFichas(String nombrePais, int cantidad){
         this.tipoDeRonda.colocarFichas(this.teg,nombrePais,cantidad);
     }
 
+    /*
+     * Distribuye una carta pais a un jugador
+     */
     public boolean darCartaPais(){
         return this.tipoDeRonda.darCartaPais(this.teg);
     }
 
-    public boolean hacerCanje(){
+    /*
+     * Realiza el canje de una trio cartaPais por una cierta cantidad de fichas
+     */
+    public boolean realizarCanje(){
         return this.tipoDeRonda.hacerCanje(this.teg);
     }
 
+    /*
+     * Devuelve el tipo de ronda que se esta jugando en el momento
+     */
     public TipoRonda devolverRondaActual(){
         return this.tipoDeRonda;
     }
 
-
+    /*
+     * Finaliza el tipo de ronda actual
+     */
     public void finEtapa(){
         this.tipoDeRonda = this.tipoDeRonda.finEtapa(jugadores,this.teg);
     }

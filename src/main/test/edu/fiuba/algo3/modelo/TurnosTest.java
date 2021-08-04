@@ -155,7 +155,7 @@ public class TurnosTest {
         when(teg.hacerCanjeJugador("Amarillo")).thenReturn(true);
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
-        assertTrue(turnos.hacerCanje());
+        assertTrue(turnos.realizarCanje());
     }
 
     @Test
@@ -164,7 +164,7 @@ public class TurnosTest {
         when(teg.hacerCanjeJugador("Amarillo")).thenReturn(false);
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
-        assertFalse(turnos.hacerCanje());
+        assertFalse(turnos.realizarCanje());
     }
 
     @Test
@@ -257,7 +257,7 @@ public class TurnosTest {
         turnos.finEtapa();
 
         assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
-        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class, turnos :: hacerCanje);
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class, turnos ::realizarCanje);
     }
 
     @Test
@@ -421,7 +421,7 @@ public class TurnosTest {
         turnos.finEtapa();
 
         assertTrue(turnos.devolverRondaActual() instanceof RondaReagrupacion);
-        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class, turnos :: hacerCanje);
+        assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class, turnos ::realizarCanje);
     }
 
 
