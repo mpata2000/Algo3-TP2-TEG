@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.rondas.*;
@@ -377,4 +378,4 @@ public class TipoDeRondaTest {
         verify(teg,times(1)).pasarFichas("A","A","B",3);
     }
 
-}
+}*/

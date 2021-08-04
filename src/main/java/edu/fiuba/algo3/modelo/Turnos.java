@@ -29,7 +29,7 @@ public class Turnos {
     }
 
     public Turnos(Teg teg, List<String> jugadores){
-        this.tipoDeRonda = new RondaColocacion(jugadores) ;
+        this.tipoDeRonda = new RondaColocacion(jugadores, teg) ;
         this.teg = teg;
         this.jugadores = jugadores;
     }
@@ -55,7 +55,7 @@ public class Turnos {
         }
         Collections.shuffle(jugadores); //Mezclar los jugadores como si tiraron Dados
         this.teg.comenzarJuego(jugadores);
-        this.tipoDeRonda = new RondaColocacion(jugadores) ;
+        this.tipoDeRonda = new RondaColocacion(jugadores, teg) ;
     }
 
     public void atacarACon(String paisAtacante, String paisDefensor, int cantidad){

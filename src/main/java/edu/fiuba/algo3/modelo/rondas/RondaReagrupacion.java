@@ -51,7 +51,7 @@ public class RondaReagrupacion implements TipoRonda{
             return new RondaGanador(teg.getGanador());
         }
         teg.sacarConquistaDePaisAJugadores();
-        return new RondaColocacion(new ColocacionNormal(),jugadores);
+        return new RondaColocacion(new ColocacionNormal(),jugadores, teg);
     }
 
 
