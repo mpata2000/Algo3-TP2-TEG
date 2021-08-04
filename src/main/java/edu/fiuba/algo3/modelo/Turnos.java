@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import edu.fiuba.algo3.modelo.rondas.LimiteDeJugadoresException;
 import edu.fiuba.algo3.modelo.rondas.NoHaySuficientesJugadoresException;
 import edu.fiuba.algo3.modelo.rondas.RondaColocacion;
@@ -86,5 +87,8 @@ public class Turnos {
         this.tipoDeRonda = this.tipoDeRonda.finEtapa(jugadores,this.teg);
     }
 
+    public ObjetivoTeg mostrarObjetivo(){
+        return ((this.teg.getJugador(this.getJugadorActual())).devolverObjetivo());
+    }
 }
 

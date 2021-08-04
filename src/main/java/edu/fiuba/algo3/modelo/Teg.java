@@ -121,4 +121,6 @@ public class Teg {
     public Tablero getTablero(){
         return this.tablero;
     }
+
+    public Jugador getJugador(String color){ return this.jugadores.get(color);}
 }
