@@ -135,4 +135,8 @@ public class Teg {
     public String getTodosLosPaises(){
         return this.tablero.getTodosLosPaises();
     }
+
+    public String getPaisesPorContinentes() {
+        return this.tablero.getPaisesPorContinentes();
+    }
 }

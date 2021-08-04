@@ -28,6 +28,7 @@ public class TableroController implements Initializable {
     public Label fichasDisponibles;
     public ListView textPaisJugador;
     public ListView textPaises;
+    public ListView textPaisesPorContinente;
 
     private static HashMap<String, String> colores= new HashMap();
 
@@ -51,6 +52,7 @@ public class TableroController implements Initializable {
 
         textPaisJugador.getItems().add(Turnos.getInstance().paisesjugador());
         textPaises.getItems().add(Turnos.getInstance().getTodosLosPaises());
+        textPaisesPorContinente.getItems().add(Turnos.getInstance().getPaisesPorContinente());
 
         fichasDisponibles.setText(Integer.toString(Turnos.getInstance().getFichas()));
         textoJugadorActual.setText(jugadorActual.toUpperCase());

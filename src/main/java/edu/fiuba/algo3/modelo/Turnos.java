@@ -98,5 +98,9 @@ public class Turnos {
     public String getTodosLosPaises() {
         return this.teg.getTodosLosPaises();
     }
+
+    public String getPaisesPorContinente() {
+        return this.teg.getPaisesPorContinentes();
+    }
 }
 
