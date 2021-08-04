@@ -82,13 +82,16 @@ public class Turnos {
         return this.tipoDeRonda;
     }
 
-
     public void finEtapa(){
         this.tipoDeRonda = this.tipoDeRonda.finEtapa(jugadores,this.teg);
     }
 
     public ObjetivoTeg mostrarObjetivo(){
         return ((this.teg.getJugador(this.getJugadorActual())).devolverObjetivo());
+    }
+
+    public void inicializarTurno() {
+        this.tipoDeRonda.inicializarTurno();
     }
 }
 

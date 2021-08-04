@@ -16,6 +16,11 @@ public class RondaGanador implements TipoRonda {
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
+    @Override
+    public String getNombre() {
+        return "Termino el juego";
+    }
+
     public void pasarFichas(Teg teg, String paisOrigen, String paisDestino, int cant){
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
@@ -34,6 +39,11 @@ public class RondaGanador implements TipoRonda {
 
     public boolean hacerCanje(Teg teg){
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
+    }
+
+    @Override
+    public void inicializarTurno() {
+
     }
 
     public String getJugadorActual() {

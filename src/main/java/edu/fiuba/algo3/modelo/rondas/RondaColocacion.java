@@ -12,6 +12,11 @@ public class RondaColocacion implements TipoRonda {
     private String jugadorActual;
     private boolean turnoInicilizado = false;
 
+    @Override
+    public String getNombre() {
+        return "Ronda de colocación";
+    }
+
     public RondaColocacion(List<String> jugadores){
         this.tipoColocacion = new ColocacionPrimeraRonda();
         this.iteradorJugadores = jugadores.listIterator();
@@ -24,7 +29,7 @@ public class RondaColocacion implements TipoRonda {
         this.jugadorActual = this.iteradorJugadores.next();
     }
 
-    private void inicializarTurno(Teg teg){
+    public void inicializarTurno(Teg teg){
         if(!turnoInicilizado) {
             tipoColocacion.agregarFichas(jugadorActual, teg);
             turnoInicilizado = true;
@@ -67,6 +72,11 @@ public class RondaColocacion implements TipoRonda {
 
     public boolean hacerCanje(Teg teg){
         return  teg.hacerCanjeJugador(jugadorActual);
+    }
+
+    @Override
+    public void inicializarTurno() {
+
     }
 
     public String getJugadorActual() {
