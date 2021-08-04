@@ -16,7 +16,7 @@
             <font>
                 <Font size="20.0" />
             </font></Label>
-        <Button fx:id="finEtapa" layoutX="520.0" layoutY="7.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="480.0" style="-fx-border-color: #4CAF50;" text="Siguiente Ronda">
+        <Button fx:id="finEtapa" layoutX="520.0" layoutY="7.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="480.0" style="-fx-border-color: #4CAF50;" text="Termine mi turno">
             <font>
                 <Font size="20.0" />
             </font>
@@ -32,7 +32,7 @@
                 <TextField fx:id="numArmiesMovedTextField" layoutX="33.0" layoutY="286.0" prefHeight="30.0" prefWidth="50.0" />
                 <Label fx:id="numArmiesMovedLabel" alignment="CENTER" layoutX="3.0" layoutY="253.0" prefHeight="30.0" prefWidth="112.0" text="Cantidad de Fichas" />
                 <Label fx:id="invalidMovedLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="529.0" prefHeight="183.0" prefWidth="117.0" style="-fx-border-color: red; -fx-border-width: 3;" text="Mensajes de errores" textAlignment="CENTER" wrapText="true" />
-                <Button fx:id="botonAtaque" onAction="#atacar" ellipsisString="" layoutX="21.0" layoutY="391.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" text="Atacar" />
+                <Button fx:id="botonAtaque" ellipsisString="" layoutX="21.0" layoutY="391.0" mnemonicParsing="false" onAction="#atacar" prefHeight="30.0" prefWidth="76.0" text="Atacar" />
                 <Separator layoutX="-1.0" layoutY="125.0" prefWidth="118.0" />
                 <Separator layoutX="-1.0" layoutY="250.0" prefWidth="118.0" />
                 <Separator layoutX="-3.0" layoutY="520.0" prefWidth="118.0" />
@@ -43,9 +43,9 @@
                 <Button layoutX="3.0" layoutY="726.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Acerca de" />
                 <Label fx:id="currentPlayerTypeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="85.0" prefHeight="9.0" prefWidth="108.0" wrapText="true" />
                 <Separator layoutX="-1.0" layoutY="66.0" prefWidth="118.0" />
-                <Button fx:id="botonPasarFichas" onAction="#pasar" ellipsisString="" layoutX="21.0" layoutY="356.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" text="Pasar" />
+                <Button fx:id="botonPasarFichas" ellipsisString="" layoutX="21.0" layoutY="356.0" mnemonicParsing="false" onAction="#pasar" prefHeight="30.0" prefWidth="76.0" text="Pasar" />
                 <Button fx:id="botonColocar" ellipsisString="" layoutX="20.0" layoutY="321.0" onAction="#colocar" prefHeight="30.0" prefWidth="76.0" text="Colocar" />
-                <Button fx:id="botonObjetivo" layoutX="2.0" layoutY="432.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Objetivo" />
+                <Button fx:id="botonObjetivo" onAction="#mostrarObjetivo" layoutX="2.0" layoutY="432.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Objetivo" />
                 <Button fx:id="quitToMenuButton" layoutX="3.0" layoutY="797.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Cerrar" />
                 <Separator layoutX="-1.0" layoutY="427.0" prefWidth="118.0" />
                 <Button fx:id="botonPedircarta" layoutX="2.0" layoutY="462.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Pedir Carta" />
