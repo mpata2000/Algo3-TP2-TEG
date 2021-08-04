@@ -8,6 +8,10 @@ import java.nio.file.Paths;
 public class LectorJson {
     private LectorJson(){}
 
+    /*
+     * Lee el archivo enviado a traves de la ruta y lo
+     * devuelve para posteriormente crear un Gson
+     */
     public static Reader setReader(String pathArchivo){
         Reader jsonLeido = null;
         try {

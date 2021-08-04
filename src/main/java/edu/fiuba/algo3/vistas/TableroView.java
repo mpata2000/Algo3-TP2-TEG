@@ -30,7 +30,7 @@ public class TableroView extends StackPane {
         contenedorVertical.setAlignment(Pos.CENTER);
 
         final ImageView selectedImage = new ImageView();
-        Image imagenTablero = new Image("file:" + System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/tableroTEG.png");
+        Image imagenTablero = new Image("file:" + System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/tableroTEG.png",500,300,false,false);
         selectedImage.setImage(imagenTablero);
 
         grillaInicio.add(selectedImage,0,0);
@@ -57,10 +57,14 @@ public class TableroView extends StackPane {
         textoPaisDefensor.setPromptText("Ingrese el pais defensor");
         elegirPaisesBox.getChildren().add(textoPaisDefensor);
 
+        TextField textoCantidadFichas = new TextField();
+        textoCantidadFichas.setPromptText("Ingrese la cantidad de fichas");
+        elegirPaisesBox.getChildren().add(textoCantidadFichas);
+
         VBox botonAtacarBox = new VBox(0);
         botonAtacarBox.setAlignment(Pos.BOTTOM_CENTER);
 
-        AtacarButton botonAtacar = new AtacarButton(new ElegirPaisesAtacarController(stage, textoPaisAtacante, textoPaisDefensor, contenedorPrincipal));
+        AtacarButton botonAtacar = new AtacarButton(new ElegirPaisesAtacarController(stage, textoPaisAtacante, textoPaisDefensor, textoCantidadFichas,contenedorPrincipal));
         elegirPaisesBox.getChildren().add(botonAtacar);
 
         grillaInicio.add(contenedorVertical,0,1);
