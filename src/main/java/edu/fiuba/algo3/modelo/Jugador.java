@@ -87,4 +87,6 @@ public class Jugador {
     public void sacarConquista() {
         conquistoPais = false;
     }
+
+    public ObjetivoTeg devolverObjetivo() {return this.objetivoTeg;}
 }
