@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="855.0" prefWidth="1140.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TableroController">
+<AnchorPane prefHeight="855.0" prefWidth="1140.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="edu.fiuba.algo3.controller.TableroController">
     <children>
         <Label fx:id="tipoRondaTexto" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="490.0" style="-fx-background-color: #4CAF50;" text="Ronda de Reagrupacion" textAlignment="CENTER" textFill="WHITE">
             <font>
@@ -38,7 +38,7 @@
                 <Separator layoutX="-3.0" layoutY="520.0" prefWidth="118.0" />
                 <Separator layoutX="-1.0" layoutY="707.0" prefHeight="23.0" prefWidth="118.0" />
                 <Button fx:id="botonAyuda" layoutX="3.0" layoutY="762.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Ayuda" />
-                <Separator layoutX="-1.0" prefWidth="118.0" />
+                <Separator layoutX="-1.0" layoutY="-3.0" prefWidth="118.0" />
                 <Separator layoutX="-1.0" layoutY="831.0" prefWidth="118.0" />
                 <Button fx:id="botonAcercaDe" layoutX="3.0" layoutY="726.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Acerca de" />
                 <Separator layoutX="-1.0" layoutY="66.0" prefWidth="118.0" />
@@ -81,9 +81,9 @@
         </AnchorPane>
         <Separator layoutX="1012.0" layoutY="10.0" orientation="VERTICAL" prefHeight="835.0" prefWidth="0.0" />
         <Separator layoutY="660.0" prefWidth="1024.0" visible="false" />
-        <ImageView fitHeight="450.0" fitWidth="759.0" layoutX="238.0" layoutY="128.0" preserveRatio="true" smooth="true">
+        <ImageView fitHeight="572.0" fitWidth="914.0" layoutX="112.0" layoutY="67.0" preserveRatio="true" smooth="true">
             <image>
-                <Image url="@../../resources/images/tableroTEG.png" />
+                <Image url="@../images/tableroTEG.png" />
             </image>
         </ImageView>
         <Separator layoutX="1130.0" layoutY="10.0" orientation="VERTICAL" prefHeight="835.0" prefWidth="0.0" />
