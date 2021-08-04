@@ -97,10 +97,9 @@ public class TableroController implements Initializable {
         CargadorDeEscena.cargarEscena("/vistas/mostrarObjetivo.fxml");
     }
 
-
+    public void agarrarCarta(){ CargadorDeEscena.cargarEscena("/vistas/getCarta.fxml"); }
 
     private void seteador(){
-        /**/
             fichasDisponibles.setText(Integer.toString(Turnos.getInstance().getFichas()));
             this.fichas = Integer.parseInt(inputCantFichas.getText());
             this.paisDestino = inputPaisDestino.getText();

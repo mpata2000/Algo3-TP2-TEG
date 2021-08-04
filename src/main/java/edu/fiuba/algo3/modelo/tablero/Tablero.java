@@ -114,7 +114,7 @@ public class Tablero {
         Iterator<Map.Entry<String, Continente>> it = continentes.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<String, Continente> pair = it.next();
-            stringPaisesPorContinente += (pair.getKey()+": \n"+this.getPaisesDeContinente(pair.getValue())+"\n");
+            stringPaisesPorContinente += (pair.getKey().toUpperCase()+": \n"+this.getPaisesDeContinente(pair.getValue()));
         }
         return stringPaisesPorContinente;
     }
@@ -124,6 +124,7 @@ public class Tablero {
         for (Pais pais: continente.getPaises()){
             paises+= (pais.getNombre()+": "+pais.perderFichas(0)+" "+pais.getJugador().getColor().toUpperCase()+"\n");
         }
+        paises+="\n";
         return paises;
     }
 }
