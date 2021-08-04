@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.ataque.Batalla;
 import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -89,5 +90,25 @@ public class Tablero {
 
     public boolean continenteEsDeJugador(String continente, Jugador jugador) {
         return this.continentes.get(continente).esDeJugador(jugador);
+    }
+
+    public String getPaisesJugador(String jugadorActual) {
+        String stringPaises="";
+        Iterator<Map.Entry<String, Pais>> it = paises.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, Pais> pair = it.next();
+            if(pair.getValue().getJugador().getColor()==jugadorActual) stringPaises += (pair.getKey()+"\n");
+        }
+        return stringPaises;
+    }
+
+    public String getTodosLosPaises() {
+        String stringPaises="";
+        Iterator<Map.Entry<String, Pais>> it = paises.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, Pais> pair = it.next();
+            stringPaises += (pair.getKey()+"\n");
+        }
+        return stringPaises;
     }
 }

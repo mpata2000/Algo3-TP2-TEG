@@ -127,4 +127,12 @@ public class Teg {
     public int getFichas(String jugadorActual) {
         return getJugador(jugadorActual).getFichas();
     }
+
+    public String paisesJugador(String jugadorActual) {
+        return this.tablero.getPaisesJugador(jugadorActual);
+    }
+
+    public String getTodosLosPaises(){
+        return this.tablero.getTodosLosPaises();
+    }
 }

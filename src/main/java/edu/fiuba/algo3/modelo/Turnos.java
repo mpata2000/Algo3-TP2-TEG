@@ -86,11 +86,17 @@ public class Turnos {
         this.tipoDeRonda = this.tipoDeRonda.finEtapa(jugadores,this.teg);
     }
 
-    public ObjetivoTeg mostrarObjetivo(){
-        return ((this.teg.getJugador(this.getJugadorActual())).devolverObjetivo());
+    public String textoDeObjetivo(){
+        return ((this.teg.getJugador(this.getJugadorActual())).devolverObjetivo().textoObjetivo());
     }
 
     public int getFichas(){return this.teg.getFichas(tipoDeRonda.getJugadorActual());}
 
+    public String paisesjugador() {
+        return this.teg.paisesJugador(tipoDeRonda.getJugadorActual());
+    }
+    public String getTodosLosPaises() {
+        return this.teg.getTodosLosPaises();
+    }
 }
 

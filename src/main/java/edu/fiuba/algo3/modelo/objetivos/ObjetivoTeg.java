@@ -21,4 +21,8 @@ public abstract class ObjetivoTeg {
         this.colorDuenio = unJugador.getColor();
     }
 
+    public abstract String textoObjetivo();
+
+
+
 }

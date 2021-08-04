@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
@@ -25,6 +26,8 @@ public class TableroController implements Initializable {
     public Label textoJugadorActual;
     public Label textoTipoRonda;
     public Label fichasDisponibles;
+    public ListView textPaisJugador;
+    public ListView textPaises;
 
     private static HashMap<String, String> colores= new HashMap();
 
@@ -45,6 +48,9 @@ public class TableroController implements Initializable {
 
         String jugadorActual = Turnos.getInstance().getJugadorActual();
         String colorStyle = "-fx-background-color:"+ colores.get(jugadorActual);
+
+        textPaisJugador.getItems().add(Turnos.getInstance().paisesjugador());
+        textPaises.getItems().add(Turnos.getInstance().getTodosLosPaises());
 
         fichasDisponibles.setText(Integer.toString(Turnos.getInstance().getFichas()));
         textoJugadorActual.setText(jugadorActual.toUpperCase());
@@ -86,16 +92,10 @@ public class TableroController implements Initializable {
     }
 
     public void mostrarObjetivo(){
-        CargadorDeEscena.cargarEscena("/vistas/mostrarObjetivo.fxml",Turnos.getInstance().mostrarObjetivo());
+        CargadorDeEscena.cargarEscena("/vistas/mostrarObjetivo.fxml");
     }
 
-    public void agarrarCarta(){
-        CargadorDeEscena.cargarEscena("/vistas/mostrarCartaAgarrada.fxml",Turnos.getInstance().mostrarObjetivo());
-    }
 
-    public void cartas(){
-        CargadorDeEscena.cargarEscena("/vistas/mostrarCartas.fxml",Turnos.getInstance().mostrarObjetivo());
-    }
 
     private void seteador(){
         /**/
