@@ -123,4 +123,8 @@ public class Teg {
     }
 
     public Jugador getJugador(String color){ return this.jugadores.get(color);}
+
+    public int getFichas(String jugadorActual) {
+        return getJugador(jugadorActual).getFichas();
+    }
 }

@@ -29,7 +29,7 @@ public class RondaColocacion implements TipoRonda {
         this.jugadorActual = this.iteradorJugadores.next();
     }
 
-    public void inicializarTurno(Teg teg){
+    private void inicializarTurno(Teg teg){
         if(!turnoInicilizado) {
             tipoColocacion.agregarFichas(jugadorActual, teg);
             turnoInicilizado = true;
@@ -54,7 +54,7 @@ public class RondaColocacion implements TipoRonda {
 
 
     public TipoRonda finEtapa(List<String> jugadores,Teg teg){
-        if(teg.jugadorTieneFichas(jugadorActual)){
+        if(teg.jugadorTieneFichas(jugadorActual) || !turnoInicilizado){
             throw new JugadorSigueTeniendoFichasException();
         }
         if(this.iteradorJugadores.hasNext()){
@@ -74,12 +74,9 @@ public class RondaColocacion implements TipoRonda {
         return  teg.hacerCanjeJugador(jugadorActual);
     }
 
-    @Override
-    public void inicializarTurno() {
-
-    }
 
     public String getJugadorActual() {
         return jugadorActual;
     }
+
 }

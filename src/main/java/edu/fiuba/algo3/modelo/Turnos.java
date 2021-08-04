@@ -90,8 +90,7 @@ public class Turnos {
         return ((this.teg.getJugador(this.getJugadorActual())).devolverObjetivo());
     }
 
-    public void inicializarTurno() {
-        this.tipoDeRonda.inicializarTurno();
-    }
+    public int getFichas(){return this.teg.getFichas(tipoDeRonda.getJugadorActual());}
+
 }
 

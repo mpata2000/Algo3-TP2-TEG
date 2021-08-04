@@ -89,4 +89,6 @@ public class Jugador {
     }
 
     public ObjetivoTeg devolverObjetivo() {return this.objetivoTeg;}
+
+    public int getFichas(){return fichas;}
 }

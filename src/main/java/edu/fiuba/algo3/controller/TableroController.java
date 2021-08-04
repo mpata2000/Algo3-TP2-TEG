@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ public class TableroController implements Initializable {
     public TextField inputCantFichas;
     public Label textoJugadorActual;
     public Label textoTipoRonda;
+    public Label fichasDisponibles;
 
     private static HashMap<String, String> colores= new HashMap();
 
@@ -40,10 +42,11 @@ public class TableroController implements Initializable {
         colores.put("magenta", "#ee3377");
         colores.put("verde", "#009988");
         textoTipoRonda.setText(Turnos.getInstance().devolverRondaActual().getNombre());
-        Turnos.getInstance().inicializarTurno();
+
         String jugadorActual = Turnos.getInstance().getJugadorActual();
         String colorStyle = "-fx-background-color:"+ colores.get(jugadorActual);
 
+        fichasDisponibles.setText(Integer.toString(Turnos.getInstance().getFichas()));
         textoJugadorActual.setText(jugadorActual.toUpperCase());
         if(jugadorActual.equalsIgnoreCase("negro"))colorStyle += ";-fx-text-fill: #fff";
         textoJugadorActual.setStyle(colorStyle);
@@ -96,6 +99,7 @@ public class TableroController implements Initializable {
 
     private void seteador(){
         /**/
+            fichasDisponibles.setText(Integer.toString(Turnos.getInstance().getFichas()));
             this.fichas = Integer.parseInt(inputCantFichas.getText());
             this.paisDestino = inputPaisDestino.getText();
             this.paisOrigen = inputPaisOrigen.getText();

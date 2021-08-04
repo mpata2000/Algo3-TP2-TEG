@@ -50,10 +50,6 @@ public class RondaAtaque implements TipoRonda {
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
-    @Override
-    public void inicializarTurno() {
-
-    }
 
     public TipoRonda finEtapa(List<String> jugadores,Teg teg){
         return new RondaReagrupacion(this.jugadorActual,jugadores);

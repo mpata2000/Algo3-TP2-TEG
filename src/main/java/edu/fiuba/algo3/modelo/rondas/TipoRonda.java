@@ -23,5 +23,4 @@ public interface TipoRonda {
 
     boolean hacerCanje(Teg teg);
 
-    void inicializarTurno();
 }

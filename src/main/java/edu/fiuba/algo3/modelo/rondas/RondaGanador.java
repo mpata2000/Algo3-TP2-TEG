@@ -41,12 +41,9 @@ public class RondaGanador implements TipoRonda {
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
-    @Override
-    public void inicializarTurno() {
-
-    }
 
     public String getJugadorActual() {
         return this.ganador;
     }
+
 }
