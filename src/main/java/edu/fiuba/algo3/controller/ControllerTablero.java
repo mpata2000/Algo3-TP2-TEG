@@ -28,11 +28,12 @@ public class ControllerTablero {
     }
 
     public void pasarRonda(){
-        Turnos.getInstance().finEtapa(); /* Pasar turno */
+        Turnos.getInstance().finEtapa();
         CargadorDeEscena.cargarEscena("/vistas/añadirJugadores.fxml");
     }
 
     public void mostrarObjetivo(){
-        Turnos.getInstance().obejtivoMostrar();
+        Turnos.getInstance().mostrarObjetivo();
+        /*CrearVistaConEseObjetivo*/
     }
 }
