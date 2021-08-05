@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
 
-import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import edu.fiuba.algo3.modelo.rondas.LimiteDeJugadoresException;
 import edu.fiuba.algo3.modelo.rondas.NoHaySuficientesJugadoresException;
 import edu.fiuba.algo3.modelo.rondas.RondaColocacion;
@@ -46,7 +45,7 @@ public class Turnos {
      * Agrega los jugadores a una lista de strings
      */
     public void agregarJugadores(List<String> listaJugadores){
-        if(listaJugadores.size() > 6 || listaJugadores.size()<2){
+        if(listaJugadores.size() > 6){
             throw new LimiteDeJugadoresException();
         }
         this.jugadores.addAll(listaJugadores);
