@@ -89,12 +89,12 @@ public class Tablero {
         return this.continentes.get(continente).esDeJugador(jugador);
     }
 
-    public String getPaisesJugador(String jugadorActual) {
-        String stringPaises="";
-        Iterator<Map.Entry<String, Pais>> it = paises.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, Pais> pair = it.next();
-            if(pair.getValue().getJugador().getColor()==jugadorActual) stringPaises += (pair.getKey()+": "+pair.getValue().perderFichas(0) +"\n");
+    public List<String> getPaisesJugador(Jugador jugador) {
+        List<String> stringPaises= new ArrayList<>();
+        for(Pais pais: paises.values()){
+            if(pais.esDeJugador(jugador)){
+                stringPaises.add(pais.paisToString());
+            }
         }
         return stringPaises;
     }
@@ -109,14 +109,14 @@ public class Tablero {
         return stringPaises;
     }
 
-    public String getPaisesPorContinentes(Jugador jugador) {
-        String stringPaisesPorContinente="";
-        Iterator<Map.Entry<String, Continente>> it = continentes.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, Continente> pair = it.next();
-            stringPaisesPorContinente += (pair.getValue().paisesDeJugador(jugador));
+    public List<String> getPaisesPorContinentes(Jugador jugador) {
+        ArrayList<String>paisesPorContinente = new ArrayList<>();
+
+        for(Continente continente: continentes.values()){
+            paisesPorContinente.add(continente.paisesDeJugador(jugador));
         }
-        return stringPaisesPorContinente;
+
+        return paisesPorContinente;
     }
 
 }

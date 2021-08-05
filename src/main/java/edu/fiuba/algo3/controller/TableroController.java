@@ -52,9 +52,10 @@ public class TableroController implements Initializable {
         String jugadorActual = Turnos.getInstance().getJugadorActual();
         String colorStyle = "-fx-background-color:"+ colores.get(jugadorActual);
 
-        textPaisJugador.getItems().add(Turnos.getInstance().paisesjugador());
+        textPaisJugador.getItems().addAll(Turnos.getInstance().paisesjugador());
         textPaises.getItems().add(Turnos.getInstance().getTodosLosPaises());
-        textPaisesPorContinente.getItems().add(Turnos.getInstance().getPaisesPorContinente());
+
+        textPaisesPorContinente.getItems().addAll(Turnos.getInstance().getPaisesPorContinente());
 
         fichasDisponibles.setText(Integer.toString(Turnos.getInstance().getFichas()));
         textoJugadorActual.setText(jugadorActual.toUpperCase());
@@ -96,7 +97,7 @@ public class TableroController implements Initializable {
     }
 
     public void mostrarObjetivo(){
-        CargadorDeEscena.cargarPopEscena("/vistas/mostrarObjetivo.fxml");
+        CargadorDeEscena.cargarPopEscena("/vistas/mostrarObjetivo.fxml","Objetivo");
     }
 
     public void agarrarCarta(){
@@ -111,7 +112,7 @@ public class TableroController implements Initializable {
     }
 
     public void mostrarCartas(){
-        CargadorDeEscena.cargarPopEscena("/vistas/mostrarCartas.fxml");
+        CargadorDeEscena.cargarPopEscena("/vistas/mostrarCartas.fxml","Cartas");
     }
 
     private void seteador(){

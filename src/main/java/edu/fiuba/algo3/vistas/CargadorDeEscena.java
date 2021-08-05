@@ -23,67 +23,34 @@ public class CargadorDeEscena {
     private  CargadorDeEscena() {
     }
 
+    private static Parent cargarArchivo(String escena){
+        URL root = App.class.getResource(escena);
+        loader = new FXMLLoader(root);
+
+        Parent mainNode = null;
+
+        try{
+            mainNode = loader.load();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        return mainNode;
+    }
+
     public static void cargarEscena(String escena){
-
-        URL root = App.class.getResource(escena);
-        loader = new FXMLLoader(root);
-
-        Parent mainNode = null;
-
-        try{
-            mainNode = loader.load();
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-
-        Scene scene = new Scene(mainNode);
+        Scene scene = new Scene(CargadorDeEscena.cargarArchivo(escena));
         Stage stage = App.devolverEscena();
         stage.setScene(scene);
         stage.show();
 
     }
 
-    public static void cargarPopEscena(String escena){
-
-        URL root = App.class.getResource(escena);
-        loader = new FXMLLoader(root);
-
-        Parent mainNode = null;
-
-        try{
-            mainNode = loader.load();
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-
-        Scene scene = new Scene(mainNode);
-        Stage stage = new Stage();
+    public static void cargarPopEscena(String escena, String titulo){
+        Scene scene = new Scene(CargadorDeEscena.cargarArchivo(escena));
+        Stage stage = App.getPopUpStage();
         stage.setScene(scene);
+        stage.setTitle(titulo);
         stage.show();
-
-    }
-
-
-    public static void cargarEscena(String escena, ObjetivoTeg objetivo){
-        /*CREAR ESCENA CON EL OBJETIVO*/
-        URL root = App.class.getResource(escena);
-        loader = new FXMLLoader(root);
-
-        Parent mainNode = null;
-
-        try{
-            mainNode = loader.load();
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-
-        Scene scene = new Scene(mainNode);
-        Stage stage = App.devolverEscena();
-        stage.setScene(scene);
-        stage.show();
-
     }
 }

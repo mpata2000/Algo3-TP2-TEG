@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controller;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.Turnos;
 import edu.fiuba.algo3.vistas.CargadorDeEscena;
 import javafx.fxml.FXML;
@@ -16,7 +17,7 @@ public class MostrarCartasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listaCartas.getItems().add(Turnos.getInstance().getCartasJugador());
+        listaCartas.getItems().addAll(Turnos.getInstance().getCartasJugador());
 
     }
 
@@ -25,6 +26,6 @@ public class MostrarCartasController implements Initializable {
     }
 
     public void volverAlTablero(){
-        CargadorDeEscena.cargarEscena("/vistas/tablero.fxml");
+        App.getPopUpStage().close();
     }
 }

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controller;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.Turnos;
 import edu.fiuba.algo3.vistas.CargadorDeEscena;
 import javafx.fxml.FXML;
@@ -20,6 +21,6 @@ public class MostrarObjetivoController implements Initializable {
     }
 
     public void volverAlTablero(){
-        CargadorDeEscena.cargarEscena("/vistas/tablero.fxml");
+        App.getPopUpStage().close();
     }
 }

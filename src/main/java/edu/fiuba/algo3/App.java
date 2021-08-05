@@ -13,35 +13,21 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Stage stage;
+    private static Stage popup;
+
+    public static Stage getPopUpStage(){
+        return popup;
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
+        App.popup = new Stage();
+
         App.stage = stage;
         Parent root = FXMLLoader.load(App.class.getResource("/vistas/menuInicio.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-
-
-             /* Parent root = FXMLLoader.load(getClass().getResource("/vistas/menuInicio.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
-
-        /*Parent rootTablero = FXMLLoader.load(getClass().getResource("/vistas/tablero.fxml"));
-
-        Scene sceneTablero = new Scene(rootTablero);
-        stage.setScene(sceneTablero);
-        stage.show();
-        /*stage.setTitle("ALTEGO");
-
-        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage);
-        contenedorPrincipal.setCentro(new MenuInicioView(stage,contenedorPrincipal));
-
-        var scene = new Scene(contenedorPrincipal, 1000, 700);
-        stage.setScene(scene);
-
-        stage.show();*/
 
     }
 

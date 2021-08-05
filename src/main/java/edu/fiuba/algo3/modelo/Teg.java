@@ -128,15 +128,15 @@ public class Teg {
         return getJugador(jugadorActual).getFichas();
     }
 
-    public String paisesJugador(String jugadorActual) {
-        return this.tablero.getPaisesJugador(jugadorActual);
+    public List<String> paisesJugador(String jugadorActual) {
+        return this.tablero.getPaisesJugador(jugadores.get(jugadorActual));
     }
 
     public String getTodosLosPaises(){
         return this.tablero.getTodosLosPaises();
     }
 
-    public String getPaisesPorContinentes(String jugador) {
+    public List<String> getPaisesPorContinentes(String jugador) {
         return this.tablero.getPaisesPorContinentes(jugadores.get(jugador));
     }
 

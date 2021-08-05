@@ -118,14 +118,14 @@ public class Turnos {
 
     public int getFichas(){return this.teg.getFichas(tipoDeRonda.getJugadorActual());}
 
-    public String paisesjugador() {
+    public List<String> paisesjugador() {
         return this.teg.paisesJugador(tipoDeRonda.getJugadorActual());
     }
     public String getTodosLosPaises() {
         return this.teg.getTodosLosPaises();
     }
 
-    public String getPaisesPorContinente() {
+    public List<String> getPaisesPorContinente() {
         return this.teg.getPaisesPorContinentes(tipoDeRonda.getJugadorActual());
     }
 
