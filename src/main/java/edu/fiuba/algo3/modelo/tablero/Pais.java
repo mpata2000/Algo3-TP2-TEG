@@ -27,7 +27,7 @@ public class Pais {
     }
 
     public String getColorJugador(){
-        return this.jugador.getColor();
+        return this.jugador.getColor().toUpperCase();
     }
 
     public boolean esAdyacente(Pais unPais){

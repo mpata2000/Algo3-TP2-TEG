@@ -62,7 +62,7 @@
         <AnchorPane layoutX="10.0" layoutY="665.0" prefHeight="200.0" prefWidth="990.0">
             <children>
                 <ListView fx:id="textPaisesPorContinente" layoutX="750.0" layoutY="38.0" prefHeight="142.0" prefWidth="236.0" />
-                <Label layoutX="360.0" prefHeight="30.0" prefWidth="127.0" text="Paises" textAlignment="CENTER" wrapText="true">
+                <Label layoutX="360.0" prefHeight="30.0" prefWidth="127.0" text="Paises Enemigos" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -77,6 +77,9 @@
                 <TableColumn fx:id="nombrePaisJugador" prefWidth="136.0" text="Nombre" />
                 <TableColumn fx:id="fichasPaisJugador" prefWidth="82.0" text="Fichas" />
               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
                   <Label layoutX="14.0" layoutY="8.0" prefHeight="30.0" prefWidth="171.0" text="Paises Propios" textAlignment="CENTER" wrapText="true">
                       <font>
@@ -89,6 +92,9 @@
                   <TableColumn fx:id="fichasPaisEnemigo" prefWidth="82.0" text="Fichas" />
                   <TableColumn fx:id="jugadorEnemigo" prefWidth="92.0" text="Jugador" />
                </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
             </children>
         </AnchorPane>
