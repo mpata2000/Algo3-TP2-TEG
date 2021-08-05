@@ -94,16 +94,6 @@ public class Tablero {
         return paises.values().stream().filter(pais -> pais.esDeJugador(jugador)).collect(Collectors.toList());
     }
 
-    public String getTodosLosPaises() {
-        String stringPaises="";
-        Iterator<Map.Entry<String, Pais>> it = paises.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, Pais> pair = it.next();
-            stringPaises += (pair.getKey()+": "+pair.getValue().perderFichas(0)+" "+pair.getValue().getJugador().getColor().toUpperCase()+"\n");
-        }
-        return stringPaises;
-    }
-
     public List<String> getPaisesPorContinentes(Jugador jugador) {
         ArrayList<String>paisesPorContinente = new ArrayList<>();
 
