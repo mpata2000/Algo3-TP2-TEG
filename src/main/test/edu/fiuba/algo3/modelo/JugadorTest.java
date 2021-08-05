@@ -73,12 +73,14 @@ public class JugadorTest {
     @Test
     public void jugadorSeCreaSinFichasRestantes(){
         assertFalse(jugador.tieneFichas());
+        assertEquals(0,jugador.getFichas());
     }
 
     @Test
     public void jugadorSeLeAgreganFichasYTieneFichasRestantes(){
         jugador.agregarFichas(4);
         assertTrue(jugador.tieneFichas());
+        assertEquals(4,jugador.getFichas());
     }
 
     @Test
@@ -133,6 +135,14 @@ public class JugadorTest {
     }
 
     @Test
+    public void siJugadorObtieneELTextoDelObjetivoCorrectamente(){
+        ObjetivoTeg objetivo = Mockito.mock(ObjetivoTeg.class);
+        when(objetivo.textoObjetivo()).thenReturn("OK");
+        jugador.darObjetivo(objetivo);
+        assertEquals("OK",jugador.textoObjetivo());
+    }
+
+    @Test
     public void jugadorNoPuedeRecivirCartaSiNoConquistoUnPais(){
         jugador.darCartaPais(new CartaPais("A","Globo"));
         assertFalse(jugador.darCartaPais(new CartaPais("A","Globo")));
@@ -142,6 +152,7 @@ public class JugadorTest {
     public void jugadorPuedeRecivirCartaSiConquistoUnPais(){
         jugador.conquistoPais();
         assertTrue(jugador.darCartaPais(new CartaPais("A","Globo",paisMock)));
+        assertEquals(1,jugador.getCartas().size());
     }
 
     @Test
@@ -161,6 +172,7 @@ public class JugadorTest {
         jugador.darCartaPais(new CartaPais("C","Globo",paisMock));
         MazoDeCartasPais mazo = new MazoDeCartasPais();
 
+        assertEquals(3,jugador.getCartas().size());
         assertFalse(jugador.tieneFichas());
         jugador.hacerCanje(mazo);
         assertEquals(4,jugador.sacarFichas(0));
