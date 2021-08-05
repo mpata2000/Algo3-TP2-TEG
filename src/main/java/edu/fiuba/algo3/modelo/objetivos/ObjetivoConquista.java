@@ -43,20 +43,17 @@ public class ObjetivoConquista extends ObjetivoTeg{
         StringBuilder objetivo = new StringBuilder();
 
         if(!continentesAConquistar.isEmpty()) {
-            objetivo.append("Continentes a Conquistar:\n");
+            objetivo.append(" Continentes a Conquistar:\n");
             for (String continente : continentesAConquistar) {
-                objetivo.append("  > ").append(continente).append("\n");
+                objetivo.append("\t> ").append(continente).append("\n");
             }
-
-            objetivo.deleteCharAt(objetivo.length() - 1);
         }
 
         if(!paisesPorContinente.isEmpty()) {
-            objetivo.append("\n\n");
             objetivo.append(" Paises por Continentes a Conquistar: \n");
 
             for (Map.Entry<String, Integer> pair : paisesPorContinente.entrySet()) {
-                objetivo.append("   > ").append(pair.getKey()).append(": ").append(pair.getValue()).append(" paises\n");
+                objetivo.append("\t> ").append(pair.getKey()).append(": ").append(pair.getValue()).append(" paises\n");
             }
         }
         return objetivo.toString();

@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 public class ObjetivoTegTests {
@@ -245,6 +244,69 @@ public class ObjetivoTegTests {
         assertFalse(objetivo.cumplioObjetivo(teg));
         when(teg.cantidadDePaisesJugador(jugadorTres.getColor())).thenReturn(0);
         assertTrue(objetivo.cumplioObjetivo(teg));
+    }
+
+    @Test
+    public void objetivoConquistaToStringSeParseaBienSiTieneContinentesYPaisesPorContinente() {
+        paisesPorContinente.put("Asia", 5);
+        ObjetivoTeg objetivo = new ObjetivoConquista(List.of("Africa"), paisesPorContinente);
+
+        assertEquals(" Continentes a Conquistar:\n\t> Africa\n Paises por Continentes a Conquistar: \n\t> Asia: 5 paises\n", objetivo.textoObjetivo());
+    }
+
+    @Test
+    public void objetivoConquistaToStringSeParseaBienSiSoloTieneContinentes() {
+        ObjetivoTeg objetivo = new ObjetivoConquista(List.of("Africa"), paisesPorContinente);
+
+        assertEquals(" Continentes a Conquistar:\n\t> Africa\n", objetivo.textoObjetivo());
+    }
+
+    @Test
+    public void objetivoConquistaToStringSeParseaBienSiSoloTienePaisesPorContinente() {
+        paisesPorContinente.put("Asia", 5);
+        ObjetivoTeg objetivo = new ObjetivoConquista(new ArrayList<>(), paisesPorContinente);
+
+        assertEquals(" Paises por Continentes a Conquistar: \n\t> Asia: 5 paises\n", objetivo.textoObjetivo());
+    }
+
+    @Test
+    public void objetivoDestruccionSeteaElJugadorObjetivoSIElJugadorEstaEnlaPartida(){
+        Jugador jugadorUno = new Jugador("Rojo");
+        Jugador jugadorDos = new Jugador("Negro");
+        ObjetivoTeg objetivo = new ObjetivoDestruccion("Rojo", List.of(jugadorDos, jugadorUno));
+
+        objetivo.setDuenio(jugadorDos);
+        assertEquals("Destruir al jugador Rojo",objetivo.textoObjetivo());
+    }
+
+    @Test
+    public void objetivoDestruccionSeteaElProximoJugadorALDuenioSiElJugadorNoEstaEnLaPartida(){
+        Jugador jugadorUno = new Jugador("Rojo");
+        Jugador jugadorDos = new Jugador("Negro");
+        Jugador jugadorTres = new Jugador("Amarillo");
+        ObjetivoTeg objetivo1 = new ObjetivoDestruccion("Magenta", List.of(jugadorUno,jugadorDos, jugadorTres));
+        ObjetivoTeg objetivo2 = new ObjetivoDestruccion("Verde", List.of(jugadorUno,jugadorDos, jugadorTres));
+
+        objetivo1.setDuenio(jugadorDos);
+        objetivo2.setDuenio(jugadorTres);
+
+        assertEquals("Destruir al jugador Amarillo", objetivo1.textoObjetivo());
+        assertEquals("Destruir al jugador Rojo", objetivo2.textoObjetivo());
+    }
+
+    @Test
+    public void objetivoDestruccionSeteaElProximoJugadorALDuenioSiEsElMismoJugador(){
+        Jugador jugadorUno = new Jugador("Rojo");
+        Jugador jugadorDos = new Jugador("Negro");
+        Jugador jugadorTres = new Jugador("Amarillo");
+        ObjetivoTeg objetivo1 = new ObjetivoDestruccion("Negro", List.of(jugadorUno,jugadorDos, jugadorTres));
+        ObjetivoTeg objetivo2 = new ObjetivoDestruccion("Amarillo", List.of(jugadorUno,jugadorDos, jugadorTres));
+
+        objetivo1.setDuenio(jugadorDos);
+        objetivo2.setDuenio(jugadorTres);
+
+        assertEquals("Destruir al jugador Amarillo", objetivo1.textoObjetivo());
+        assertEquals("Destruir al jugador Rojo", objetivo2.textoObjetivo());
     }
 
 }
