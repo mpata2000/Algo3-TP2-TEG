@@ -46,7 +46,7 @@ public class Turnos {
      * Agrega los jugadores a una lista de strings
      */
     public void agregarJugadores(List<String> listaJugadores){
-        if(listaJugadores.size() > 6){
+        if(listaJugadores.size() > 6 || listaJugadores.size()<2){
             throw new LimiteDeJugadoresException();
         }
         this.jugadores.addAll(listaJugadores);

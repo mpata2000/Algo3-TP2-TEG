@@ -15,7 +15,7 @@ public class Batalla {
 
     public boolean batallar(int cantidadDadosAtacante){
 
-        if(!this.validarAtaque()) {throw new AtaqueNoValido();}
+        if(!this.validarAtaque()) {throw new AtaqueNoValidoException();}
 
         Dados dadosAtacante = this.paisAtacante.tirarDados(cantidadDadosAtacante);
         Dados dadosDefensor = this.paisDefensor.tirarDados();

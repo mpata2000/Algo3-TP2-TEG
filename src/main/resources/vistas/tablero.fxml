@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="855.0" prefWidth="1140.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TableroController">
+<AnchorPane prefHeight="855.0" prefWidth="1140.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TableroController">
     <children>
         <Label fx:id="textoTipoRonda" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="490.0" style="-fx-background-color: #4CAF50;" text="Ronda de Reagrupacion" textAlignment="CENTER" textFill="WHITE">
             <font>
@@ -41,10 +41,11 @@
                 <Button fx:id="botonObjetivo" layoutX="2.0" layoutY="432.0" mnemonicParsing="false" onAction="#mostrarObjetivo" prefHeight="25.0" prefWidth="112.0" text="Objetivo" />
                 <Button fx:id="botonCerrarJuego" layoutX="3.0" layoutY="797.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Cerrar" />
                 <Separator layoutX="-1.0" layoutY="427.0" prefWidth="118.0" />
-                <Button fx:id="botonPedircarta" onAction="#agarrarCarta" layoutX="2.0" layoutY="462.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Pedir Carta" />
+                <Button fx:id="botonPedircarta" layoutX="2.0" layoutY="462.0" mnemonicParsing="false" onAction="#agarrarCarta" prefHeight="25.0" prefWidth="112.0" text="Pedir Carta" />
                 <Button fx:id="botonCartas" layoutX="2.0" layoutY="491.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Cartas" />
                 <TextField fx:id="inputPaisOrigen" layoutX="10.0" layoutY="155.0" prefHeight="25.0" prefWidth="98.0" />
                 <TextField fx:id="inputPaisDestino" layoutX="10.0" layoutY="216.0" prefHeight="25.0" prefWidth="98.0" />
+            <Label layoutX="10.0" layoutY="525.0" prefHeight="181.0" prefWidth="98.0" text="         Label" />
             </children>
         </AnchorPane>
         <AnchorPane layoutX="10.0" layoutY="665.0" prefHeight="200.0" prefWidth="990.0">
