@@ -90,11 +90,13 @@ public class Jugador {
         conquistoPais = false;
     }
 
-    public ObjetivoTeg devolverObjetivo() {return this.objetivoTeg;}
-
     public int getFichas(){return fichas;}
 
     public List<String> getCartas() {
         return cartasPais.getCartas();
+    }
+
+    public String textoObjetivo() {
+        return this.objetivoTeg.textoObjetivo();
     }
 }

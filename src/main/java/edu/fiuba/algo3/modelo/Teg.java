@@ -119,16 +119,9 @@ public class Teg {
                 .orElse(null);
     }
 
-    public Tablero getTablero() {
-        return this.tablero;
-    }
-
-    public Jugador getJugador(String color) {
-        return this.jugadores.get(color);
-    }
 
     public int getFichas(String jugadorActual) {
-        return getJugador(jugadorActual).getFichas();
+        return jugadores.get(jugadorActual).getFichas();
     }
 
 
@@ -146,5 +139,9 @@ public class Teg {
 
     public List<Pais> getPaisesEnemigos(String jugadorActual) {
         return tablero.getPaisesEnemigos(jugadores.get(jugadorActual));
+    }
+
+    public String textoObjetivo(String jugadorActual) {
+        return jugadores.get(jugadorActual).textoObjetivo();
     }
 }

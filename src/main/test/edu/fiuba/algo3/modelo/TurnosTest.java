@@ -18,8 +18,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class TurnosTest {
 
@@ -455,5 +454,76 @@ public class TurnosTest {
 
         assertTrue(turnos.devolverRondaActual() instanceof RondaReagrupacion);
         assertFalse(turnos.darCartaPais());
+    }
+
+    @Test
+    public void TurnosDevuelveElObjetivoDelJugadorActual(){
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.textoObjetivo("Amarillo")).thenReturn("OK");
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals("OK", turnos.textoDeObjetivo());
+        verify(teg,times(1)).textoObjetivo("Amarillo");
+    }
+
+    @Test
+    public void TurnosDevuelveLasFichasJugadorActual(){
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.getFichas("Amarillo")).thenReturn(1);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals(1, turnos.getFichas());
+        verify(teg,times(1)).getFichas("Amarillo");
+    }
+
+    @Test
+    public void TurnosDevuelveLosPaisesPorContinenteDeJugadorActual(){
+        Teg teg = Mockito.mock(Teg.class);
+        List<String> list = List.of("A","B");
+        when(teg.getPaisesPorContinentes("Amarillo")).thenReturn(list);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals(list, turnos.getPaisesPorContinentes());
+        verify(teg,times(1)).getPaisesPorContinentes("Amarillo");
+    }
+
+
+    @Test
+    public void TurnosDevuelveLasCatasPaisDelJugadorActual(){
+        Teg teg = Mockito.mock(Teg.class);
+        List<String> list = List.of("A","B");
+        when(teg.getCartasJugador("Amarillo")).thenReturn(list);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals(list, turnos.getCartasJugador());
+        verify(teg,times(1)).getCartasJugador("Amarillo");
+    }
+
+    @Test
+    public void TurnosDevuelveLosPaisesDelJugadorActual(){
+        Teg teg = Mockito.mock(Teg.class);
+        List<Pais> list = List.of(new Pais("A",List.of("A")),new Pais("A",List.of("A")));
+        when(teg.getPaisesJugador("Amarillo")).thenReturn(list);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals(list, turnos.getPaisesJugador());
+        verify(teg,times(1)).getPaisesJugador("Amarillo");
+    }
+
+    @Test
+    public void TurnosDevuelveLosPaisesQueNoSonDelJugadorActual(){
+        Teg teg = Mockito.mock(Teg.class);
+        List<Pais> list = List.of(new Pais("A",List.of("A")),new Pais("A",List.of("A")));
+        when(teg.getPaisesEnemigos("Amarillo")).thenReturn(list);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals(list, turnos.getPaisesEnemigos());
+        verify(teg,times(1)).getPaisesEnemigos("Amarillo");
+    }
+
+    @Test
+    public void TurnosGetInstanceCreaunaSolaInstancia(){
+        Turnos turno = Turnos.getInstance();
+        assertEquals(turno, Turnos.getInstance());
     }
 }

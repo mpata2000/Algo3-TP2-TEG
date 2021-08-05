@@ -32,10 +32,6 @@ public class Turnos {
         this.jugadores = jugadores;
     }
 
-    public Teg getTeg() {
-        return this.teg;
-    }
-
     public String getJugadorActual() {
         return this.tipoDeRonda.getJugadorActual();
     }
@@ -104,12 +100,12 @@ public class Turnos {
     }
 
     public String textoDeObjetivo(){
-        return ((this.teg.getJugador(this.getJugadorActual())).devolverObjetivo().textoObjetivo());
+        return this.teg.textoObjetivo(tipoDeRonda.getJugadorActual());
     }
 
     public int getFichas(){return this.teg.getFichas(tipoDeRonda.getJugadorActual());}
 
-    public List<String> getPaisesPorContinente() {
+    public List<String> getPaisesPorContinentes() {
         return this.teg.getPaisesPorContinentes(tipoDeRonda.getJugadorActual());
     }
 

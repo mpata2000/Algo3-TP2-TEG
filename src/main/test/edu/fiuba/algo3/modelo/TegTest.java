@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.cartas.CartaPais;
 import edu.fiuba.algo3.modelo.cartas.CartasPais;
 import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
 import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
+import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -254,6 +255,77 @@ public class TegTest {
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(lista));
 
         assertTrue(teg.darCartaPaisA("Rojo"));
+    }
+
+    @Test
+    public void TegDevuelveElObjetivoDelJugador(){
+        jugadores.put("Rojo",jugadorMock1);
+        when(jugadorMock1.textoObjetivo()).thenReturn("OK");
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
+
+        assertEquals("OK", teg.textoObjetivo("Rojo"));
+        verify(jugadorMock1,times(1)).textoObjetivo();
+    }
+
+    @Test
+    public void TegDevuelveLasFichasJugadorActual(){
+        jugadores.put("Rojo",jugadorMock1);
+        when(jugadorMock1.getFichas()).thenReturn(1);
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
+
+        assertEquals(1, teg.getFichas("Rojo"));
+        verify(jugadorMock1,times(1)).getFichas();
+    }
+
+    @Test
+    public void TegDevuelveLosPaisesPorContinenteDeJugador(){
+        jugadores.put("Rojo",jugadorMock1);
+        Tablero tableroMock = Mockito.mock(Tablero.class);
+        List<String> list = List.of("A","B");
+        when(tableroMock.getPaisesPorContinentes(jugadorMock1)).thenReturn(list);
+        Teg teg = new Teg(tableroMock,jugadores,new MazoDeCartasPais());
+
+        assertEquals(list, teg.getPaisesPorContinentes("Rojo"));
+        verify(tableroMock,times(1)).getPaisesPorContinentes(jugadorMock1);
+    }
+
+
+    @Test
+    public void TegDevuelveLasCatasPaisDelJugadorActual(){
+        jugadores.put("Rojo",jugadorMock1);
+
+        List<String> list = List.of("A","B");
+        when(jugadorMock1.getCartas()).thenReturn(list);
+        Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
+
+        assertEquals(list, teg.getCartasJugador("Rojo"));
+        verify(jugadorMock1,times(1)).getCartas();
+    }
+
+    @Test
+    public void TegDevuelveLosPaisesDelJugadorActual(){
+        List<Pais> list = List.of(new Pais("A",List.of("A")),new Pais("A",List.of("A")));
+        jugadores.put("Rojo",jugadorMock1);
+        Tablero tableroMock = Mockito.mock(Tablero.class);
+        when(tableroMock.getPaisesJugador(jugadorMock1)).thenReturn(list);
+        Teg teg = new Teg(tableroMock,jugadores,new MazoDeCartasPais());
+
+
+        assertEquals(list, teg.getPaisesJugador("Rojo"));
+        verify(tableroMock,times(1)).getPaisesJugador(jugadorMock1);
+    }
+
+    @Test
+    public void TegDevuelveLosPaisesQueNoSonDelJugadorActual(){
+        List<Pais> list = List.of(new Pais("A",List.of("A")),new Pais("A",List.of("A")));
+        jugadores.put("Rojo",jugadorMock1);
+        Tablero tableroMock = Mockito.mock(Tablero.class);
+        when(tableroMock.getPaisesEnemigos(jugadorMock1)).thenReturn(list);
+        Teg teg = new Teg(tableroMock,jugadores,new MazoDeCartasPais());
+
+
+        assertEquals(list, teg.getPaisesEnemigos("Rojo"));
+        verify(tableroMock,times(1)).getPaisesEnemigos(jugadorMock1);
     }
 
 }

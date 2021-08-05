@@ -27,5 +27,6 @@ public class MostrarCartasController implements Initializable {
 
     public void volverAlTablero(){
         App.getPopUpStage().close();
+        App.devolverEscena().toFront();
     }
 }

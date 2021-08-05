@@ -57,7 +57,7 @@ public class TableroController implements Initializable {
         paisesEnemigo.getItems().setAll(Turnos.getInstance().getPaisesEnemigos());
 
         /*Infromacion de Paises por continente del Jugador*/
-        textPaisesPorContinente.getItems().addAll(Turnos.getInstance().getPaisesPorContinente());
+        textPaisesPorContinente.getItems().addAll(Turnos.getInstance().getPaisesPorContinentes());
 
         /* Infromacion del Jugador*/
         String jugadorActual = Turnos.getInstance().getJugadorActual();

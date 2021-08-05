@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.objetivos;
 
 
 import edu.fiuba.algo3.modelo.Teg;
-import edu.fiuba.algo3.modelo.tablero.Continente;
 
 import java.util.Iterator;
 import java.util.List;
@@ -41,16 +40,25 @@ public class ObjetivoConquista extends ObjetivoTeg{
 
     @Override
     public String textoObjetivo(){
-        String objetivo = "Conquistar:\n";
-        for(String continente:continentesAConquistar){
-            objetivo+=(continente+"\n");
-        }
-        Iterator<Map.Entry<String, Integer>> it = paisesPorContinente.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, Integer> pair = it.next();
-            objetivo += pair.getKey()+": " + pair.getValue()+" paises\n";
+        StringBuilder objetivo = new StringBuilder();
+
+        if(!continentesAConquistar.isEmpty()) {
+            objetivo.append("Continentes a Conquistar:");
+            for (String continente : continentesAConquistar) {
+                objetivo.append(" ").append(continente).append(",");
+            }
+
+            objetivo.deleteCharAt(objetivo.length() - 1);
         }
 
-        return objetivo;
+        if(!paisesPorContinente.isEmpty()) {
+            objetivo.append("\n\n");
+            objetivo.append(" Paises por Continentes a Conquistar: \n");
+
+            for (Map.Entry<String, Integer> pair : paisesPorContinente.entrySet()) {
+                objetivo.append("  > ").append(pair.getKey()).append(": ").append(pair.getValue()).append(" paises\n");
+            }
+        }
+        return objetivo.toString();
     }
 }
