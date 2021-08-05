@@ -1,21 +1,11 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.vistas.ContenedorPrincipal;
-import edu.fiuba.algo3.vistas.MenuInicioView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.animation.*;
-import javafx.fxml.FXML;
-import javafx.scene.SubScene;
-import javafx.scene.layout.AnchorPane;;
-import javafx.util.Duration;
 import java.io.IOException;
-import java.net.URL;
-
-import edu.fiuba.algo3.vistas.CargadorDeEscena;
 
 /**
  * JavaFX App
