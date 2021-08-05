@@ -4,6 +4,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.rondas.LimiteDeJugadoresException;
 import edu.fiuba.algo3.modelo.rondas.RondaColocacion;
 import edu.fiuba.algo3.modelo.rondas.TipoRonda;
+import edu.fiuba.algo3.modelo.tablero.Pais;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -118,19 +119,21 @@ public class Turnos {
 
     public int getFichas(){return this.teg.getFichas(tipoDeRonda.getJugadorActual());}
 
-    public List<String> paisesjugador() {
-        return this.teg.paisesJugador(tipoDeRonda.getJugadorActual());
-    }
-    public String getTodosLosPaises() {
-        return this.teg.getTodosLosPaises();
-    }
-
     public List<String> getPaisesPorContinente() {
         return this.teg.getPaisesPorContinentes(tipoDeRonda.getJugadorActual());
     }
 
     public List<String> getCartasJugador() {
         return this.teg.getCartasJugador(tipoDeRonda.getJugadorActual());
+    }
+
+
+    public List<Pais> getPaisesJugador() {
+        return teg.getPaisesJugador(tipoDeRonda.getJugadorActual());
+    }
+
+    public List<Pais> getPaisesEnemigos() {
+        return teg.getPaisesEnemigos(tipoDeRonda.getJugadorActual());
     }
 }
 

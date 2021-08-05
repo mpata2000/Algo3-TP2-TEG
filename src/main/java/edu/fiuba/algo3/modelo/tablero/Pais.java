@@ -11,6 +11,10 @@ public class Pais {
     private Jugador jugador;
     private final List<String> paisesLimitrofes;
 
+    public int getFichas() {
+        return ejercito.getCantFichas();
+    }
+
     public Pais(String nombrePais, List<String>paisesLimitrofes){
         this.nombrePais = nombrePais;
         this.paisesLimitrofes = paisesLimitrofes;
@@ -20,6 +24,10 @@ public class Pais {
 
     public Jugador getJugador(){
         return this.jugador;
+    }
+
+    public String getColorJugador(){
+        return this.jugador.getColor();
     }
 
     public boolean esAdyacente(Pais unPais){

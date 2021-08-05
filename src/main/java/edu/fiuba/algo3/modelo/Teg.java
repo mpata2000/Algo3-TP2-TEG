@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import edu.fiuba.algo3.modelo.objetivos.Objetivos;
 import edu.fiuba.algo3.modelo.tablero.ConstructorTablero;
+import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 
 import java.util.*;
@@ -18,13 +19,13 @@ public class Teg {
     private final List<ObjetivoTeg> objetivos = new ArrayList<>();
     public static final String PATHJSON = "src/main/resources/json/";
 
-    public Teg(){
+    public Teg() {
         this.tablero = ConstructorTablero.create(PATHJSON.concat("Teg-Tablero.json"));
-        this.cartas = new MazoDeCartasPais(CartasPais.create(PATHJSON.concat("Teg-Cartas.json"),this.tablero));
+        this.cartas = new MazoDeCartasPais(CartasPais.create(PATHJSON.concat("Teg-Cartas.json"), this.tablero));
         this.objetivos.addAll(Objetivos.objetivosConquista(PATHJSON.concat("Teg-Objetivos.json")));
     }
 
-    public Teg(Tablero tablero,Map <String,Jugador> jugadores,MazoDeCartasPais mazoDeCartasPais){
+    public Teg(Tablero tablero, Map<String, Jugador> jugadores, MazoDeCartasPais mazoDeCartasPais) {
         this.tablero = tablero;
         this.jugadores = jugadores;
         this.cartas = mazoDeCartasPais;
@@ -43,33 +44,33 @@ public class Teg {
 
         Collections.shuffle(this.objetivos);
         int i = 0;
-        for(Jugador jugador: jugadores.values()){
+        for (Jugador jugador : jugadores.values()) {
             jugador.darObjetivo(this.objetivos.get(i));
             i++;
         }
     }
 
-    public void colocarFichas(String colorJugador, String nombrePais, int cant){
+    public void colocarFichas(String colorJugador, String nombrePais, int cant) {
         this.tablero.agregarFichas(nombrePais, this.jugadores.get(colorJugador), cant);
     }
 
-    public boolean atacarConA(String colorJugador, String paisAtacante, String paisDefensor, int cantidad){
+    public boolean atacarConA(String colorJugador, String paisAtacante, String paisDefensor, int cantidad) {
         Jugador jugador = this.jugadores.get(colorJugador);
-        if(tablero.atacar(jugador,paisAtacante, paisDefensor, cantidad)){
+        if (tablero.atacar(jugador, paisAtacante, paisDefensor, cantidad)) {
             jugador.conquistoPais();
             return true;
         }
         return false;
     }
 
-    public void sacarConquistaDePaisAJugadores(){
-        for(Jugador jugador: jugadores.values()){
+    public void sacarConquistaDePaisAJugadores() {
+        for (Jugador jugador : jugadores.values()) {
             jugador.sacarConquista();
         }
     }
 
-    public void pasarFichas(String colorJugador,String paisUno, String paisDos, int cant){
-        this.tablero.pasarFichas(jugadores.get(colorJugador),paisUno, paisDos, cant);
+    public void pasarFichas(String colorJugador, String paisUno, String paisDos, int cant) {
+        this.tablero.pasarFichas(jugadores.get(colorJugador), paisUno, paisDos, cant);
     }
 
     public void agregarFichasDisponiblesA(String colorJugador) {
@@ -82,8 +83,8 @@ public class Teg {
         this.jugadores.get(colorJugador).agregarFichas(cantidadFichas);
     }
 
-    public boolean hacerCanjeJugador(String colorJugador){
-         return this.jugadores.get(colorJugador).hacerCanje(this.cartas);
+    public boolean hacerCanjeJugador(String colorJugador) {
+        return this.jugadores.get(colorJugador).hacerCanje(this.cartas);
     }
 
     public boolean darCartaPaisA(String colorJugador) {
@@ -95,14 +96,14 @@ public class Teg {
     }
 
     public int cantidadDePaisesJugadorEnContinente(String continente, String jugador) {
-        return this.tablero.cantidadDePaisesJugadorEnContinente(continente,jugadores.get(jugador));
+        return this.tablero.cantidadDePaisesJugadorEnContinente(continente, jugadores.get(jugador));
     }
 
-    public boolean continenteEsDeJugador(String continente,String jugador) {
-        return this.tablero.continenteEsDeJugador(continente,jugadores.get(jugador));
+    public boolean continenteEsDeJugador(String continente, String jugador) {
+        return this.tablero.continenteEsDeJugador(continente, jugadores.get(jugador));
     }
 
-    public boolean hayGanador(){
+    public boolean hayGanador() {
         return this.jugadores.values().stream().anyMatch(j -> j.gano(this));
     }
 
@@ -118,23 +119,18 @@ public class Teg {
                 .orElse(null);
     }
 
-    public Tablero getTablero(){
+    public Tablero getTablero() {
         return this.tablero;
     }
 
-    public Jugador getJugador(String color){ return this.jugadores.get(color);}
+    public Jugador getJugador(String color) {
+        return this.jugadores.get(color);
+    }
 
     public int getFichas(String jugadorActual) {
         return getJugador(jugadorActual).getFichas();
     }
 
-    public List<String> paisesJugador(String jugadorActual) {
-        return this.tablero.getPaisesJugador(jugadores.get(jugadorActual));
-    }
-
-    public String getTodosLosPaises(){
-        return this.tablero.getTodosLosPaises();
-    }
 
     public List<String> getPaisesPorContinentes(String jugador) {
         return this.tablero.getPaisesPorContinentes(jugadores.get(jugador));
@@ -142,5 +138,13 @@ public class Teg {
 
     public List<String> getCartasJugador(String jugadorActual) {
         return this.jugadores.get(jugadorActual).getCartas();
+    }
+
+    public List<Pais> getPaisesJugador(String jugadorActual) {
+       return tablero.getPaisesJugador(jugadores.get(jugadorActual));
+    }
+
+    public List<Pais> getPaisesEnemigos(String jugadorActual) {
+        return tablero.getPaisesEnemigos(jugadores.get(jugadorActual));
     }
 }

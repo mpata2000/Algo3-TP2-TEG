@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="855.0" prefWidth="1140.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TableroController">
+<AnchorPane prefHeight="855.0" prefWidth="1140.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="edu.fiuba.algo3.controller.TableroController">
     <children>
         <Label fx:id="textoTipoRonda" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="490.0" style="-fx-background-color: #4CAF50;" text="Ronda de Reagrupacion" textAlignment="CENTER" textFill="WHITE">
             <font>
@@ -54,17 +61,6 @@
         </AnchorPane>
         <AnchorPane layoutX="10.0" layoutY="665.0" prefHeight="200.0" prefWidth="990.0">
             <children>
-                <AnchorPane fx:id="paisesJugador" layoutX="2.0" prefHeight="200.0" prefWidth="330.0">
-                    <children>
-                        <Label prefHeight="30.0" prefWidth="171.0" text="Paises Propios" textAlignment="CENTER" wrapText="true">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Label>
-                        <ListView fx:id="textPaisJugador" layoutY="38.0" prefHeight="142.0" prefWidth="315.0" />
-                    </children>
-                </AnchorPane>
-                <ListView fx:id="textPaises" layoutX="360.0" layoutY="38.0" prefHeight="142.0" prefWidth="315.0" />
                 <ListView fx:id="textPaisesPorContinente" layoutX="750.0" layoutY="38.0" prefHeight="142.0" prefWidth="236.0" />
                 <Label layoutX="360.0" prefHeight="30.0" prefWidth="127.0" text="Paises" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -76,6 +72,24 @@
                         <Font size="16.0" />
                     </font>
                 </Label>
+            <TableView fx:id="paisesJugador" layoutX="14.0" layoutY="38.0" prefHeight="150.0" prefWidth="219.0">
+              <columns>
+                <TableColumn fx:id="nombrePaisJugador" prefWidth="136.0" text="Nombre" />
+                <TableColumn fx:id="fichasPaisJugador" prefWidth="82.0" text="Fichas" />
+              </columns>
+            </TableView>
+                  <Label layoutX="14.0" layoutY="8.0" prefHeight="30.0" prefWidth="171.0" text="Paises Propios" textAlignment="CENTER" wrapText="true">
+                      <font>
+                          <Font size="16.0" />
+                      </font>
+                  </Label>
+            <TableView fx:id="paisesEnemigo" layoutX="353.0" layoutY="38.0" prefHeight="150.0" prefWidth="311.0">
+               <columns>
+                  <TableColumn fx:id="nombrePaisEnemigo" prefWidth="136.0" text="Nombre" />
+                  <TableColumn fx:id="fichasPaisEnemigo" prefWidth="82.0" text="Fichas" />
+                  <TableColumn fx:id="jugadorEnemigo" prefWidth="92.0" text="Jugador" />
+               </columns>
+            </TableView>
             </children>
         </AnchorPane>
         <Separator layoutX="1012.0" layoutY="10.0" orientation="VERTICAL" prefHeight="835.0" prefWidth="0.0" />

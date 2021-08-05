@@ -1,13 +1,12 @@
 package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.modelo.Turnos;
+import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.vistas.CargadorDeEscena;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
@@ -28,9 +27,14 @@ public class TableroController implements Initializable {
     public Label textoTipoRonda;
     public Label labelErrores;
     public Label fichasDisponibles;
-    public ListView textPaisJugador;
-    public ListView textPaises;
     public ListView textPaisesPorContinente;
+    public TableView paisesJugador;
+    public TableColumn<Pais,String> nombrePaisJugador;
+    public TableColumn<Pais,String> fichasPaisJugador;
+    public TableView paisesEnemigo;
+    public TableColumn<Pais,String> nombrePaisEnemigo;
+    public TableColumn<Pais,String> fichasPaisEnemigo;
+    public TableColumn<Pais,String> jugadorEnemigo;
 
     private static HashMap<String, String> colores= new HashMap();
 
@@ -52,10 +56,17 @@ public class TableroController implements Initializable {
         String jugadorActual = Turnos.getInstance().getJugadorActual();
         String colorStyle = "-fx-background-color:"+ colores.get(jugadorActual);
 
-        textPaisJugador.getItems().addAll(Turnos.getInstance().paisesjugador());
-        textPaises.getItems().add(Turnos.getInstance().getTodosLosPaises());
-
         textPaisesPorContinente.getItems().addAll(Turnos.getInstance().getPaisesPorContinente());
+
+        nombrePaisJugador.setCellValueFactory(new PropertyValueFactory<Pais, String>("nombre"));
+        fichasPaisJugador.setCellValueFactory(new PropertyValueFactory<Pais, String>("fichas"));
+        paisesJugador.getItems().setAll(Turnos.getInstance().getPaisesJugador());
+
+        nombrePaisEnemigo.setCellValueFactory(new PropertyValueFactory<Pais, String>("nombre"));
+        fichasPaisEnemigo.setCellValueFactory(new PropertyValueFactory<Pais, String>("fichas"));
+        jugadorEnemigo.setCellValueFactory(new PropertyValueFactory<Pais, String>("colorJugador"));
+        paisesEnemigo.getItems().setAll(Turnos.getInstance().getPaisesEnemigos());
+
 
         fichasDisponibles.setText(Integer.toString(Turnos.getInstance().getFichas()));
         textoJugadorActual.setText(jugadorActual.toUpperCase());

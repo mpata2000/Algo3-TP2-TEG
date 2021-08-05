@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.ataque.Batalla;
 import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Tablero {
     private final Map<String, Continente> continentes = new HashMap<>();
@@ -89,14 +90,8 @@ public class Tablero {
         return this.continentes.get(continente).esDeJugador(jugador);
     }
 
-    public List<String> getPaisesJugador(Jugador jugador) {
-        List<String> stringPaises= new ArrayList<>();
-        for(Pais pais: paises.values()){
-            if(pais.esDeJugador(jugador)){
-                stringPaises.add(pais.paisToString());
-            }
-        }
-        return stringPaises;
+    public List<Pais> getPaisesJugador(Jugador jugador) {
+        return paises.values().stream().filter(pais -> pais.esDeJugador(jugador)).collect(Collectors.toList());
     }
 
     public String getTodosLosPaises() {
@@ -119,4 +114,7 @@ public class Tablero {
         return paisesPorContinente;
     }
 
+    public List<Pais> getPaisesEnemigos(Jugador jugador) {
+        return paises.values().stream().filter(pais -> !pais.esDeJugador(jugador)).collect(Collectors.toList());
+    }
 }
