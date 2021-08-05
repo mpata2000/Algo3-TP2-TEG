@@ -127,25 +127,21 @@ public class TurnosTest {
     public void NoSePuedeComenzarJuegoCOn(){
 
         Turnos turnos = new Turnos();
-        turnos.agregarJugadores(List.of("Amarillo"));
-        assertThrows(LimiteDeJugadoresException.class, turnos::comenzarJuego);
+        List<String> list = List.of("Amarillo");
+        assertThrows(LimiteDeJugadoresException.class,()-> turnos.comenzarJuego(list));
     }
 
     @Test
     public void TurnosPuedeComenzarConDosJugadoresYArrancaEnRondaColocacion(){
-
         Turnos turnos = new Turnos();
-        turnos.agregarJugadores(List.of("Amarillo","Rojo"));
-        turnos.comenzarJuego();
+        turnos.comenzarJuego(List.of("Amarillo","Rojo"));
         assertTrue(turnos.devolverRondaActual() instanceof RondaColocacion);
     }
 
     @Test
     public void TurnoEnRondaDeColocacionNoSePuedeDarCarta(){
-
-        Turnos turnos = new Turnos();
-        turnos.agregarJugadores(List.of("Amarillo","Rojo"));
-        turnos.comenzarJuego();
+        Teg teg = Mockito.mock(Teg.class);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
         assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class, turnos :: darCartaPais);
     }
 
@@ -171,7 +167,7 @@ public class TurnosTest {
     public void NoSePuedeAgregarMasDeSeisJugadores(){
         List<String> list = List.of("Amarillo", "Rojo", "Verde", "Magenta","Negro","Azul","Celeste");
         Turnos turnos = new Turnos();
-        assertThrows(LimiteDeJugadoresException.class, ()->  turnos.agregarJugadores(list));
+        assertThrows(LimiteDeJugadoresException.class, ()->  turnos.comenzarJuego(list));
     }
 
     @Test

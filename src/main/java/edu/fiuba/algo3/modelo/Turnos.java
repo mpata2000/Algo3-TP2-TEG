@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
 
-import edu.fiuba.algo3.modelo.rondas.LimiteDeJugadoresException;
 import edu.fiuba.algo3.modelo.rondas.RondaColocacion;
 import edu.fiuba.algo3.modelo.rondas.TipoRonda;
 import edu.fiuba.algo3.modelo.tablero.Pais;
@@ -42,20 +41,11 @@ public class Turnos {
     }
 
     /*
-     * Agrega los jugadores a una lista de strings
-     */
-    public void agregarJugadores(List<String> listaJugadores){
-        if(listaJugadores.size() > 6){
-            throw new LimiteDeJugadoresException();
-        }
-        this.jugadores.addAll(listaJugadores);
-    }
-
-    /*
      * Comienza el juego, elijiendo aleatoriamente el orden inicial
      * de los jugadores y creando una primera ronda de colocacion
      */
-    public void comenzarJuego(){
+    public void comenzarJuego(List<String> listaJugadores){
+        this.jugadores.addAll(listaJugadores);
         if(this.jugadores.size() < 2 || this.jugadores.size() > 6){
             throw new LimiteDeJugadoresException();
         }

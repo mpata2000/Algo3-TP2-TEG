@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.rondas;
+package edu.fiuba.algo3.modelo;
 
 public class LimiteDeJugadoresException extends RuntimeException {
 }
