@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -25,6 +26,7 @@ public class TableroController implements Initializable {
     public TextField inputCantFichas;
     public Label textoJugadorActual;
     public Label textoTipoRonda;
+    public Label labelErrores;
     public Label fichasDisponibles;
     public ListView textPaisJugador;
     public ListView textPaises;
@@ -99,9 +101,12 @@ public class TableroController implements Initializable {
 
     public void agarrarCarta(){
         try {
-            if (Turnos.getInstance().darCartaPais());
+            if (Turnos.getInstance().darCartaPais()){ labelErrores.setText("Agarraste una carta!!!");}
+            else{
+                labelErrores.setText("No podes agarrar una carta");
+            }
         } catch (Exception e){
-
+            labelErrores.setText("OOps En esta ronda no podes agarrar la carta ");
         }
     }
 

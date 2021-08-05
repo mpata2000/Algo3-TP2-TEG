@@ -45,7 +45,11 @@
                 <Button fx:id="botonCartas" layoutX="2.0" layoutY="491.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Cartas" />
                 <TextField fx:id="inputPaisOrigen" layoutX="10.0" layoutY="155.0" prefHeight="25.0" prefWidth="98.0" />
                 <TextField fx:id="inputPaisDestino" layoutX="10.0" layoutY="216.0" prefHeight="25.0" prefWidth="98.0" />
-            <Label layoutX="10.0" layoutY="525.0" prefHeight="181.0" prefWidth="98.0" text="         Label" />
+            <Label fx:id="labelErrores" layoutX="8.0" layoutY="527.0" prefHeight="170.0" prefWidth="98.0" wrapText="true">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
         <AnchorPane layoutX="10.0" layoutY="665.0" prefHeight="200.0" prefWidth="990.0">
@@ -82,5 +86,6 @@
             </image>
         </ImageView>
         <Separator layoutX="1130.0" layoutY="10.0" orientation="VERTICAL" prefHeight="835.0" prefWidth="0.0" />
+      <Label text="Label" />
     </children>
 </AnchorPane>
