@@ -250,7 +250,7 @@ public class TegTest {
         jugadores.put("Amarillo",jugadorMock2);
         when(jugadorMock1.darCartaPais(any(CartaPais.class))).thenReturn(true);
 
-        List<CartaPais> lista = CartasPais.create("resources/Teg-Cartas.json",tablero);
+        List<CartaPais> lista = CartasPais.create(Teg.PATHJSON.concat("Teg-Cartas.json"),tablero);
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(lista));
 
         assertTrue(teg.darCartaPaisA("Rojo"));

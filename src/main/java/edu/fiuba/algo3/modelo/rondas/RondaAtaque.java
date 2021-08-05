@@ -16,6 +16,10 @@ public class RondaAtaque implements TipoRonda {
     }
 
 
+    @Override
+    public String getNombre() {
+        return "Ronda de ataque";
+    }
 
     public void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
         if(teg.atacarConA(jugadorActual,paisAtacante, paisDefensor, cantidad)){
@@ -45,6 +49,7 @@ public class RondaAtaque implements TipoRonda {
     public boolean hacerCanje(Teg teg){
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
+
 
     public TipoRonda finEtapa(List<String> jugadores,Teg teg){
         return new RondaReagrupacion(this.jugadorActual,jugadores);

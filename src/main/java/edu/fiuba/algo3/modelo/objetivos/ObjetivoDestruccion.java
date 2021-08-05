@@ -28,4 +28,8 @@ public class ObjetivoDestruccion extends ObjetivoTeg{
         return (teg.cantidadDePaisesJugador(jugadorADestruir.getColor()) < 1);
     }
 
+    public String textoObjetivo(){
+        return ("Destruir al equipo "+ jugadorADestruir.getColor());
+    }
+
 }

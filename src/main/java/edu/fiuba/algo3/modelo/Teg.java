@@ -16,11 +16,12 @@ public class Teg {
     private Map<String, Jugador> jugadores = new LinkedHashMap<>();
     private final CartasPaisTeg cartas;
     private final List<ObjetivoTeg> objetivos = new ArrayList<>();
+    public static final String PATHJSON = "src/main/resources/json/";
 
     public Teg(){
-        this.tablero = ConstructorTablero.create("resources/Teg-Tablero.json");
-        this.cartas = new MazoDeCartasPais(CartasPais.create("resources/Teg-Cartas.json",this.tablero));
-        this.objetivos.addAll(Objetivos.objetivosConquista("resources/Teg-Objetivos.json"));
+        this.tablero = ConstructorTablero.create(PATHJSON.concat("Teg-Tablero.json"));
+        this.cartas = new MazoDeCartasPais(CartasPais.create(PATHJSON.concat("Teg-Cartas.json"),this.tablero));
+        this.objetivos.addAll(Objetivos.objetivosConquista(PATHJSON.concat("Teg-Objetivos.json")));
     }
 
     public Teg(Tablero tablero,Map <String,Jugador> jugadores,MazoDeCartasPais mazoDeCartasPais){
@@ -119,5 +120,27 @@ public class Teg {
 
     public Tablero getTablero(){
         return this.tablero;
+    }
+
+    public Jugador getJugador(String color){ return this.jugadores.get(color);}
+
+    public int getFichas(String jugadorActual) {
+        return getJugador(jugadorActual).getFichas();
+    }
+
+    public String paisesJugador(String jugadorActual) {
+        return this.tablero.getPaisesJugador(jugadorActual);
+    }
+
+    public String getTodosLosPaises(){
+        return this.tablero.getTodosLosPaises();
+    }
+
+    public String getPaisesPorContinentes(String jugador) {
+        return this.tablero.getPaisesPorContinentes(jugadores.get(jugador));
+    }
+
+    public List<String> getCartasJugador(String jugadorActual) {
+        return this.jugadores.get(jugadorActual).getCartas();
     }
 }

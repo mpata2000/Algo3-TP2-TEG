@@ -11,8 +11,8 @@ public class ColocacionPrimeraRonda extends ColocacionNormal{
     }
 
     @Override
-    public TipoRonda pasarDeRonda(List<String> jugadores){
-        return new RondaColocacion(new ColocacionSegundaRonda(),jugadores);
+    public TipoRonda pasarDeRonda(List<String> jugadores, Teg teg){
+        return new RondaColocacion(new ColocacionSegundaRonda(),jugadores, teg);
 
     }
 }

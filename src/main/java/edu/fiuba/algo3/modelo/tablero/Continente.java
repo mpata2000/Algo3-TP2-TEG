@@ -50,4 +50,8 @@ public class Continente {
 
         return info;
     }
+
+    public String paisesDeJugador(Jugador jugador){
+        return (this.getNombre()+": "+this.cantidadPaisesDe(jugador)+"/"+this.paises.size()+"\n");
+    }
 }

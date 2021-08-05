@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.MostrarObjetivoController">
+   <children>
+      <Button layoutX="380.0" layoutY="404.0" mnemonicParsing="false" onAction="#volverAlTablero" text="Volver" />
+      <Label fx:id="objetivo" layoutX="199.0" layoutY="147.0" prefHeight="220.0" prefWidth="396.0" text="Label">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

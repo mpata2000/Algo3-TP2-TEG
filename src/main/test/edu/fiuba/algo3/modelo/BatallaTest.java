@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.ataque.AtaqueNoValido;
+import edu.fiuba.algo3.modelo.ataque.AtaqueNoValidoException;
 import edu.fiuba.algo3.modelo.ataque.EjercitoConUnaFichaNoPuedeAtacarException;
 import edu.fiuba.algo3.modelo.ataque.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
 import edu.fiuba.algo3.modelo.ataque.NoSePuedenCrearCeroDadosException;
@@ -104,7 +104,7 @@ public class BatallaTest {
         paisDefensor.agregarFichas(4, jugadorUno);
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
-        assertThrows(AtaqueNoValido.class, () -> batalla.batallar(1));
+        assertThrows(AtaqueNoValidoException.class, () -> batalla.batallar(1));
     }
 
     @Test
@@ -118,7 +118,7 @@ public class BatallaTest {
 
         Batalla batalla = new Batalla(paisAtacante, paisDefensor);
 
-        assertThrows(AtaqueNoValido.class, () -> batalla.batallar(1));
+        assertThrows(AtaqueNoValidoException.class, () -> batalla.batallar(1));
     }
 
 }
