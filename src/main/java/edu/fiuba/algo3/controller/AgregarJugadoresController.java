@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AñadirJugadoresController {
+public class AgregarJugadoresController {
 
     @FXML
     public CheckBox rojo;

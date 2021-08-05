@@ -21,6 +21,6 @@ public class Constantes {
     }
 
     public static  String rutaTablero = "/vistas/tablero.fxml";
-    public static  String rutaAnadirJugador = "/vistas/añadirJugadores.fxml";
+    public static  String rutaAgregarJugador = "/vistas/agregarJugadores.fxml";
 
 }
