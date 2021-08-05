@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo;
 
 
 import edu.fiuba.algo3.modelo.rondas.LimiteDeJugadoresException;
-import edu.fiuba.algo3.modelo.rondas.NoHaySuficientesJugadoresException;
 import edu.fiuba.algo3.modelo.rondas.RondaColocacion;
 import edu.fiuba.algo3.modelo.rondas.TipoRonda;
 
@@ -56,8 +55,8 @@ public class Turnos {
      * de los jugadores y creando una primera ronda de colocacion
      */
     public void comenzarJuego(){
-        if(this.jugadores.size() < 2){
-            throw new NoHaySuficientesJugadoresException();
+        if(this.jugadores.size() < 2 || this.jugadores.size() > 6){
+            throw new LimiteDeJugadoresException();
         }
         Collections.shuffle(jugadores); //Mezcla los jugadores como si tiraron Dados
         this.teg.comenzarJuego(jugadores);

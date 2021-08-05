@@ -128,7 +128,7 @@ public class TurnosTest {
 
         Turnos turnos = new Turnos();
         turnos.agregarJugadores(List.of("Amarillo"));
-        assertThrows(NoHaySuficientesJugadoresException.class, turnos::comenzarJuego);
+        assertThrows(LimiteDeJugadoresException.class, turnos::comenzarJuego);
     }
 
     @Test
