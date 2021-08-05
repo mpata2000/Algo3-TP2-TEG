@@ -125,4 +125,12 @@ public class MazoDeCartasPais implements CartasPaisTeg,CartasPaisJugador{
         }
         return false;
     }
+
+    public List<String> getCartas(){
+        List<String> listaNombresCartas = new ArrayList<>();
+        for(CartaPais cartaPais: cartasPais){
+            listaNombresCartas.add(cartaPais.getNombrePais()+" - "+cartaPais.getSimbolo());
+        }
+        return listaNombresCartas;
+    }
 }

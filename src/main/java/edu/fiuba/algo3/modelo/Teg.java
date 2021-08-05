@@ -139,4 +139,8 @@ public class Teg {
     public String getPaisesPorContinentes(String jugador) {
         return this.tablero.getPaisesPorContinentes(jugadores.get(jugador));
     }
+
+    public List<String> getCartasJugador(String jugadorActual) {
+        return this.jugadores.get(jugadorActual).getCartas();
+    }
 }

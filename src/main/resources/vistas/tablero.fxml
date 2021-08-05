@@ -42,7 +42,7 @@
                 <Button fx:id="botonCerrarJuego" layoutX="3.0" layoutY="797.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Cerrar" />
                 <Separator layoutX="-1.0" layoutY="427.0" prefWidth="118.0" />
                 <Button fx:id="botonPedircarta" layoutX="2.0" layoutY="462.0" mnemonicParsing="false" onAction="#agarrarCarta" prefHeight="25.0" prefWidth="112.0" text="Pedir Carta" />
-                <Button fx:id="botonCartas" layoutX="2.0" layoutY="491.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Cartas" />
+                <Button fx:id="botonCartas" layoutX="2.0" layoutY="491.0" mnemonicParsing="false" onAction="#mostrarCartas" prefHeight="25.0" prefWidth="112.0" text="Cartas" />
                 <TextField fx:id="inputPaisOrigen" layoutX="10.0" layoutY="155.0" prefHeight="25.0" prefWidth="98.0" />
                 <TextField fx:id="inputPaisDestino" layoutX="10.0" layoutY="216.0" prefHeight="25.0" prefWidth="98.0" />
             <Label fx:id="labelErrores" layoutX="8.0" layoutY="527.0" prefHeight="170.0" prefWidth="98.0" wrapText="true">
@@ -86,6 +86,5 @@
             </image>
         </ImageView>
         <Separator layoutX="1130.0" layoutY="10.0" orientation="VERTICAL" prefHeight="835.0" prefWidth="0.0" />
-      <Label text="Label" />
     </children>
 </AnchorPane>

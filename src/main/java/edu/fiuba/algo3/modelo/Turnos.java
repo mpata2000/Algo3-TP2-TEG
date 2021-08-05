@@ -131,5 +131,8 @@ public class Turnos {
         return this.teg.getPaisesPorContinentes(tipoDeRonda.getJugadorActual());
     }
 
+    public List<String> getCartasJugador() {
+        return this.teg.getCartasJugador(tipoDeRonda.getJugadorActual());
+    }
 }
 

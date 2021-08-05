@@ -5,17 +5,23 @@ import edu.fiuba.algo3.vistas.CargadorDeEscena;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GetCartaController implements Initializable {
+public class MostrarCartasController implements Initializable {
     @FXML
-    public Label carta;
+    public ListView listaCartas;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        carta.setText("Carta pais");
+        listaCartas.getItems().add(Turnos.getInstance().getCartasJugador());
+
+    }
+
+    public  void hacerCanje(){
+        Turnos.getInstance().realizarCanje();
     }
 
     public void volverAlTablero(){

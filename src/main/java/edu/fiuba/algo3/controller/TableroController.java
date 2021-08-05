@@ -110,6 +110,10 @@ public class TableroController implements Initializable {
         }
     }
 
+    public void mostrarCartas(){
+        CargadorDeEscena.cargarPopEscena("/vistas/mostrarCartas.fxml");
+    }
+
     private void seteador(){
             fichasDisponibles.setText(Integer.toString(Turnos.getInstance().getFichas()));
             this.fichas = Integer.parseInt(inputCantFichas.getText());

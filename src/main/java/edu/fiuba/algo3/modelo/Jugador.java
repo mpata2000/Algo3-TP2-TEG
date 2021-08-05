@@ -7,6 +7,8 @@ import edu.fiuba.algo3.modelo.cartas.CartasPaisTeg;
 import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 
+import java.util.List;
+
 public class Jugador {
     private final String color;
     private final CartasPaisJugador cartasPais = new MazoDeCartasPais();
@@ -91,4 +93,8 @@ public class Jugador {
     public ObjetivoTeg devolverObjetivo() {return this.objetivoTeg;}
 
     public int getFichas(){return fichas;}
+
+    public List<String> getCartas() {
+        return cartasPais.getCartas();
+    }
 }
