@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import edu.fiuba.algo3.modelo.rondas.LimiteDeJugadoresException;
 import edu.fiuba.algo3.modelo.rondas.RondaColocacion;
 import edu.fiuba.algo3.modelo.rondas.TipoRonda;
@@ -27,7 +28,7 @@ public class Turnos {
     }
 
     public Turnos(Teg teg, List<String> jugadores){
-        this.tipoDeRonda = new RondaColocacion(jugadores) ;
+        this.tipoDeRonda = new RondaColocacion(jugadores, teg) ;
         this.teg = teg;
         this.jugadores = jugadores;
     }
@@ -44,7 +45,7 @@ public class Turnos {
      * Agrega los jugadores a una lista de strings
      */
     public void agregarJugadores(List<String> listaJugadores){
-        if(listaJugadores.size() > 6){
+        if(listaJugadores.size() > 6 || listaJugadores.size()<2){
             throw new LimiteDeJugadoresException();
         }
         this.jugadores.addAll(listaJugadores);
@@ -60,7 +61,7 @@ public class Turnos {
         }
         Collections.shuffle(jugadores); //Mezcla los jugadores como si tiraron Dados
         this.teg.comenzarJuego(jugadores);
-        this.tipoDeRonda = new RondaColocacion(jugadores) ;
+        this.tipoDeRonda = new RondaColocacion(jugadores, teg) ;
     }
 
     /*
@@ -112,5 +113,25 @@ public class Turnos {
         this.tipoDeRonda = this.tipoDeRonda.finEtapa(jugadores,this.teg);
     }
 
+    public String textoDeObjetivo(){
+        return ((this.teg.getJugador(this.getJugadorActual())).devolverObjetivo().textoObjetivo());
+    }
+
+    public int getFichas(){return this.teg.getFichas(tipoDeRonda.getJugadorActual());}
+
+    public String paisesjugador() {
+        return this.teg.paisesJugador(tipoDeRonda.getJugadorActual());
+    }
+    public String getTodosLosPaises() {
+        return this.teg.getTodosLosPaises();
+    }
+
+    public String getPaisesPorContinente() {
+        return this.teg.getPaisesPorContinentes(tipoDeRonda.getJugadorActual());
+    }
+
+    public List<String> getCartasJugador() {
+        return this.teg.getCartasJugador(tipoDeRonda.getJugadorActual());
+    }
 }
 

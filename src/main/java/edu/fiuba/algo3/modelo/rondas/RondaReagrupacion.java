@@ -16,6 +16,11 @@ public class RondaReagrupacion implements TipoRonda{
         this.jugadorActual = this.iteradorJugadores.next();
     }
 
+    @Override
+    public String getNombre() {
+        return "Ronda de reagrupación";
+    }
+
     public void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
@@ -36,6 +41,7 @@ public class RondaReagrupacion implements TipoRonda{
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
+
     public TipoRonda finEtapa(List<String> jugadores,Teg teg){
         if(iteradorJugadores.hasNext()){
             jugadorActual = iteradorJugadores.next();
@@ -45,8 +51,9 @@ public class RondaReagrupacion implements TipoRonda{
             return new RondaGanador(teg.getGanador());
         }
         teg.sacarConquistaDePaisAJugadores();
-        return new RondaColocacion(jugadores);
+        return new RondaColocacion(new ColocacionNormal(),jugadores, teg);
     }
+
 
     public String getJugadorActual() {
         return jugadorActual;

@@ -11,7 +11,7 @@ public class ColocacionNormal{
     }
 
 
-    public TipoRonda pasarDeRonda(List<String> jugadores){
+    public TipoRonda pasarDeRonda(List<String> jugadores, Teg teg){
         return  new RondaAtaque(jugadores.get(0));
     }
 }
