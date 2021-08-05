@@ -109,22 +109,14 @@ public class Tablero {
         return stringPaises;
     }
 
-    public String getPaisesPorContinentes() {
+    public String getPaisesPorContinentes(Jugador jugador) {
         String stringPaisesPorContinente="";
         Iterator<Map.Entry<String, Continente>> it = continentes.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<String, Continente> pair = it.next();
-            stringPaisesPorContinente += (pair.getKey().toUpperCase()+": \n"+this.getPaisesDeContinente(pair.getValue()));
+            stringPaisesPorContinente += (pair.getValue().paisesDeJugador(jugador));
         }
         return stringPaisesPorContinente;
     }
 
-    public String getPaisesDeContinente(Continente continente){
-        String paises="";
-        for (Pais pais: continente.getPaises()){
-            paises+= (pais.getNombre()+": "+pais.perderFichas(0)+" "+pais.getJugador().getColor().toUpperCase()+"\n");
-        }
-        paises+="\n";
-        return paises;
-    }
 }

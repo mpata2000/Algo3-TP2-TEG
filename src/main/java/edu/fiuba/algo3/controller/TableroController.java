@@ -98,7 +98,11 @@ public class TableroController implements Initializable {
     }
 
     public void agarrarCarta(){
-        // Aca se deberia llamar a pedirCarta de turnos no hacer una vista
+        try {
+            if (Turnos.getInstance().darCartaPais());
+        } catch (Exception e){
+
+        }
     }
 
     private void seteador(){

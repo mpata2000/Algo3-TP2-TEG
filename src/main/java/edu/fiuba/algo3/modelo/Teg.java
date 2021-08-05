@@ -136,7 +136,7 @@ public class Teg {
         return this.tablero.getTodosLosPaises();
     }
 
-    public String getPaisesPorContinentes() {
-        return this.tablero.getPaisesPorContinentes();
+    public String getPaisesPorContinentes(String jugador) {
+        return this.tablero.getPaisesPorContinentes(jugadores.get(jugador));
     }
 }
