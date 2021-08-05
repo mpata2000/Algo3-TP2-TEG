@@ -18,7 +18,7 @@ public class RondaReagrupacion implements TipoRonda{
 
     @Override
     public String getNombre() {
-        return "Ronda de reagrupación";
+        return "Ronda de Reagrupacion";
     }
 
     public void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){

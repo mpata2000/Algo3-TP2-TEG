@@ -98,4 +98,13 @@ public class ContinenteTest {
         continente.agregarFichasExtraA(jugadorUno);
         assertEquals(0,jugadorUno.sacarFichas(0));
     }
+
+    @Test
+    public void elContienteDevueleUnStringDeLaCantidadDePaisesQueTieneElJugador(){
+        assertEquals("Oceania: 0/4",continente.paisesDeJugador(jugadorUno));
+        for(Pais pais : paises) {
+            pais.asignarJugador(jugadorUno);
+        }
+        assertEquals("Oceania: 4/4",continente.paisesDeJugador(jugadorUno));
+    }
 }
