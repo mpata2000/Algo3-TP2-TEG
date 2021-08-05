@@ -44,6 +44,27 @@ public class CargadorDeEscena {
 
     }
 
+    public static void cargarPopEscena(String escena){
+
+        URL root = App.class.getResource(escena);
+        loader = new FXMLLoader(root);
+
+        Parent mainNode = null;
+
+        try{
+            mainNode = loader.load();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+
+        Scene scene = new Scene(mainNode);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
 
     public static void cargarEscena(String escena, ObjetivoTeg objetivo){
         /*CREAR ESCENA CON EL OBJETIVO*/

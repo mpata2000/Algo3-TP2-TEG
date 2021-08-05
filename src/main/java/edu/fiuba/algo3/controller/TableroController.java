@@ -94,10 +94,12 @@ public class TableroController implements Initializable {
     }
 
     public void mostrarObjetivo(){
-        CargadorDeEscena.cargarEscena("/vistas/mostrarObjetivo.fxml");
+        CargadorDeEscena.cargarPopEscena("/vistas/mostrarObjetivo.fxml");
     }
 
-    public void agarrarCarta(){ CargadorDeEscena.cargarEscena("/vistas/getCarta.fxml"); }
+    public void agarrarCarta(){
+        // Aca se deberia llamar a pedirCarta de turnos no hacer una vista
+    }
 
     private void seteador(){
             fichasDisponibles.setText(Integer.toString(Turnos.getInstance().getFichas()));
