@@ -9,7 +9,7 @@ public interface TipoRonda {
 
     String getNombre();
 
-    void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad);
+    boolean atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad);
 
     void pasarFichas(Teg teg,String paisOrigen,String paisDestino,int cant);
 

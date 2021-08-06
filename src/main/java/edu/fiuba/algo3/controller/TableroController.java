@@ -101,15 +101,29 @@ public class TableroController implements Initializable {
 
     public void atacar(){
         if(seteadorDosPaises()) {
-            Turnos.getInstance().atacarACon(paisOrigen, paisDestino, fichas);
-            CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO,App.devolverEscena(),"ALTEGO");
+            try {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Infromacion Ataque");
+                alert.setHeaderText("Resultado Batalla");
+                if(Turnos.getInstance().atacarACon(paisOrigen, paisDestino, fichas)){
+                    alert.setContentText("Capturaste" + paisDestino.substring(0,1).toUpperCase() + paisDestino.substring(1).toLowerCase() +
+                            "con" + paisOrigen.substring(0,1).toUpperCase() + paisOrigen.substring(1).toLowerCase() + "se a pasado " +
+                            "una ficha y podes pasar mas.");
+                }else {
+                    alert.setContentText("No lograste capturar" + paisDestino.substring(0,1).toUpperCase() + paisDestino.substring(1).toLowerCase() +
+                            "con" + paisOrigen.substring(0,1).toUpperCase() + paisOrigen.substring(1).toLowerCase() + "y perdio fichas.");
+                }
+                alert.show();
+                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO, App.devolverEscena(), "ALTEGO");
+            }catch(NoSePuedeHacerEstaAccionEnEstaRondaException e){
+
+            }
         }
     }
 
 
     public void pasar(){
         if(seteadorDosPaises()) {
-
             Turnos.getInstance().pasarFichas(paisOrigen, paisDestino, fichas);
             CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO,App.devolverEscena(),"ALTEGO");
         }
@@ -125,6 +139,8 @@ public class TableroController implements Initializable {
             }
         }catch (JugadorSigueTeniendoFichasException e){
             labelErrores.setText("Seguis teniendo fichas para colocar");
+        }catch(NoSePuedeHacerEstaAccionEnEstaRondaException e){
+
         }
     }
 
@@ -202,7 +218,7 @@ public class TableroController implements Initializable {
         try {
             App.getInstance().abrirReglas();
         }catch(Exception e){
-
+            alertError("Se a producido un error al abrir la pruebas","Error Ayuda");
         }
     }
 

@@ -21,7 +21,7 @@ public class RondaReagrupacion implements TipoRonda{
         return "Ronda de Reagrupacion";
     }
 
-    public void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
+    public boolean atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 

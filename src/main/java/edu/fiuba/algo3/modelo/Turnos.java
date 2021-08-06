@@ -57,8 +57,8 @@ public class Turnos {
     /*
      * Ataque de un pais a otro con una cierta cantidad de fichas
      */
-    public void atacarACon(String paisAtacante, String paisDefensor, int cantidad){
-        this.tipoDeRonda.atacarACon(this.teg,paisAtacante, paisDefensor, cantidad);
+    public boolean atacarACon(String paisAtacante, String paisDefensor, int cantidad){
+        return this.tipoDeRonda.atacarACon(this.teg,paisAtacante, paisDefensor, cantidad);
     }
 
     /*
