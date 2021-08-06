@@ -6,10 +6,18 @@ import java.util.Map;
 
 public class Constantes {
 
-    public static final Map<String, String> colores = initMap();
+    private Constantes(){}
+
+    public static final Map<String, String> COLORES = initMap();
+    public static final String RUTA_REGLAS ="/pdfs/ReglasTeg.pdf";
+    public static final String RUTA_GANADOR = "/vistas/ganador.fxml";
+    public static final String RUTA_TABLERO = "/vistas/tablero.fxml";
+    public static final String RUTA_AGREGAR_JUGADOR = "/vistas/agregarJugadores.fxml";
+    public static final String RUTA_OBJETIVO = "/vistas/mostrarObjetivo.fxml";
+    public static final String MENU_INICIO = "/vistas/menuInicio.fxml";
 
     private static Map<String, String> initMap() {
-        HashMap<String, String> colores = new HashMap();
+        HashMap<String, String> colores = new HashMap<>();
         colores.put("negro", "#000000");
         colores.put("amarillo", "#FFE100");
         colores.put("azul", "#4169e1");
@@ -20,8 +28,5 @@ public class Constantes {
         return Collections.unmodifiableMap(colores);
     }
 
-    public static String rutaGanador = "/vistas/ganador.fxml";
-    public static String rutaTablero = "/vistas/tablero.fxml";
-    public static String rutaAgregarJugador = "/vistas/agregarJugadores.fxml";
 
 }

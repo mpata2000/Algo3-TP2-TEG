@@ -2,8 +2,6 @@ package edu.fiuba.algo3.modelo.objetivos;
 
 
 import edu.fiuba.algo3.modelo.Teg;
-
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 

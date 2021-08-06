@@ -11,7 +11,7 @@
       <CheckBox fx:id="amarillo" layoutX="248.0" layoutY="191.0" mnemonicParsing="false" text="Jugador Amarillo" textFill="#FFE100" />
       <CheckBox fx:id="magenta" layoutX="248.0" layoutY="159.0" mnemonicParsing="false" text="Jugador Magenta" textFill="#ff00ff" />
       <CheckBox fx:id="azul" layoutX="248.0" layoutY="130.0" mnemonicParsing="false" text="Jugador Azul" textFill="#3a58ed" />
-      <CheckBox fx:id="negro" layoutX="248.0" layoutY="223.0" mnemonicParsing="false" text="Jugador Negro" />
+      <CheckBox fx:id="negro" layoutX="248.0" layoutY="223.0" mnemonicParsing="false" text="Jugador Negro" textFill="#000000"/>
       <Button layoutX="269.0" layoutY="281.0" mnemonicParsing="false" onAction="#jugar" text="Jugar" />
    </children>
 </AnchorPane>

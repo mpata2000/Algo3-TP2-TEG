@@ -27,7 +27,7 @@ public class TableroController implements Initializable {
     public Label textoTipoRonda;
     public Label labelErrores;
     public Label fichasDisponibles;
-    public ListView textPaisesPorContinente;
+    public ListView<String> textPaisesPorContinente;
     public TableView paisesJugador;
     public TableColumn<Pais,String> nombrePaisJugador;
     public TableColumn<Pais,String> fichasPaisJugador;
@@ -64,7 +64,7 @@ public class TableroController implements Initializable {
 
         /* Infromacion del Jugador*/
         String jugadorActual = Turnos.getInstance().getJugadorActual();
-        String colorStyle = "-fx-background-color:"+ Constantes.colores.get(jugadorActual);
+        String colorStyle = "-fx-background-color:"+ Constantes.COLORES.get(jugadorActual);
         textoJugadorActual.setText(jugadorActual.toUpperCase());
         if(jugadorActual.equalsIgnoreCase("negro")) {
             colorStyle += ";-fx-text-fill: #fff";
@@ -77,7 +77,7 @@ public class TableroController implements Initializable {
         if (seteadorUnPaises()){
             try {
                 Turnos.getInstance().colocarFichas(paisDestino, fichas);
-                CargadorDeEscena.cargarEscena("/vistas/tablero.fxml");
+                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO);
             }catch (JugadorNoPoseePaisException e){
                 labelErrores.setText(paisDestino + " no es tuyo");
             }catch(JugadorNoTieneSuficientesFichasException e){
@@ -109,9 +109,9 @@ public class TableroController implements Initializable {
         try{
             Turnos.getInstance().finEtapa();
             if(Turnos.getInstance().devolverRondaActual() instanceof RondaGanador){
-                CargadorDeEscena.cargarEscena(Constantes.rutaGanador);
+                CargadorDeEscena.cargarEscena(Constantes.RUTA_GANADOR);
             }else{
-                CargadorDeEscena.cargarEscena(Constantes.rutaTablero);
+                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO);
             }
         }catch (JugadorSigueTeniendoFichasException e){
             labelErrores.setText("Seguis teniendo fichas para colocar");
@@ -130,7 +130,7 @@ public class TableroController implements Initializable {
                 labelErrores.setText("No podes agarrar una carta");
             }
         } catch (Exception e){
-            labelErrores.setText("OOps En esta ronda no podes agarrar la carta ");
+            labelErrores.setText("Oops En esta ronda no podes agarrar la carta ");
         }
     }
 
@@ -148,15 +148,15 @@ public class TableroController implements Initializable {
             insuficientesJugadores.setHeaderText("Error");
             insuficientesJugadores.setContentText("Debe ingresar un numero en la casilla de fichas");
             insuficientesJugadores.show();
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private boolean seteadorDosPaises(){
         fichasDisponibles.setText(Integer.toString(Turnos.getInstance().getFichas()));
 
-        if(!getContenidoInput()){
+        if(getContenidoInput()){
             return false;
         }
 
@@ -173,7 +173,7 @@ public class TableroController implements Initializable {
     private boolean seteadorUnPaises(){
         fichasDisponibles.setText(Integer.toString(Turnos.getInstance().getFichas()));
 
-        if(!getContenidoInput()){
+        if(getContenidoInput()){
             return false;
         }
 

@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="917.0" minWidth="1153.0" prefHeight="917.0" prefWidth="1153.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TableroController">
+<AnchorPane minHeight="917.0" minWidth="1153.0" prefHeight="917.0" prefWidth="1153.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TableroController">
     <children>
         <Label fx:id="textoTipoRonda" alignment="CENTER" layoutX="10.0" layoutY="8.0" prefHeight="45.0" prefWidth="490.0" style="-fx-background-color: #4CAF50;" text="Ronda de Reagrupacion" textAlignment="CENTER" textFill="WHITE">
             <font>
@@ -32,27 +25,27 @@
                </font></Label>
                 <Label alignment="CENTER" layoutX="1.0" layoutY="67.0" prefHeight="30.0" prefWidth="110.0" text="Fichas Disponibles" />
                 <Label fx:id="fichasDisponibles" alignment="CENTER" layoutX="3.0" layoutY="92.0" prefHeight="30.0" prefWidth="108.0" text="99" />
-                <Label fx:id="paisOrigenLabel" alignment="CENTER" layoutX="4.0" layoutY="125.0" prefHeight="30.0" prefWidth="110.0" text="Pais Origen" />
-                <Label fx:id="paisDestinoLabel" alignment="CENTER" layoutX="4.0" layoutY="185.0" prefHeight="30.0" prefWidth="110.0" text="Pais Destino" />
+                <Label alignment="CENTER" layoutX="4.0" layoutY="125.0" prefHeight="30.0" prefWidth="110.0" text="Pais Origen" />
+                <Label alignment="CENTER" layoutX="4.0" layoutY="185.0" prefHeight="30.0" prefWidth="110.0" text="Pais Destino" />
                 <TextField fx:id="inputCantFichas" layoutX="33.0" layoutY="286.0" prefHeight="30.0" prefWidth="50.0" />
-                <Label fx:id="numArmiesMovedLabel" alignment="CENTER" layoutX="3.0" layoutY="253.0" prefHeight="30.0" prefWidth="112.0" text="Cantidad de Fichas" />
-                <Button fx:id="botonAtaque" ellipsisString="" layoutX="21.0" layoutY="391.0" mnemonicParsing="false" onAction="#atacar" prefHeight="30.0" prefWidth="76.0" text="Atacar" />
+                <Label alignment="CENTER" layoutX="3.0" layoutY="253.0" prefHeight="30.0" prefWidth="112.0" text="Cantidad de Fichas" />
+                <Button ellipsisString="" layoutX="21.0" layoutY="391.0" mnemonicParsing="false" onAction="#atacar" prefHeight="30.0" prefWidth="76.0" text="Atacar" />
                 <Separator layoutX="-1.0" layoutY="125.0" prefWidth="118.0" />
                 <Separator layoutX="-1.0" layoutY="250.0" prefWidth="118.0" />
                 <Separator layoutX="-3.0" layoutY="520.0" prefWidth="118.0" />
                 <Separator layoutX="-1.0" layoutY="763.0" prefHeight="23.0" prefWidth="118.0" />
-                <Button fx:id="botonAyuda" layoutX="3.0" layoutY="818.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Ayuda" />
+                <Button fx:id="ayuda" layoutX="3.0" layoutY="818.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Ayuda" />
                 <Separator layoutX="-1.0" layoutY="-3.0" prefWidth="118.0" />
                 <Separator layoutX="-1.0" layoutY="887.0" prefHeight="3.0" prefWidth="118.0" />
-                <Button fx:id="botonAcercaDe" layoutX="3.0" layoutY="782.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Acerca de" />
+                <Button layoutX="3.0" layoutY="782.0" mnemonicParsing="false" onAction="#acercaDe" prefHeight="30.0" prefWidth="110.0" text="Acerca de" />
                 <Separator layoutX="-1.0" layoutY="66.0" prefWidth="118.0" />
-                <Button fx:id="botonPasarFichas" ellipsisString="" layoutX="21.0" layoutY="356.0" mnemonicParsing="false" onAction="#pasar" prefHeight="30.0" prefWidth="76.0" text="Pasar" />
-                <Button fx:id="botonColocar" ellipsisString="" layoutX="20.0" layoutY="321.0" onAction="#colocar" prefHeight="30.0" prefWidth="76.0" text="Colocar" />
-                <Button fx:id="botonObjetivo" layoutX="2.0" layoutY="432.0" mnemonicParsing="false" onAction="#mostrarObjetivo" prefHeight="25.0" prefWidth="112.0" text="Objetivo" />
-                <Button fx:id="botonCerrarJuego" layoutX="3.0" layoutY="853.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Cerrar" />
+                <Button ellipsisString="" layoutX="21.0" layoutY="356.0" mnemonicParsing="false" onAction="#pasar" prefHeight="30.0" prefWidth="76.0" text="Pasar" />
+                <Button ellipsisString="" layoutX="20.0" layoutY="321.0" onAction="#colocar" prefHeight="30.0" prefWidth="76.0" text="Colocar" />
+                <Button layoutX="2.0" layoutY="432.0" mnemonicParsing="false" onAction="#mostrarObjetivo" prefHeight="25.0" prefWidth="112.0" text="Objetivo" />
+                <Button fx:id="volverAlMenu" layoutX="3.0" layoutY="853.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Cerrar" />
                 <Separator layoutX="-1.0" layoutY="427.0" prefWidth="118.0" />
-                <Button fx:id="botonPedircarta" layoutX="2.0" layoutY="462.0" mnemonicParsing="false" onAction="#agarrarCarta" prefHeight="25.0" prefWidth="112.0" text="Pedir Carta" />
-                <Button fx:id="botonCartas" layoutX="2.0" layoutY="491.0" mnemonicParsing="false" onAction="#mostrarCartas" prefHeight="25.0" prefWidth="112.0" text="Cartas" />
+                <Button layoutX="2.0" layoutY="462.0" mnemonicParsing="false" onAction="#agarrarCarta" prefHeight="25.0" prefWidth="112.0" text="Pedir Carta" />
+                <Button layoutX="2.0" layoutY="491.0" mnemonicParsing="false" onAction="#mostrarCartas" prefHeight="25.0" prefWidth="112.0" text="Cartas" />
                 <TextField fx:id="inputPaisOrigen" layoutX="10.0" layoutY="155.0" prefHeight="25.0" prefWidth="98.0" />
                 <TextField fx:id="inputPaisDestino" layoutX="10.0" layoutY="216.0" prefHeight="25.0" prefWidth="98.0" />
             <Label fx:id="labelErrores" layoutX="2.0" layoutY="527.0" prefHeight="159.0" prefWidth="112.0" wrapText="true">

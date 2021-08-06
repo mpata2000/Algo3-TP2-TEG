@@ -36,7 +36,7 @@ public class AgregarJugadoresController {
 
         try{
             Turnos.getInstance().comenzarJuego(jugadoresValidos);
-            CargadorDeEscena.cargarEscena(Constantes.rutaTablero);
+            CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO);
         }catch(LimiteDeJugadoresException e) {
             Alert insuficientesJugadores = new Alert(Alert.AlertType.ERROR);
             insuficientesJugadores.setHeaderText("No hay suficientes jugadores");

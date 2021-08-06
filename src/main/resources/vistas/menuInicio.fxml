@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="edu.fiuba.algo3.controller.MenuInicioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.MenuInicioController">
    <children>
-      <Button layoutX="235.0" layoutY="125.0" onAction="#comenzarPartida" mnemonicParsing="false" text="Comenzar Partida" />
-      <Button layoutX="265.0" layoutY="239.0" mnemonicParsing="false" text="Ayuda" />
-      <Button layoutX="230.0" layoutY="181.0" mnemonicParsing="false" text="Acerca de Nosotros" />
+      <Button layoutX="235.0" layoutY="125.0" mnemonicParsing="false" onAction="#comenzarPartida" text="Comenzar Partida" />
+      <Button layoutX="265.0" layoutY="239.0" mnemonicParsing="false" onAction="#ayuda" text="Ayuda" />
+      <Button layoutX="253.0" layoutY="181.0" mnemonicParsing="false" onAction="#acercaDe" text="Acerca de " />
    </children>
 </AnchorPane>
