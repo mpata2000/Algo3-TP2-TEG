@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0"
-            prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            prefWidth="400.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="edu.fiuba.algo3.controller.MostrarCartasController">
    <Label fx:id="carta" layoutX="173.0" layoutY="127.0" prefHeight="146.0" prefWidth="255.0">
       <font>

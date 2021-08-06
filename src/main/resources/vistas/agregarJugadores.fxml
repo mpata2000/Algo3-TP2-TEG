@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="edu.fiuba.algo3.controller.AgregarJugadoresController">
     <CheckBox fx:id="rojo" layoutX="248.0" layoutY="66.0" mnemonicParsing="false" text="Jugador Rojo" textFill="#cc3311"
               textOverrun="WORD_ELLIPSIS"/>

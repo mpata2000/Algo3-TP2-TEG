@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="edu.fiuba.algo3.controller.MostrarObjetivoController">
    <Label fx:id="objetivo" alignment="TOP_LEFT" prefHeight="257.0" prefWidth="448.0" text="Label" wrapText="true">
       <font>

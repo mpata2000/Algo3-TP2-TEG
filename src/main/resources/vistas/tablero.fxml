@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane minHeight="917.0" minWidth="1153.0" prefHeight="917.0" prefWidth="1153.0"
-            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="edu.fiuba.algo3.controller.TableroController">
     <Label fx:id="textoTipoRonda" alignment="CENTER" layoutX="10.0" layoutY="8.0" prefHeight="45.0" prefWidth="490.0"
            style="-fx-background-color: #4CAF50;" text="Ronda de Reagrupacion" textAlignment="CENTER" textFill="WHITE">
