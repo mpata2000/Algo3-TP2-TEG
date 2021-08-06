@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="917.0" minWidth="1153.0" prefHeight="917.0" prefWidth="1153.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TableroController">
+<AnchorPane minHeight="917.0" minWidth="1153.0" prefHeight="917.0" prefWidth="1153.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TableroController">
     <Label fx:id="textoTipoRonda" alignment="CENTER" layoutX="10.0" layoutY="8.0" prefHeight="45.0" prefWidth="490.0" style="-fx-background-color: #4CAF50;" text="Ronda de Reagrupacion" textAlignment="CENTER" textFill="WHITE">
         <font>
             <Font size="20.0" />
@@ -48,24 +48,24 @@
         <Button layoutX="2.0" layoutY="491.0" mnemonicParsing="false" onAction="#mostrarCartas" prefHeight="25.0" prefWidth="112.0" text="Cartas" />
         <TextField fx:id="inputPaisOrigen" layoutX="10.0" layoutY="155.0" prefHeight="25.0" prefWidth="98.0" />
         <TextField fx:id="inputPaisDestino" layoutX="10.0" layoutY="216.0" prefHeight="25.0" prefWidth="98.0" />
-        <Label fx:id="labelErrores" layoutX="2.0" layoutY="527.0" prefHeight="159.0" prefWidth="112.0" textAlignment="JUSTIFY" wrapText="true">
+        <Label fx:id="labelErrores" layoutX="5.0" layoutY="567.0" prefHeight="106.0" prefWidth="108.0" textAlignment="JUSTIFY" wrapText="true">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
-      <HBox alignment="CENTER" layoutX="-1.0" layoutY="745.0" prefHeight="30.0" prefWidth="118.0">
+      <HBox alignment="CENTER" layoutX="-1.0" layoutY="709.0" prefHeight="66.0" prefWidth="118.0">
          <children>
-              <Button mnemonicParsing="false" onAction="#backMusic" prefHeight="20.0" prefWidth="35.0" text="Back">
+              <Button mnemonicParsing="false" onAction="#backMusic" prefHeight="20.0" prefWidth="35.0" text="⏮">
                   <font>
                       <Font size="10.0" />
                   </font>
               </Button>
-              <Button mnemonicParsing="false" onAction="#playMusic" prefHeight="20.0" prefWidth="35.0" text="Play">
+              <Button mnemonicParsing="false" onAction="#playMusic" prefHeight="20.0" prefWidth="35.0" text="⏸▶">
                <font>
                   <Font size="10.0" />
                </font>
             </Button>
-              <Button mnemonicParsing="false" onAction="#skipMusic" prefHeight="20.0" prefWidth="35.0" text="Skip">
+              <Button mnemonicParsing="false" onAction="#skipMusic" prefHeight="20.0" prefWidth="35.0" text="⏭">
                <font>
                   <Font size="10.0" />
                </font>

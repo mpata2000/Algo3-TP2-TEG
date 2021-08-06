@@ -80,6 +80,7 @@ public class TableroController implements Initializable {
     }
 
     private void  mensajeError(String mensajeError){
+        labelErrores.setStyle("-fx-border-color: red");
         labelErrores.setText(mensajeError);
     }
 
@@ -201,9 +202,7 @@ public class TableroController implements Initializable {
             alertError("Se debe rellenar las casillas de pais origen, pais destino y un numero fichas","Error Input");
             return false;
         }
-        /*Arreglo el formato del texto*/
-        paisDestino = paisDestino.substring(0,1).toUpperCase() + paisDestino.substring(1).toLowerCase();
-        paisOrigen = paisOrigen.substring(0,1).toUpperCase() + paisOrigen.substring(1).toLowerCase();
+
         return true;
     }
 
@@ -218,8 +217,6 @@ public class TableroController implements Initializable {
             alertError("Se debe rellenar las casillas de pais destino y un numero fichas","Error Input");
             return false;
         }
-        /*Arreglo el formato del texto*/
-        paisOrigen = paisOrigen.substring(0,1).toUpperCase() + paisOrigen.substring(1).toLowerCase();
         return true;
     }
 

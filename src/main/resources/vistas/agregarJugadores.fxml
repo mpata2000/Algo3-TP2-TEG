@@ -67,17 +67,17 @@
           <Button mnemonicParsing="false" onAction="#jugar" prefHeight="25.0" prefWidth="50.0" text="Jugar" />
          <HBox alignment="CENTER" prefHeight="30.0" prefWidth="118.0">
             <children>
-               <Button mnemonicParsing="false" onAction="#backMusic" prefHeight="20.0" prefWidth="35.0" text="Back">
+               <Button mnemonicParsing="false" onAction="#backMusic" prefHeight="20.0" prefWidth="35.0" text="⏮">
                   <font>
                      <Font size="10.0" />
                   </font>
                </Button>
-               <Button mnemonicParsing="false" onAction="#playMusic" prefHeight="20.0" prefWidth="35.0" text="Play">
+               <Button mnemonicParsing="false" onAction="#playMusic" prefHeight="20.0" prefWidth="35.0" text="⏸▶">
                   <font>
                      <Font size="10.0" />
                   </font>
                </Button>
-               <Button mnemonicParsing="false" onAction="#skipMusic" prefHeight="20.0" prefWidth="35.0" text="Skip">
+               <Button mnemonicParsing="false" onAction="#skipMusic" prefHeight="20.0" prefWidth="35.0" text="⏭">
                   <font>
                      <Font size="10.0" />
                   </font>
