@@ -22,6 +22,10 @@ public class Turnos {
         return turnos;
     }
 
+    public static void reset(){
+        turnos = null;
+    }
+
     public Turnos() {
         this.teg = new Teg();
     }

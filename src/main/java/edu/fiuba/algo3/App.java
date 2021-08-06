@@ -1,19 +1,15 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.vistas.CargadorDeEscena;
 import edu.fiuba.algo3.vistas.Constantes;
 import javafx.application.Application;
 import javafx.application.HostServices;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Objects;
 
 /**
  * JavaFX App
@@ -21,7 +17,6 @@ import java.util.Objects;
 public class App extends Application {
 
     private static Stage stage;
-    private static Stage popup;
     private static App app;
 
     public static App getInstance(){
@@ -31,23 +26,11 @@ public class App extends Application {
         return app;
     }
 
-    public static Stage getPopUpStage(){
-        return popup;
-    }
 
     @Override
-    public void start(Stage stage) throws IOException {
-        App.popup = new Stage();
-
+    public void start(Stage stage){
         App.stage = stage;
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Constantes.MENU_INICIO)));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logoYetem.png"))));
-        stage.setResizable(false);
-        stage.setTitle("ALTEGO");
-        stage.centerOnScreen();
-        stage.show();
+        CargadorDeEscena.cargarEscena(Constantes.MENU_INICIO,stage,"ALTEGO");
 
     }
 
@@ -61,10 +44,25 @@ public class App extends Application {
 
     public void abrirReglas() throws URISyntaxException {
         URL url = getClass().getResource(Constantes.RUTA_REGLAS);
-        File file = new File(url.toURI());
+        assert url != null;
 
+        File file = new File(url.toURI());
         HostServices hostServices = App.getInstance().getHostServices();
         hostServices.showDocument(file.getAbsolutePath());
+    }
+
+    public static void acercaDe(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Acerca de...");
+        alert.setHeaderText("Acerca de la aplicacion");
+        String mensaje = "ALTEGO es un juego que recrea al juego de mesa Teg en Java, creado para el TP2 de Algoritmos 3\n\n" +
+                " Integrantes: \n" +
+                "\t\t\t> Martin Pata Fraile de Manerola \n" +
+                "\t\t\t> Andrés Tomás Kübler \n" +
+                "\t\t\t> Sofía Marchesini\n" +
+                "\t\t\t> Santiago Vaccarelli";
+        alert.setContentText(mensaje);
+        alert.show();
     }
 
 }

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controller;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.Turnos;
 import edu.fiuba.algo3.vistas.CargadorDeEscena;
 import edu.fiuba.algo3.vistas.Constantes;
@@ -27,6 +28,6 @@ public class GanadorController implements Initializable {
     }
 
     public void cerrar(){
-        CargadorDeEscena.cargarEscena("/vistas/menuInicio.fxml");
+        CargadorDeEscena.cargarEscena(Constantes.MENU_INICIO, App.devolverEscena(),"ALTEGO");
     }
 }

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controller;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.Turnos;
 import edu.fiuba.algo3.modelo.rondas.JugadorSigueTeniendoFichasException;
 import edu.fiuba.algo3.modelo.rondas.NoSePuedeHacerEstaAccionEnEstaRondaException;
@@ -9,10 +10,12 @@ import edu.fiuba.algo3.modelo.tablero.JugadorNoTieneSuficientesFichasException;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.vistas.CargadorDeEscena;
 import edu.fiuba.algo3.vistas.Constantes;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -73,11 +76,18 @@ public class TableroController implements Initializable {
         textoJugadorActual.setStyle(colorStyle);
     }
 
+    private void alertError(String mensajeError, String header){
+        Alert insuficientesJugadores = new Alert(Alert.AlertType.ERROR);
+        insuficientesJugadores.setHeaderText(header);
+        insuficientesJugadores.setContentText(mensajeError);
+        insuficientesJugadores.show();
+    }
+
     public void colocar() {
         if (seteadorUnPaises()){
             try {
                 Turnos.getInstance().colocarFichas(paisDestino, fichas);
-                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO);
+                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO,App.devolverEscena(),"ALTEGO");
             }catch (JugadorNoPoseePaisException e){
                 labelErrores.setText(paisDestino + " no es tuyo");
             }catch(JugadorNoTieneSuficientesFichasException e){
@@ -92,7 +102,7 @@ public class TableroController implements Initializable {
     public void atacar(){
         if(seteadorDosPaises()) {
             Turnos.getInstance().atacarACon(paisOrigen, paisDestino, fichas);
-            CargadorDeEscena.cargarEscena("/vistas/tablero.fxml");
+            CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO,App.devolverEscena(),"ALTEGO");
         }
     }
 
@@ -101,7 +111,7 @@ public class TableroController implements Initializable {
         if(seteadorDosPaises()) {
 
             Turnos.getInstance().pasarFichas(paisOrigen, paisDestino, fichas);
-            CargadorDeEscena.cargarEscena("/vistas/tablero.fxml");
+            CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO,App.devolverEscena(),"ALTEGO");
         }
     }
 
@@ -109,9 +119,9 @@ public class TableroController implements Initializable {
         try{
             Turnos.getInstance().finEtapa();
             if(Turnos.getInstance().devolverRondaActual() instanceof RondaGanador){
-                CargadorDeEscena.cargarEscena(Constantes.RUTA_GANADOR);
+                CargadorDeEscena.cargarEscena(Constantes.RUTA_GANADOR,App.devolverEscena(),"ALTEGO");
             }else{
-                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO);
+                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO,App.devolverEscena(),"ALTEGO");
             }
         }catch (JugadorSigueTeniendoFichasException e){
             labelErrores.setText("Seguis teniendo fichas para colocar");
@@ -119,7 +129,7 @@ public class TableroController implements Initializable {
     }
 
     public void mostrarObjetivo(){
-        CargadorDeEscena.cargarPopEscena("/vistas/mostrarObjetivo.fxml","Objetivo");
+        CargadorDeEscena.cargarEscena(Constantes.RUTA_OBJETIVO,new Stage(),"Objetivo");
     }
 
     public void agarrarCarta(){
@@ -135,7 +145,7 @@ public class TableroController implements Initializable {
     }
 
     public void mostrarCartas(){
-        CargadorDeEscena.cargarPopEscena("/vistas/mostrarCartas.fxml","Cartas");
+        CargadorDeEscena.cargarEscena("/vistas/mostrarCartas.fxml",new Stage(),"Cartas");
     }
 
     private boolean getContenidoInput(){
@@ -144,10 +154,7 @@ public class TableroController implements Initializable {
             this.paisDestino = inputPaisDestino.getText();
             this.paisOrigen = inputPaisOrigen.getText();
         }catch(NumberFormatException e){
-            Alert insuficientesJugadores = new Alert(Alert.AlertType.ERROR);
-            insuficientesJugadores.setHeaderText("Error");
-            insuficientesJugadores.setContentText("Debe ingresar un numero en la casilla de fichas");
-            insuficientesJugadores.show();
+            alertError("Debe ingresar un numero en la casilla de fichas","Error Input");
             return true;
         }
         return false;
@@ -161,10 +168,7 @@ public class TableroController implements Initializable {
         }
 
         if( paisOrigen == null || paisDestino == null || paisOrigen.isBlank() || paisDestino.isBlank() || fichas == 0){
-            Alert insuficientesJugadores = new Alert(Alert.AlertType.ERROR);
-            insuficientesJugadores.setHeaderText("Error");
-            insuficientesJugadores.setContentText("Se debe rellenar las casillas de pais origen, pais destino y un numero fichas");
-            insuficientesJugadores.show();
+            alertError("Se debe rellenar las casillas de pais origen, pais destino y un numero fichas","Error Input");
             return false;
         }
         return true;
@@ -178,14 +182,27 @@ public class TableroController implements Initializable {
         }
 
         if(paisDestino == null || paisDestino.isBlank() || fichas == 0){
-            Alert insuficientesJugadores = new Alert(Alert.AlertType.ERROR);
-            insuficientesJugadores.setHeaderText("Error");
-            insuficientesJugadores.setContentText("Se debe rellenar las casillas de pais destino y un numero fichas");
-            insuficientesJugadores.show();
+            alertError("Se debe rellenar las casillas de pais destino y un numero fichas","Error Input");
             return false;
         }
         return true;
     }
 
 
+    public void acercaDe() {
+        App.acercaDe();
+    }
+
+    public void volverAMenu() {
+        Turnos.reset();
+        CargadorDeEscena.cargarEscena(Constantes.MENU_INICIO,App.devolverEscena(),"ALTEGO");
+    }
+
+    public void ayuda() {
+        try {
+            App.getInstance().abrirReglas();
+        }catch(Exception e){
+
+        }
+    }
 }

@@ -21,7 +21,7 @@ public class MenuInicioController implements Initializable {
     }
 
     public void comenzarPartida() {
-        CargadorDeEscena.cargarEscena(Constantes.RUTA_AGREGAR_JUGADOR);
+        CargadorDeEscena.cargarEscena(Constantes.RUTA_AGREGAR_JUGADOR, App.devolverEscena(),"ALTEGO");
     }
 
     public void ayuda(){
@@ -34,5 +34,6 @@ public class MenuInicioController implements Initializable {
 
 
     public void acercaDe() {
+        App.acercaDe();
     }
 }

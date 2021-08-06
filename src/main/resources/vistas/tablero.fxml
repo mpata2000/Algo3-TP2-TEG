@@ -34,7 +34,7 @@
                 <Separator layoutX="-1.0" layoutY="250.0" prefWidth="118.0" />
                 <Separator layoutX="-3.0" layoutY="520.0" prefWidth="118.0" />
                 <Separator layoutX="-1.0" layoutY="763.0" prefHeight="23.0" prefWidth="118.0" />
-                <Button fx:id="ayuda" layoutX="3.0" layoutY="818.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Ayuda" />
+                <Button layoutX="3.0" layoutY="818.0" mnemonicParsing="false" onAction="#ayuda" prefHeight="30.0" prefWidth="110.0" text="Ayuda" />
                 <Separator layoutX="-1.0" layoutY="-3.0" prefWidth="118.0" />
                 <Separator layoutX="-1.0" layoutY="887.0" prefHeight="3.0" prefWidth="118.0" />
                 <Button layoutX="3.0" layoutY="782.0" mnemonicParsing="false" onAction="#acercaDe" prefHeight="30.0" prefWidth="110.0" text="Acerca de" />
@@ -42,7 +42,7 @@
                 <Button ellipsisString="" layoutX="21.0" layoutY="356.0" mnemonicParsing="false" onAction="#pasar" prefHeight="30.0" prefWidth="76.0" text="Pasar" />
                 <Button ellipsisString="" layoutX="20.0" layoutY="321.0" onAction="#colocar" prefHeight="30.0" prefWidth="76.0" text="Colocar" />
                 <Button layoutX="2.0" layoutY="432.0" mnemonicParsing="false" onAction="#mostrarObjetivo" prefHeight="25.0" prefWidth="112.0" text="Objetivo" />
-                <Button fx:id="volverAlMenu" layoutX="3.0" layoutY="853.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Cerrar" />
+                <Button layoutX="3.0" layoutY="853.0" mnemonicParsing="false" onAction="#volverAMenu" prefHeight="30.0" prefWidth="110.0" text="Cerrar" />
                 <Separator layoutX="-1.0" layoutY="427.0" prefWidth="118.0" />
                 <Button layoutX="2.0" layoutY="462.0" mnemonicParsing="false" onAction="#agarrarCarta" prefHeight="25.0" prefWidth="112.0" text="Pedir Carta" />
                 <Button layoutX="2.0" layoutY="491.0" mnemonicParsing="false" onAction="#mostrarCartas" prefHeight="25.0" prefWidth="112.0" text="Cartas" />
