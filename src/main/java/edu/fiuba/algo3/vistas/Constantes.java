@@ -11,11 +11,11 @@ public class Constantes {
     private static Map<String, String> initMap() {
         HashMap<String, String> colores = new HashMap();
         colores.put("negro", "#000000");
-        colores.put("amarillo", "#ee7733");
+        colores.put("amarillo", "#FFE100");
         colores.put("azul", "#4169e1");
         colores.put("rojo", "#cc3311");
-        colores.put("magenta", "#ee3377");
-        colores.put("verde", "#009988");
+        colores.put("magenta", "#ff00ff");
+        colores.put("verde", "#018047");
 
         return Collections.unmodifiableMap(colores);
     }

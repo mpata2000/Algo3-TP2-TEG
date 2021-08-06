@@ -60,6 +60,8 @@ public class TableroController implements Initializable {
         /*Infromacion de Paises por continente del Jugador*/
         textPaisesPorContinente.getItems().addAll(Turnos.getInstance().getPaisesPorContinentes());
 
+
+
         /* Infromacion del Jugador*/
         String jugadorActual = Turnos.getInstance().getJugadorActual();
         String colorStyle = "-fx-background-color:"+ Constantes.colores.get(jugadorActual);
@@ -97,6 +99,7 @@ public class TableroController implements Initializable {
 
     public void pasar(){
         if(seteadorDosPaises()) {
+
             Turnos.getInstance().pasarFichas(paisOrigen, paisDestino, fichas);
             CargadorDeEscena.cargarEscena("/vistas/tablero.fxml");
         }
@@ -183,5 +186,6 @@ public class TableroController implements Initializable {
         }
         return true;
     }
+
 
 }

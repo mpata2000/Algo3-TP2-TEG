@@ -6,10 +6,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="edu.fiuba.algo3.controller.AgregarJugadoresController">
    <children>
-      <CheckBox fx:id="rojo" layoutX="248.0" layoutY="66.0" mnemonicParsing="false" text="Jugador Rojo" textFill="#e41212" textOverrun="WORD_ELLIPSIS" />
-      <CheckBox fx:id="verde" layoutX="248.0" layoutY="99.0" mnemonicParsing="false" text="Jugador Verde" textFill="#42b15c" />
-      <CheckBox fx:id="amarillo" layoutX="248.0" layoutY="191.0" mnemonicParsing="false" text="Jugador Amarillo" textFill="#ccbc6b" />
-      <CheckBox fx:id="magenta" layoutX="248.0" layoutY="159.0" mnemonicParsing="false" text="Jugador Magenta" textFill="#d02b83" />
+      <CheckBox fx:id="rojo" layoutX="248.0" layoutY="66.0" mnemonicParsing="false" text="Jugador Rojo" textFill="#cc3311" textOverrun="WORD_ELLIPSIS" />
+      <CheckBox fx:id="verde" layoutX="248.0" layoutY="99.0" mnemonicParsing="false" text="Jugador Verde" textFill="#018047" />
+      <CheckBox fx:id="amarillo" layoutX="248.0" layoutY="191.0" mnemonicParsing="false" text="Jugador Amarillo" textFill="#FFE100" />
+      <CheckBox fx:id="magenta" layoutX="248.0" layoutY="159.0" mnemonicParsing="false" text="Jugador Magenta" textFill="#ff00ff" />
       <CheckBox fx:id="azul" layoutX="248.0" layoutY="130.0" mnemonicParsing="false" text="Jugador Azul" textFill="#3a58ed" />
       <CheckBox fx:id="negro" layoutX="248.0" layoutY="223.0" mnemonicParsing="false" text="Jugador Negro" />
       <Button layoutX="269.0" layoutY="281.0" mnemonicParsing="false" onAction="#jugar" text="Jugar" />
