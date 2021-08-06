@@ -12,6 +12,6 @@
          </image></ImageView>
       <Button layoutX="185.0" layoutY="128.0" mnemonicParsing="false" onAction="#comenzarPartida" prefHeight="78.0" prefWidth="211.0" text="Comenzar Partida" />
       <Button layoutX="266.0" layoutY="304.0" mnemonicParsing="false" text="Ayuda" />
-      <Button layoutX="231.0" layoutY="240.0" mnemonicParsing="false" text="Acerca de Nosotros" />
+      <Button layoutX="231.0" layoutY="240.0" mnemonicParsing="false" text="Acerca de Nosotros"/>
    </children>
 </AnchorPane>
