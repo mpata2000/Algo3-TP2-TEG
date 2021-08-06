@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.LimiteDeJugadoresException;
 import edu.fiuba.algo3.modelo.Turnos;
 import edu.fiuba.algo3.vistas.CargadorDeEscena;
 import edu.fiuba.algo3.vistas.Constantes;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
@@ -51,5 +52,14 @@ public class AgregarJugadoresController {
 
     public void volver() {
         CargadorDeEscena.cargarEscena(Constantes.MENU_INICIO,App.devolverEscena(),"ALTEGO");
+    }
+
+    public void backMusic(ActionEvent actionEvent) {
+    }
+
+    public void playMusic(ActionEvent actionEvent) {
+    }
+
+    public void skipMusic(ActionEvent actionEvent) {
     }
 }

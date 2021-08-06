@@ -3,6 +3,7 @@ package edu.fiuba.algo3.controller;
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.vistas.Constantes;
 import edu.fiuba.algo3.vistas.CargadorDeEscena;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -17,7 +18,7 @@ public class MenuInicioController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        bc.setStyle("-fx-background-image: url('../images/logoYetem.png')");
+
     }
 
     public void comenzarPartida() {
@@ -35,5 +36,18 @@ public class MenuInicioController implements Initializable {
 
     public void acercaDe() {
         App.acercaDe();
+    }
+
+    public void cerrar() {
+        App.devolverEscena().close();
+    }
+
+    public void backMusic(ActionEvent actionEvent) {
+    }
+
+    public void playMusic(ActionEvent actionEvent) {
+    }
+
+    public void skipMusic(ActionEvent actionEvent) {
     }
 }

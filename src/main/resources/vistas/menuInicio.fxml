@@ -1,17 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="bc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.MenuInicioController">
+<AnchorPane fx:id="bc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="edu.fiuba.algo3.controller.MenuInicioController">
    <ImageView fitHeight="466.0" fitWidth="740.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../images/10974679.jpg"/>
+      <Image url="@../images/10974679.jpg" />
    </ImageView>
-   <Button layoutX="185.0" layoutY="128.0" mnemonicParsing="false" onAction="#comenzarPartida" prefHeight="78.0"
-           prefWidth="211.0" text="Comenzar Partida"/>
-   <Button layoutX="266.0" layoutY="304.0" mnemonicParsing="false" onAction="#ayuda" text="Ayuda"/>
-   <Button layoutX="253.0" layoutY="240.0" mnemonicParsing="false" onAction="#acercaDe" text="Acerca de"/>
+   <VBox alignment="TOP_CENTER" layoutX="183.0" layoutY="153.0" prefHeight="214.0" prefWidth="234.0" spacing="15.0">
+      <children>
+         <Button mnemonicParsing="false" onAction="#comenzarPartida" prefHeight="78.0" prefWidth="211.0" text="Comenzar Partida" />
+         <Button mnemonicParsing="false" onAction="#acercaDe" text="Acerca de" />
+         <HBox alignment="CENTER" prefHeight="30.0" prefWidth="118.0">
+            <children>
+               <Button mnemonicParsing="false" onAction="#backMusic" prefHeight="20.0" prefWidth="35.0" text="Back">
+                  <font>
+                     <Font size="10.0" />
+                  </font>
+               </Button>
+               <Button mnemonicParsing="false" onAction="#playMusic" prefHeight="20.0" prefWidth="35.0" text="Play">
+                  <font>
+                     <Font size="10.0" />
+                  </font>
+               </Button>
+               <Button mnemonicParsing="false" onAction="#skipMusic" prefHeight="20.0" prefWidth="35.0" text="Skip">
+                  <font>
+                     <Font size="10.0" />
+                  </font>
+               </Button>
+            </children>
+         </HBox>
+         <Button mnemonicParsing="false" onAction="#ayuda" text="Ayuda" />
+         <Button mnemonicParsing="false" onAction="#cerrar" text="Cerrar" />
+      </children>
+   </VBox>
+   <VBox alignment="TOP_CENTER" layoutX="191.0" layoutY="31.0" prefHeight="115.0" prefWidth="219.0">
+      <children>
+         <Label text="Bienvenido" textFill="#000000">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Label>
+         <Label text="A" textFill="#000000">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label text="A.T.E.G.O" textFill="#000000">
+            <font>
+               <Font size="36.0" />
+            </font>
+         </Label>
+      </children>
+   </VBox>
 </AnchorPane>
