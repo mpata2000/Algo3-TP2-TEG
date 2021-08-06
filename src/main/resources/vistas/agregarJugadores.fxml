@@ -50,12 +50,12 @@
    </VBox>
    <VBox alignment="TOP_CENTER" layoutY="7.0" prefHeight="101.0" prefWidth="628.0">
       <children>
-         <Label text="A.L.T.E.G.O">
+         <Label text="A.L.T.E.G.O" textFill="#000000">
             <font>
                <Font size="24.0" />
             </font>
          </Label>
-         <Label text="Seleccione a los Jugadores">
+         <Label text="Seleccione a los Jugadores" textFill="#000000">
             <font>
                <Font size="36.0" />
             </font>
