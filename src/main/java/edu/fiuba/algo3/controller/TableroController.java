@@ -2,11 +2,8 @@ package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.Turnos;
-import edu.fiuba.algo3.modelo.excepciones.JugadorSigueTeniendoFichasException;
-import edu.fiuba.algo3.modelo.excepciones.NoSePuedeHacerEstaAccionEnEstaRondaException;
+import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.rondas.RondaGanador;
-import edu.fiuba.algo3.modelo.excepciones.JugadorNoPoseePaisException;
-import edu.fiuba.algo3.modelo.excepciones.JugadorNoTieneSuficientesFichasException;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.vistas.CargadorDeEscena;
 import edu.fiuba.algo3.vistas.Constantes;
