@@ -41,17 +41,7 @@ public class Continente {
         }
     }
 
-    public String obtenerInfo(){
-        String info = this.nombreContinente;
-
-        for(Pais pais: this.paises){
-            info = info.concat(pais.paisToString());
-        }
-
-        return info;
-    }
-
     public String paisesDeJugador(Jugador jugador){
-        return (this.getNombre()+": "+this.cantidadPaisesDe(jugador)+"/"+this.paises.size()+"\n");
+        return (this.getNombre()+": "+this.cantidadPaisesDe(jugador)+"/"+this.paises.size());
     }
 }

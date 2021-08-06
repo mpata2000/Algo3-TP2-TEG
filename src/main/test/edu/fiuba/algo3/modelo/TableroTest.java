@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class TableroTest {
@@ -377,5 +376,41 @@ public class TableroTest {
 
         assertEquals(5,tablero.cantidadDePaisesJugadorEnContinente("A",jugadorUno));
         verify(continente,times(1)).cantidadPaisesDe(jugadorUno);
+    }
+
+    @Test
+    public void tableroDevuelveTodosLosPaisesDelJugador(){
+        paises.add(paisDefensor);
+        paises.add(paisAtacante);
+        paises.add(new Pais("A",new ArrayList<>()));
+        paises.add(new Pais("B",new ArrayList<>()));
+        paises.add(new Pais("C",new ArrayList<>()));
+        paises.add(new Pais("D",new ArrayList<>()));
+        paises.add(new Pais("E",new ArrayList<>()));
+        paises.add(new Pais("F",new ArrayList<>()));
+        paises.add(new Pais("G",new ArrayList<>()));
+        paises.add(new Pais("H",new ArrayList<>()));
+
+        for (Pais pais: paises){
+            pais.asignarJugador(jugadorUno);
+        }
+
+        Tablero tablero = new Tablero(new ArrayList<>(), paises);
+
+
+        assertEquals(10,tablero.getPaisesJugador(jugadorUno).size());
+        assertEquals(0,tablero.getPaisesEnemigos(jugadorUno).size());
+    }
+
+    @Test
+    public void tableroDevuelveLaCantidadDePaisesPorContinenteDelJugador(){
+        Continente continente = Mockito.mock(Continente.class);
+        when(continente.getNombre()).thenReturn("A");
+        when(continente.paisesDeJugador(jugadorUno)).thenReturn("OK");
+        when(continente.esDeJugador(jugadorUno)).thenReturn(false);
+        Tablero tablero = new Tablero(List.of(continente), paises);
+
+        assertEquals("OK",tablero.getPaisesPorContinentes(jugadorUno).get(0));
+        assertEquals(1,tablero.getPaisesPorContinentes(jugadorUno).size());
     }
 }

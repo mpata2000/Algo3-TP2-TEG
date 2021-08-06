@@ -13,7 +13,7 @@ public class RondaColocacion implements TipoRonda {
 
     @Override
     public String getNombre() {
-        return "Ronda de colocación";
+        return "Ronda de Colocacion";
     }
 
     public RondaColocacion(List<String> jugadores, Teg teg){

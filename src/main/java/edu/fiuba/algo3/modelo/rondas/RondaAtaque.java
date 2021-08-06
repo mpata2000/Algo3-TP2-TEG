@@ -18,7 +18,7 @@ public class RondaAtaque implements TipoRonda {
 
     @Override
     public String getNombre() {
-        return "Ronda de ataque";
+        return "Ronda de Ataque";
     }
 
     public void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){

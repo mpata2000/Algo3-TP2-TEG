@@ -19,19 +19,21 @@ public class PaisTest{
 
     @BeforeEach
     void setUp(){
-        jugadorUno = new Jugador("Julian");
-        jugadorDos = new Jugador("Sofia");
+        jugadorUno = new Jugador("Rojo");
+        jugadorDos = new Jugador("Amarillo");
         jugadorUno.agregarFichas(15);
         jugadorDos.agregarFichas(15);
     }
 
      @Test
-     public void colocacionDeEjercitoEnPaisTest(){
+     public void asignarPaisTest(){
          Pais paisMio = new Pais("Chile", List.of("Argentina","Peru"));
 
          paisMio.asignarJugador(jugadorUno);
 
-         assertEquals(paisMio.getJugador(),jugadorUno);
+         assertEquals(jugadorUno,paisMio.getJugador());
+         assertEquals(1,paisMio.getFichas());
+         assertEquals("ROJO",paisMio.getColorJugador());
      }
 
     @Test
@@ -80,6 +82,7 @@ public class PaisTest{
 
 
         assertEquals(3,pais.perderFichas(2));
+        assertEquals(3,pais.getFichas());
     }
 
 

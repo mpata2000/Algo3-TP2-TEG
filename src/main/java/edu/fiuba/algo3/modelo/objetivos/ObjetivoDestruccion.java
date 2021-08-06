@@ -29,7 +29,7 @@ public class ObjetivoDestruccion extends ObjetivoTeg{
     }
 
     public String textoObjetivo(){
-        return ("Destruir al equipo "+ jugadorADestruir.getColor());
+        return ("Destruir al jugador "+ jugadorADestruir.getColor());
     }
 
 }

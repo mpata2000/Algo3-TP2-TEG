@@ -17,9 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class TurnosTest {
 
@@ -43,8 +41,8 @@ public class TurnosTest {
         paisesAsia.add(new Pais("Rusia", List.of("Chile","Sumatra","Java","Borneo")));
         continentes.add(new Continente("Oceania",2,paisesOceania));
         continentes.add(new Continente("Asia",2,paisesAsia));
-        jugadores.put("Amarillo",new Jugador("Amarillo"));
-        jugadores.put("Rojo",new Jugador("Rojo"));
+        jugadores.put("AMARILLO",new Jugador("Amarillo"));
+        jugadores.put("ROJO",new Jugador("Rojo"));
         paises.addAll(paisesAsia);
         paises.addAll(paisesOceania);
         objetivoGana = Mockito.mock(ObjetivoTeg.class);
@@ -59,11 +57,11 @@ public class TurnosTest {
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
-        paisesAsia.get(0).asignarJugador(jugadores.get("Amarillo"));
+        paisesAsia.get(0).asignarJugador(jugadores.get("AMARILLO"));
 
         //La cantidad de fichas se calcula la primera vez que trata de poner fichas
         turnos.colocarFichas("China",0);
-        assertEquals(5,jugadores.get("Amarillo").sacarFichas(0));
+        assertEquals(5,jugadores.get("AMARILLO").sacarFichas(0));
     }
 
 
@@ -75,8 +73,8 @@ public class TurnosTest {
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
 
-        paisesAsia.get(0).asignarJugador(jugadores.get("Amarillo"));
-        paisesAsia.get(1).asignarJugador(jugadores.get("Rojo"));
+        paisesAsia.get(0).asignarJugador(jugadores.get("AMARILLO"));
+        paisesAsia.get(1).asignarJugador(jugadores.get("ROJO"));
 
 
         turnos.colocarFichas("China",5);
@@ -86,7 +84,7 @@ public class TurnosTest {
 
         //La cantidad de fichas se calcula la primera vez que trata de poner fichas
         turnos.colocarFichas("China",0);
-        assertEquals(3,jugadores.get("Amarillo").sacarFichas(0));
+        assertEquals(3,jugadores.get("AMARILLO").sacarFichas(0));
     }
 
     @Test
@@ -96,8 +94,8 @@ public class TurnosTest {
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
 
-        paisesAsia.get(0).asignarJugador(jugadores.get("Amarillo"));
-        paisesAsia.get(1).asignarJugador(jugadores.get("Rojo"));
+        paisesAsia.get(0).asignarJugador(jugadores.get("AMARILLO"));
+        paisesAsia.get(1).asignarJugador(jugadores.get("ROJO"));
 
 
         assertThrows(JugadorNoTieneSuficientesFichasException.class,()-> turnos.colocarFichas("China",7));
@@ -110,8 +108,8 @@ public class TurnosTest {
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
-        paisesAsia.get(0).asignarJugador(jugadores.get("Amarillo"));
-        paisesAsia.get(1).asignarJugador(jugadores.get("Rojo"));
+        paisesAsia.get(0).asignarJugador(jugadores.get("AMARILLO"));
+        paisesAsia.get(1).asignarJugador(jugadores.get("ROJO"));
         turnos.colocarFichas("China",5);
         turnos.finEtapa();
         turnos.colocarFichas("Japon",5);
@@ -127,25 +125,21 @@ public class TurnosTest {
     public void NoSePuedeComenzarJuegoCOn(){
 
         Turnos turnos = new Turnos();
-        turnos.agregarJugadores(List.of("Amarillo"));
-        assertThrows(LimiteDeJugadoresException.class, turnos::comenzarJuego);
+        List<String> list = List.of("Amarillo");
+        assertThrows(LimiteDeJugadoresException.class,()-> turnos.comenzarJuego(list));
     }
 
     @Test
     public void TurnosPuedeComenzarConDosJugadoresYArrancaEnRondaColocacion(){
-
         Turnos turnos = new Turnos();
-        turnos.agregarJugadores(List.of("Amarillo","Rojo"));
-        turnos.comenzarJuego();
+        turnos.comenzarJuego(List.of("Amarillo","Rojo"));
         assertTrue(turnos.devolverRondaActual() instanceof RondaColocacion);
     }
 
     @Test
     public void TurnoEnRondaDeColocacionNoSePuedeDarCarta(){
-
-        Turnos turnos = new Turnos();
-        turnos.agregarJugadores(List.of("Amarillo","Rojo"));
-        turnos.comenzarJuego();
+        Teg teg = Mockito.mock(Teg.class);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
         assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class, turnos :: darCartaPais);
     }
 
@@ -171,7 +165,7 @@ public class TurnosTest {
     public void NoSePuedeAgregarMasDeSeisJugadores(){
         List<String> list = List.of("Amarillo", "Rojo", "Verde", "Magenta","Negro","Azul","Celeste");
         Turnos turnos = new Turnos();
-        assertThrows(LimiteDeJugadoresException.class, ()->  turnos.agregarJugadores(list));
+        assertThrows(LimiteDeJugadoresException.class, ()->  turnos.comenzarJuego(list));
     }
 
     @Test
@@ -180,11 +174,11 @@ public class TurnosTest {
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
         for (Pais pais : paisesAsia){
-            pais.asignarJugador(jugadores.get("Amarillo"));
+            pais.asignarJugador(jugadores.get("AMARILLO"));
         }
 
         for (Pais pais : paisesOceania){
-            pais.asignarJugador(jugadores.get("Rojo"));
+            pais.asignarJugador(jugadores.get("ROJO"));
         }
 
         assertEquals("Amarillo",turnos.getJugadorActual());
@@ -213,19 +207,19 @@ public class TurnosTest {
 
     @Test
     public void ColocarEjercitos2Paises3jugadores(){
-        jugadores.put("Verde",new Jugador("Verde"));
+        jugadores.put("VERDE",new Jugador("Verde"));
         tablero = new Tablero(continentes,paises);
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo","Verde"));
 
         for (Pais pais : paisesAsia){
-            pais.asignarJugador(jugadores.get("Rojo"));
+            pais.asignarJugador(jugadores.get("ROJO"));
         }
 
-        (paisesOceania.get(0)).asignarJugador(jugadores.get("Amarillo"));
-        (paisesOceania.get(1)).asignarJugador(jugadores.get("Amarillo"));
-        (paisesOceania.get(2)).asignarJugador(jugadores.get("Verde"));
-        (paisesOceania.get(3)).asignarJugador(jugadores.get("Verde"));
+        (paisesOceania.get(0)).asignarJugador(jugadores.get("AMARILLO"));
+        (paisesOceania.get(1)).asignarJugador(jugadores.get("AMARILLO"));
+        (paisesOceania.get(2)).asignarJugador(jugadores.get("VERDE"));
+        (paisesOceania.get(3)).asignarJugador(jugadores.get("VERDE"));
 
         turnos.colocarFichas("Borneo",5);
         turnos.finEtapa();
@@ -241,7 +235,7 @@ public class TurnosTest {
         turnos.finEtapa();
 
         assertTrue(turnos.devolverRondaActual() instanceof RondaAtaque);
-        assertTrue(continentes.get(1).esDeJugador(jugadores.get("Rojo")));
+        assertTrue(continentes.get(1).esDeJugador(jugadores.get("ROJO")));
     }
 
 
@@ -286,8 +280,8 @@ public class TurnosTest {
         when(dados.compararDados(any(Dados.class))).thenReturn(conjunto);
         when(paisAtacante.getNombre()).thenReturn("Australia");
         when(paisAtacante.tirarDados(3)).thenReturn(dados);
-        when(paisAtacante.getJugador()).thenReturn(jugadores.get("Amarillo"));
-        when(paisAtacante.esDeJugador(jugadores.get("Amarillo"))).thenReturn(true);
+        when(paisAtacante.getJugador()).thenReturn(jugadores.get("AMARILLO"));
+        when(paisAtacante.esDeJugador(jugadores.get("AMARILLO"))).thenReturn(true);
         when(paisAtacante.esAdyacente(paisesOceania.get(0))).thenReturn(true);
         when(paisAtacante.esAdyacente(paisesOceania.get(3))).thenReturn(true);
 
@@ -295,11 +289,11 @@ public class TurnosTest {
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
 
-        paisAtacante.asignarJugador(jugadores.get("Amarillo"));
-        (paisesOceania.get(1)).asignarJugador(jugadores.get("Amarillo"));
-        (paisesAsia.get(0)).asignarJugador(jugadores.get("Rojo"));
-        (paisesOceania.get(0)).asignarJugador(jugadores.get("Rojo"));
-        (paisesOceania.get(3)).asignarJugador(jugadores.get("Rojo"));
+        paisAtacante.asignarJugador(jugadores.get("AMARILLO"));
+        (paisesOceania.get(1)).asignarJugador(jugadores.get("AMARILLO"));
+        (paisesAsia.get(0)).asignarJugador(jugadores.get("ROJO"));
+        (paisesOceania.get(0)).asignarJugador(jugadores.get("ROJO"));
+        (paisesOceania.get(3)).asignarJugador(jugadores.get("ROJO"));
 
         turnos.colocarFichas("Sumatra",5);
         turnos.finEtapa();
@@ -309,26 +303,26 @@ public class TurnosTest {
         turnos.finEtapa();
         turnos.colocarFichas("China",3);
         turnos.finEtapa();
-        jugadores.get("Amarillo").agregarFichas(2);
+        jugadores.get("AMARILLO").agregarFichas(2);
         turnos.atacarACon("Australia","Borneo",3);
         turnos.atacarACon("Australia","Java",3);
-        assertTrue((tablero.getPais("Borneo")).esDeJugador(jugadores.get("Amarillo")));
-        assertTrue((tablero.getPais("Java")).esDeJugador(jugadores.get("Amarillo")));
+        assertTrue((tablero.getPais("Borneo")).esDeJugador(jugadores.get("AMARILLO")));
+        assertTrue((tablero.getPais("Java")).esDeJugador(jugadores.get("AMARILLO")));
     }
 
     @Test
     public void reagruparDespuesDeAtacar(){
         tablero = new Tablero(continentes,paises);
-        jugadores.get("Amarillo").darObjetivo(objetivoPierde);
-        jugadores.get("Rojo").darObjetivo(objetivoPierde);
+        jugadores.get("AMARILLO").darObjetivo(objetivoPierde);
+        jugadores.get("ROJO").darObjetivo(objetivoPierde);
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
         for (Pais pais : paisesAsia){
-            pais.asignarJugador(jugadores.get("Amarillo"));
+            pais.asignarJugador(jugadores.get("AMARILLO"));
         }
 
         for (Pais pais : paisesOceania){
-            pais.asignarJugador(jugadores.get("Rojo"));
+            pais.asignarJugador(jugadores.get("ROJO"));
         }
 
         assertEquals("Amarillo",turnos.getJugadorActual());
@@ -366,16 +360,16 @@ public class TurnosTest {
     @Test
     public void TurnoEnRondaReagrupacionSePuedenPasarFichasCorrectamente(){
         tablero = new Tablero(continentes,paises);
-        jugadores.get("Amarillo").darObjetivo(objetivoPierde);
-        jugadores.get("Rojo").darObjetivo(objetivoPierde);
+        jugadores.get("AMARILLO").darObjetivo(objetivoPierde);
+        jugadores.get("ROJO").darObjetivo(objetivoPierde);
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
         for (Pais pais : paisesAsia){
-            pais.asignarJugador(jugadores.get("Rojo"));
+            pais.asignarJugador(jugadores.get("ROJO"));
         }
 
         for (Pais pais : paisesOceania){
-            pais.asignarJugador(jugadores.get("Amarillo"));
+            pais.asignarJugador(jugadores.get("AMARILLO"));
         }
 
         assertEquals("Amarillo",turnos.getJugadorActual());
@@ -459,5 +453,76 @@ public class TurnosTest {
 
         assertTrue(turnos.devolverRondaActual() instanceof RondaReagrupacion);
         assertFalse(turnos.darCartaPais());
+    }
+
+    @Test
+    public void TurnosDevuelveElObjetivoDelJugadorActual(){
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.textoObjetivo("Amarillo")).thenReturn("OK");
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals("OK", turnos.textoDeObjetivo());
+        verify(teg,times(1)).textoObjetivo("Amarillo");
+    }
+
+    @Test
+    public void TurnosDevuelveLasFichasJugadorActual(){
+        Teg teg = Mockito.mock(Teg.class);
+        when(teg.getFichas("Amarillo")).thenReturn(1);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals(1, turnos.getFichas());
+        verify(teg,times(1)).getFichas("Amarillo");
+    }
+
+    @Test
+    public void TurnosDevuelveLosPaisesPorContinenteDeJugadorActual(){
+        Teg teg = Mockito.mock(Teg.class);
+        List<String> list = List.of("A","B");
+        when(teg.getPaisesPorContinentes("Amarillo")).thenReturn(list);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals(list, turnos.getPaisesPorContinentes());
+        verify(teg,times(1)).getPaisesPorContinentes("Amarillo");
+    }
+
+
+    @Test
+    public void TurnosDevuelveLasCatasPaisDelJugadorActual(){
+        Teg teg = Mockito.mock(Teg.class);
+        List<String> list = List.of("A","B");
+        when(teg.getCartasJugador("Amarillo")).thenReturn(list);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals(list, turnos.getCartasJugador());
+        verify(teg,times(1)).getCartasJugador("Amarillo");
+    }
+
+    @Test
+    public void TurnosDevuelveLosPaisesDelJugadorActual(){
+        Teg teg = Mockito.mock(Teg.class);
+        List<Pais> list = List.of(new Pais("A",List.of("A")),new Pais("A",List.of("A")));
+        when(teg.getPaisesJugador("Amarillo")).thenReturn(list);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals(list, turnos.getPaisesJugador());
+        verify(teg,times(1)).getPaisesJugador("Amarillo");
+    }
+
+    @Test
+    public void TurnosDevuelveLosPaisesQueNoSonDelJugadorActual(){
+        Teg teg = Mockito.mock(Teg.class);
+        List<Pais> list = List.of(new Pais("A",List.of("A")),new Pais("A",List.of("A")));
+        when(teg.getPaisesEnemigos("Amarillo")).thenReturn(list);
+        Turnos turnos = new Turnos(teg,List.of("Amarillo","Rojo"));
+
+        assertEquals(list, turnos.getPaisesEnemigos());
+        verify(teg,times(1)).getPaisesEnemigos("Amarillo");
+    }
+
+    @Test
+    public void TurnosGetInstanceCreaunaSolaInstancia(){
+        Turnos turno = Turnos.getInstance();
+        assertEquals(turno, Turnos.getInstance());
     }
 }

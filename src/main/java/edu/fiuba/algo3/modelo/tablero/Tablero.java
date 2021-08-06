@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.ataque.Batalla;
 import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Tablero {
     private final Map<String, Continente> continentes = new HashMap<>();
@@ -11,16 +12,20 @@ public class Tablero {
 
     public Tablero(List<Continente> continentes, List<Pais> paises){
         for(Continente continente: continentes){
-            this.continentes.put(continente.getNombre(),continente);
+            this.continentes.put(continente.getNombre().toUpperCase(),continente);
         }
 
         for(Pais pais: paises){
-            this.paises.put(pais.getNombre(),pais);
+            this.paises.put(pais.getNombre().toUpperCase(),pais);
         }
     }
 
     public Pais getPais(String nombrePais) {
-        return this.paises.get(nombrePais);
+        return this.paises.get(nombrePais.toUpperCase());
+    }
+
+    private Continente getContinente(String nombreContinente) {
+        return this.continentes.get(nombreContinente.toUpperCase());
     }
 
     public Map<String, Continente> getContinentes() {
@@ -82,41 +87,28 @@ public class Tablero {
     }
 
     public int cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador) {
-        return this.continentes.get(continente).cantidadPaisesDe(jugador);
+        return getContinente(continente).cantidadPaisesDe(jugador);
     }
 
     public boolean continenteEsDeJugador(String continente, Jugador jugador) {
-        return this.continentes.get(continente).esDeJugador(jugador);
+        return getContinente(continente).esDeJugador(jugador);
     }
 
-    public String getPaisesJugador(String jugadorActual) {
-        String stringPaises="";
-        Iterator<Map.Entry<String, Pais>> it = paises.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, Pais> pair = it.next();
-            if(pair.getValue().getJugador().getColor()==jugadorActual) stringPaises += (pair.getKey()+": "+pair.getValue().perderFichas(0) +"\n");
+    public List<Pais> getPaisesJugador(Jugador jugador) {
+        return paises.values().stream().filter(pais -> pais.esDeJugador(jugador)).collect(Collectors.toList());
+    }
+
+    public List<String> getPaisesPorContinentes(Jugador jugador) {
+        ArrayList<String>paisesPorContinente = new ArrayList<>();
+
+        for(Continente continente: continentes.values()){
+            paisesPorContinente.add(continente.paisesDeJugador(jugador));
         }
-        return stringPaises;
+
+        return paisesPorContinente;
     }
 
-    public String getTodosLosPaises() {
-        String stringPaises="";
-        Iterator<Map.Entry<String, Pais>> it = paises.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, Pais> pair = it.next();
-            stringPaises += (pair.getKey()+": "+pair.getValue().perderFichas(0)+" "+pair.getValue().getJugador().getColor().toUpperCase()+"\n");
-        }
-        return stringPaises;
+    public List<Pais> getPaisesEnemigos(Jugador jugador) {
+        return paises.values().stream().filter(pais -> !pais.esDeJugador(jugador)).collect(Collectors.toList());
     }
-
-    public String getPaisesPorContinentes(Jugador jugador) {
-        String stringPaisesPorContinente="";
-        Iterator<Map.Entry<String, Continente>> it = continentes.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, Continente> pair = it.next();
-            stringPaisesPorContinente += (pair.getValue().paisesDeJugador(jugador));
-        }
-        return stringPaisesPorContinente;
-    }
-
 }

@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
 
-import edu.fiuba.algo3.modelo.rondas.LimiteDeJugadoresException;
 import edu.fiuba.algo3.modelo.rondas.RondaColocacion;
 import edu.fiuba.algo3.modelo.rondas.TipoRonda;
+import edu.fiuba.algo3.modelo.tablero.Pais;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,6 +22,10 @@ public class Turnos {
         return turnos;
     }
 
+    public static void reset(){
+        turnos = null;
+    }
+
     public Turnos() {
         this.teg = new Teg();
     }
@@ -32,29 +36,16 @@ public class Turnos {
         this.jugadores = jugadores;
     }
 
-    public Teg getTeg() {
-        return this.teg;
-    }
-
     public String getJugadorActual() {
         return this.tipoDeRonda.getJugadorActual();
-    }
-
-    /*
-     * Agrega los jugadores a una lista de strings
-     */
-    public void agregarJugadores(List<String> listaJugadores){
-        if(listaJugadores.size() > 6){
-            throw new LimiteDeJugadoresException();
-        }
-        this.jugadores.addAll(listaJugadores);
     }
 
     /*
      * Comienza el juego, elijiendo aleatoriamente el orden inicial
      * de los jugadores y creando una primera ronda de colocacion
      */
-    public void comenzarJuego(){
+    public void comenzarJuego(List<String> listaJugadores){
+        this.jugadores.addAll(listaJugadores);
         if(this.jugadores.size() < 2 || this.jugadores.size() > 6){
             throw new LimiteDeJugadoresException();
         }
@@ -113,24 +104,26 @@ public class Turnos {
     }
 
     public String textoDeObjetivo(){
-        return ((this.teg.getJugador(this.getJugadorActual())).devolverObjetivo().textoObjetivo());
+        return this.teg.textoObjetivo(tipoDeRonda.getJugadorActual());
     }
 
     public int getFichas(){return this.teg.getFichas(tipoDeRonda.getJugadorActual());}
 
-    public String paisesjugador() {
-        return this.teg.paisesJugador(tipoDeRonda.getJugadorActual());
-    }
-    public String getTodosLosPaises() {
-        return this.teg.getTodosLosPaises();
-    }
-
-    public String getPaisesPorContinente() {
+    public List<String> getPaisesPorContinentes() {
         return this.teg.getPaisesPorContinentes(tipoDeRonda.getJugadorActual());
     }
 
     public List<String> getCartasJugador() {
         return this.teg.getCartasJugador(tipoDeRonda.getJugadorActual());
+    }
+
+
+    public List<Pais> getPaisesJugador() {
+        return teg.getPaisesJugador(tipoDeRonda.getJugadorActual());
+    }
+
+    public List<Pais> getPaisesEnemigos() {
+        return teg.getPaisesEnemigos(tipoDeRonda.getJugadorActual());
     }
 }
 

@@ -23,7 +23,7 @@ public class TipoDeRondaTest {
     public void enRondaDeColocacionNoSePuedePasarFichas(){
         Teg teg = Mockito.mock(Teg.class);
         TipoRonda ronda = new RondaColocacion(List.of("A"),teg);
-
+        assertEquals("Ronda de Colocacion",ronda.getNombre());
         assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class,()-> ronda.pasarFichas(teg,"A","B",3));
     }
 
@@ -32,7 +32,7 @@ public class TipoDeRondaTest {
         List<String> list = List.of("A");
         TipoRonda ronda = new RondaReagrupacion(list.get(0), list);
         Teg teg = new Teg();
-
+        assertEquals("Ronda de Reagrupacion",ronda.getNombre());
         assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class,()-> ronda.atacarACon(teg,"A","B",3));
     }
 
@@ -74,6 +74,7 @@ public class TipoDeRondaTest {
         ronda = ronda.finEtapa(list,teg);
 
         assertTrue(ronda instanceof RondaAtaque);
+        assertEquals("Ronda de Ataque",ronda.getNombre());
         assertEquals("B",ronda.getJugadorActual());
     }
 
@@ -117,6 +118,7 @@ public class TipoDeRondaTest {
 
         ronda = ronda.finEtapa(list,teg);
         assertTrue(ronda instanceof RondaReagrupacion);
+        assertEquals("Ronda de Reagrupacion",ronda.getNombre());
         assertEquals("B",ronda.getJugadorActual());
     }
 
@@ -263,7 +265,7 @@ public class TipoDeRondaTest {
         List<String> list = List.of("A","B");
         TipoRonda ronda = new RondaGanador("A");
         Teg teg = new Teg();
-
+        assertEquals("Termino el juego",ronda.getNombre());
         assertThrows(NoSePuedeHacerEstaAccionEnEstaRondaException.class,()-> ronda.finEtapa(list,teg));
     }
 
