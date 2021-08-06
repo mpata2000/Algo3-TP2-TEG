@@ -28,6 +28,11 @@ public class GanadorController implements Initializable {
     }
 
     public void cerrar(){
+        App.devolverEscena().close();
+    }
+
+    public void volverMenu() {
+        Turnos.reset();
         CargadorDeEscena.cargarEscena(Constantes.MENU_INICIO, App.devolverEscena(),"ALTEGO");
     }
 }

@@ -54,12 +54,15 @@ public class AgregarJugadoresController {
         CargadorDeEscena.cargarEscena(Constantes.MENU_INICIO,App.devolverEscena(),"ALTEGO");
     }
 
-    public void backMusic(ActionEvent actionEvent) {
+    public void backMusic() {
+        ControladorDeAudio.getInstance().back();
     }
 
-    public void playMusic(ActionEvent actionEvent) {
+    public void playMusic() {
+        ControladorDeAudio.getInstance().play();
     }
 
-    public void skipMusic(ActionEvent actionEvent) {
+    public void skipMusic() {
+        ControladorDeAudio.getInstance().skip();
     }
 }

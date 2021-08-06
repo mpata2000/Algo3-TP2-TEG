@@ -6,6 +6,7 @@ import edu.fiuba.algo3.vistas.CargadorDeEscena;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -29,7 +30,11 @@ public class MenuInicioController implements Initializable {
         try{
             App.getInstance().abrirReglas();
         }catch(Exception e){
-
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Ayuda");
+            alert.setHeaderText("No se pudo abrir las reglas");
+            alert.setContentText("Ocurrio un error al intentar de abrir las relgas pdf.");
+            alert.show();
         }
     }
 
@@ -42,12 +47,15 @@ public class MenuInicioController implements Initializable {
         App.devolverEscena().close();
     }
 
-    public void backMusic(ActionEvent actionEvent) {
+    public void backMusic() {
+        ControladorDeAudio.getInstance().back();
     }
 
-    public void playMusic(ActionEvent actionEvent) {
+    public void playMusic() {
+        ControladorDeAudio.getInstance().play();
     }
 
-    public void skipMusic(ActionEvent actionEvent) {
+    public void skipMusic() {
+        ControladorDeAudio.getInstance().skip();
     }
 }
