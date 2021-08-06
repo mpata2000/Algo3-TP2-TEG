@@ -20,7 +20,8 @@ public class Constantes {
         return Collections.unmodifiableMap(colores);
     }
 
-    public static  String rutaTablero = "/vistas/tablero.fxml";
-    public static  String rutaAgregarJugador = "/vistas/agregarJugadores.fxml";
+    public static String rutaGanador = "/vistas/ganador.fxml";
+    public static String rutaTablero = "/vistas/tablero.fxml";
+    public static String rutaAgregarJugador = "/vistas/agregarJugadores.fxml";
 
 }

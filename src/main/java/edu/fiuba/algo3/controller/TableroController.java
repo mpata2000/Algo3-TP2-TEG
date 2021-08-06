@@ -3,6 +3,7 @@ package edu.fiuba.algo3.controller;
 import edu.fiuba.algo3.modelo.Turnos;
 import edu.fiuba.algo3.modelo.rondas.JugadorSigueTeniendoFichasException;
 import edu.fiuba.algo3.modelo.rondas.NoSePuedeHacerEstaAccionEnEstaRondaException;
+import edu.fiuba.algo3.modelo.rondas.RondaGanador;
 import edu.fiuba.algo3.modelo.tablero.JugadorNoPoseePaisException;
 import edu.fiuba.algo3.modelo.tablero.JugadorNoTieneSuficientesFichasException;
 import edu.fiuba.algo3.modelo.tablero.Pais;
@@ -104,7 +105,11 @@ public class TableroController implements Initializable {
     public void pasarTurno(){
         try{
             Turnos.getInstance().finEtapa();
-            CargadorDeEscena.cargarEscena("/vistas/tablero.fxml");
+            if(Turnos.getInstance().devolverRondaActual() instanceof RondaGanador){
+                CargadorDeEscena.cargarEscena(Constantes.rutaGanador);
+            }else{
+                CargadorDeEscena.cargarEscena(Constantes.rutaTablero);
+            }
         }catch (JugadorSigueTeniendoFichasException e){
             labelErrores.setText("Seguis teniendo fichas para colocar");
         }
