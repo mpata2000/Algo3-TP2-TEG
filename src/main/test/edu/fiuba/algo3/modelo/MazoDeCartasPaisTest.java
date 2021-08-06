@@ -17,8 +17,8 @@ import static org.mockito.Mockito.*;
 
 public class MazoDeCartasPaisTest {
 
-    ArrayList<Pais> paises = new ArrayList<>();
-    ArrayList<CartaPais> cartas = new ArrayList<>();
+    final ArrayList<Pais> paises = new ArrayList<>();
+    final ArrayList<CartaPais> cartas = new ArrayList<>();
     Tablero tablero;
 
     @BeforeEach

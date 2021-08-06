@@ -8,7 +8,7 @@ import java.util.ListIterator;
 
 public class RondaReagrupacion implements TipoRonda{
 
-    private ListIterator<String> iteradorJugadores;
+    private final ListIterator<String> iteradorJugadores;
     private String jugadorActual;
 
     public RondaReagrupacion(String jugadorActual,List<String> jugadores) {
@@ -22,7 +22,7 @@ public class RondaReagrupacion implements TipoRonda{
         return "Ronda de Reagrupacion";
     }
 
-    public void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
+    public boolean atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 

@@ -23,12 +23,14 @@ public class RondaAtaque implements TipoRonda {
         return "Ronda de Ataque";
     }
 
-    public void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
+    public boolean atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
         if(teg.atacarConA(jugadorActual,paisAtacante, paisDefensor, cantidad)){
             this.conquistoPais = true;
             this.paisAtcante = paisAtacante;
             this.paisConquistado = paisDefensor;
+            return true;
         }
+        return false;
     }
 
     public void pasarFichas(Teg teg, String paisOrigen, String paisDestino, int cant){

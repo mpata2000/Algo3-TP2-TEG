@@ -10,7 +10,7 @@ import java.util.ListIterator;
 public class RondaColocacion implements TipoRonda {
 
     private final ColocacionNormal tipoColocacion;
-    private ListIterator<String> iteradorJugadores;
+    private final ListIterator<String> iteradorJugadores;
     private String jugadorActual;
 
     @Override
@@ -38,7 +38,7 @@ public class RondaColocacion implements TipoRonda {
     }
 
 
-    public void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
+    public boolean atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 
