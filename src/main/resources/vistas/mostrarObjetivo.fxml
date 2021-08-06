@@ -7,17 +7,14 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.MostrarObjetivoController">
-   <children>
-      <Label fx:id="objetivo" alignment="TOP_LEFT" prefHeight="257.0" prefWidth="448.0" text="Label" wrapText="true">
-         <font>
-            <Font name="Times New Roman" size="18.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="46.0" prefWidth="396.0">
-         <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#volverAlTablero" text="Volver" />
-         </children>
-      </HBox>
-   </children>
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.fiuba.algo3.controller.MostrarObjetivoController">
+   <Label fx:id="objetivo" alignment="TOP_LEFT" prefHeight="257.0" prefWidth="448.0" text="Label" wrapText="true">
+      <font>
+         <Font name="Times New Roman" size="18.0"/>
+      </font>
+   </Label>
+   <HBox alignment="CENTER" prefHeight="46.0" prefWidth="396.0">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#volverAlTablero" text="Volver"/>
+   </HBox>
 </VBox>

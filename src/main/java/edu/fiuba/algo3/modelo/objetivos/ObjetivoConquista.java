@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ObjetivoConquista extends ObjetivoTeg{
-    Map <String,Integer> paisesPorContinente;
-    List<String> continentesAConquistar;
+    final Map <String,Integer> paisesPorContinente;
+    final List<String> continentesAConquistar;
 
     public ObjetivoConquista(List<String> continentes,Map<String,Integer> paisesPorContinente){
         this.continentesAConquistar = continentes;

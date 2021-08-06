@@ -8,7 +8,7 @@ import java.util.ListIterator;
 public class RondaColocacion implements TipoRonda {
 
     private final ColocacionNormal tipoColocacion;
-    private ListIterator<String> iteradorJugadores;
+    private final ListIterator<String> iteradorJugadores;
     private String jugadorActual;
 
     @Override

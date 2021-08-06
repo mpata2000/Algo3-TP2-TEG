@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ContinenteTest {
-    ArrayList<Pais> paises= new ArrayList<>();
+    final ArrayList<Pais> paises= new ArrayList<>();
     Jugador jugadorUno;
     Jugador jugadorDos;
     Continente continente;

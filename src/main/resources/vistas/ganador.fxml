@@ -4,22 +4,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.GanadorController">
-   <children>
-      <Label fx:id="ganador" layoutX="201.0" layoutY="242.0" prefHeight="66.0" prefWidth="144.0" text=" ">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
-      <Label layoutX="135.0" layoutY="74.0" prefHeight="115.0" prefWidth="356.0" text="¡Termino el juego!">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="184.0" layoutY="176.0" prefHeight="66.0" prefWidth="277.0" text="Gano el jugador:">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Button layoutX="248.0" layoutY="327.0" mnemonicParsing="false" onAction="#cerrar" text="Cerrar" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.fiuba.algo3.controller.GanadorController">
+    <Label fx:id="ganador" layoutX="201.0" layoutY="242.0" prefHeight="66.0" prefWidth="144.0" text=" ">
+        <font>
+          <Font size="24.0"/>
+        </font>
+    </Label>
+    <Label layoutX="135.0" layoutY="74.0" prefHeight="115.0" prefWidth="356.0" text="¡Termino el juego!">
+        <font>
+          <Font size="36.0"/>
+        </font>
+    </Label>
+    <Label layoutX="184.0" layoutY="176.0" prefHeight="66.0" prefWidth="277.0" text="Gano el jugador:">
+        <font>
+          <Font size="24.0"/>
+        </font>
+    </Label>
+    <Button layoutX="248.0" layoutY="327.0" mnemonicParsing="false" onAction="#cerrar" text="Cerrar"/>
 </AnchorPane>

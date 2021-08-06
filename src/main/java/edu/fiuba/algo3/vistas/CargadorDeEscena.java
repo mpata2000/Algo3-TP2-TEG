@@ -14,14 +14,12 @@ import java.util.Objects;
 
 public class CargadorDeEscena {
 
-    private static FXMLLoader loader;
-
     private  CargadorDeEscena() {
     }
 
     private static Parent cargarArchivo(String escena){
         URL root = App.class.getResource(escena);
-        loader = new FXMLLoader(root);
+        FXMLLoader loader = new FXMLLoader(root);
 
         Parent mainNode = null;
 

@@ -21,11 +21,11 @@ import static org.mockito.Mockito.*;
 
 public class TurnosTest {
 
-    ArrayList<Pais> paisesOceania= new ArrayList<>();
-    ArrayList<Pais> paises= new ArrayList<>();
-    ArrayList<Pais> paisesAsia= new ArrayList<>();
-    ArrayList<Continente> continentes= new ArrayList<>();
-    HashMap<String, Jugador> jugadores = new HashMap<>();
+    final ArrayList<Pais> paisesOceania= new ArrayList<>();
+    final ArrayList<Pais> paises= new ArrayList<>();
+    final ArrayList<Pais> paisesAsia= new ArrayList<>();
+    final ArrayList<Continente> continentes= new ArrayList<>();
+    final HashMap<String, Jugador> jugadores = new HashMap<>();
     Tablero tablero;
     ObjetivoTeg objetivoGana ;
     ObjetivoTeg objetivoPierde ;

@@ -4,15 +4,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.MostrarCartasController">
-   <children>
-      <Label fx:id="carta" layoutX="173.0" layoutY="127.0" prefHeight="146.0" prefWidth="255.0">
-         <font>
-            <Font size="60.0" />
-         </font>
-      </Label>
-      <Button fx:id="volver" layoutX="170.0" layoutY="311.0" mnemonicParsing="false" onAction="#volverAlTablero" text="Volver" />
-      <ListView fx:id="listaCartas" layoutX="23.0" layoutY="21.0" prefHeight="230.0" prefWidth="350.0" />
-      <Button fx:id="botonCanje" layoutX="157.0" layoutY="272.0" mnemonicParsing="false" onAction="#hacerCanje" text="Hacer Canje" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0"
+            prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.fiuba.algo3.controller.MostrarCartasController">
+   <Label fx:id="carta" layoutX="173.0" layoutY="127.0" prefHeight="146.0" prefWidth="255.0">
+      <font>
+         <Font size="60.0"/>
+      </font>
+   </Label>
+   <Button fx:id="volver" layoutX="170.0" layoutY="311.0" mnemonicParsing="false" onAction="#volverAlTablero"
+           text="Volver"/>
+   <ListView fx:id="listaCartas" layoutX="23.0" layoutY="21.0" prefHeight="230.0" prefWidth="350.0"/>
+   <Button fx:id="botonCanje" layoutX="157.0" layoutY="272.0" mnemonicParsing="false" onAction="#hacerCanje"
+           text="Hacer Canje"/>
 </AnchorPane>

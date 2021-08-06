@@ -7,7 +7,7 @@ import java.util.ListIterator;
 
 public class RondaReagrupacion implements TipoRonda{
 
-    private ListIterator<String> iteradorJugadores;
+    private final ListIterator<String> iteradorJugadores;
     private String jugadorActual;
 
     public RondaReagrupacion(String jugadorActual,List<String> jugadores) {

@@ -21,7 +21,7 @@ public class GanadorController implements Initializable {
         String color = Turnos.getInstance().getJugadorActual();
         StringBuilder style = new StringBuilder();
         if (color.equalsIgnoreCase("negro"))  style.append("-fx-text-fill:#fff;");
-        style.append("-fx-background-color:"+ Constantes.COLORES.get(color));
+        style.append("-fx-background-color:").append(Constantes.COLORES.get(color));
         ganador.setStyle(style.toString());
 
         ganador.setText(color.toUpperCase());

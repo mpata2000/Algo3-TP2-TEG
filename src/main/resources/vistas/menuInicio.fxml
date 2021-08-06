@@ -4,14 +4,14 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="bc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.MenuInicioController">
-   <children>
-      <ImageView fitHeight="466.0" fitWidth="740.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/10974679.jpg" />
-         </image></ImageView>
-      <Button layoutX="185.0" layoutY="128.0" mnemonicParsing="false" onAction="#comenzarPartida" prefHeight="78.0" prefWidth="211.0" text="Comenzar Partida" />
-      <Button layoutX="266.0" layoutY="304.0" mnemonicParsing="false" onAction="#ayuda" text="Ayuda" />
-      <Button layoutX="253.0" layoutY="240.0" mnemonicParsing="false" onAction="#acercaDe" text="Acerca de" />
-   </children>
+<AnchorPane fx:id="bc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.MenuInicioController">
+   <ImageView fitHeight="466.0" fitWidth="740.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/10974679.jpg"/>
+   </ImageView>
+   <Button layoutX="185.0" layoutY="128.0" mnemonicParsing="false" onAction="#comenzarPartida" prefHeight="78.0"
+           prefWidth="211.0" text="Comenzar Partida"/>
+   <Button layoutX="266.0" layoutY="304.0" mnemonicParsing="false" onAction="#ayuda" text="Ayuda"/>
+   <Button layoutX="253.0" layoutY="240.0" mnemonicParsing="false" onAction="#acercaDe" text="Acerca de"/>
 </AnchorPane>

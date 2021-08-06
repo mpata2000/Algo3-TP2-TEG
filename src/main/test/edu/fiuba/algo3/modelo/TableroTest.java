@@ -22,12 +22,12 @@ import static org.mockito.Mockito.*;
 
 public class TableroTest {
 
-    Map<String, Jugador> jugadores = new HashMap<>();
+    final Map<String, Jugador> jugadores = new HashMap<>();
     Jugador jugadorUno;
     Jugador jugadorDos;
     Pais paisDefensor;
     Pais paisAtacante;
-    ArrayList<Pais> paises = new ArrayList<>();
+    final ArrayList<Pais> paises = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
