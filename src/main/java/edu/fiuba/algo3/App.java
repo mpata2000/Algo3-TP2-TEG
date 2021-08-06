@@ -1,5 +1,6 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.controller.ControladorDeAudio;
 import edu.fiuba.algo3.vistas.CargadorDeEscena;
 import edu.fiuba.algo3.vistas.Constantes;
 import javafx.application.Application;
@@ -31,7 +32,7 @@ public class App extends Application {
     public void start(Stage stage){
         App.stage = stage;
         CargadorDeEscena.cargarEscena(Constantes.MENU_INICIO,stage,"ALTEGO");
-
+        ControladorDeAudio.getInstance();
     }
 
     public static Stage devolverEscena(){
