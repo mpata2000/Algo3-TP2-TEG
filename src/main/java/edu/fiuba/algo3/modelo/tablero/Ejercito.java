@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.modelo.tablero;
 
-import edu.fiuba.algo3.modelo.ataque.EjercitoConUnaFichaNoPuedeAtacarException;
-import edu.fiuba.algo3.modelo.ataque.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
+import edu.fiuba.algo3.modelo.excepciones.EjercitoConUnaFichaNoPuedeAtacarException;
+import edu.fiuba.algo3.modelo.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
 import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.excepciones.PaisSinSuficientesFichasParaPasarException;
 
 public class Ejercito {
     private int cantidadFichas;

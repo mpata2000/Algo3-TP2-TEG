@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.tablero.JugadorNoPoseePaisException;
-import edu.fiuba.algo3.modelo.tablero.PaisNoEsLimitrofeException;
-import edu.fiuba.algo3.modelo.tablero.PaisSinSuficientesFichasParaPasarException;
+import edu.fiuba.algo3.modelo.excepciones.JugadorNoPoseePaisException;
+import edu.fiuba.algo3.modelo.excepciones.PaisNoEsLimitrofeException;
+import edu.fiuba.algo3.modelo.excepciones.PaisSinSuficientesFichasParaPasarException;
 import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 import org.junit.jupiter.api.BeforeEach;

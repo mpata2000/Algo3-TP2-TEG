@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.ataque.EjercitoConUnaFichaNoPuedeAtacarException;
-import edu.fiuba.algo3.modelo.ataque.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
+import edu.fiuba.algo3.modelo.excepciones.EjercitoConUnaFichaNoPuedeAtacarException;
+import edu.fiuba.algo3.modelo.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
 import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.tablero.Ejercito;
 import org.junit.jupiter.api.Test;
