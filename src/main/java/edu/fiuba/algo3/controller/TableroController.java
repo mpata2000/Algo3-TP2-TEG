@@ -2,15 +2,15 @@ package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.Turnos;
+import edu.fiuba.algo3.modelo.ataque.AtaqueNoValidoException;
+import edu.fiuba.algo3.modelo.ataque.EjercitoConUnaFichaNoPuedeAtacarException;
+import edu.fiuba.algo3.modelo.ataque.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
 import edu.fiuba.algo3.modelo.rondas.JugadorSigueTeniendoFichasException;
 import edu.fiuba.algo3.modelo.rondas.NoSePuedeHacerEstaAccionEnEstaRondaException;
 import edu.fiuba.algo3.modelo.rondas.RondaGanador;
-import edu.fiuba.algo3.modelo.tablero.JugadorNoPoseePaisException;
-import edu.fiuba.algo3.modelo.tablero.JugadorNoTieneSuficientesFichasException;
-import edu.fiuba.algo3.modelo.tablero.Pais;
+import edu.fiuba.algo3.modelo.tablero.*;
 import edu.fiuba.algo3.vistas.CargadorDeEscena;
 import edu.fiuba.algo3.vistas.Constantes;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -31,10 +31,10 @@ public class TableroController implements Initializable {
     public Label labelErrores;
     public Label fichasDisponibles;
     public ListView<String> textPaisesPorContinente;
-    public TableView paisesJugador;
+    public TableView<Pais> paisesJugador;
     public TableColumn<Pais,String> nombrePaisJugador;
     public TableColumn<Pais,String> fichasPaisJugador;
-    public TableView paisesEnemigo;
+    public TableView<Pais> paisesEnemigo;
     public TableColumn<Pais,String> nombrePaisEnemigo;
     public TableColumn<Pais,String> fichasPaisEnemigo;
     public TableColumn<Pais,String> jugadorEnemigo;
@@ -50,14 +50,14 @@ public class TableroController implements Initializable {
         textoTipoRonda.setText(Turnos.getInstance().devolverRondaActual().getNombre());
 
         /* Infromacion de tablero Paises Jugador*/
-        nombrePaisJugador.setCellValueFactory(new PropertyValueFactory<Pais, String>("nombre"));
-        fichasPaisJugador.setCellValueFactory(new PropertyValueFactory<Pais, String>("fichas"));
+        nombrePaisJugador.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        fichasPaisJugador.setCellValueFactory(new PropertyValueFactory<>("fichas"));
         paisesJugador.getItems().setAll(Turnos.getInstance().getPaisesJugador());
 
         /* Infromacion de tablero Paises enemigos*/
-        nombrePaisEnemigo.setCellValueFactory(new PropertyValueFactory<Pais, String>("nombre"));
-        fichasPaisEnemigo.setCellValueFactory(new PropertyValueFactory<Pais, String>("fichas"));
-        jugadorEnemigo.setCellValueFactory(new PropertyValueFactory<Pais, String>("colorJugador"));
+        nombrePaisEnemigo.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        fichasPaisEnemigo.setCellValueFactory(new PropertyValueFactory<>("fichas"));
+        jugadorEnemigo.setCellValueFactory(new PropertyValueFactory<>("colorJugador"));
         paisesEnemigo.getItems().setAll(Turnos.getInstance().getPaisesEnemigos());
 
         /*Infromacion de Paises por continente del Jugador*/
@@ -83,17 +83,21 @@ public class TableroController implements Initializable {
         insuficientesJugadores.show();
     }
 
+    private void  mensajeError(String mensajeError){
+        labelErrores.setText(mensajeError);
+    }
+
     public void colocar() {
         if (seteadorUnPaises()){
             try {
                 Turnos.getInstance().colocarFichas(paisDestino, fichas);
-                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO,App.devolverEscena(),"ALTEGO");
+                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO,App.devolverEscena(),"");
             }catch (JugadorNoPoseePaisException e){
-                labelErrores.setText(paisDestino + " no es tuyo");
+                mensajeError(paisDestino + " no es tuyo");
             }catch(JugadorNoTieneSuficientesFichasException e){
-                labelErrores.setText("No tenes " + fichas + " disponibles");
+                mensajeError("No tenes " + fichas + " disponibles");
             }catch (NoSePuedeHacerEstaAccionEnEstaRondaException e){
-                labelErrores.setText("No se puede colocar en " + Turnos.getInstance().devolverRondaActual().getNombre());
+                mensajeError("No se puede colocar en " + Turnos.getInstance().devolverRondaActual().getNombre());
             }
         }
     }
@@ -106,17 +110,23 @@ public class TableroController implements Initializable {
                 alert.setTitle("Infromacion Ataque");
                 alert.setHeaderText("Resultado Batalla");
                 if(Turnos.getInstance().atacarACon(paisOrigen, paisDestino, fichas)){
-                    alert.setContentText("Capturaste" + paisDestino.substring(0,1).toUpperCase() + paisDestino.substring(1).toLowerCase() +
-                            "con" + paisOrigen.substring(0,1).toUpperCase() + paisOrigen.substring(1).toLowerCase() + "se a pasado " +
+                    alert.setContentText("Capturaste " + paisDestino + " con " + paisOrigen + " se a pasado " +
                             "una ficha y podes pasar mas.");
                 }else {
-                    alert.setContentText("No lograste capturar" + paisDestino.substring(0,1).toUpperCase() + paisDestino.substring(1).toLowerCase() +
-                            "con" + paisOrigen.substring(0,1).toUpperCase() + paisOrigen.substring(1).toLowerCase() + "y perdio fichas.");
+                    alert.setContentText("No lograste capturar " + paisDestino + " con " + paisOrigen + " y perdio fichas.");
                 }
                 alert.show();
-                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO, App.devolverEscena(), "ALTEGO");
+                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO, App.devolverEscena(), "");
             }catch(NoSePuedeHacerEstaAccionEnEstaRondaException e){
-
+                mensajeError("No se puede atacar en " + Turnos.getInstance().devolverRondaActual().getNombre());
+            }catch (AtaqueNoValidoException e){
+                mensajeError("No se puede atacar con " + paisOrigen + " a "+ paisDestino);
+            }catch (JugadorNoPoseePaisException e){
+                mensajeError("El pais "+ paisOrigen + " no es tuyo.");
+            }catch (EjercitoConUnaFichaNoPuedeAtacarException e){
+                mensajeError(paisOrigen + "tiene solo una ficha y no puede atacar");
+            }catch(EjercitoNoPuedeTirarEsaCantidadDeDadosException e){
+                mensajeError("El pais seleccionado no puede atacar con "+ Math.min(Math.abs(fichas),3) + " fichas");
             }
         }
     }
@@ -124,8 +134,18 @@ public class TableroController implements Initializable {
 
     public void pasar(){
         if(seteadorDosPaises()) {
-            Turnos.getInstance().pasarFichas(paisOrigen, paisDestino, fichas);
-            CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO,App.devolverEscena(),"ALTEGO");
+            try {
+                Turnos.getInstance().pasarFichas(paisOrigen, paisDestino, fichas);
+                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO, App.devolverEscena(), "");
+            }catch(NoSePuedeHacerEstaAccionEnEstaRondaException e){
+                mensajeError("No se puede pasar fichas en " + Turnos.getInstance().devolverRondaActual().getNombre());
+            }catch (PaisNoEsLimitrofeException e){
+                mensajeError(paisOrigen + " y " + paisDestino + " no son limitrofes!");
+            }catch (JugadorNoPoseePaisException e){
+                mensajeError("No podes pasar fichas entre paises que no son tuyos");
+            }catch (PaisSinSuficientesFichasParaPasarException e){
+                mensajeError(paisOrigen + " no tiene " + fichas + " para pasar a " + paisDestino);
+            }
         }
     }
 
@@ -133,14 +153,12 @@ public class TableroController implements Initializable {
         try{
             Turnos.getInstance().finEtapa();
             if(Turnos.getInstance().devolverRondaActual() instanceof RondaGanador){
-                CargadorDeEscena.cargarEscena(Constantes.RUTA_GANADOR,App.devolverEscena(),"ALTEGO");
+                CargadorDeEscena.cargarEscena(Constantes.RUTA_GANADOR,App.devolverEscena(),"");
             }else{
-                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO,App.devolverEscena(),"ALTEGO");
+                CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO,App.devolverEscena(),"");
             }
         }catch (JugadorSigueTeniendoFichasException e){
-            labelErrores.setText("Seguis teniendo fichas para colocar");
-        }catch(NoSePuedeHacerEstaAccionEnEstaRondaException e){
-
+            mensajeError("Seguis teniendo fichas para colocar");
         }
     }
 
@@ -153,10 +171,10 @@ public class TableroController implements Initializable {
             if (Turnos.getInstance().darCartaPais()){
                 labelErrores.setText("Agarraste una carta!!!");
             } else{
-                labelErrores.setText("No podes agarrar una carta");
+                mensajeError("No podes agarrar una carta");
             }
         } catch (Exception e){
-            labelErrores.setText("Oops En esta ronda no podes agarrar la carta ");
+            mensajeError("Oops En esta ronda no podes agarrar la carta ");
         }
     }
 
@@ -187,6 +205,9 @@ public class TableroController implements Initializable {
             alertError("Se debe rellenar las casillas de pais origen, pais destino y un numero fichas","Error Input");
             return false;
         }
+        /*Arreglo el formato del texto*/
+        paisDestino = paisDestino.substring(0,1).toUpperCase() + paisDestino.substring(1).toLowerCase();
+        paisOrigen = paisOrigen.substring(0,1).toUpperCase() + paisOrigen.substring(1).toLowerCase();
         return true;
     }
 
@@ -201,6 +222,8 @@ public class TableroController implements Initializable {
             alertError("Se debe rellenar las casillas de pais destino y un numero fichas","Error Input");
             return false;
         }
+        /*Arreglo el formato del texto*/
+        paisOrigen = paisOrigen.substring(0,1).toUpperCase() + paisOrigen.substring(1).toLowerCase();
         return true;
     }
 
@@ -211,7 +234,7 @@ public class TableroController implements Initializable {
 
     public void volverAMenu() {
         Turnos.reset();
-        CargadorDeEscena.cargarEscena(Constantes.MENU_INICIO,App.devolverEscena(),"ALTEGO");
+        CargadorDeEscena.cargarEscena(Constantes.MENU_INICIO,App.devolverEscena(),"");
     }
 
     public void ayuda() {

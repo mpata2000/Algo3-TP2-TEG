@@ -37,7 +37,9 @@ public class CargadorDeEscena {
     public static void cargarEscena(String escena,Stage stage, String titulo){
         Scene scene = new Scene(CargadorDeEscena.cargarArchivo(escena));
         stage.setScene(scene);
-        stage.setTitle(titulo);
+        if(!titulo.isBlank()){
+            stage.setTitle(titulo);
+        }
         stage.getIcons().add(new Image(Objects.requireNonNull(App.class.getResourceAsStream("/images/logoYetem.png"))));
         stage.setResizable(false);
         stage.centerOnScreen();
