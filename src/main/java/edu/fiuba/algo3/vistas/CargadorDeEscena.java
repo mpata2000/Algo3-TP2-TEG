@@ -41,6 +41,7 @@ public class CargadorDeEscena {
         stage.getIcons().add(new Image(Objects.requireNonNull(App.class.getResourceAsStream("/images/logoYetem.png"))));
         stage.setResizable(false);
         stage.centerOnScreen();
+        stage.sizeToScene();
         stage.show();
 
     }
