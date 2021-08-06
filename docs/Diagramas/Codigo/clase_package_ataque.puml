@@ -1,0 +1,43 @@
+@startuml
+
+package modelo <<frame>>{
+
+    package ataque <<frame>>{
+
+        class Batalla{
+            - paisAtacante
+            - paisDefensor
+
+            + batallar(cantidadDadosAtacante: Integer): boolean
+            + validarAtaque(): boolean
+        }
+
+        class Dados{
+
+            + compararDados(d: Dados): int[]
+        }
+
+        Batalla ..> Dados
+    }
+
+    package tablero <<frame>>{
+
+        class Tablero{
+        }
+        class Pais{
+        }
+        class Ejercito{
+        }
+
+        Pais --> Ejercito
+        Tablero --> Pais
+    }
+
+    Batalla ..> Pais
+    Ejercito ..> Dados
+    Tablero ..> Batalla
+}
+
+
+
+@enduml

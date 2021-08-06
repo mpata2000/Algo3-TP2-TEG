@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.vistas;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Constantes {
@@ -17,15 +15,8 @@ public class Constantes {
     public static final String MENU_INICIO = "/vistas/menuInicio.fxml";
 
     private static Map<String, String> initMap() {
-        HashMap<String, String> colores = new HashMap<>();
-        colores.put("negro", "#000000");
-        colores.put("amarillo", "#FFE100");
-        colores.put("azul", "#4169e1");
-        colores.put("rojo", "#cc3311");
-        colores.put("magenta", "#ff00ff");
-        colores.put("verde", "#018047");
 
-        return Collections.unmodifiableMap(colores);
+        return Map.of("negro", "#000000", "amarillo", "#FFE100", "azul", "#4169e1", "rojo", "#cc3311", "magenta", "#ff00ff", "verde", "#018047");
     }
 
 

@@ -13,7 +13,7 @@ public class RondaGanador implements TipoRonda {
     }
 
 
-    public void atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
+    public boolean atacarACon(Teg teg, String paisAtacante, String paisDefensor, int cantidad){
         throw new NoSePuedeHacerEstaAccionEnEstaRondaException();
     }
 

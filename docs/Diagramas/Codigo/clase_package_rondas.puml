@@ -1,47 +1,54 @@
 @startuml clases_package_rondas-v1
 'https://plantuml.com/class-diagram
 
-package "rondas" <<frame>>{
+package modelo <<frame>>{
 
-interface TipoDeRonda <<Inteface>>{
-    + atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad)
-    + pasarFichas(Teg teg,String paisUno,String paisdos,int cant)
-    + colocarFichas(Teg teg, String nombrePais, int cantidad)
-    + finEtapa(List<String> jugadores,Teg teg): TipoRonda
-    + getJugadorActual(): String
-    + darCartaPais(Teg teg): Boolean
-    + hacerCanje(Teg teg): Boolean
+    package "rondas" <<frame>>{
+
+        interface TipoDeRonda <<Inteface>>{
+            + atacar(Teg teg,String paisAtacante, String paisDefensor, int cantidad): boolean
+            + pasarFichas(Teg teg,String paisUno,String paisdos,int cant)
+            + colocarFichas(Teg teg, String nombrePais, int cantidad)
+            + finEtapa(List<String> jugadores,Teg teg): TipoRonda
+            + getJugadorActual(): String
+            + darCartaPais(Teg teg): Boolean
+            + hacerCanje(Teg teg): Boolean
+        }
+
+        class RondaAtaque{}
+
+        class RondaReagrupacion{}
+
+        class RondaColocacion{}
+
+        class RondaGanador{}
+
+        class ColocacionNormal{
+            + colocarFichas(String unJugador, Teg teg)
+            + pasarDeRonda(List<String> jugadores):  TipoRonda
+
+        }
+
+        class ColocacionPrimeraRonda{
+            + colocarFichas(String unJugador, Teg teg)
+            + pasarDeRonda(List<String> jugadores):TipoRonda
+        }
+
+        class ColocacionSegundaRonda{
+            + pasarDeRonda(List<String> jugadores): TipoRonda
+        }
+
+        TipoDeRonda <|.. RondaColocacion
+        TipoDeRonda <|.. RondaAtaque
+        TipoDeRonda <|.. RondaReagrupacion
+        TipoDeRonda <|.. RondaGanador
+        RondaColocacion --> ColocacionNormal
+        ColocacionNormal <|-down- ColocacionPrimeraRonda
+        ColocacionNormal <|-down- ColocacionSegundaRonda
+    }
+
+    Turnos -> TipoDeRonda
+    TipoDeRonda ..> Teg
+    Turnos --> Teg
 }
-
-class RondaAtaque{}
-
-class RondaReagrupacion{}
-
-class RondaColocacion{}
-
-class RondaGanador{}
-
-class ColocacionNormal{
-    + colocarFichas(String unJugador, Teg teg)
-    + pasarDeRonda(List<String> jugadores):  TipoRonda
-
-}
-
-class ColocacionPrimeraRonda{
-    + colocarFichas(String unJugador, Teg teg)
-    + pasarDeRonda(List<String> jugadores):TipoRonda
-}
-
-class ColocacionSegundaRonda{
-    + pasarDeRonda(List<String> jugadores): TipoRonda
-}
-
-TipoDeRonda <|.. RondaColocacion
-TipoDeRonda <|.. RondaAtaque
-TipoDeRonda <|.. RondaReagrupacion
-TipoDeRonda <|.. RondaGanador
-RondaColocacion --> ColocacionNormal
-ColocacionNormal <|-down- ColocacionPrimeraRonda
-ColocacionNormal <|-down- ColocacionSegundaRonda
-
 @enduml

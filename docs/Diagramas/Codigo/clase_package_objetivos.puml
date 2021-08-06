@@ -1,44 +1,51 @@
 @startuml clases_package_objetivos-v1
-'https://plantuml.com/class-diagram
 
-package objetivos{
+package modelo <<frame>>{
 
-abstract class ObjetivoTeg{
-    # String colorDuenio
-    + cumplioObjetivo(Teg teg): Boolean
-    + setDuenio(Jugador unJugador)
-    # {abstract} objetivoJugador(Teg teg): Boolean
-}
+    package objetivos <<frame>>{
 
-class ObjetivoConquista{
-    - Map <String,Integer> paisesPorContinente;
-    - List<String> continentesAConquistar;
+        abstract class ObjetivoTeg{
+            # String colorDuenio
+            + cumplioObjetivo(Teg teg): Boolean
+            + setDuenio(Jugador unJugador)
+            # {abstract} objetivoJugador(Teg teg): Boolean
+        }
 
-    + ObjetivoConquista(List<String> continentes,Map<String,Integer> paisesPorContinente): ObjetivoConquista
-    - tieneTodosLosPaises(Teg teg): Boolean
-    - tieneTodosLosContienetes(Teg teg): Boolean
-    + objetivoJugador(Teg teg): Boolean
-}
+        class ObjetivoConquista{
+            - Map <String,Integer> paisesPorContinente;
+            - List<String> continentesAConquistar;
 
-class ObjetivoDestruccion{
-    - List<Jugador> jugadores;
-    - Jugador jugadorADestruir;
+            + ObjetivoConquista(List<String> continentes,Map<String,Integer> paisesPorContinente): ObjetivoConquista
+            - tieneTodosLosPaises(Teg teg): Boolean
+            - tieneTodosLosContienetes(Teg teg): Boolean
+            + objetivoJugador(Teg teg): Boolean
+        }
 
-    + ObjetivoDestruccion(String colorADestruir,List<Jugador> jugadoresEnOrden): ObjetivoDestruccion
-    + setDuenio(Jugador unJugador)
-    # boolean objetivoJugador(Teg teg)
+        class ObjetivoDestruccion{
+            - List<Jugador> jugadores;
+            - Jugador jugadorADestruir;
 
-}
+            + ObjetivoDestruccion(String colorADestruir,List<Jugador> jugadoresEnOrden): ObjetivoDestruccion
+            + setDuenio(Jugador unJugador)
+            # boolean objetivoJugador(Teg teg)
 
-class Objetivos{
-    + {static} objetivosConquista(String pathArchivo) : List<ObjetivoTeg>
-    + {static}  objetivososDestruccion(List<Jugador> jugadoresEnOrden): List<ObjetivoTeg>
-}
+        }
 
-ObjetivoTeg <|-- ObjetivoDestruccion
-ObjetivoTeg <|-- ObjetivoConquista
-ObjetivoConquista <.. Objetivos: <<creates>>
-ObjetivoDestruccion <.. Objetivos: <<creates>>
+        class Objetivos{
+            + {static} objetivosConquista(String pathArchivo) : List<ObjetivoTeg>
+            + {static}  objetivososDestruccion(List<Jugador> jugadoresEnOrden): List<ObjetivoTeg>
+        }
 
+        ObjetivoTeg <|-- ObjetivoDestruccion
+        ObjetivoTeg <|-- ObjetivoConquista
+        ObjetivoConquista <.. Objetivos: <<creates>>
+        ObjetivoDestruccion <.. Objetivos: <<creates>>
+
+    }
+
+    Jugador --> ObjetivoTeg
+    Teg -right-> Jugador
+    Teg --> ObjetivoTeg
+    Teg ..> Objetivos
 }
 @enduml

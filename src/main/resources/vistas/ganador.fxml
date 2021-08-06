@@ -1,25 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.GanadorController">
-   <children>
-      <Label fx:id="ganador" layoutX="201.0" layoutY="242.0" prefHeight="66.0" prefWidth="144.0" text=" ">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
-      <Label layoutX="135.0" layoutY="74.0" prefHeight="115.0" prefWidth="356.0" text="¡Termino el juego!">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="184.0" layoutY="176.0" prefHeight="66.0" prefWidth="277.0" text="Gano el jugador:">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Button layoutX="248.0" layoutY="327.0" mnemonicParsing="false" onAction="#cerrar" text="Cerrar" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.GanadorController">
+   <ImageView fitHeight="400.0" fitWidth="719.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/10974679.jpg" />
+      </image></ImageView>
+   <VBox alignment="TOP_CENTER" layoutX="83.0" prefHeight="220.0" prefWidth="393.0">
+      <children>
+          <Label prefHeight="115.0" prefWidth="394.0" text="¡Termino el juego!" textFill="#000000">
+              <font>
+                <Font size="36.0" />
+              </font>
+          </Label>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <Label prefHeight="57.0" prefWidth="179.0" text="Gano el jugador:" textFill="#000000" wrapText="true">
+                    <font>
+                      <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="ganador" prefHeight="54.0" prefWidth="156.0" text=" ">
+                    <font>
+                      <Font size="24.0" />
+                    </font>
+                </Label>
+            </children>
+         </HBox>
+      </children>
+   </VBox>
+   <VBox layoutX="230.0" layoutY="278.0" prefHeight="75.0" prefWidth="99.0" spacing="10.0">
+      <children>
+         <Button alignment="CENTER" mnemonicParsing="false" onAction="#volverMenu" text="Volver al Menu" />
+          <Button mnemonicParsing="false" onAction="#cerrar" prefHeight="25.0" prefWidth="95.0" text="Cerrar" />
+      </children>
+   </VBox>
 </AnchorPane>

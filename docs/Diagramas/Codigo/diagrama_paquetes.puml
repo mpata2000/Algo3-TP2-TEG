@@ -1,0 +1,40 @@
+@startuml
+
+package controller <<frame>>{
+}
+
+package vistas <<frame>>{
+}
+
+package modelo <<frame>>{
+
+    package ataque <<frame>>{
+    }
+    package cartas <<frame>>{
+    }
+    package objetivos <<frame>>{
+    }
+    package rondas <<frame>>{
+    }
+    package tablero <<frame>>{
+    }
+
+    tablero <--> ataque
+    cartas --> tablero
+    objetivos -right-> tablero
+
+    Turnos -left-> rondas
+    rondas --> Teg
+    Teg --> tablero
+    Teg -left-> Jugador
+    Jugador --> cartas
+    Teg --> cartas
+    Jugador --> objetivos
+}
+
+Turnos ---> vistas
+vistas --right--> controller
+controller --down--> Turnos
+
+
+@enduml
