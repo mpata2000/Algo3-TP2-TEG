@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="917.0" prefWidth="1153.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TableroController">
+<AnchorPane minHeight="917.0" minWidth="1153.0" prefHeight="917.0" prefWidth="1153.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TableroController">
     <children>
         <Label fx:id="textoTipoRonda" alignment="CENTER" layoutX="10.0" layoutY="8.0" prefHeight="45.0" prefWidth="490.0" style="-fx-background-color: #4CAF50;" text="Ronda de Reagrupacion" textAlignment="CENTER" textFill="WHITE">
             <font>
@@ -43,7 +43,7 @@
                 <Separator layoutX="-1.0" layoutY="763.0" prefHeight="23.0" prefWidth="118.0" />
                 <Button fx:id="botonAyuda" layoutX="3.0" layoutY="818.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Ayuda" />
                 <Separator layoutX="-1.0" layoutY="-3.0" prefWidth="118.0" />
-                <Separator layoutX="-1.0" layoutY="887.0" prefWidth="118.0" />
+                <Separator layoutX="-1.0" layoutY="887.0" prefHeight="3.0" prefWidth="118.0" />
                 <Button fx:id="botonAcercaDe" layoutX="3.0" layoutY="782.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Acerca de" />
                 <Separator layoutX="-1.0" layoutY="66.0" prefWidth="118.0" />
                 <Button fx:id="botonPasarFichas" ellipsisString="" layoutX="21.0" layoutY="356.0" mnemonicParsing="false" onAction="#pasar" prefHeight="30.0" prefWidth="76.0" text="Pasar" />
@@ -62,7 +62,7 @@
             </Label>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="10.0" layoutY="716.0" prefHeight="200.0" prefWidth="990.0">
+        <AnchorPane layoutX="14.0" layoutY="715.0" prefHeight="200.0" prefWidth="990.0">
             <children>
                 <ListView fx:id="textPaisesPorContinente" layoutX="748.0" layoutY="38.0" prefHeight="150.0" prefWidth="213.0" />
                 <Label layoutX="354.0" layoutY="4.0" prefHeight="30.0" prefWidth="127.0" text="Paises Enemigos" textAlignment="CENTER" wrapText="true">
