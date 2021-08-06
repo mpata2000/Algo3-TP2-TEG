@@ -1,6 +1,9 @@
 
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.excepciones.JugadorSigueTeniendoFichasException;
+import edu.fiuba.algo3.modelo.excepciones.NoSePuedeHacerEstaAccionEnEstaRondaException;
+import edu.fiuba.algo3.modelo.excepciones.PasajeDeFichasNoValidoEnAtaqueException;
 import edu.fiuba.algo3.modelo.rondas.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
