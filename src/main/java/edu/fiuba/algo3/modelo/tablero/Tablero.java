@@ -12,16 +12,20 @@ public class Tablero {
 
     public Tablero(List<Continente> continentes, List<Pais> paises){
         for(Continente continente: continentes){
-            this.continentes.put(continente.getNombre(),continente);
+            this.continentes.put(continente.getNombre().toUpperCase(),continente);
         }
 
         for(Pais pais: paises){
-            this.paises.put(pais.getNombre(),pais);
+            this.paises.put(pais.getNombre().toUpperCase(),pais);
         }
     }
 
     public Pais getPais(String nombrePais) {
-        return this.paises.get(nombrePais);
+        return this.paises.get(nombrePais.toUpperCase());
+    }
+
+    private Continente getContinente(String nombreContinente) {
+        return this.continentes.get(nombreContinente.toUpperCase());
     }
 
     public Map<String, Continente> getContinentes() {
@@ -83,11 +87,11 @@ public class Tablero {
     }
 
     public int cantidadDePaisesJugadorEnContinente(String continente, Jugador jugador) {
-        return this.continentes.get(continente).cantidadPaisesDe(jugador);
+        return getContinente(continente).cantidadPaisesDe(jugador);
     }
 
     public boolean continenteEsDeJugador(String continente, Jugador jugador) {
-        return this.continentes.get(continente).esDeJugador(jugador);
+        return getContinente(continente).esDeJugador(jugador);
     }
 
     public List<Pais> getPaisesJugador(Jugador jugador) {

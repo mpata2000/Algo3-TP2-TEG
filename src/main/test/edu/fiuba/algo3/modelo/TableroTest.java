@@ -405,7 +405,7 @@ public class TableroTest {
     @Test
     public void tableroDevuelveLaCantidadDePaisesPorContinenteDelJugador(){
         Continente continente = Mockito.mock(Continente.class);
-
+        when(continente.getNombre()).thenReturn("A");
         when(continente.paisesDeJugador(jugadorUno)).thenReturn("OK");
         when(continente.esDeJugador(jugadorUno)).thenReturn(false);
         Tablero tablero = new Tablero(List.of(continente), paises);

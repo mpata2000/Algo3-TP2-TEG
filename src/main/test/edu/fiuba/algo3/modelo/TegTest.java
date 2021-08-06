@@ -34,17 +34,17 @@ public class TegTest {
     @Test
     public void comenzarTegAignaObjetivosYPaisesALosJugadores(){
         Teg teg = new Teg();
-        teg.comenzarJuego(List.of("Rojo","Amarillo"));
-        assertEquals(25,teg.cantidadDePaisesJugador("Rojo"));
-        assertEquals(25,teg.cantidadDePaisesJugador("Amarillo"));
+        teg.comenzarJuego(List.of("ROJO","AMARILLO"));
+        assertEquals(25,teg.cantidadDePaisesJugador("ROJO"));
+        assertEquals(25,teg.cantidadDePaisesJugador("AMARILLO"));
     }
 
     @Test
     public void tegDetectaQueHayUnGanadorSiUnJugadorCumplioSuObjetivo(){
         when(jugadorMock1.gano(any(Teg.class))).thenReturn(false);
         when(jugadorMock2.gano(any(Teg.class))).thenReturn(true);
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
 
         Teg teg = new Teg(tablero,jugadores, new MazoDeCartasPais());
         assertTrue(teg.hayGanador());
@@ -54,19 +54,19 @@ public class TegTest {
     public void tegHayUnGanadorDevuelveElGanadorCorrecto(){
         when(jugadorMock1.gano(any(Teg.class))).thenReturn(false);
         when(jugadorMock2.gano(any(Teg.class))).thenReturn(true);
-        when(jugadorMock2.getColor()).thenReturn("Amarillo");
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        when(jugadorMock2.getColor()).thenReturn("AMARILLO");
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         assertTrue(teg.hayGanador());
-        assertEquals("Amarillo",teg.getGanador());
+        assertEquals("AMARILLO",teg.getGanador());
     }
 
     @Test
     public void tegLeSacaLaCoquistaDepaisATodosLosJugadores(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         teg.sacarConquistaDePaisAJugadores();
@@ -78,101 +78,101 @@ public class TegTest {
     public void teDevuelveElPrimerGanador(){
         when(jugadorMock1.gano(any(Teg.class))).thenReturn(true);
         when(jugadorMock2.gano(any(Teg.class))).thenReturn(true);
-        when(jugadorMock1.getColor()).thenReturn("Rojo");
-        when(jugadorMock2.getColor()).thenReturn("Amarillo");
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        when(jugadorMock1.getColor()).thenReturn("ROJO");
+        when(jugadorMock2.getColor()).thenReturn("AMARILLO");
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
         assertTrue(teg.hayGanador());
-        assertEquals("Rojo",teg.getGanador());
+        assertEquals("ROJO",teg.getGanador());
     }
 
     @Test
     public void tegLeDaUnaCartaAUnJugador(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
-        teg.darCartaPaisA("Rojo");
+        teg.darCartaPaisA("ROJO");
 
         verify(jugadorMock1,times(1)).darCartaPais(any(CartaPais.class));
     }
 
     @Test
     public void tegLeDiceAJugadorDeHacerCanje(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
-        teg.hacerCanjeJugador("Rojo");
+        teg.hacerCanjeJugador("ROJO");
 
         verify(jugadorMock1,times(1)).hacerCanje(any(MazoDeCartasPais.class));
     }
 
     @Test
     public void tegDelegaPasarFichasATablero(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
-        teg.pasarFichas("Rojo","A","B",1);
+        teg.pasarFichas("ROJO","A","B",1);
 
         verify(tablero,times(1)).pasarFichas(jugadorMock1,"A","B",1);
     }
 
     @Test
     public void tegDelegaColocarFichasATablero(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
-        teg.colocarFichas("Rojo","A",3);
+        teg.colocarFichas("ROJO","A",3);
 
         verify(tablero,times(1)).agregarFichas("A", jugadorMock1, 3);
     }
 
     @Test
     public void tegJugadorGanaBatallaYSeLoActualiza(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
         when(tablero.atacar(jugadorMock1,"A","B",1)).thenReturn(true);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
-        assertTrue(teg.atacarConA("Rojo","A","B",1));
+        assertTrue(teg.atacarConA("ROJO","A","B",1));
         verify(jugadorMock1,times(1)).conquistoPais();
     }
 
     @Test
     public void tegJugadorNoGanaBatalla(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
         when(tablero.atacar(jugadorMock1,"A","B",1)).thenReturn(false);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
-        assertFalse(teg.atacarConA("Rojo","A","B",1));
+        assertFalse(teg.atacarConA("ROJO","A","B",1));
         verify(jugadorMock1,times(0)).conquistoPais();
     }
 
     @Test
     public void tegLeDaLasFichasCorrectasAJugadorYElJugadorTieneFichas(){
-        Jugador jugadorTest = new Jugador("Rojo");
-        jugadores.put("Rojo",jugadorTest);
-        jugadores.put("Amarillo",jugadorMock2);
+        Jugador jugadorTest = new Jugador("ROJO");
+        jugadores.put("ROJO",jugadorTest);
+        jugadores.put("AMARILLO",jugadorMock2);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
-        teg.agregarFichasA("Rojo",3);
-        assertTrue(teg.jugadorTieneFichas("Rojo"));
+        teg.agregarFichasA("ROJO",3);
+        assertTrue(teg.jugadorTieneFichas("ROJO"));
         assertEquals(3,jugadorTest.sacarFichas(0));
     }
 
     @Test
     public void tegLeagregaFichasDisponiblesAjugador(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
-        teg.agregarFichasDisponiblesA("Rojo");
+        teg.agregarFichasDisponiblesA("ROJO");
 
         verify(tablero,times(1)).agregarFichasA(jugadorMock1);
         verify(jugadorMock1,times(1)).activarCartas();
@@ -181,13 +181,13 @@ public class TegTest {
 
     @Test
     public void tegDevuelveSiElContienteEsDelJugador(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
         when(tablero.continenteEsDeJugador("A",jugadorMock1)).thenReturn(true);
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
 
-        assertTrue(teg.continenteEsDeJugador("A","Rojo"));
-        assertFalse(teg.continenteEsDeJugador("A","Amarillo"));
+        assertTrue(teg.continenteEsDeJugador("A","ROJO"));
+        assertFalse(teg.continenteEsDeJugador("A","AMARILLO"));
         verify(tablero,times(1)).continenteEsDeJugador("A",jugadorMock1);
         verify(tablero,times(1)).continenteEsDeJugador("A",jugadorMock2);
 
@@ -195,14 +195,14 @@ public class TegTest {
 
     @Test
     public void tegDevuelveLaCantidadDePaisesPorContienteDelJugador(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
         when(tablero.cantidadDePaisesJugadorEnContinente("A",jugadorMock1)).thenReturn(5);
         when(tablero.cantidadDePaisesJugadorEnContinente("A",jugadorMock2)).thenReturn(2);
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
 
-        assertEquals(5,teg.cantidadDePaisesJugadorEnContinente("A","Rojo"));
-        assertEquals(2,teg.cantidadDePaisesJugadorEnContinente("A","Amarillo"));
+        assertEquals(5,teg.cantidadDePaisesJugadorEnContinente("A","ROJO"));
+        assertEquals(2,teg.cantidadDePaisesJugadorEnContinente("A","AMARILLO"));
         verify(tablero,times(1)).cantidadDePaisesJugadorEnContinente("A",jugadorMock1);
         verify(tablero,times(1)).cantidadDePaisesJugadorEnContinente("A",jugadorMock2);
 
@@ -211,120 +211,120 @@ public class TegTest {
 
     @Test
     public void jugadorPuedeHacerCanjeYTegDevuelveTrue(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
         when(jugadorMock1.hacerCanje(any(CartasPaisTeg.class))).thenReturn(true);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
 
-        assertTrue(teg.hacerCanjeJugador("Rojo"));
+        assertTrue(teg.hacerCanjeJugador("ROJO"));
 
     }
 
 
     @Test
     public void jugadorNoPuedeHacerCanjeYTegDevuelveFalse(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
         when(jugadorMock1.hacerCanje(any(CartasPaisTeg.class))).thenReturn(false);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
 
-        assertFalse(teg.hacerCanjeJugador("Rojo"));
+        assertFalse(teg.hacerCanjeJugador("ROJO"));
     }
 
 
     @Test
     public void jugadorNoPuedeRecivirCartapaisYTegDevuelveFalse(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
         when(jugadorMock1.darCartaPais(any(CartaPais.class))).thenReturn(false);
 
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(List.of(new CartaPais("A","B"))));
 
-        assertFalse(teg.darCartaPaisA("Rojo"));
+        assertFalse(teg.darCartaPaisA("ROJO"));
     }
 
     @Test
     public void jugadorPuedeRecivirCartapaisYTegDevuelveTrue(){
-        jugadores.put("Rojo",jugadorMock1);
-        jugadores.put("Amarillo",jugadorMock2);
+        jugadores.put("ROJO",jugadorMock1);
+        jugadores.put("AMARILLO",jugadorMock2);
         when(jugadorMock1.darCartaPais(any(CartaPais.class))).thenReturn(true);
 
         List<CartaPais> lista = CartasPais.create(Teg.PATHJSON.concat("Teg-Cartas.json"),tablero);
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais(lista));
 
-        assertTrue(teg.darCartaPaisA("Rojo"));
+        assertTrue(teg.darCartaPaisA("ROJO"));
     }
 
     @Test
     public void TegDevuelveElObjetivoDelJugador(){
-        jugadores.put("Rojo",jugadorMock1);
+        jugadores.put("ROJO",jugadorMock1);
         when(jugadorMock1.textoObjetivo()).thenReturn("OK");
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
 
-        assertEquals("OK", teg.textoObjetivo("Rojo"));
+        assertEquals("OK", teg.textoObjetivo("ROJO"));
         verify(jugadorMock1,times(1)).textoObjetivo();
     }
 
     @Test
     public void TegDevuelveLasFichasJugadorActual(){
-        jugadores.put("Rojo",jugadorMock1);
+        jugadores.put("ROJO",jugadorMock1);
         when(jugadorMock1.getFichas()).thenReturn(1);
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
 
-        assertEquals(1, teg.getFichas("Rojo"));
+        assertEquals(1, teg.getFichas("ROJO"));
         verify(jugadorMock1,times(1)).getFichas();
     }
 
     @Test
     public void TegDevuelveLosPaisesPorContinenteDeJugador(){
-        jugadores.put("Rojo",jugadorMock1);
+        jugadores.put("ROJO",jugadorMock1);
         Tablero tableroMock = Mockito.mock(Tablero.class);
         List<String> list = List.of("A","B");
         when(tableroMock.getPaisesPorContinentes(jugadorMock1)).thenReturn(list);
         Teg teg = new Teg(tableroMock,jugadores,new MazoDeCartasPais());
 
-        assertEquals(list, teg.getPaisesPorContinentes("Rojo"));
+        assertEquals(list, teg.getPaisesPorContinentes("ROJO"));
         verify(tableroMock,times(1)).getPaisesPorContinentes(jugadorMock1);
     }
 
 
     @Test
     public void TegDevuelveLasCatasPaisDelJugadorActual(){
-        jugadores.put("Rojo",jugadorMock1);
+        jugadores.put("ROJO",jugadorMock1);
 
         List<String> list = List.of("A","B");
         when(jugadorMock1.getCartas()).thenReturn(list);
         Teg teg = new Teg(tablero,jugadores,new MazoDeCartasPais());
 
-        assertEquals(list, teg.getCartasJugador("Rojo"));
+        assertEquals(list, teg.getCartasJugador("ROJO"));
         verify(jugadorMock1,times(1)).getCartas();
     }
 
     @Test
     public void TegDevuelveLosPaisesDelJugadorActual(){
         List<Pais> list = List.of(new Pais("A",List.of("A")),new Pais("A",List.of("A")));
-        jugadores.put("Rojo",jugadorMock1);
+        jugadores.put("ROJO",jugadorMock1);
         Tablero tableroMock = Mockito.mock(Tablero.class);
         when(tableroMock.getPaisesJugador(jugadorMock1)).thenReturn(list);
         Teg teg = new Teg(tableroMock,jugadores,new MazoDeCartasPais());
 
 
-        assertEquals(list, teg.getPaisesJugador("Rojo"));
+        assertEquals(list, teg.getPaisesJugador("ROJO"));
         verify(tableroMock,times(1)).getPaisesJugador(jugadorMock1);
     }
 
     @Test
     public void TegDevuelveLosPaisesQueNoSonDelJugadorActual(){
         List<Pais> list = List.of(new Pais("A",List.of("A")),new Pais("A",List.of("A")));
-        jugadores.put("Rojo",jugadorMock1);
+        jugadores.put("ROJO",jugadorMock1);
         Tablero tableroMock = Mockito.mock(Tablero.class);
         when(tableroMock.getPaisesEnemigos(jugadorMock1)).thenReturn(list);
         Teg teg = new Teg(tableroMock,jugadores,new MazoDeCartasPais());
 
 
-        assertEquals(list, teg.getPaisesEnemigos("Rojo"));
+        assertEquals(list, teg.getPaisesEnemigos("ROJO"));
         verify(tableroMock,times(1)).getPaisesEnemigos(jugadorMock1);
     }
 

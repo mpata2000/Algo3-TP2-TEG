@@ -31,9 +31,13 @@ public class Teg {
         this.cartas = mazoDeCartasPais;
     }
 
+    private Jugador getJugador(String jugador){
+        return jugadores.get(jugador.toUpperCase());
+    }
+
     public void comenzarJuego(List<String> colores) {
         for (String color : colores) {
-            this.jugadores.put(color, new Jugador(color));
+            this.jugadores.put(color.toUpperCase(), new Jugador(color));
         }
         this.cartas.asignarPaises(new ArrayList<>(this.jugadores.values()));
         this.objetivos.addAll(Objetivos.objetivososDestruccion(new ArrayList<>(this.jugadores.values())));
@@ -51,11 +55,11 @@ public class Teg {
     }
 
     public void colocarFichas(String colorJugador, String nombrePais, int cant) {
-        this.tablero.agregarFichas(nombrePais, this.jugadores.get(colorJugador), cant);
+        this.tablero.agregarFichas(nombrePais, this.getJugador(colorJugador), cant);
     }
 
     public boolean atacarConA(String colorJugador, String paisAtacante, String paisDefensor, int cantidad) {
-        Jugador jugador = this.jugadores.get(colorJugador);
+        Jugador jugador = this.getJugador(colorJugador);
         if (tablero.atacar(jugador, paisAtacante, paisDefensor, cantidad)) {
             jugador.conquistoPais();
             return true;
@@ -70,37 +74,37 @@ public class Teg {
     }
 
     public void pasarFichas(String colorJugador, String paisUno, String paisDos, int cant) {
-        this.tablero.pasarFichas(jugadores.get(colorJugador), paisUno, paisDos, cant);
+        this.tablero.pasarFichas(this.getJugador(colorJugador), paisUno, paisDos, cant);
     }
 
     public void agregarFichasDisponiblesA(String colorJugador) {
-        Jugador jugador = this.jugadores.get(colorJugador);
+        Jugador jugador = this.getJugador(colorJugador);
         jugador.activarCartas();
         this.tablero.agregarFichasA(jugador);
     }
 
     public void agregarFichasA(String colorJugador, int cantidadFichas) {
-        this.jugadores.get(colorJugador).agregarFichas(cantidadFichas);
+        this.getJugador(colorJugador).agregarFichas(cantidadFichas);
     }
 
     public boolean hacerCanjeJugador(String colorJugador) {
-        return this.jugadores.get(colorJugador).hacerCanje(this.cartas);
+        return this.getJugador(colorJugador).hacerCanje(this.cartas);
     }
 
     public boolean darCartaPaisA(String colorJugador) {
-        return this.cartas.darCartaA(this.jugadores.get(colorJugador));
+        return this.cartas.darCartaA(this.getJugador(colorJugador));
     }
 
     public int cantidadDePaisesJugador(String colorJugador) {
-        return this.tablero.cantidadDePaisesJugador(jugadores.get(colorJugador));
+        return this.tablero.cantidadDePaisesJugador(this.getJugador(colorJugador));
     }
 
     public int cantidadDePaisesJugadorEnContinente(String continente, String jugador) {
-        return this.tablero.cantidadDePaisesJugadorEnContinente(continente, jugadores.get(jugador));
+        return this.tablero.cantidadDePaisesJugadorEnContinente(continente, this.getJugador(jugador));
     }
 
     public boolean continenteEsDeJugador(String continente, String jugador) {
-        return this.tablero.continenteEsDeJugador(continente, jugadores.get(jugador));
+        return this.tablero.continenteEsDeJugador(continente, this.getJugador(jugador));
     }
 
     public boolean hayGanador() {
@@ -108,7 +112,7 @@ public class Teg {
     }
 
     public boolean jugadorTieneFichas(String colorJugador) {
-        return this.jugadores.get(colorJugador).tieneFichas();
+        return this.getJugador(colorJugador).tieneFichas();
     }
 
     public String getGanador() {
@@ -121,27 +125,27 @@ public class Teg {
 
 
     public int getFichas(String jugadorActual) {
-        return jugadores.get(jugadorActual).getFichas();
+        return this.getJugador(jugadorActual).getFichas();
     }
 
 
     public List<String> getPaisesPorContinentes(String jugador) {
-        return this.tablero.getPaisesPorContinentes(jugadores.get(jugador));
+        return this.tablero.getPaisesPorContinentes(this.getJugador(jugador));
     }
 
     public List<String> getCartasJugador(String jugadorActual) {
-        return this.jugadores.get(jugadorActual).getCartas();
+        return this.getJugador(jugadorActual).getCartas();
     }
 
     public List<Pais> getPaisesJugador(String jugadorActual) {
-       return tablero.getPaisesJugador(jugadores.get(jugadorActual));
+       return tablero.getPaisesJugador(this.getJugador(jugadorActual));
     }
 
     public List<Pais> getPaisesEnemigos(String jugadorActual) {
-        return tablero.getPaisesEnemigos(jugadores.get(jugadorActual));
+        return tablero.getPaisesEnemigos(this.getJugador(jugadorActual));
     }
 
     public String textoObjetivo(String jugadorActual) {
-        return jugadores.get(jugadorActual).textoObjetivo();
+        return this.getJugador(jugadorActual).textoObjetivo();
     }
 }
