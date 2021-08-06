@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.cartas;
 
 
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.excepciones.MazoNoTieneSuficientesCartasException;
 
 import java.util.*;
 

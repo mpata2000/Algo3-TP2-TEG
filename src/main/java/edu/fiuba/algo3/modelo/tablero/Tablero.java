@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.tablero;
 
 import edu.fiuba.algo3.modelo.ataque.Batalla;
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.excepciones.JugadorNoPoseePaisException;
 
 import java.util.*;
 import java.util.stream.Collectors;

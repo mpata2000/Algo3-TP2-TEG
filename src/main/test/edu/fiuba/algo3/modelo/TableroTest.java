@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.ataque.AtaqueNoValidoException;
-import edu.fiuba.algo3.modelo.ataque.EjercitoConUnaFichaNoPuedeAtacarException;
-import edu.fiuba.algo3.modelo.ataque.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
-import edu.fiuba.algo3.modelo.ataque.NoSePuedenCrearCeroDadosException;
+import edu.fiuba.algo3.modelo.excepciones.AtaqueNoValidoException;
+import edu.fiuba.algo3.modelo.excepciones.EjercitoConUnaFichaNoPuedeAtacarException;
+import edu.fiuba.algo3.modelo.excepciones.EjercitoNoPuedeTirarEsaCantidadDeDadosException;
+import edu.fiuba.algo3.modelo.excepciones.NoSePuedenCrearCeroDadosException;
 import edu.fiuba.algo3.modelo.tablero.Continente;
-import edu.fiuba.algo3.modelo.tablero.JugadorNoPoseePaisException;
+import edu.fiuba.algo3.modelo.excepciones.JugadorNoPoseePaisException;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 import org.junit.jupiter.api.BeforeEach;

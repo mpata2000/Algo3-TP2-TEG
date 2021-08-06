@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 
+import edu.fiuba.algo3.modelo.excepciones.LimiteDeJugadoresException;
 import edu.fiuba.algo3.modelo.rondas.RondaColocacion;
 import edu.fiuba.algo3.modelo.rondas.TipoRonda;
 import edu.fiuba.algo3.modelo.tablero.Pais;

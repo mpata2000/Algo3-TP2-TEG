@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.cartas.CartaPais;
 import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
-import edu.fiuba.algo3.modelo.cartas.MazoNoTieneSuficientesCartasException;
+import edu.fiuba.algo3.modelo.excepciones.MazoNoTieneSuficientesCartasException;
 import edu.fiuba.algo3.modelo.tablero.Pais;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.ataque.NoSePuedenCrearCeroDadosException;
+import edu.fiuba.algo3.modelo.excepciones.NoSePuedenCrearCeroDadosException;
 import edu.fiuba.algo3.modelo.ataque.Dados;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

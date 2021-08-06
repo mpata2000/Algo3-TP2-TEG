@@ -2,6 +2,9 @@ package edu.fiuba.algo3.modelo.tablero;
 
 import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.excepciones.JugadorNoPoseePaisException;
+import edu.fiuba.algo3.modelo.excepciones.JugadorNoTieneSuficientesFichasException;
+import edu.fiuba.algo3.modelo.excepciones.PaisNoEsLimitrofeException;
 
 import java.util.List;
 

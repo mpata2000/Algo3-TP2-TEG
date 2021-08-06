@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.ataque;
 
+import edu.fiuba.algo3.modelo.excepciones.NoSePuedenCrearCeroDadosException;
+
 import java.util.ArrayList;
 import java.util.Random;
 import static java.util.Comparator.reverseOrder;

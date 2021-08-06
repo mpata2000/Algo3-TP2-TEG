@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.rondas;
 
 import edu.fiuba.algo3.modelo.Teg;
+import edu.fiuba.algo3.modelo.excepciones.NoSePuedeHacerEstaAccionEnEstaRondaException;
 
 import java.util.List;
 import java.util.ListIterator;

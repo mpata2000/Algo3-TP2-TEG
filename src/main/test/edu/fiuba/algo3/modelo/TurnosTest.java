@@ -1,7 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.cartas.MazoDeCartasPais;
-import edu.fiuba.algo3.modelo.tablero.JugadorNoTieneSuficientesFichasException;
+import edu.fiuba.algo3.modelo.excepciones.JugadorSigueTeniendoFichasException;
+import edu.fiuba.algo3.modelo.excepciones.LimiteDeJugadoresException;
+import edu.fiuba.algo3.modelo.excepciones.NoSePuedeHacerEstaAccionEnEstaRondaException;
+import edu.fiuba.algo3.modelo.excepciones.JugadorNoTieneSuficientesFichasException;
 import edu.fiuba.algo3.modelo.ataque.Dados;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoTeg;
 import edu.fiuba.algo3.modelo.tablero.Continente;
