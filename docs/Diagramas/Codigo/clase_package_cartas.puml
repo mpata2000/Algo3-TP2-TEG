@@ -1,0 +1,88 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package modelo <<frame>>{
+
+    package tablero <<frame>>{
+        class Pais
+    }
+
+    package cartas <<frame>>{
+
+
+        interface CartasPaisTeg<<inteface>>{
+            + asignarPaises(List<Jugador> jugadors)
+            + darCartaA(Jugador jugador)
+            + agregarCartasPais(List<CartaPais> cartas)
+        }
+
+        interface CartasPaisJugador<<inteface>>{
+            + canjeDeCartas(Jugador jugador, CartasPaisTeg cartasPaisTeg):
+            + activarCartas(Jugador unJugador):Boolean
+            + agregarCartaPais(CartaPais carta)
+        }
+
+        class MazoDeCartasPais{
+            - List<CartaPais> cartasPais;
+            - Canje numeroDecanje;
+
+            'Borre los constructors y getter de size
+            + agregarCartaPais(CartaPais cartaPais)
+            + agregarCartasPais(List<CartaPais> cartas)
+            + asignarPaises(List<Jugador> jugadores)
+            - pasarCartasCanje(List<CartaPais> cartas, CartasPaisTeg cartasPais)
+            - listaDecartasIguales(String simbolo): List<CartaPais>
+            - canjearTresCartasIgules(List<String> simbolos,CartasPaisTeg cartasPais):Boolean
+            - canjearTresCartasDistintas(List<String> simbolos,CartasPaisTeg cartasPais):Boolean
+            + activarCartas(Jugador unJugador)
+            + canjeDeCartas(Jugador unJugador,CartasPaisTeg cartasPais):Boolean
+            + darCartaA(Jugador jugador)
+        }
+
+        class CartaPais{
+            - String nombrePais;
+            - String simbolo;
+            - Boolean activada;
+
+            + CartaPais(String nombrePais,String simbolo: CartaPais
+            + CartaPais(String nombrePais,String simbolo,Pais unPais): CartaPais
+            + asignarPaisA(Jugador unJugador)
+            + setPais(Tablero tablero)
+            + esSimbolo(String simbolo): Boolean
+            + activarCarta(Jugador unJugador)
+        }
+
+        interface Canje <<inteface>>{
+            + hacerCanje(Jugador unJugador): Canje
+        }
+
+        class PrimerosCanjes{
+            - int fichas
+            PrimerosCanjes(): Canje
+            PrimerosCanjes(int fichas): Canje
+        }
+
+        class EnesimoCanje{
+            - int fichas
+            EnesimoCanje(int fichas): Canje
+        }
+
+        Class CartasPais{
+            +{static}create(String pathArchivo, Tablero tablero): List<CartaPais>
+        }
+
+
+        CartasPaisJugador <|.down. MazoDeCartasPais
+        CartasPaisTeg <|.down. MazoDeCartasPais
+        MazoDeCartasPais "1"-down->"*" CartaPais
+        CartasPais .right.> CartaPais: <<create>>
+        CartaPais "1"-->"1" Canje
+        Canje <|.. EnesimoCanje
+        Canje <|.. PrimerosCanjes
+    }
+
+    CartaPais --> Pais
+    Teg --> CartasPaisTeg
+    Jugador --> CartasPaisJugador
+}
+@enduml
