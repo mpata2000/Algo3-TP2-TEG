@@ -205,4 +205,16 @@ public class TableroController implements Initializable {
 
         }
     }
+
+    public void skipMusic() {
+        ControladorDeAudio.getInstance().skip();
+    }
+
+    public void playMusic() {
+        ControladorDeAudio.getInstance().play();
+    }
+
+    public void backMusic() {
+        ControladorDeAudio.getInstance().back();
+    }
 }

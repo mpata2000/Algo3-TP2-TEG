@@ -2,6 +2,8 @@ package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.Turnos;
+import edu.fiuba.algo3.vistas.CargadorDeEscena;
+import edu.fiuba.algo3.vistas.Constantes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -26,19 +28,37 @@ public class MostrarCartasController implements Initializable {
 
     }
 
+    private void cerrarEscena(){
+        Stage stage = (Stage)volver.getScene().getWindow();
+        stage.close();
+    }
+
     public  void hacerCanje(){
         Alert alert;
+        String header;
+        String mensaje;
+
         if(Turnos.getInstance().realizarCanje()){
             alert = new Alert(Alert.AlertType.CONFIRMATION);
+            header = "Canje Confirmado";
+            mensaje = "El canje se a completado correctamente";
+            cerrarEscena();
+            CargadorDeEscena.cargarEscena(Constantes.RUTA_TABLERO,App.devolverEscena(),"Altego");
         }else{
             alert = new Alert(Alert.AlertType.ERROR);
+            header = "Error Canje";
+            mensaje = "El canje no pudo ser completado, revise bien sus cartas.";
         }
+
+        alert.setTitle("Canje");
+        alert.setHeaderText(header);
+        alert.setContentText(mensaje);
         alert.show();
     }
 
+
     public void volverAlTablero(){
-        Stage stage = (Stage)volver.getScene().getWindow();
-        stage.close();
+        cerrarEscena();
         App.devolverEscena().toFront();
     }
 }

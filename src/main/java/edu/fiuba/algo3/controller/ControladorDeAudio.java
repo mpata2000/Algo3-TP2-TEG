@@ -53,11 +53,9 @@ public class ControladorDeAudio {
         for (int i = 0; i < reproductores.size(); i++) {
             final MediaPlayer player     = reproductores.get(i);
             final MediaPlayer nextPlayer = reproductores.get((i + 1) % reproductores.size());
-            player.setOnEndOfMedia(new Runnable() {
-                @Override public void run() {
-                    nextPlayer.play();
-                    repActual = nextPlayer;
-                }
+            player.setOnEndOfMedia(() -> {
+                nextPlayer.play();
+                repActual = nextPlayer;
             });
         }
 
@@ -85,10 +83,21 @@ public class ControladorDeAudio {
 
 
     public void skip(){
-        if(reproduciendo){
-            repActual.stop();
-        }
+        if(reproduciendo) repActual.stop();
+
         repActual = reproductores.get((reproductores.indexOf(repActual)+1)%reproductores.size());
+        repActual.play();
+        reproduciendo = true;
+    }
+
+    public void back() {
+        if(reproduciendo) repActual.stop();
+
+        int pos = (reproductores.indexOf(repActual)-1);
+
+        if(pos < 0) pos = reproductores.size() - 1;
+
+        repActual = reproductores.get(pos);
         repActual.play();
         reproduciendo = true;
     }

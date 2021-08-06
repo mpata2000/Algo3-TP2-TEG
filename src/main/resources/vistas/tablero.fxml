@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="917.0" minWidth="1153.0" prefHeight="917.0" prefWidth="1153.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TableroController">
+<AnchorPane minHeight="917.0" minWidth="1153.0" prefHeight="917.0" prefWidth="1153.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TableroController">
     <children>
         <Label fx:id="textoTipoRonda" alignment="CENTER" layoutX="10.0" layoutY="8.0" prefHeight="45.0" prefWidth="490.0" style="-fx-background-color: #4CAF50;" text="Ronda de Reagrupacion" textAlignment="CENTER" textFill="WHITE">
             <font>
@@ -48,11 +55,18 @@
                 <Button layoutX="2.0" layoutY="491.0" mnemonicParsing="false" onAction="#mostrarCartas" prefHeight="25.0" prefWidth="112.0" text="Cartas" />
                 <TextField fx:id="inputPaisOrigen" layoutX="10.0" layoutY="155.0" prefHeight="25.0" prefWidth="98.0" />
                 <TextField fx:id="inputPaisDestino" layoutX="10.0" layoutY="216.0" prefHeight="25.0" prefWidth="98.0" />
-            <Label fx:id="labelErrores" layoutX="2.0" layoutY="527.0" prefHeight="159.0" prefWidth="112.0" wrapText="true">
+            <Label fx:id="labelErrores" layoutX="2.0" layoutY="527.0" prefHeight="159.0" prefWidth="112.0" textAlignment="JUSTIFY" wrapText="true">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
+            <Button layoutX="38.0" layoutY="744.0" mnemonicParsing="false" onAction="#playMusic" prefHeight="23.0" prefWidth="40.0" text="Play" />
+            <Button layoutX="77.0" layoutY="744.0" mnemonicParsing="false" onAction="#skipMusic" prefHeight="25.0" prefWidth="40.0" text="Skip" />
+            <Button layoutX="-1.0" layoutY="744.0" mnemonicParsing="false" onAction="#backMusic" prefHeight="25.0" prefWidth="40.0" text="Back">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
         <AnchorPane layoutX="14.0" layoutY="715.0" prefHeight="200.0" prefWidth="990.0">
