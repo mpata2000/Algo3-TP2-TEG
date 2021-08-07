@@ -3,3 +3,4 @@ ignore:
   - "**/vistas/*"
   - "**/Main.java"
   - "**/App.java"
+  - "**/SystemInfo.java"
